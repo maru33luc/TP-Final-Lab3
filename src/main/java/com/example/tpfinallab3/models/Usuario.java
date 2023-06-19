@@ -11,6 +11,7 @@ public abstract class Usuario implements Autenticable, Serializable {
     private String nombre;
     private String apellido;
     private String mail;
+    private Boolean isActivo;
 
     public Usuario() {
     }
@@ -21,6 +22,7 @@ public abstract class Usuario implements Autenticable, Serializable {
         this.nombre = nombre;
         this.apellido = apellido;
         this.mail = mail;
+        this.isActivo = true;
     }
 
     @Override
@@ -65,6 +67,14 @@ public abstract class Usuario implements Autenticable, Serializable {
         this.mail = mail;
     }
 
+    public Boolean getActivo() {
+        return isActivo;
+    }
+
+    public void setActivo(Boolean activo) {
+        isActivo = activo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if(this == o) {
@@ -93,6 +103,4 @@ public abstract class Usuario implements Autenticable, Serializable {
                 "Apellido: " + apellido + "\n" +
                 "Correo electrónico: " + mail + "\n";
     }
-
-    abstract void cargar();
 }

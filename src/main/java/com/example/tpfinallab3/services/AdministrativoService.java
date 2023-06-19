@@ -39,7 +39,7 @@ public class AdministrativoService {
                 .findFirst();
     }
 
-    public List<Administrativo> buscarAdministrativosPorPuesto(String puesto) {
+    /*public List<Administrativo> buscarAdministrativosPorPuesto(String puesto) {
         List<Administrativo> resultado = new ArrayList<>();
         for (Administrativo administrativo : administrativos) {
             if (administrativo.getPuesto().equalsIgnoreCase(puesto)) {
@@ -47,7 +47,7 @@ public class AdministrativoService {
             }
         }
         return resultado;
-    }
+    }*/
 
     public List<Administrativo> getAdministrativos() {
         return administrativos;

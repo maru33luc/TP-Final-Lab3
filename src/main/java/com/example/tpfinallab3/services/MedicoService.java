@@ -46,13 +46,13 @@ public class MedicoService {
         medicos.remove(medico);
     }
 
-    public void actualizarMedico(Medico medico) {
+    /*public void actualizarMedico(Medico medico) {
         Optional<Medico> medicoEncontrado = buscarMedicoPorMatricula(medico.getNumeroMatricula());
         if (medicoEncontrado.isPresent()) {
             eliminarMedico(medicoEncontrado.get());
             agregarMedico(medico);
         }
-    }
+    }*/
 
     public Optional<Medico> buscarMedicoPorNombreUsuario(String nombreUsuario) {
         return medicos.stream()
@@ -67,25 +67,17 @@ public class MedicoService {
     }
 
     // buscar medico por matricula
-    public Optional<Medico> buscarMedicoPorMatricula(String matricula) {
+    /*public Optional<Medico> buscarMedicoPorMatricula(String matricula) {
         return medicos.stream()
                 .filter(medico -> medico.getNumeroMatricula().equals(matricula))
                 .findFirst();
-    }
+    }*/
 
-    public List<Medico> buscarMedicosDisponibles() {
+   /* public List<Medico> buscarMedicosDisponibles() {
         return medicos.stream()
                 .filter(Medico::getDisponible)
                 .collect(Collectors.toList());
-    }
-
-    public void marcarMedicoComoNoDisponible(Medico medico) {
-        medico.setDisponible(false);
-    }
-
-    public void marcarMedicoComoDisponible(Medico medico) {
-        medico.setDisponible(true);
-    }
+    }*/
 
     // Otros métodos de búsqueda y operaciones relacionadas con los médicos
 }

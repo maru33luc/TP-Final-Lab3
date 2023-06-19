@@ -4,7 +4,9 @@ import com.example.tpfinallab3.models.Medico;
 import com.example.tpfinallab3.models.Paciente;
 import com.example.tpfinallab3.models.Turno;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +14,7 @@ import java.util.stream.Collectors;
 
 public class TurnoService {
     private static TurnoService instance;
+    private static final String RUTA_JSON = "src/main/resources/json/turnos.json";
     private List<Turno> turnos;
 
     private TurnoService() {
@@ -29,6 +32,25 @@ public class TurnoService {
         return instance;
     }
 
+    public void habilitarTurnos(LocalDate dia, LocalDate diaFin, LocalTime hora, LocalTime horaFin, Medico medico) {
+        do {
+            do {
+                turnos.add(new Turno(dia, hora, medico));
+                hora.plusMinutes(30);
+            } while (hora.isBefore(horaFin));
+            if(dia.getDayOfWeek().equals(DayOfWeek.FRIDAY)) {
+                dia.plusDays(3);
+            }
+            else {
+                dia.plusDays(1);
+            }
+        } while(dia.isBefore(diaFin));
+    }
+
+    public void setTurnos() {
+        List<Turno> listaPacientes = JsonService.getInstance().leerJson(RUTA_JSON, Turno.class);
+        turnos.addAll(listaPacientes);
+    }
     public List<Turno> getTurnos() {
         return turnos;
     }
@@ -41,25 +63,25 @@ public class TurnoService {
         turnos.remove(turno);
     }
 
-    public Optional<Turno> buscarTurnoPorId(Integer id) {
+    /*public Optional<Turno> buscarTurnoPorId(Integer id) {
         return turnos.stream()
                 .filter(turno -> turno.getId().equals(id))
                 .findFirst();
-    }
+    }*/
 
-    public void actualizarTurno(Turno turno) {
+    /*public void actualizarTurno(Turno turno) {
         Optional<Turno> turnoEncontrado = buscarTurnoPorId(turno.getId());
         if (turnoEncontrado.isPresent()) {
             eliminarTurno(turnoEncontrado.get());
             agregarTurno(turno);
         }
-    }
+    }*/
 
-    public List<Turno> buscarTurnosPorFecha(LocalDate fecha) {
+    /*public List<Turno> buscarTurnosPorFecha(LocalDate fecha) {
         return turnos.stream()
                 .filter(turno -> turno.getFecha().equals(fecha))
                 .collect(Collectors.toList());
-    }
+    }*/
 
     public List<Turno> buscarTurnosPorMedico(Medico medico) {
         return turnos.stream()
@@ -89,14 +111,21 @@ public class TurnoService {
 
     // Otros métodos de búsqueda y operaciones relacionadas con los turnos
 
-    public List<Turno> buscarTurnosEntreFechas(LocalDate fechaInicio, LocalDate fechaFin) {
+    /*public List<Turno> buscarTurnosEntreFechas(LocalDate fechaInicio, LocalDate fechaFin) {
         return turnos.stream()
                 .filter(turno -> turno.getFecha().isAfter(fechaInicio) && turno.getFecha().isBefore(fechaFin))
                 .collect(Collectors.toList());
-    }
+    }*/
 
-    public boolean validarDisponibilidadTurno(Turno turno) {
+    /*public boolean validarDisponibilidadTurno(Turno turno) {
         return turnos.stream()
                 .anyMatch(t -> t.getFecha().equals(turno.getFecha()) && t.getHora().equals(turno.getHora()) && !t.getDisponible());
+    }*/
+
+    public void cerrarTurnoService(){
+        // guardar en la ruta de json la lista de turnos
+        System.out.println();
+        System.out.println();
     }
 }
+

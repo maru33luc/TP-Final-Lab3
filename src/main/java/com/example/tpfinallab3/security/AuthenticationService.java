@@ -24,7 +24,7 @@ public class AuthenticationService {
         usuarios.put("usuario1", "$2a$10$0fSNAM1CVFCTdScXG6Cq0u2.BkDG1SajY6gbKqQvIc.2GmDEtylxS"); // Contraseña: password1
         usuarios.put("usuario2", "$2a$10$Mpbhc6IByKmD0eIzR1bg4uAK5egbYe8aK7yrbXH1JyfaUqXwGG9L6"); // Contraseña: password2
         usuarios.put("juanperez", "12345678"); //*/
-        cargarUsuariosDesdeJson(RUTA_JSON);
+        /*cargarUsuariosDesdeJson(RUTA_JSON);*/
     }
 
     public static AuthenticationService getInstance() {

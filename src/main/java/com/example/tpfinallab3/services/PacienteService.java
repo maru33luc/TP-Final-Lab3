@@ -11,8 +11,6 @@ import java.util.stream.Collectors;
 
 public class PacienteService {
     private static PacienteService instance;
-
-    private static final String RUTA_JSON = "src/main/resources/json/pacientes.json";
     private List<Paciente> pacientes;
 
     private PacienteService() {
@@ -38,11 +36,7 @@ public class PacienteService {
         pacientes.add(paciente);
     }
 
-    public void eliminarPaciente(Paciente paciente) {
-        pacientes.remove(paciente);
-    }
-
-    public void actualizarPaciente(Integer dni, Paciente pacienteActualizado) {
+    /*public void actualizarPaciente(Integer dni, Paciente pacienteActualizado) {
         pacientes.stream()
                 .filter(paciente -> paciente.getNumeroDocumento().equals(dni))
                 .findFirst()
@@ -53,7 +47,7 @@ public class PacienteService {
                     paciente.setNombreUsuario(pacienteActualizado.getNombreUsuario());
                     paciente.setContrasena(pacienteActualizado.getContrasena());
                 });
-    }
+    }*/
 
     public Optional<Paciente> buscarPacientePorNombreUsuario(String nombreUsuario) {
         return pacientes.stream()
@@ -73,16 +67,14 @@ public class PacienteService {
                 .collect(Collectors.toList());
     }
 
-    public List<Paciente> buscarPacientesConTurnosSacados() {
+    /*public List<Paciente> buscarPacientesConTurnosSacados() {
         return pacientes.stream()
                 .filter(paciente -> paciente.getTurnos().size() > 0)
                 .collect(Collectors.toList());
-    }
+    }*/
 
-    public void setPacientes() {
-        // leer la lista de pacientes del json y guardarla en la lista de pacientes
-        List<Paciente> listaPacientes = JsonService.getInstance().leerJson(RUTA_JSON, Paciente.class);
-        pacientes.addAll(listaPacientes);
+    public void setPacientes(List<Paciente> pacientes2) {
+        this.pacientes.addAll(pacientes2);
     }
 
     public boolean existePaciente(String nombreUsuario) {
