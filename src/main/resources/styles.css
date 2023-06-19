@@ -24,9 +24,29 @@
     src: url('./fonts/PlayfairDisplay-VariableFont_wght.ttf');
 }
 
-.titulo-clinica {
+
+.nanum-regular{
+    -fx-font-family: "NanumGothic";
+}
+.nanum-bold{
+    -fx-font-family: "NanumGothicBold";
+}
+.nanum-extra-bold{
+    -fx-font-family: "NanumGothicExtraBold";
+}
+.cinzel-regular {
     -fx-font-family: "Cinzel Decorative Regular";
 }
-
-
+.cinzel-bold{
+    -fx-font-family: "Cinzel Decorative Bold";
+}
+.cinzel-black{
+    -fx-font-family: "Cinzel Decorative Black";
+}
+.playfair-italic{
+    -fx-font-family: "Playfair Display Italic";
+}
+.playfair-regular{
+    -fx-font-family: "Playfair Display Regular";
+}
 
