@@ -2,7 +2,6 @@ package com.example.tpfinallab3.services;
 
 import com.example.tpfinallab3.models.Especialidad;
 import com.example.tpfinallab3.models.Medico;
-import com.example.tpfinallab3.models.Paciente;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,14 +22,13 @@ public class MedicoService {
             synchronized (MedicoService.class) {
                 if (instance == null) {
                     instance = new MedicoService();
+                    instance.setMedicos();
                 }
             }
         }
         return instance;
     }
-
     public void setMedicos() {
-        // leer la lista de pacientes del json y guardarla en la lista de pacientes
         List<Medico> listaMedicos = JsonService.getInstance().leerJson(RUTA_JSON, Medico.class);
         medicos.addAll(listaMedicos);
     }
@@ -53,7 +51,6 @@ public class MedicoService {
             agregarMedico(medico);
         }
     }
-
     public Optional<Medico> buscarMedicoPorNombreUsuario(String nombreUsuario) {
         return medicos.stream()
                 .filter(medico -> medico.getNombreUsuario().equalsIgnoreCase(nombreUsuario))
@@ -65,20 +62,16 @@ public class MedicoService {
                 .filter(medico -> medico.getEspecialidad().equals(especialidad))
                 .collect(Collectors.toList());
     }
-
-    // buscar medico por matricula
     public Optional<Medico> buscarMedicoPorMatricula(String matricula) {
         return medicos.stream()
                 .filter(medico -> medico.getNumeroMatricula().equals(matricula))
                 .findFirst();
     }
-
     public List<Medico> buscarMedicosDisponibles() {
         return medicos.stream()
                 .filter(Medico::getDisponible)
                 .collect(Collectors.toList());
     }
-
     public void marcarMedicoComoNoDisponible(Medico medico) {
         medico.setDisponible(false);
     }
@@ -87,5 +80,7 @@ public class MedicoService {
         medico.setDisponible(true);
     }
 
-    // Otros métodos de búsqueda y operaciones relacionadas con los médicos
+    public void guardarMedicosJson() {
+        JsonService.getInstance().guardarJson(medicos, RUTA_JSON);
+    }
 }

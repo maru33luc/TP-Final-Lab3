@@ -1,7 +1,6 @@
 package com.example.tpfinallab3.services;
 
 import com.example.tpfinallab3.models.Paciente;
-import com.example.tpfinallab3.models.UsuarioInfo;
 import com.example.tpfinallab3.security.Autenticable;
 
 import java.util.ArrayList;
@@ -13,6 +12,7 @@ public class PacienteService {
     private static PacienteService instance;
 
     private static final String RUTA_JSON = "src/main/resources/json/pacientes.json";
+
     private List<Paciente> pacientes;
 
     private PacienteService() {
@@ -24,12 +24,21 @@ public class PacienteService {
             synchronized (PacienteService.class) {
                 if (instance == null) {
                     instance = new PacienteService();
+                    instance.setPacientes();
                 }
             }
         }
         return instance;
     }
 
+    public void setPacientes() {
+        try{
+            List<Paciente> listaPacientes = JsonService.getInstance().leerJson(RUTA_JSON, Paciente.class);
+            pacientes.addAll(listaPacientes);
+        }catch (Exception e){
+            System.out.println("No se pudo leer el archivo json");
+        }
+    }
     public List<Paciente> getPacientes() {
         return pacientes;
     }
@@ -79,12 +88,6 @@ public class PacienteService {
                 .collect(Collectors.toList());
     }
 
-    public void setPacientes() {
-        // leer la lista de pacientes del json y guardarla en la lista de pacientes
-        List<Paciente> listaPacientes = JsonService.getInstance().leerJson(RUTA_JSON, Paciente.class);
-        pacientes.addAll(listaPacientes);
-    }
-
     public boolean existePaciente(String nombreUsuario) {
         return pacientes.stream()
                 .anyMatch(paciente -> paciente.getNombreUsuario().equalsIgnoreCase(nombreUsuario));
@@ -97,6 +100,9 @@ public class PacienteService {
                 .orElse(null);
     }
 
-    // Otros métodos de búsqueda y operaciones relacionadas con los pacientes
+    public void guardarPacientesJson() {
+        JsonService.getInstance().guardarJson(pacientes, RUTA_JSON);
+    }
+
 }
 

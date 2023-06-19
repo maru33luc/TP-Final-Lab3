@@ -1,10 +1,11 @@
 package com.example.tpfinallab3.models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
-public class Turno {
+public class Turno implements Serializable {
     private Integer id;
     private LocalDate fecha;
     private LocalTime hora;

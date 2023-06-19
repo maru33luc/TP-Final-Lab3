@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public class AdministrativoService {
     private static AdministrativoService instance;
+    private static final String RUTA_JSON = "src/main/resources/json/administrativos.json";
     private List<Administrativo> administrativos;
 
     private AdministrativoService() {
@@ -19,10 +20,20 @@ public class AdministrativoService {
             synchronized (AdministrativoService.class) {
                 if (instance == null) {
                     instance = new AdministrativoService();
+                    instance.setAdministrativos();
                 }
             }
         }
         return instance;
+    }
+
+    public void setAdministrativos() {
+        List<Administrativo> listaAdministrativos = JsonService.getInstance().leerJson(RUTA_JSON, Administrativo.class);
+        administrativos.addAll(listaAdministrativos);
+    }
+
+    public List<Administrativo> getAdministrativos() {
+        return administrativos;
     }
 
     public void agregarAdministrativo(Administrativo administrativo) {
@@ -38,7 +49,6 @@ public class AdministrativoService {
                 .filter(a -> a.getNombreUsuario().equalsIgnoreCase(nombreUsuario))
                 .findFirst();
     }
-
     public List<Administrativo> buscarAdministrativosPorPuesto(String puesto) {
         List<Administrativo> resultado = new ArrayList<>();
         for (Administrativo administrativo : administrativos) {
@@ -49,9 +59,7 @@ public class AdministrativoService {
         return resultado;
     }
 
-    public List<Administrativo> getAdministrativos() {
-        return administrativos;
+   public void guardarAdministrativosJson() {
+        JsonService.getInstance().guardarJson(administrativos, RUTA_JSON);
     }
-
-    // Otros métodos y operaciones relacionadas con los administrativos
 }

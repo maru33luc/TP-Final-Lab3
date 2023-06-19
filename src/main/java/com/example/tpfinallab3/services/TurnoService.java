@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 
 public class TurnoService {
     private static TurnoService instance;
+
+    private static final String RUTA_JSON = "src/main/resources/json/turnos.json";
     private List<Turno> turnos;
 
     private TurnoService() {
@@ -29,6 +31,10 @@ public class TurnoService {
         return instance;
     }
 
+    public void setTurnos() {
+        List<Turno> listaPacientes = JsonService.getInstance().leerJson(RUTA_JSON, Turno.class);
+        turnos.addAll(listaPacientes);
+    }
     public List<Turno> getTurnos() {
         return turnos;
     }
@@ -87,8 +93,6 @@ public class TurnoService {
         turno.setDisponible(true);
     }
 
-    // Otros métodos de búsqueda y operaciones relacionadas con los turnos
-
     public List<Turno> buscarTurnosEntreFechas(LocalDate fechaInicio, LocalDate fechaFin) {
         return turnos.stream()
                 .filter(turno -> turno.getFecha().isAfter(fechaInicio) && turno.getFecha().isBefore(fechaFin))
@@ -98,5 +102,9 @@ public class TurnoService {
     public boolean validarDisponibilidadTurno(Turno turno) {
         return turnos.stream()
                 .anyMatch(t -> t.getFecha().equals(turno.getFecha()) && t.getHora().equals(turno.getHora()) && !t.getDisponible());
+    }
+
+    public void guardarTurnosJson(){
+        JsonService.getInstance().guardarJson(turnos, RUTA_JSON);
     }
 }

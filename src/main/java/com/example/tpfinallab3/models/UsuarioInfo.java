@@ -1,6 +1,8 @@
 package com.example.tpfinallab3.models;
 
-public class UsuarioInfo {
+import java.io.Serializable;
+
+public class UsuarioInfo implements Serializable {
     private String usuario;
     private String contrasena;
     private String claseEntidad;
