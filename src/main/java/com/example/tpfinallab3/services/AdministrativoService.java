@@ -49,7 +49,9 @@ public class AdministrativoService {
                 .filter(a -> a.getNombreUsuario().equalsIgnoreCase(nombreUsuario))
                 .findFirst();
     }
-    public List<Administrativo> buscarAdministrativosPorPuesto(String puesto) {
+
+    /*public List<Administrativo> buscarAdministrativosPorPuesto(String puesto) {
+>>>>>>> 79ac0773243faa9247ec7f90ca0cdd752dbfa074
         List<Administrativo> resultado = new ArrayList<>();
         for (Administrativo administrativo : administrativos) {
             if (administrativo.getPuesto().equalsIgnoreCase(puesto)) {
@@ -57,7 +59,7 @@ public class AdministrativoService {
             }
         }
         return resultado;
-    }
+    }*/
 
    public void guardarAdministrativosJson() {
         JsonService.getInstance().guardarJson(administrativos, RUTA_JSON);

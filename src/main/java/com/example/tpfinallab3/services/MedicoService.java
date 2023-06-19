@@ -44,13 +44,15 @@ public class MedicoService {
         medicos.remove(medico);
     }
 
-    public void actualizarMedico(Medico medico) {
+    /*public void actualizarMedico(Medico medico) {
         Optional<Medico> medicoEncontrado = buscarMedicoPorMatricula(medico.getNumeroMatricula());
         if (medicoEncontrado.isPresent()) {
             eliminarMedico(medicoEncontrado.get());
             agregarMedico(medico);
         }
-    }
+
+    }*/
+
     public Optional<Medico> buscarMedicoPorNombreUsuario(String nombreUsuario) {
         return medicos.stream()
                 .filter(medico -> medico.getNombreUsuario().equalsIgnoreCase(nombreUsuario))
@@ -62,7 +64,8 @@ public class MedicoService {
                 .filter(medico -> medico.getEspecialidad().equals(especialidad))
                 .collect(Collectors.toList());
     }
-    public Optional<Medico> buscarMedicoPorMatricula(String matricula) {
+
+    /*public Optional<Medico> buscarMedicoPorMatricula(String matricula) {
         return medicos.stream()
                 .filter(medico -> medico.getNumeroMatricula().equals(matricula))
                 .findFirst();
@@ -78,7 +81,7 @@ public class MedicoService {
 
     public void marcarMedicoComoDisponible(Medico medico) {
         medico.setDisponible(true);
-    }
+    }*/
 
     public void guardarMedicosJson() {
         JsonService.getInstance().guardarJson(medicos, RUTA_JSON);

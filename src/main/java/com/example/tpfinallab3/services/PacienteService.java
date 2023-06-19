@@ -47,13 +47,9 @@ public class PacienteService {
         pacientes.add(paciente);
     }
 
-    public void eliminarPaciente(Paciente paciente) {
-        pacientes.remove(paciente);
-    }
-
-    public void actualizarPaciente(Integer dni, Paciente pacienteActualizado) {
+    public void actualizarPaciente(String dni, Paciente pacienteActualizado) {
         pacientes.stream()
-                .filter(paciente -> paciente.getNumeroDocumento().equals(dni))
+                .filter(paciente -> paciente.getDni().equals(dni))
                 .findFirst()
                 .ifPresent(paciente -> {
                     paciente.setNombre(pacienteActualizado.getNombre());
@@ -82,12 +78,11 @@ public class PacienteService {
                 .collect(Collectors.toList());
     }
 
-    public List<Paciente> buscarPacientesConTurnosSacados() {
+    /*public List<Paciente> buscarPacientesConTurnosSacados() {
         return pacientes.stream()
                 .filter(paciente -> paciente.getTurnos().size() > 0)
                 .collect(Collectors.toList());
-    }
-
+    }*/
     public boolean existePaciente(String nombreUsuario) {
         return pacientes.stream()
                 .anyMatch(paciente -> paciente.getNombreUsuario().equalsIgnoreCase(nombreUsuario));

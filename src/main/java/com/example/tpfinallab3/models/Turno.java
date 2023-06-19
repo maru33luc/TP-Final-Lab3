@@ -8,37 +8,29 @@ import java.util.Objects;
 public class Turno implements Serializable {
     private Integer id;
     private LocalDate fecha;
+    private LocalDate dia;
     private LocalTime hora;
     private Paciente paciente;
     private Medico medico;
     private Boolean isDisponible;
 
-      public Turno() {
+    public Turno() {
     }
 
-    public Turno(Integer id, Integer ano, Integer mes, Integer dia, Integer hora, Integer minuto, Paciente paciente, Medico medico) {
-        this.id = id;
-        this.fecha = LocalDate.of(ano, mes, dia);
-        this.hora = LocalTime.of(hora, minuto);
-        this.paciente = paciente;
+    public Turno(LocalDate dia, LocalTime hora, Medico medico) {
+        this.dia = dia;
+        this.hora = hora;
+        this.paciente = null;
         this.medico = medico;
         this.isDisponible = true;
     }
 
-    public Integer getId() {
-        return id;
+    public LocalDate getDia() {
+        return dia;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public void setDia(LocalDate fecha) {
+        this.dia = fecha;
     }
 
     public LocalTime getHora() {
@@ -85,22 +77,22 @@ public class Turno implements Serializable {
             return false;
         }
         Turno turno = (Turno) o;
-        return this.getFecha().isEqual(turno.getFecha()) && this.getPaciente().equals(turno.getPaciente()) && this.getMedico().equals(turno.getMedico());
+        return this.getDia().isEqual(turno.getDia()) && this.getPaciente().equals(turno.getPaciente()) && this.getMedico().equals(turno.getMedico());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fecha, paciente, medico);
+        return Objects.hash(dia, paciente, medico);
     }
 
     @Override
     public String toString() {
-        return "TURNO\n" +
-                "ID: " + id + "\n" +
-                "Fecha: " + fecha + "\n" +
-                "Hora: " + hora + "\n" +
-                "Paciente: " + paciente.getApellido() + " " + paciente.getNombre() + "\n" +
-                "Medico: " + medico.getApellido() + " " + medico.getNombre() + "\n" +
-                "Disponible: " + (isDisponible? "si" : "no");
+        StringBuilder sb = new StringBuilder();
+        sb.append("Turno: ").append("Dia: ").append(dia).append(", Hora: ").append(hora);
+        if (paciente != null) {
+            sb.append(", Paciente: ").append(paciente.getApellido()).append(", Médico: ").append(medico.getApellido());
+        }
+        return sb.toString();
     }
+
 }
