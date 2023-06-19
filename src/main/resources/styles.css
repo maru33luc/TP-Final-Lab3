@@ -1,69 +1,32 @@
 @font-face {
-    font-family: 'NanumGothic-Bold';
     src: url('./fonts/NanumGothic-Bold.ttf');
 }
-@font-face {
-    font-family: 'NanumGothic-ExtraBold';
-    src: url('./font/NanumGothic-ExtraBold.ttf');
-}
-@font-face {
-    font-family: 'NanumGothic-Regular';
-    src: url('./font/NanumGothic-Regular.ttf');
-}
-@font-face {
-    font-family: 'CinzelDecorative-Black';
-    src: url('./font/CinzelDecorative-Black.ttf');
-}
-@font-face {
-    font-family: 'CinzelDecorative-Bold';
-    src: url('./font/CinzelDecorative-Bold.ttf');
-}
-@font-face {
-    font-family: 'CinzelDecorative-Regular';
-    src: url('./font/CinzelDecorative-Regular.ttf');
-}
-@font-face {
-    font-family: 'PlayfairDisplay-Italic-VariableFont_wght';
-    src: url('./font/PlayfairDisplay-Italic-VariableFont_wght.ttf');
-}
-@font-face {
-    font-family: 'PlayfairDisplay-VariableFont_wght';
-    src: url('./font/PlayfairDisplay-VariableFont_wgh.ttf');
-}
 
-
-@font-face{
-    font-family: 'NanumGothic-Regular';
-    src: url('./fonts/NanumGothic-Regular.ttf');
-}
-
-@font-face{
-    font-family: 'NanumGothic-ExtraBold';
+@font-face {
     src: url('./fonts/NanumGothic-ExtraBold.ttf');
 }
-
-@font-face{
-    font-family: 'CinzelDecorative-Black';
+@font-face {
+    src: url('./fonts/NanumGothic-Regular.ttf');
+}
+@font-face {
     src: url('./fonts/CinzelDecorative-Black.ttf');
 }
-
-@font-face{
-    font-family: 'CinzelDecorative-Bold';
+@font-face {
     src: url('./fonts/CinzelDecorative-Bold.ttf');
 }
-
-@font-face{
-    font-family: 'CinzelDecorative-Regular';
+@font-face {
     src: url('./fonts/CinzelDecorative-Regular.ttf');
 }
-
-@font-face{
-    font-family: 'PlayfairDisplay-VariableFont_wght';
+@font-face {
+    src: url('./fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf');
+}
+@font-face {
     src: url('./fonts/PlayfairDisplay-VariableFont_wght.ttf');
 }
 
-
-.botones-login{
-    -fx-font-family: "NanumGothic-Bold";
+.titulo-clinica {
+    -fx-font-family: "Cinzel Decorative Regular";
 }
+
+
 
