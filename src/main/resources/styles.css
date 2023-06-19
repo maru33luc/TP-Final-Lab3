@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'NanumGothic-Bold';
+    src: url('./fonts/NanumGothic-Bold.ttf');
+}
+
+.botones-login{
+    -fx-font-family: "NanumGothic-Bold";
+}
