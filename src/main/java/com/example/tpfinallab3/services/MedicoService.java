@@ -2,6 +2,7 @@ package com.example.tpfinallab3.services;
 
 import com.example.tpfinallab3.models.Especialidad;
 import com.example.tpfinallab3.models.Medico;
+import com.example.tpfinallab3.models.Paciente;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class MedicoService {
     private static MedicoService instance;
+    private static final String RUTA_JSON = "src/main/resources/json/medicos.json";
     private List<Medico> medicos;
 
     private MedicoService() {
@@ -27,6 +29,11 @@ public class MedicoService {
         return instance;
     }
 
+    public void setMedicos() {
+        // leer la lista de pacientes del json y guardarla en la lista de pacientes
+        List<Medico> listaMedicos = JsonService.getInstance().leerJson(RUTA_JSON, Medico.class);
+        medicos.addAll(listaMedicos);
+    }
     public List<Medico> getMedicos() {
         return medicos;
     }

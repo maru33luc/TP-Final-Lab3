@@ -1,6 +1,7 @@
 package com.example.tpfinallab3.services;
 
 import com.example.tpfinallab3.models.Paciente;
+import com.example.tpfinallab3.models.UsuarioInfo;
 import com.example.tpfinallab3.security.Autenticable;
 
 import java.util.ArrayList;
@@ -10,6 +11,8 @@ import java.util.stream.Collectors;
 
 public class PacienteService {
     private static PacienteService instance;
+
+    private static final String RUTA_JSON = "src/main/resources/json/pacientes.json";
     private List<Paciente> pacientes;
 
     private PacienteService() {
@@ -76,8 +79,10 @@ public class PacienteService {
                 .collect(Collectors.toList());
     }
 
-    public void setPacientes(List<Paciente> pacientes2) {
-        this.pacientes.addAll(pacientes2);
+    public void setPacientes() {
+        // leer la lista de pacientes del json y guardarla en la lista de pacientes
+        List<Paciente> listaPacientes = JsonService.getInstance().leerJson(RUTA_JSON, Paciente.class);
+        pacientes.addAll(listaPacientes);
     }
 
     public boolean existePaciente(String nombreUsuario) {

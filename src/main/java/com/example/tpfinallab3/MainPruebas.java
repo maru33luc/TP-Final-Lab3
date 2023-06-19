@@ -2,13 +2,12 @@ package com.example.tpfinallab3;
 
 import com.example.tpfinallab3.models.Paciente;
 import com.example.tpfinallab3.security.AuthenticationService;
+import com.example.tpfinallab3.services.JsonService;
 import com.example.tpfinallab3.services.PacienteService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.tpfinallab3.models.Clinica.guardarJson;
-import static com.example.tpfinallab3.models.Clinica.leerJson;
 
 public class MainPruebas {
 
@@ -25,21 +24,22 @@ public class MainPruebas {
         pacientes.add(paciente2);
         pacientes.add(paciente3);
 
-        guardarJson(pacientes,rutaPacientes);
+        JsonService jsonService = JsonService.getInstance();
+        jsonService.guardarJson(pacientes, rutaPacientes);
 
-        List<Paciente> pacientes2 = leerJson(rutaPacientes, Paciente.class);
+        List<Paciente> pacientes2 = jsonService.leerJson(rutaPacientes, Paciente.class);
         System.out.println(pacientes2);
 
-        PacienteService pacienteService = new PacienteService();
-        pacienteService.setPacientes(pacientes2);
-        pacienteService.agregarPaciente(new Paciente("ceciliagomez","12345678","Cecilia","Gomez","cecilia@gmail.com","DNI","12345670","12345670","OSPE","12345670"));
-        guardarJson(pacienteService.getPacientes(),rutaPacientes);
-        List <Paciente> pacientes3 = leerJson(rutaPacientes,Paciente.class);
+        PacienteService pacienteService = PacienteService.getInstance();
+        //pacienteService.setPacientes(pacientes2);
+        //pacienteService.agregarPaciente(new Paciente("ceciliagomez","12345678","Cecilia","Gomez","cecilia@gmail.com","DNI","12345670","12345670","OSPE","12345670"));
+        //jsonService.guardarJson(pacienteService.getPacientes(),rutaPacientes);
+        //List <Paciente> pacientes3 = jsonService.leerJson(rutaPacientes,Paciente.class);
         System.out.println("-------------------------");
-        System.out.println(pacientes3);
+        //System.out.println(pacientes3);
 
         AuthenticationService authenticationService = AuthenticationService.getInstance();
-        authenticationService.guardarUsuario("ceciliagomez","12345678");
+
         System.out.println(authenticationService.autenticarUsuario("ceciliagomez","12345678"));
 
 

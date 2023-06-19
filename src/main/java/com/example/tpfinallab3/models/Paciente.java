@@ -72,6 +72,8 @@ public class Paciente extends Usuario {
         return turnos;
     }
 
+
+
     public void setTurnos(Map<LocalDate, Turno> turnos) {
         this.turnos = turnos;
     }

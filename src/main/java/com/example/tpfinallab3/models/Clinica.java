@@ -19,39 +19,8 @@ public class Clinica {
 
     }
 
-    public List<Medico> getMedicos() {
-        return medicos;
-    }
 
-    public void setMedicos(List<Medico> medicos) {
-        this.medicos = medicos;
-    }
-
-    public List<Paciente> getPacientes() {
-        return pacientes;
-    }
-
-    public void setPacientes(List<Paciente> pacientes) {
-        this.pacientes = pacientes;
-    }
-
-    public List<Administrativo> getAdministrativos() {
-        return administrativos;
-    }
-
-    public void setAdministrativos(List<Administrativo> administrativos) {
-        this.administrativos = administrativos;
-    }
-
-    public List<Turno> getTurnos() {
-        return turnos;
-    }
-
-    public void setTurnos(List<Turno> turnos) {
-        this.turnos = turnos;
-    }
-
-    public void validarMedico(Medico nuevo) throws InputMismatchException {
+    /*public void validarMedico(Medico nuevo) throws InputMismatchException {
         for (Medico medico : medicos) {
             if (medico.getNombreUsuario().equals(nuevo.getNombreUsuario())) {
                 throw new InputMismatchException("El nombre de usuario ya existe");
@@ -112,32 +81,7 @@ public class Clinica {
         if (nuevo.getApellido().isEmpty()) {
             throw new InputMismatchException("Apellido obligatorio");
         }
-    }
+    }*/
 
 
-    //--------- JSON ---------
-    public static <T> void guardarJson(List<T> lista, String ruta) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
-        try {
-            objectMapper.writeValue(new File(ruta), lista);
-            System.out.println("Json guardado");
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static <T> List<T> leerJson(String ruta, Class<T> clase) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
-        JavaType javaType = objectMapper.getTypeFactory().constructCollectionType(List.class, clase);
-        try {
-            return objectMapper.readValue(new File(ruta), javaType);
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 }
