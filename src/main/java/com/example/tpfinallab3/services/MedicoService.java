@@ -1,7 +1,7 @@
 package com.example.tpfinallab3.services;
 
-import com.example.tpfinallab3.entities.Especialidad;
-import com.example.tpfinallab3.entities.Medico;
+import com.example.tpfinallab3.models.Especialidad;
+import com.example.tpfinallab3.models.Medico;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +9,22 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class MedicoService {
+    private static MedicoService instance;
     private List<Medico> medicos;
 
-    public MedicoService() {
+    private MedicoService() {
         medicos = new ArrayList<>();
+    }
+
+    public static MedicoService getInstance() {
+        if (instance == null) {
+            synchronized (MedicoService.class) {
+                if (instance == null) {
+                    instance = new MedicoService();
+                }
+            }
+        }
+        return instance;
     }
 
     public List<Medico> getMedicos() {
@@ -25,6 +37,14 @@ public class MedicoService {
 
     public void eliminarMedico(Medico medico) {
         medicos.remove(medico);
+    }
+
+    public void actualizarMedico(Medico medico) {
+        Optional<Medico> medicoEncontrado = buscarMedicoPorMatricula(medico.getNumeroMatricula());
+        if (medicoEncontrado.isPresent()) {
+            eliminarMedico(medicoEncontrado.get());
+            agregarMedico(medico);
+        }
     }
 
     public Optional<Medico> buscarMedicoPorNombreUsuario(String nombreUsuario) {
@@ -40,7 +60,7 @@ public class MedicoService {
     }
 
     // buscar medico por matricula
-    public Optional<Medico> buscarMedicoPorMatricula(Integer matricula) {
+    public Optional<Medico> buscarMedicoPorMatricula(String matricula) {
         return medicos.stream()
                 .filter(medico -> medico.getNumeroMatricula().equals(matricula))
                 .findFirst();

@@ -1,4 +1,4 @@
-package com.example.tpfinallab3.entities;
+package com.example.tpfinallab3.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

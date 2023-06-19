@@ -15,6 +15,7 @@ public class AuthenticationService {
         // Aquí puedes agregar usuarios de ejemplo con sus contraseñas
         usuarios.put("usuario1", "$2a$10$0fSNAM1CVFCTdScXG6Cq0u2.BkDG1SajY6gbKqQvIc.2GmDEtylxS"); // Contraseña: password1
         usuarios.put("usuario2", "$2a$10$Mpbhc6IByKmD0eIzR1bg4uAK5egbYe8aK7yrbXH1JyfaUqXwGG9L6"); // Contraseña: password2
+        usuarios.put("juanperez", "12345678"); //
     }
 
     public static AuthenticationService getInstance() {
@@ -31,6 +32,7 @@ public class AuthenticationService {
     public boolean autenticarUsuario(String nombreUsuario, String contrasena) {
         if (usuarios.containsKey(nombreUsuario)) {
             String contrasenaAlmacenada = usuarios.get(nombreUsuario);
+
             return BCrypt.checkpw(contrasena, contrasenaAlmacenada);
         }
         return false;
@@ -41,7 +43,9 @@ public class AuthenticationService {
         // Puedes utilizar la librería Jackson para leer el archivo JSON y extraer los datos necesarios
 
         // Retorna la contraseña almacenada para el usuario
-        return "contrasenaAlmacenada";
+
+
+        return "contraseñaAlmacenada";
     }
 
     public void guardarUsuario(String nombreUsuario, String contrasena) {
@@ -49,7 +53,8 @@ public class AuthenticationService {
         String contrasenaCifrada = BCrypt.hashpw(contrasena, BCrypt.gensalt());
 
         // Guardar el nombre de usuario y la contraseña cifrada en el archivo JSON
-        guardarDatosEnJson(nombreUsuario, contrasenaCifrada);
+       // guardarDatosEnJson(nombreUsuario, contrasenaCifrada);
+        usuarios.put(nombreUsuario,contrasenaCifrada);
     }
 
     public void guardarDatosEnJson(String nombreUsuario, String contrasenaCifrada) {

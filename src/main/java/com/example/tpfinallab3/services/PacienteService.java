@@ -1,7 +1,7 @@
 package com.example.tpfinallab3.services;
 
-import com.example.tpfinallab3.entities.Paciente;
-import com.example.tpfinallab3.entities.Turno;
+import com.example.tpfinallab3.models.Paciente;
+import com.example.tpfinallab3.security.Autenticable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +9,22 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class PacienteService {
+    private static PacienteService instance;
     private List<Paciente> pacientes;
 
-    public PacienteService() {
+    private PacienteService() {
         pacientes = new ArrayList<>();
+    }
+
+    public static PacienteService getInstance() {
+        if (instance == null) {
+            synchronized (PacienteService.class) {
+                if (instance == null) {
+                    instance = new PacienteService();
+                }
+            }
+        }
+        return instance;
     }
 
     public List<Paciente> getPacientes() {
@@ -64,5 +76,22 @@ public class PacienteService {
                 .collect(Collectors.toList());
     }
 
+    public void setPacientes(List<Paciente> pacientes2) {
+        this.pacientes.addAll(pacientes2);
+    }
+
+    public boolean existePaciente(String nombreUsuario) {
+        return pacientes.stream()
+                .anyMatch(paciente -> paciente.getNombreUsuario().equalsIgnoreCase(nombreUsuario));
+    }
+
+    public Autenticable getNombreUsuario(String nombreUsuario) {
+        return pacientes.stream()
+                .filter(paciente -> paciente.getNombreUsuario().equalsIgnoreCase(nombreUsuario))
+                .findFirst()
+                .orElse(null);
+    }
+
     // Otros métodos de búsqueda y operaciones relacionadas con los pacientes
 }
+

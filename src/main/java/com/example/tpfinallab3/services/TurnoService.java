@@ -1,8 +1,8 @@
 package com.example.tpfinallab3.services;
 
-import com.example.tpfinallab3.entities.Medico;
-import com.example.tpfinallab3.entities.Paciente;
-import com.example.tpfinallab3.entities.Turno;
+import com.example.tpfinallab3.models.Medico;
+import com.example.tpfinallab3.models.Paciente;
+import com.example.tpfinallab3.models.Turno;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,10 +11,22 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class TurnoService {
+    private static TurnoService instance;
     private List<Turno> turnos;
 
-    public TurnoService() {
+    private TurnoService() {
         turnos = new ArrayList<>();
+    }
+
+    public static TurnoService getInstance() {
+        if (instance == null) {
+            synchronized (TurnoService.class) {
+                if (instance == null) {
+                    instance = new TurnoService();
+                }
+            }
+        }
+        return instance;
     }
 
     public List<Turno> getTurnos() {
@@ -33,6 +45,14 @@ public class TurnoService {
         return turnos.stream()
                 .filter(turno -> turno.getId().equals(id))
                 .findFirst();
+    }
+
+    public void actualizarTurno(Turno turno) {
+        Optional<Turno> turnoEncontrado = buscarTurnoPorId(turno.getId());
+        if (turnoEncontrado.isPresent()) {
+            eliminarTurno(turnoEncontrado.get());
+            agregarTurno(turno);
+        }
     }
 
     public List<Turno> buscarTurnosPorFecha(LocalDate fecha) {

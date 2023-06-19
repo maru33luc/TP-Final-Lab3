@@ -1,4 +1,4 @@
-package com.example.tpfinallab3.entities;
+package com.example.tpfinallab3.models;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -25,6 +25,8 @@ public class Paciente extends Usuario {
         this.numeroAfiliado = numeroAfiliado;
         this.turnos = new HashMap<>();
     }
+
+
 
     public String getTipoDocumento() {
         return tipoDocumento;

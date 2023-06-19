@@ -1,5 +1,7 @@
-package com.example.tpfinallab3.entities;
+package com.example.tpfinallab3.models;
 
+import java.time.LocalDate;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -9,6 +11,7 @@ public class Medico extends Usuario {
 
     private String numeroMatricula;
 
+    private Map<LocalDate, Turno> turnos;
     public Medico() {
     }
 
@@ -17,6 +20,60 @@ public class Medico extends Usuario {
         this.especialidad = especialidad;
         this.numeroMatricula = numeroMatricula;
         this.isDisponible = true;
+    }
+
+    public Medico(String nombreUsuario, String contrasena, String nombre, String apellido, String mail) {
+        super(nombreUsuario, contrasena, nombre, apellido, mail);
+    }
+
+    @Override
+    public String getNombreUsuario() {
+        return super.getNombreUsuario();
+    }
+
+    @Override
+    public void setNombreUsuario(String nombreUsuario) {
+        super.setNombreUsuario(nombreUsuario);
+    }
+
+    @Override
+    public String getContrasena() {
+        return super.getContrasena();
+    }
+
+    @Override
+    public void setContrasena(String contrasena) {
+        super.setContrasena(contrasena);
+    }
+
+    @Override
+    public String getNombre() {
+        return super.getNombre();
+    }
+
+    @Override
+    public void setNombre(String nombre) {
+        super.setNombre(nombre);
+    }
+
+    @Override
+    public String getApellido() {
+        return super.getApellido();
+    }
+
+    @Override
+    public void setApellido(String apellido) {
+        super.setApellido(apellido);
+    }
+
+    @Override
+    public String getMail() {
+        return super.getMail();
+    }
+
+    @Override
+    public void setMail(String mail) {
+        super.setMail(mail);
     }
 
     public Especialidad getEspecialidad() {
@@ -41,6 +98,14 @@ public class Medico extends Usuario {
 
     public void setNumeroMatricula(String numeroMatricula) {
         this.numeroMatricula = numeroMatricula;
+    }
+
+    public Map<LocalDate, Turno> getTurnos() {
+        return turnos;
+    }
+
+    public void setTurnos(Map<LocalDate, Turno> turnos) {
+        this.turnos = turnos;
     }
 
     @Override

@@ -1,16 +1,28 @@
 package com.example.tpfinallab3.services;
 
-import com.example.tpfinallab3.entities.Administrativo;
+import com.example.tpfinallab3.models.Administrativo;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class AdministrativoService {
+    private static AdministrativoService instance;
     private List<Administrativo> administrativos;
 
-    public AdministrativoService() {
+    private AdministrativoService() {
         administrativos = new ArrayList<>();
+    }
+
+    public static AdministrativoService getInstance() {
+        if (instance == null) {
+            synchronized (AdministrativoService.class) {
+                if (instance == null) {
+                    instance = new AdministrativoService();
+                }
+            }
+        }
+        return instance;
     }
 
     public void agregarAdministrativo(Administrativo administrativo) {

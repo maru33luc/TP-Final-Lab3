@@ -14,7 +14,12 @@ module com.example.tpfinallab3 {
 
 
 
+    exports com.example.tpfinallab3.models to com.fasterxml.jackson.databind;
 
     opens com.example.tpfinallab3 to javafx.fxml;
     exports com.example.tpfinallab3;
+
+    exports com.example.tpfinallab3.controllers to javafx.fxml;
+    opens com.example.tpfinallab3.controllers to javafx.fxml;
+
 }

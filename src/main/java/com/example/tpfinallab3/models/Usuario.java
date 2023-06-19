@@ -1,12 +1,11 @@
-package com.example.tpfinallab3.entities;
+package com.example.tpfinallab3.models;
 
 import com.example.tpfinallab3.security.Autenticable;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-
-
-public abstract class Usuario implements Autenticable {
+public abstract class Usuario implements Autenticable, Serializable {
     private String nombreUsuario;
     private String contrasena;
     private String nombre;

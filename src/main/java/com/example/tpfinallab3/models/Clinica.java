@@ -1,4 +1,4 @@
-package com.example.tpfinallab3.entities;
+package com.example.tpfinallab3.models;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,16 +10,13 @@ import java.util.InputMismatchException;
 import java.util.List;
 
 public class Clinica {
-    private List<Medico> medicos;
-    private List<Paciente> pacientes;
-    private List<Administrativo> administrativos;
-    private List<Turno> turnos;
+    private List<Medico> medicos=new ArrayList<>();
+    private List<Paciente> pacientes=new ArrayList<>();
+    private List<Administrativo> administrativos=new ArrayList<>();
+    private List<Turno> turnos=new ArrayList<>();
 
-    public Clinica() {
-        medicos = new ArrayList<>();
-        pacientes = new ArrayList<>();
-        administrativos = new ArrayList<>();
-        turnos = new ArrayList<>();
+    public Clinica (){
+
     }
 
     public List<Medico> getMedicos() {

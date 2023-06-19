@@ -5,12 +5,26 @@ import com.example.tpfinallab3.exceptions.NombreException;
 import com.example.tpfinallab3.exceptions.TelefonoException;
 
 public class ValidationService {
+    private static ValidationService instance;
+
+    private ValidationService() {
+    }
+
+    public static ValidationService getInstance() {
+        if (instance == null) {
+            synchronized (ValidationService.class) {
+                if (instance == null) {
+                    instance = new ValidationService();
+                }
+            }
+        }
+        return instance;
+    }
 
     public void validarNombres(String nombre) throws NombreException {
-
         boolean contieneNumeros = nombre.matches(".*\\d.*");
 
-        if (nombre == null || nombre.trim().isEmpty()  ||  contieneNumeros ) {
+        if (nombre == null || nombre.trim().isEmpty() || contieneNumeros) {
             throw new NombreException("El nombre no puede ser nulo, vacio o tener numeros");
         }
     }
@@ -23,13 +37,11 @@ public class ValidationService {
 
     public void validarTelefono(String telefono) throws TelefonoException {
         if (telefono == null || telefono.trim().isEmpty() || !telefono.matches("\\d+")) {
-            throw new TelefonoException("El telefono no puede ser nulo, vacio, tener letras o tener mas de 10 digitos");
+            throw new TelefonoException("El telefono no puede ser nulo, vacio, tener letras o tener más de 10 dígitos");
         }
     }
 
     public void validarNombreUsuario(String nombreUsuario) throws NombreException {
-
-        // El nombre de usuario puede tener letras y numeros, no puede tener arrobas o espacios o caracteres especiales salvo guion bajo o guion medio
         boolean contieneArroba = nombreUsuario.matches(".*@.*");
         boolean contieneEspacio = nombreUsuario.matches(".*\\s.*");
         boolean contieneCaracteresEspeciales = nombreUsuario.matches(".*[^a-zA-Z0-9_-].*");
@@ -39,7 +51,7 @@ public class ValidationService {
         }
     }
 
-    public void validarMail (String mail) throws NombreException {
+    public void validarMail(String mail) throws NombreException {
         boolean contieneArroba = mail.matches(".*@.*");
         boolean contieneEspacio = mail.matches(".*\\s.*");
         boolean contieneCaracteresEspeciales = mail.matches(".*[^a-zA-Z0-9_-].*");
@@ -49,8 +61,7 @@ public class ValidationService {
         }
     }
 
-    // valida que la contraseña no sea vacia, con espacios, con menos de 8 caracteres y que tenga al menos una mayuscula, una minuscula y un numero y sin caracteres especiales salvo guion bajo o guion medio
-    public void validarPassword (String password) throws NombreException {
+    public void validarPassword(String password) throws NombreException {
         boolean contieneEspacio = password.matches(".*\\s.*");
         boolean contieneCaracteresEspeciales = password.matches(".*[^a-zA-Z0-9_-].*");
         boolean contieneMayuscula = password.matches(".*[A-Z].*");
@@ -61,8 +72,4 @@ public class ValidationService {
             throw new NombreException("La contraseña no puede ser nula, vacia, tener espacios, menos de 8 caracteres, sin mayusculas, minusculas o numeros o caracteres especiales");
         }
     }
-
-
-
-
 }
