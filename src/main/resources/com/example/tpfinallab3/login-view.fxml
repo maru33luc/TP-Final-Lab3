@@ -29,9 +29,9 @@
                      </image>
                   </ImageView>
                </children></AnchorPane>
-            <ImageView fx:id="closeButton" accessibleRole="BUTTON" fitHeight="15.0" fitWidth="15.0" layoutX="1046.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="minimizeButton" accessibleRole="BUTTON" fitHeight="15.0" fitWidth="15.0" layoutX="963.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/close.png" />
+                  <Image url="@../../../images/minimize.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -42,9 +42,9 @@
                   <Image url="@../../../images/maximize.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="minimizeButton" accessibleRole="BUTTON" fitHeight="15.0" fitWidth="15.0" layoutX="963.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="closeButton" accessibleRole="BUTTON" fitHeight="15.0" fitWidth="15.0" layoutX="1046.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/minimize.png" />
+                  <Image url="@../../../images/close.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -87,6 +87,15 @@
                   <Font name="Century Gothic" size="20.0" />
                </font>
             </Label>
+            <TextField fx:id="usernameField" layoutX="66.0" layoutY="191.0" prefHeight="45.0" prefWidth="420.0" style="-fx-border-color: #29838c; -fx-background-color: d3f9eb; -fx-border-width: 2;">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <styleClass>
+                  <String fx:value="playfair-regular" />
+                  <String fx:value="text-field" />
+               </styleClass>
+            </TextField>
             <Label fx:id="passwordLabel" layoutX="66.0" layoutY="266.0" styleClass="nanum-regular" text="Contraseña" textFill="#29838c">
                <font>
                   <Font name="Century Gothic" size="20.0" />
@@ -100,6 +109,26 @@
                   <String fx:value="playfair-regular" />
                   <String fx:value="text-field" />
                </styleClass></PasswordField>
+            <Pane layoutX="441.0" layoutY="291.0" prefHeight="45.0" prefWidth="45.0" style="-fx-border-color: #29838c; -fx-border-width: 2;">
+               <children>
+                  <ImageView fx:id="hidePasswordButton" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/cerrar-ojo.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="showPasswordButton" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../../../images/abrir-ojo.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </Pane>
             <Button fx:id="handleLoginButton" layoutX="87.0" layoutY="373.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" style="-fx-background-radius: 0;" text="Ingresar" textFill="#c6e9de">
                <font>
                   <Font name="Century Gothic" size="21.0" />
@@ -152,35 +181,6 @@
                   <String fx:value="button-sign-up" />
                </styleClass>
             </Button>
-            <Pane layoutX="441.0" layoutY="291.0" prefHeight="45.0" prefWidth="45.0" style="-fx-border-color: #29838c; -fx-border-width: 2;">
-               <children>
-                  <ImageView fx:id="hidePasswordButton" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../images/cerrar-ojo.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fx:id="showPasswordButton" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@../../../images/abrir-ojo.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-               </children>
-            </Pane>
-            <TextField fx:id="usernameField" layoutX="66.0" layoutY="191.0" prefHeight="45.0" prefWidth="420.0" style="-fx-border-color: #29838c; -fx-background-color: d3f9eb; -fx-border-width: 2;">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-               <styleClass>
-                  <String fx:value="playfair-regular" />
-                  <String fx:value="text-field" />
-               </styleClass>
-            </TextField>
          </children>
       </AnchorPane>
    </right>

@@ -91,3 +91,15 @@
     -fx-text-fill: "#255951";
     -fx-font-size: 17;
 }
+
+.profile-button{
+    -fx-font-size: 20;
+    -fx-text-fill: "#FFE9BF";
+}
+.profile-button:hover{
+    -fx-font-family: "NanumGothicBold";
+}
+.profile-button:pressed{
+    -fx-font-size: 19;
+    -fx-text-fill: "#FDC373";
+}
