@@ -34,10 +34,12 @@ public class AuthenticationService {
 
     public boolean autenticarUsuario(String nombreUsuario, String contrasena) {
         cargarUsuariosDesdeJson();
-        if (usuarios.containsKey(nombreUsuario)) {
-            //String contrasenaAlmacenada = usuarios.get(nombreUsuario);
-            String contrasenaAlmacenada = obtenerContrasenaAlmacenada(nombreUsuario);
-            return BCrypt.checkpw(contrasena, contrasenaAlmacenada);
+        if(this.usuarios!=null){
+            if (usuarios.containsKey(nombreUsuario)) {
+                //String contrasenaAlmacenada = usuarios.get(nombreUsuario);
+                String contrasenaAlmacenada = obtenerContrasenaAlmacenada(nombreUsuario);
+                return BCrypt.checkpw(contrasena, contrasenaAlmacenada);
+            }
         }
         return false;
     }
