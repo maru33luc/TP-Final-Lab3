@@ -54,7 +54,11 @@ public class JsonService {
     public <T> List<T> leerJson(String ruta, Class<T> clase) {
         JavaType javaType = objectMapper.getTypeFactory().constructCollectionType(List.class, clase);
         try {
-            return objectMapper.readValue(new File(ruta), javaType);
+            if(new File(ruta).length() == 0){
+                return List.of();
+            }else {
+                return objectMapper.readValue(new File(ruta), javaType);
+            }
         } catch (Exception e) {
             System.out.println("Error al leer el archivo JSON");
         }

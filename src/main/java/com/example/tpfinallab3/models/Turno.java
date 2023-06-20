@@ -6,8 +6,6 @@ import java.time.LocalTime;
 import java.util.Objects;
 
 public class Turno implements Serializable {
-    private Integer id;
-    private LocalDate fecha;
     private LocalDate dia;
     private LocalTime hora;
     private Paciente paciente;

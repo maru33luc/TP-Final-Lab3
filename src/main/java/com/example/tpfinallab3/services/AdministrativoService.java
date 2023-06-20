@@ -29,7 +29,8 @@ public class AdministrativoService {
 
     public void setAdministrativos() {
         List<Administrativo> listaAdministrativos = JsonService.getInstance().leerJson(RUTA_JSON, Administrativo.class);
-        administrativos.addAll(listaAdministrativos);
+        if (listaAdministrativos != null)
+            administrativos.addAll(listaAdministrativos);
     }
 
     public List<Administrativo> getAdministrativos() {
@@ -48,6 +49,11 @@ public class AdministrativoService {
         return administrativos.stream()
                 .filter(a -> a.getNombreUsuario().equalsIgnoreCase(nombreUsuario))
                 .findFirst();
+    }
+
+    public boolean existeAdministrativoPorNombreUsuario(String nombreUsuario) {
+        return administrativos.stream()
+                .anyMatch(a -> a.getNombreUsuario().equalsIgnoreCase(nombreUsuario));
     }
 
     /*public List<Administrativo> buscarAdministrativosPorPuesto(String puesto) {

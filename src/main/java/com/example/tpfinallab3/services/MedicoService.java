@@ -30,7 +30,8 @@ public class MedicoService {
     }
     public void setMedicos() {
         List<Medico> listaMedicos = JsonService.getInstance().leerJson(RUTA_JSON, Medico.class);
-        medicos.addAll(listaMedicos);
+        if (listaMedicos != null)
+            medicos.addAll(listaMedicos);
     }
     public List<Medico> getMedicos() {
         return medicos;
@@ -57,6 +58,10 @@ public class MedicoService {
         return medicos.stream()
                 .filter(medico -> medico.getNombreUsuario().equalsIgnoreCase(nombreUsuario))
                 .findFirst();
+    }
+
+    public boolean existeMedico (String nombreUsuario) {
+        return buscarMedicoPorNombreUsuario(nombreUsuario).isPresent();
     }
 
     public List<Medico> buscarMedicosPorEspecialidad(Especialidad especialidad) {

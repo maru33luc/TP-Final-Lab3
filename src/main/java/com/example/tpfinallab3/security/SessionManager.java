@@ -1,13 +1,21 @@
 package com.example.tpfinallab3.security;
 
+import com.example.tpfinallab3.models.Administrativo;
+import com.example.tpfinallab3.models.Medico;
+import com.example.tpfinallab3.models.Paciente;
+import com.example.tpfinallab3.services.AdministrativoService;
+import com.example.tpfinallab3.services.MedicoService;
 import com.example.tpfinallab3.services.PacienteService;
+
+import java.util.Optional;
 
 public class SessionManager {
     private static SessionManager instance;
-    private Autenticable usuarioLogueado;
+    private Autenticable entidadLogueada;
+    private String tipoEntidad;
 
     private SessionManager() {
-        // Constructor privado para seguir el patrón Singleton
+
     }
 
     public static SessionManager getInstance() {
@@ -18,33 +26,46 @@ public class SessionManager {
     }
 
     public boolean iniciarSesion(String nombreUsuario, String contrasena) {
-        // Lógica para autenticar al usuario y verificar las credenciales
-        // Si las credenciales son válidas, asignar el usuario logueado
-        // y devolver true, de lo contrario, devolver false
-
-        //if (AuthenticationService.getInstance().autenticarUsuario(nombreUsuario, contrasena)) {
         if (AuthenticationService.getInstance().autenticarUsuario(nombreUsuario, contrasena)) {
-            // recuperar el Usuario del json de Pacientes
+
             PacienteService pacienteService = PacienteService.getInstance();
-            if(pacienteService.existePaciente(nombreUsuario)){
-                usuarioLogueado = pacienteService.getNombreUsuario(nombreUsuario);
+            MedicoService medicoService = MedicoService.getInstance();
+            AdministrativoService administrativoService = AdministrativoService.getInstance();
+            if (pacienteService.existePaciente(nombreUsuario)) {
+                Optional <Paciente> pacienteOptional = pacienteService.buscarPacientePorNombreUsuario(nombreUsuario);
+                entidadLogueada = pacienteOptional.map(paciente -> (Autenticable) paciente).orElse(null);
+                tipoEntidad = "paciente";
+                return true;
+            } else if (medicoService.existeMedico(nombreUsuario)) {
+                Optional <Medico> medicoOptional = medicoService.buscarMedicoPorNombreUsuario(nombreUsuario);
+                entidadLogueada = medicoOptional.map(medico -> (Autenticable) medico).orElse(null);
+                tipoEntidad = "medico";
+                return true;
+            } else if (administrativoService.existeAdministrativoPorNombreUsuario(nombreUsuario)) {
+                Optional <Administrativo> administrativoOptional = administrativoService.buscarAdministrativoPorNombreUsuario(nombreUsuario);
+                entidadLogueada = administrativoOptional.map(administrativo -> (Autenticable) administrativo).orElse(null);
+                tipoEntidad = "administrativo";
                 return true;
             }
-
         }
         return false;
     }
 
     public void cerrarSesion() {
         // Lógica para cerrar la sesión del usuario
-        usuarioLogueado = null;
+        this.entidadLogueada = null;
+        this.tipoEntidad = null;
     }
 
     public boolean isUsuarioLogueado() {
-        return usuarioLogueado != null;
+        return this.entidadLogueada != null;
     }
 
-    public Autenticable getUsuarioLogueado() {
-        return usuarioLogueado;
+    public Autenticable getEntidadLogueada() {
+        return this.entidadLogueada;
+    }
+
+    public String getTipoEntidad() {
+        return this.tipoEntidad;
     }
 }

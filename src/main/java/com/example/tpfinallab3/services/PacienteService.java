@@ -32,12 +32,9 @@ public class PacienteService {
     }
 
     public void setPacientes() {
-        try{
             List<Paciente> listaPacientes = JsonService.getInstance().leerJson(RUTA_JSON, Paciente.class);
-            pacientes.addAll(listaPacientes);
-        }catch (Exception e){
-            System.out.println("No se pudo leer el archivo json");
-        }
+            if (listaPacientes != null)
+                pacientes.addAll(listaPacientes);
     }
     public List<Paciente> getPacientes() {
         return pacientes;
