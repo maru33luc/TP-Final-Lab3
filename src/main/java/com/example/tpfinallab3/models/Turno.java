@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.util.Objects;
 
 public class Turno implements Serializable {
+
     private LocalDate dia;
     private LocalTime hora;
     private Paciente paciente;
@@ -92,5 +93,4 @@ public class Turno implements Serializable {
         }
         return sb.toString();
     }
-
 }

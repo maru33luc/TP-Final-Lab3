@@ -1,6 +1,5 @@
 package com.example.tpfinallab3.models;
 
-import java.time.LocalDate;
 import java.util.*;
 
 public class Paciente extends Usuario {
