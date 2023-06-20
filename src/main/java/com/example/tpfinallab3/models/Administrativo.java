@@ -8,6 +8,7 @@ public class Administrativo extends Usuario {
 
     public Administrativo() {
     }
+
     public Administrativo(String nombreUsuario, String contrasena, String nombre, String apellido, String mail) {
         super(nombreUsuario, contrasena, nombre, apellido, mail);
         this.isAdmin = false;

@@ -103,4 +103,13 @@ public abstract class Usuario implements Autenticable, Serializable {
                 "Apellido: " + apellido + "\n" +
                 "Correo electrónico: " + mail + "\n";
     }
+
+    public void cambiarEstado() {
+        if(isActivo) {
+            isActivo = false;
+        }
+        else{
+            isActivo = true;
+        }
+    }
 }

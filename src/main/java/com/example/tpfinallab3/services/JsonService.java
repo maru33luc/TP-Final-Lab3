@@ -17,9 +17,7 @@ import java.util.Map;
 
 public class JsonService {
     private static JsonService instance;
-
     private ObjectMapper objectMapper;
-
     private static final String RUTA_JSON_USUARIOS = "src/main/resources/json/usuariosYContraseñas.json";
 
     private JsonService() {
@@ -112,7 +110,6 @@ public class JsonService {
             e.printStackTrace();
         }
     }
-
 }
 
 

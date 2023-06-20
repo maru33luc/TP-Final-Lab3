@@ -98,6 +98,5 @@ public class PacienteService {
     public void guardarPacientesJson() {
         JsonService.getInstance().guardarJson(pacientes, RUTA_JSON);
     }
-
 }
 
