@@ -15,7 +15,6 @@ public class SessionManager {
     private String tipoEntidad;
 
     private SessionManager() {
-
     }
 
     public static SessionManager getInstance() {

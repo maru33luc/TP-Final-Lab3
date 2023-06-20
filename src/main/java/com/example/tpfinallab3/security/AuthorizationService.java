@@ -12,7 +12,7 @@ public class AuthorizationService {
     private AuthorizationService() {
         permisos = new HashMap<>();
         // Inicializar los permisos de los usuarios
-        permisos.put("Administrativo", Arrays.asList("crearTurno", "editarTurno", "eliminarTurno"));
+        permisos.put("Administrativo", Arrays.asList("crearTurno", "editarTurno", "eliminarTurno", "agregarMedico", "eliminarMedico","habilitarTurnos"));
         permisos.put("Medico", Arrays.asList("verTurnos", "editarPaciente"));
         permisos.put("Paciente", Arrays.asList("verHistorial", "solicitarTurno"));
     }
@@ -25,9 +25,12 @@ public class AuthorizationService {
     }
 
     public boolean verificarPermiso(String tipoUsuario, String permiso) {
-        if (permisos.containsKey(tipoUsuario)) {
-            List<String> permisosUsuario = permisos.get(tipoUsuario);
-            return permisosUsuario.contains(permiso);
+
+        for (Map.Entry<String, List<String>> entry : permisos.entrySet()) {
+            if (entry.getKey().equalsIgnoreCase(tipoUsuario)) {
+                List<String> permisosUsuario = entry.getValue();
+                return permisosUsuario.contains(permiso);
+            }
         }
         return false;
     }

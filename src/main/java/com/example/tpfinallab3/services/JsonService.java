@@ -11,9 +11,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class JsonService {
     private static JsonService instance;
@@ -35,26 +33,29 @@ public class JsonService {
         }
         return instance;
     }
-    public <T> void guardarJson(List<T> lista, String ruta) {
+    public <T> void guardarJson(Set<T> set, String ruta) {
         try {
-            objectMapper.writeValue(new File(ruta), lista);
+            objectMapper.writeValue(new File(ruta), set);
             System.out.println("Json guardado");
 
-            if (lista.get(0) instanceof Paciente || lista.get(0) instanceof Medico || lista.get(0) instanceof Administrativo) {
-                guardarJsonUsuariosYContraseñas(lista, RUTA_JSON_USUARIOS);
+            if (!set.isEmpty()) {
+                T primerElemento = set.iterator().next();
+                if (primerElemento instanceof Paciente || primerElemento instanceof Medico || primerElemento instanceof Administrativo) {
+                    guardarJsonUsuariosYContraseñas(new ArrayList<>(set), RUTA_JSON_USUARIOS);
+                }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public <T> List<T> leerJson(String ruta, Class<T> clase) {
-        JavaType javaType = objectMapper.getTypeFactory().constructCollectionType(List.class, clase);
+
+    public <T> Set<T> leerJson(String ruta, Class<T> clase) {
+        JavaType javaType = objectMapper.getTypeFactory().constructCollectionType(Set.class, clase);
         try {
-            if(new File(ruta).length() == 0){
-                return List.of();
-            }else {
+            if (new File(ruta).length() == 0) {
+                return Collections.emptySet();
+            } else {
                 return objectMapper.readValue(new File(ruta), javaType);
             }
         } catch (Exception e) {
@@ -62,6 +63,7 @@ public class JsonService {
         }
         return null;
     }
+
 
     public <T> Map<String, T> leerJsonUsuarios(String ruta, Class<T> clase) {
         JavaType javaType = objectMapper.getTypeFactory().constructMapType(Map.class, String.class, clase);

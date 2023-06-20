@@ -2,17 +2,15 @@ package com.example.tpfinallab3.services;
 
 import com.example.tpfinallab3.models.Administrativo;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class AdministrativoService {
     private static AdministrativoService instance;
     private static final String RUTA_JSON = "src/main/resources/json/administrativos.json";
-    private List<Administrativo> administrativos;
+    private Set<Administrativo> administrativos;
 
     private AdministrativoService() {
-        administrativos = new ArrayList<>();
+        administrativos = new HashSet<>();
     }
 
     public static AdministrativoService getInstance() {
@@ -28,17 +26,18 @@ public class AdministrativoService {
     }
 
     public void setAdministrativos() {
-        List<Administrativo> listaAdministrativos = JsonService.getInstance().leerJson(RUTA_JSON, Administrativo.class);
+        Set<Administrativo> listaAdministrativos = JsonService.getInstance().leerJson(RUTA_JSON, Administrativo.class);
         if (listaAdministrativos != null)
             administrativos.addAll(listaAdministrativos);
     }
 
-    public List<Administrativo> getAdministrativos() {
+    public Set<Administrativo> getAdministrativos() {
         return administrativos;
     }
 
     public void agregarAdministrativo(Administrativo administrativo) {
         administrativos.add(administrativo);
+        guardarAdministrativosJson();
     }
 
     public void eliminarAdministrativoPorNombreUsuario(String nombreUsuario) {

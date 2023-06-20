@@ -3,22 +3,22 @@ package com.example.tpfinallab3.services;
 import com.example.tpfinallab3.models.Medico;
 import com.example.tpfinallab3.models.Paciente;
 import com.example.tpfinallab3.models.Turno;
+import com.example.tpfinallab3.security.AuthorizationService;
+import com.example.tpfinallab3.security.SessionManager;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class TurnoService {
     private static TurnoService instance;
     private static final String RUTA_JSON = "src/main/resources/json/turnos.json";
-    private List<Turno> turnos;
+    private Set<Turno> turnos;
 
     private TurnoService() {
-        turnos = new ArrayList<>();
+        turnos = new HashSet<>();
     }
 
     public static TurnoService getInstance() {
@@ -32,7 +32,7 @@ public class TurnoService {
         return instance;
     }
 
-    public List<Turno> getTurnos() {
+    public Set<Turno> getTurnos() {
         return turnos;
     }
 
@@ -41,16 +41,21 @@ public class TurnoService {
     }
 
     public void habilitarTurnos(LocalDate dia, LocalTime hora, LocalTime horaFin, Medico medico) {
-        if(dia.getDayOfWeek().equals(DayOfWeek.SATURDAY)) { //si el día de inicio es sábado lo pasa a lunes
-            dia = dia.plusDays(2);
+        if(AuthorizationService.getInstance().verificarPermiso(SessionManager.getInstance().getTipoEntidad(), "habilitarTurnos")) {
+            if (dia.getDayOfWeek().equals(DayOfWeek.SATURDAY)) { //si el día de inicio es sábado lo pasa a lunes
+                dia = dia.plusDays(2);
+            } else if (dia.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {// si el día de inicio es domingo lo pasa a lunes
+                dia = dia.plusDays(1);
+            }
+            do {//agrega turnos en el día cada media hora
+                turnos.add(new Turno(dia, hora, medico));
+                hora = hora.plusMinutes(30);//agrega media hora para el siguiente turno
+            } while (hora.isBefore(horaFin) || hora.equals(horaFin));//el bucle termina cuando la hora es anterior o igual a la final
+            System.out.println("Turnos habilitados correctamente");
+            guardarTurnosJson();
+        }else{
+            System.out.println("No tiene permisos para habilitar turnos");
         }
-        else if(dia.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {// si el día de inicio es domingo lo pasa a lunes
-            dia = dia.plusDays(1);
-        }
-        do {//agrega turnos en el día cada media hora
-            turnos.add(new Turno(dia, hora, medico));
-            hora = hora.plusMinutes(30);//agrega media hora para el siguiente turno
-        } while (hora.isBefore(horaFin) || hora.equals(horaFin));//el bucle termina cuando la hora es anterior o igual a la final
     }
 
     public List<Turno> buscarTurnosPorDiaPorMedico(LocalDate dia, Medico medico) {
@@ -81,6 +86,16 @@ public class TurnoService {
         return turnos.stream()
                 .filter(Turno::getDisponible)
                 .collect(Collectors.toList());
+    }
+
+    public void solicitarTurno(Turno turno, Paciente paciente) {
+        if(AuthorizationService.getInstance().verificarPermiso(SessionManager.getInstance().getTipoEntidad(), "solicitarTurno")) {
+            turno.setPaciente(paciente);
+            marcarTurnoComoOcupado(turno);
+            System.out.println("Se ha solicitado un turno");
+        }else{
+            System.out.println("No tiene permisos para solicitar un turno");
+        }
     }
 
     public void marcarTurnoComoOcupado(Turno turno) {

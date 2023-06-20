@@ -1,11 +1,14 @@
 package com.example.tpfinallab3;
 
+import com.example.tpfinallab3.models.Administrativo;
 import com.example.tpfinallab3.models.Especialidad;
 import com.example.tpfinallab3.models.Medico;
 import com.example.tpfinallab3.models.Paciente;
 import com.example.tpfinallab3.security.Autenticable;
 import com.example.tpfinallab3.security.AuthenticationService;
 import com.example.tpfinallab3.security.SessionManager;
+import com.example.tpfinallab3.services.AdministrativoService;
+import com.example.tpfinallab3.services.MedicoService;
 import com.example.tpfinallab3.services.PacienteService;
 import com.example.tpfinallab3.services.TurnoService;
 
@@ -15,6 +18,8 @@ import java.time.LocalTime;
 public class MainPruebas {
 
     public static void main(String[] args) {
+
+        // PROBANDO GUARDADO PACIENTES JSON Y AUTENTICACION
 
         /*Paciente paciente1 = new Paciente("juanperez", "12345678", "Juan", "Perez", "juan@gmail.com", "12345678", "12345678", "OSDE", "12345678");
         Paciente paciente2 = new Paciente("mariagomez", "12345689", "Maria", "Gomez", "maria@gmail.com",  "12345689", "12345689", "FEDERADA", "12345689");
@@ -39,10 +44,9 @@ public class MainPruebas {
 
         System.out.println("Autenticacion de ceciliagomez despues de agregarla" + authenticationService.autenticarUsuario("ceciliagomez","12345678"));*/
 
+        // PROBANDO EL SESSION MANAGER
 
-
-
-        System.out.println();
+        /*System.out.println();
         System.out.println("Probando el SessionManager" + "\n");
         SessionManager sessionManager = SessionManager.getInstance();
         boolean inicioSesionExitoso = sessionManager.iniciarSesion("ceciliagomez","12345678");
@@ -62,7 +66,7 @@ public class MainPruebas {
         System.out.println("Tipo de entidad: " + sessionManager.getTipoEntidad());
 
 
-
+        // PROBANDO HABILITAR TURNOS
 
         LocalDate dia = LocalDate.of(2023, 6, 16);
         LocalTime horaInicio = LocalTime.of(10, 0);
@@ -72,7 +76,18 @@ public class MainPruebas {
         dia = LocalDate.of(2023, 6, 17);
         TurnoService.getInstance().habilitarTurnos(dia, horaInicio, horaFin, medico );
         dia = LocalDate.of(2023, 6, 19);
-        System.out.println(TurnoService.getInstance().buscarTurnosPorDiaPorMedico(dia, medico));
+        System.out.println(TurnoService.getInstance().buscarTurnosPorDiaPorMedico(dia, medico));*/
+
+        // PROBANDO PERMISOS DE ADMINISTRATIVO
+
+        Administrativo administrativo = new Administrativo("carlosfuentes", "74185296", "Carlos", "Fuentes", "carlos@gmail.com");
+        AdministrativoService.getInstance().agregarAdministrativo(administrativo);
+        Medico medico = new Medico("fgildemuro", "12345611", "Federico", "Gil de Muro", "fede@gmail.com", Especialidad.CARDIOLOGIA);
+        SessionManager.getInstance().iniciarSesion("carlosfuentes","74185296");
+        MedicoService.getInstance().agregarMedico(medico);
+
+
+
 
     }
 }

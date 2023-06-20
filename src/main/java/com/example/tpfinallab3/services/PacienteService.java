@@ -3,9 +3,7 @@ package com.example.tpfinallab3.services;
 import com.example.tpfinallab3.models.Paciente;
 import com.example.tpfinallab3.security.Autenticable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class PacienteService {
@@ -13,10 +11,10 @@ public class PacienteService {
 
     private static final String RUTA_JSON = "src/main/resources/json/pacientes.json";
 
-    private List<Paciente> pacientes;
+    private Set<Paciente> pacientes;
 
     private PacienteService() {
-        pacientes = new ArrayList<>();
+        pacientes = new HashSet<>();
     }
 
     public static PacienteService getInstance() {
@@ -32,16 +30,17 @@ public class PacienteService {
     }
 
     public void setPacientes() {
-            List<Paciente> listaPacientes = JsonService.getInstance().leerJson(RUTA_JSON, Paciente.class);
+            Set<Paciente> listaPacientes = JsonService.getInstance().leerJson(RUTA_JSON, Paciente.class);
             if (listaPacientes != null)
                 pacientes.addAll(listaPacientes);
     }
-    public List<Paciente> getPacientes() {
+    public Set<Paciente> getPacientes() {
         return pacientes;
     }
 
     public void agregarPaciente(Paciente paciente) {
         pacientes.add(paciente);
+        guardarPacientesJson();
     }
 
     public void actualizarPaciente(String dni, Paciente pacienteActualizado) {
