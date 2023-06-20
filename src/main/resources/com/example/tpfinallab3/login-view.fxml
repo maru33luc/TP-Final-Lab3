@@ -29,7 +29,7 @@
                      </image>
                   </ImageView>
                </children></AnchorPane>
-            <ImageView fx:id="closeButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="20.0" layoutX="1046.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="closeButton" accessibleRole="BUTTON" fitHeight="15.0" fitWidth="15.0" layoutX="1046.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../images/close.png" />
                </image>
@@ -37,12 +37,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="maximizeButton" accessibleRole="BUTTON" disable="true" fitHeight="20.0" fitWidth="20.0" layoutX="1005.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="maximizeButton" accessibleRole="BUTTON" disable="true" fitHeight="15.0" fitWidth="15.0" layoutX="1005.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../images/maximize.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="minimizeButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="20.0" layoutX="964.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="minimizeButton" accessibleRole="BUTTON" fitHeight="15.0" fitWidth="15.0" layoutX="963.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../images/minimize.png" />
                </image>
@@ -95,7 +95,11 @@
             <PasswordField fx:id="passwordField" layoutX="66.0" layoutY="291.0" prefHeight="45.0" prefWidth="375.0" style="-fx-border-color: #29838c; -fx-border-width: 2; -fx-background-color: d3f9eb;">
                <cursor>
                   <Cursor fx:constant="TEXT" />
-               </cursor></PasswordField>
+               </cursor>
+               <styleClass>
+                  <String fx:value="playfair-regular" />
+                  <String fx:value="text-field" />
+               </styleClass></PasswordField>
             <Button fx:id="handleLoginButton" layoutX="87.0" layoutY="373.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" style="-fx-background-radius: 0;" text="Ingresar" textFill="#c6e9de">
                <font>
                   <Font name="Century Gothic" size="21.0" />
@@ -172,6 +176,10 @@
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
+               <styleClass>
+                  <String fx:value="playfair-regular" />
+                  <String fx:value="text-field" />
+               </styleClass>
             </TextField>
          </children>
       </AnchorPane>

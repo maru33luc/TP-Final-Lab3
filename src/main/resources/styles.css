@@ -53,24 +53,31 @@
 .button-login{
     -fx-font-size: 21;
     -fx-background-color: "#29838c";
+    -fx-text-fill: "#c6e9de";
     -fx-background-width: 150;
     -fx-background-height: 35;
 }
 .button-login:hover {
     -fx-background-color: "#23737A";
 }
-.button-login:active {
-    -fx-background-color: "#255951";
+.button-login:pressed {
+    -fx-background-color: "#c6e9de";
+    -fx-text-fill: "#29838c";
 }
 
 .button-sign-up{
     -fx-font-size: 21;
     -fx-background-color: "#c6e9de";
+    -fx-text-fill: "#29838c";
     -fx-background-width: 150;
     -fx-background-height: 35;
 }
 .button-sign-up:hover{
-    -fx-background-color: "#BADBD1";
+    -fx-background-color: "#b4d4ca";
+}
+.button-sign-up:pressed{
+    -fx-background-color: "#29838c";
+    -fx-text-fill: "#c6e9de";
 }
 
 .forget-link{
@@ -79,4 +86,8 @@
 }
 .forget-link:hover{
     -fx-font-size: 18;
+}
+.text-field{
+    -fx-text-fill: "#255951";
+    -fx-font-size: 17;
 }
