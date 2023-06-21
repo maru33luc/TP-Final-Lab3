@@ -50,71 +50,50 @@
     -fx-font-family: "Playfair Display Regular";
 }
 
-/*CHECK TERMINOS Y CONDICIONES DE USO*/
+/*CHECK TERMINOS Y CONDICIONES DE USO - REGISTRO NUEVO PACIENTE*/
 
-.check-terminos .box{
-    -fx-background-color: "#C6E9DE";
-    -fx-border-color: "#29838C";
+.check .box{
+    -fx-background-color: #C6E9DE;
+    -fx-border-color: #29838C;
     -fx-border-width: 2;
-}
-/*para que el texto que acompaña al box quede fijo y no se mueva al pasar por encima el cursor*/
-.check-terminos .box .label{
-    -fx-text-fill: "#29838C";
-    -fx-font-size: 14;
-}
-
-.check-terminos .box .label: hover{
-    -fx-text-fill: "#255951";
+    -fx-width: 20;
+    -fx-height: 20;
+    -fx-check-mark-color: "#29838C";
+    -fx-check-mark-stroke: "C6E9DE";
 }
 
-.check-terminos .box:hover{
-    -fx-background-color: "#FFE9BF";
-    -fx-border-color: "#FDC373";
+.check .box:hover{
+    -fx-background-color: #FFE9BF;
+    -fx-border-color: #FDC373;
 }
 
-.check-terminos : hover{
-    -fx-background-color: "#FFE9BF";
-    -fx-border-color: "#FDC373";
+.check : hover{
+    -fx-background-color: #FFE9BF;
+    -fx-border-color: #FDC373;
     -fx-check-mark-color: "#FDC373";
 }
 
-.check-terminos .box : pressed{
-    -fx-background-color: "#FFE9BF";
-    -fx-border-color: "#FDC373";
-    -fx-check-mark-color: "#FDC373";
+.check .box : pressed{
+    -fx-background-color: #FFE9BF;
+    -fx-border-color: #FDC373;
 }
 
-.check-terminos .mark{
-    -fx-check-mark-color: "#FDC373";
-}
-
-.check-terminos : active .mark{
-    -fx-check-mark-color: "#FDC373";
-    -fx-background-color: "#FFE9BF";
-}
-
-
-
-
-
-
-
-/*para modificar boton enviar cuando se pasa por encima con el cursor y se cliclea*/
-.button-enviar{
-    -fx-background-color: "#29838C";
-    -fx-text-fill: "#C6E9DE";
+/*BOTON ENVIAR - REGISTRO NUEVO PACIENTE -*/
+.button-guardar{
+    -fx-background-color: #29838C;
+    -fx-text-fill: #C6E9DE;
     -fx-font-size: 16;
     -fx-background-width: 175;
     -fx-background-height: 25;
 }
-.button-enviar:hover{
-    -fx-background-color: "#23737A";
-    -fx-text-fill: "#C6E9DE";
+.button-guardar:hover{
+    -fx-background-color: #23737A;
+    -fx-text-fill: #C6E9DE;
 }
 
-.button-enviar:pressed{
-    -fx-background-color: "#C4E8DD";
-    -fx-text-fill: "#29838C";
+.button-guardar:pressed{
+    -fx-background-color: #C4E8DD;
+    -fx-text-fill: #29838C;
 }
 
 
