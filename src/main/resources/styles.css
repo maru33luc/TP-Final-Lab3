@@ -1,0 +1,151 @@
+@font-face {
+    src: url('./fonts/NanumGothic-Bold.ttf');
+}
+
+@font-face {
+    src: url('./fonts/NanumGothic-ExtraBold.ttf');
+}
+@font-face {
+    src: url('./fonts/NanumGothic-Regular.ttf');
+}
+@font-face {
+    src: url('./fonts/CinzelDecorative-Black.ttf');
+}
+@font-face {
+    src: url('./fonts/CinzelDecorative-Bold.ttf');
+}
+@font-face {
+    src: url('./fonts/CinzelDecorative-Regular.ttf');
+}
+@font-face {
+    src: url('./fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf');
+}
+@font-face {
+    src: url('./fonts/PlayfairDisplay-VariableFont_wght.ttf');
+}
+
+
+.nanum-regular{
+    -fx-font-family: "NanumGothic";
+}
+.nanum-bold{
+    -fx-font-family: "NanumGothicBold";
+}
+.nanum-extra-bold{
+    -fx-font-family: "NanumGothicExtraBold";
+}
+.cinzel-regular {
+    -fx-font-family: "Cinzel Decorative Regular";
+}
+.cinzel-bold{
+    -fx-font-family: "Cinzel Decorative Bold";
+}
+.cinzel-black{
+    -fx-font-family: "Cinzel Decorative Black";
+}
+.playfair-italic{
+    -fx-font-family: "Playfair Display Italic";
+}
+.playfair-regular{
+    -fx-font-family: "Playfair Display Regular";
+}
+
+.button-login{
+    -fx-font-size: 21;
+    -fx-background-color: "#29838c";
+    -fx-text-fill: "#c6e9de";
+    -fx-background-width: 150;
+    -fx-background-height: 35;
+}
+.button-login:hover {
+    -fx-background-color: "#23737A";
+}
+.button-login:pressed {
+    -fx-background-color: "#c6e9de";
+    -fx-text-fill: "#29838c";
+}
+
+.button-sign-up{
+    -fx-font-size: 21;
+    -fx-background-color: "#c6e9de";
+    -fx-text-fill: "#29838c";
+    -fx-background-width: 150;
+    -fx-background-height: 35;
+}
+.button-sign-up:hover{
+    -fx-background-color: "#b4d4ca";
+}
+.button-sign-up:pressed{
+    -fx-background-color: "#29838c";
+    -fx-text-fill: "#c6e9de";
+}
+
+.forget-link{
+    -fx-color: "#255951";
+    -fx-font-size: 17;
+}
+.forget-link:hover{
+    -fx-font-size: 18;
+}
+.text-field{
+    -fx-text-fill: "#255951";
+    -fx-font-size: 17;
+}
+
+.profile-button{
+    -fx-font-size: 20;
+    -fx-text-fill: "#FFE9BF";
+}
+.profile-button:hover{
+    -fx-font-family: "NanumGothicBold";
+}
+.profile-button:pressed{
+    -fx-font-size: 19;
+    -fx-text-fill: "#FDC373";
+}
+
+/*CHECK TERMINOS Y CONDICIONES DE USO - REGISTRO NUEVO PACIENTE*/
+
+.check .box{
+    -fx-background-color: #C6E9DE;
+    -fx-border-color: #29838C;
+    -fx-border-width: 2;
+    -fx-width: 20;
+    -fx-height: 20;
+    -fx-check-mark-color: "#29838C";
+    -fx-check-mark-stroke: "C6E9DE";
+}
+
+.check .box:hover{
+    -fx-background-color: #FFE9BF;
+    -fx-border-color: #FDC373;
+}
+
+.check : hover{
+    -fx-background-color: #FFE9BF;
+    -fx-border-color: #FDC373;
+    -fx-check-mark-color: "#FDC373";
+}
+
+.check .box : pressed{
+    -fx-background-color: #FFE9BF;
+    -fx-border-color: #FDC373;
+}
+
+/*BOTON ENVIAR - REGISTRO NUEVO PACIENTE -*/
+.button-guardar{
+    -fx-background-color: #29838C;
+    -fx-text-fill: #C6E9DE;
+    -fx-font-size: 16;
+    -fx-background-width: 175;
+    -fx-background-height: 25;
+}
+.button-guardar:hover{
+    -fx-background-color: #23737A;
+    -fx-text-fill: #C6E9DE;
+}
+
+.button-guardar:pressed{
+    -fx-background-color: #C4E8DD;
+    -fx-text-fill: #29838C;
+}
