@@ -58,4 +58,10 @@ public class AuthenticationService {
         return usuarios.get(nombreUsuario).getContrasena();
     }
 
+    public boolean usuarioExiste(String nombreUsuario) {
+        if(usuarios.containsKey(nombreUsuario)) {
+            return true;
+        }
+        return false;
+    }
 }
