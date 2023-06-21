@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1080.0" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="30.0" prefWidth="1080.0" style="-fx-background-color: #091A21;">
+         <children>
+            <AnchorPane fx:id="closeNuevoUsuarioButton" accessibleRole="BUTTON" layoutX="1040.0" prefHeight="30.0" prefWidth="40.0">
+               <children>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="12.0" layoutY="8.0">
+                     <image>
+                        <Image url="@../../../../../../../TP%20FINAL/close.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="minimizeNuevoUsuarioButton" accessibleRole="BUTTON" layoutX="954.0" prefHeight="30.0" prefWidth="40.0" styleClass="button-cerrar">
+               <children>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="12.0" layoutY="8.0">
+                     <image>
+                        <Image url="@../../../../../../../TP%20FINAL/minimize.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <ImageView accessibleRole="BUTTON" fitHeight="15.0" fitWidth="15.0" layoutX="1009.0" layoutY="8.0">
+               <image>
+                  <Image url="@../../../../../../../TP%20FINAL/maximize.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="docturnoBarraNuevoPacienteLabel" layoutX="9.0" layoutY="2.0" styleClass="cinzel-regular" text="Docturno" textFill="#ffe9bf">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="30.0" prefHeight="720.0" prefWidth="270.0" style="-fx-background-color: #29838C;">
+         <children>
+            <ImageView accessibleRole="BUTTON" fitHeight="720.0" fitWidth="270.0">
+               <image>
+                  <Image url="@../../../../../../../TP%20FINAL/fondo270x720.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="adminLabel" layoutX="62.0" layoutY="14.0" styleClass="cinzel-regular" text="Admin" textFill="#ffe9bf">
+               <font>
+                  <Font name="Cinzel Decorative Regular" size="40.0" />
+               </font>
+            </Label>
+            <Label fx:id="miperfilButton" accessibleRole="BUTTON" layoutX="45.0" layoutY="115.0" styleClass="nanum-regular" text="Mi perfil" textFill="#d3f9eb">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <Separator prefWidth="20.0" />
+               </graphic>
+            </Label>
+            <Label fx:id="verTurnosButton" accessibleRole="BUTTON" layoutX="45.0" layoutY="155.0" styleClass="nanum-regular" text="Ver turnos" textFill="#d3f9eb">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <Separator prefWidth="20.0" />
+               </graphic>
+            </Label>
+            <Label fx:id="nuevoUsuarioButton" accessibleRole="BUTTON" layoutX="45.0" layoutY="195.0" styleClass="nanum-regular" text="Nuevo Usuario" textFill="#d3f9eb">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <Separator prefWidth="20.0" />
+               </graphic>
+            </Label>
+            <Label fx:id="eliminarUsuarioButton" accessibleRole="BUTTON" layoutX="45.0" layoutY="235.0" styleClass="nanum-regular" text="Eliminar Usuario" textFill="#d3f9eb">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <Separator prefWidth="20.0" />
+               </graphic>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="270.0" layoutY="30.0" prefHeight="720.0" prefWidth="810.0" style="-fx-background-color: #D3F9EB;">
+         <children>
+            <Label layoutX="275.0" layoutY="6.0" styleClass="cinzel-regular" text="Nuevo Usuario" textFill="#255951">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Label fx:id="userNuevoUsuarioLabel" layoutX="225.0" layoutY="95.0" styleClass="nanum-regular" text="Nombre Usuario" textFill="#29838c">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="userNuevoUsuarioField" layoutX="225.0" layoutY="120.0" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+            <Label fx:id="passwordNuevoUsuarioLabel" layoutX="225.0" layoutY="160.0" styleClass="nanum-regular" text="Contraseña " textFill="#29838c">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="passwordNuevoUsuarioField" layoutX="225.0" layoutY="185.0" prefHeight="25.0" prefWidth="320.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </PasswordField>
+            <AnchorPane layoutX="544.0" layoutY="185.0" prefHeight="31.0" prefWidth="35.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;">
+               <children>
+                  <ImageView fx:id="mostrarPasswordNuevoUsuarioButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" visible="false">
+                     <image>
+                        <Image url="@../../../../../../../TP%20FINAL/abrir-ojo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="ocultarPasswordNuevoUsuarioButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0">
+                     <image>
+                        <Image url="@../../../../../../../TP%20FINAL/cerrar-ojo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label fx:id="nombreNuevoUsuarioLabel" layoutX="225.0" layoutY="225.0" styleClass="nanum-regular" text="Nombre" textFill="#29838c">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nombreNuevoUsuarioField" layoutX="225.0" layoutY="250.0" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+            <Label fx:id="apellidoNuevoUsuarioLabel" layoutX="225.0" layoutY="290.0" styleClass="nanum-regular" text="Apellido" textFill="#29838c">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="apellidoNuevoUsuarioField" layoutX="225.0" layoutY="315.0" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+            <Label fx:id="emailNuevoUsuarioLabel" layoutX="225.0" layoutY="355.0" styleClass="nanum-regular" text="Email" textFill="#29838c">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailNuevoUsuarioField" layoutX="225.0" layoutY="380.0" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+            <Label fx:id="seleccioneTipoUserNuevoUsuarioLabel" layoutX="225.0" layoutY="428.0" styleClass="nanum-regular" text="Seleccione el tipo de Usuario:" textFill="#29838c">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="isMedicoNuevoUsuarioCheckBox" layoutX="225.0" layoutY="455.0" mnemonicParsing="false" styleClass="check" />
+            <Label fx:id="isMedicoNuevoUsuarioLabel" layoutX="250.0" layoutY="455.0" styleClass="nanum-regular" text="Medico" textFill="#255951">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="isAdminNuevoUsuarioCheckBox" layoutX="405.0" layoutY="455.0" mnemonicParsing="false" styleClass="check" />
+            <Label fx:id="isAdminNuevoUsuarioLabel" layoutX="430.0" layoutY="455.0" styleClass="nanum-regular" text="Administrador" textFill="#255951">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="especialidadNuevoUsuarioLabel" layoutX="225.0" layoutY="495.0" styleClass="nanum-regular" text="Especialidad" textFill="#29838c">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="especialidadNuevoUsuarioChoiceBox" layoutX="225.0" layoutY="520.0" prefHeight="31.0" prefWidth="360.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular" />
+            <Label fx:id="matriculaNuevoUsuarioLabel" layoutX="225.0" layoutY="560.0" styleClass="nanum-regular" text="Matrícula" textFill="#29838c">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="matriculaNuevoUsuarioField" layoutX="225.0" layoutY="585.0" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+            <Button fx:id="guardarNuevoPacienteButton" layoutX="318.0" layoutY="645.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Guardar" textFill="#c4e8dd">
+               <font>
+                  <Font name="NanumGothicBold" size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="nanum-bold" />
+                  <String fx:value="button-guardar" />
+               </styleClass>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="270.0" layoutY="30.0" prefHeight="720.0" prefWidth="810.0" style="-fx-background-color: #D3F9EB;" visible="false" />
+   </children>
+</AnchorPane>

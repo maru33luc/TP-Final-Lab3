@@ -103,3 +103,49 @@
     -fx-font-size: 19;
     -fx-text-fill: "#FDC373";
 }
+
+/*CHECK TERMINOS Y CONDICIONES DE USO - REGISTRO NUEVO PACIENTE*/
+
+.check .box{
+    -fx-background-color: #C6E9DE;
+    -fx-border-color: #29838C;
+    -fx-border-width: 2;
+    -fx-width: 20;
+    -fx-height: 20;
+    -fx-check-mark-color: "#29838C";
+    -fx-check-mark-stroke: "C6E9DE";
+}
+
+.check .box:hover{
+    -fx-background-color: #FFE9BF;
+    -fx-border-color: #FDC373;
+}
+
+.check : hover{
+    -fx-background-color: #FFE9BF;
+    -fx-border-color: #FDC373;
+    -fx-check-mark-color: "#FDC373";
+}
+
+.check .box : pressed{
+    -fx-background-color: #FFE9BF;
+    -fx-border-color: #FDC373;
+}
+
+/*BOTON ENVIAR - REGISTRO NUEVO PACIENTE -*/
+.button-guardar{
+    -fx-background-color: #29838C;
+    -fx-text-fill: #C6E9DE;
+    -fx-font-size: 16;
+    -fx-background-width: 175;
+    -fx-background-height: 25;
+}
+.button-guardar:hover{
+    -fx-background-color: #23737A;
+    -fx-text-fill: #C6E9DE;
+}
+
+.button-guardar:pressed{
+    -fx-background-color: #C4E8DD;
+    -fx-text-fill: #29838C;
+}
