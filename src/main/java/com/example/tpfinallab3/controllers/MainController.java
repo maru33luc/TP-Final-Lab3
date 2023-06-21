@@ -23,7 +23,7 @@ public class MainController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("views/LoginView.fxml"));
             Parent root = loader.load();
-            LoginController loginController = loader.getController();
+            LoginController2 loginController = loader.getController();
             loginController.setMainController(this);
 
             Scene scene = new Scene(root);

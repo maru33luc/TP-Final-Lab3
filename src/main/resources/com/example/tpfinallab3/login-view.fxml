@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="loginPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1080.0" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="loginPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1080.0" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.LoginController">
    <top>
       <AnchorPane fx:id="barraDeTituloPanel" prefHeight="30.0" prefWidth="1080.0" style="-fx-background-color: #091A21;" BorderPane.alignment="CENTER">
          <children>
@@ -77,6 +77,14 @@
    <right>
       <AnchorPane fx:id="loginField" prefHeight="720.0" prefWidth="540.0" style="-fx-background-color: d3f9eb;" BorderPane.alignment="CENTER">
          <children>
+            <PasswordField fx:id="passwordField" layoutX="66.0" layoutY="291.0" onKeyTyped="#validarPassword" prefHeight="45.0" prefWidth="375.0" style="-fx-border-color: #29838c; -fx-border-width: 2; -fx-background-color: d3f9eb;">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <styleClass>
+                  <String fx:value="playfair-regular" />
+                  <String fx:value="text-field" />
+               </styleClass></PasswordField>
             <Label fx:id="welcomeLabel" layoutX="111.0" layoutY="39.0" styleClass="playfair-regular" text="¡Bienvenido!" textFill="#255951">
                <font>
                   <Font name="Century Schoolbook" size="55.0" />
@@ -87,7 +95,7 @@
                   <Font name="Century Gothic" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="usernameField" layoutX="66.0" layoutY="191.0" prefHeight="45.0" prefWidth="420.0" style="-fx-border-color: #29838c; -fx-background-color: d3f9eb; -fx-border-width: 2;">
+            <TextField fx:id="usernameField" layoutX="66.0" layoutY="191.0" onKeyTyped="#validarUsuario" prefHeight="45.0" prefWidth="420.0" style="-fx-border-color: #29838c; -fx-background-color: d3f9eb; -fx-border-width: 2;">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -101,17 +109,9 @@
                   <Font name="Century Gothic" size="20.0" />
                </font>
             </Label>
-            <PasswordField fx:id="passwordField" layoutX="66.0" layoutY="291.0" prefHeight="45.0" prefWidth="375.0" style="-fx-border-color: #29838c; -fx-border-width: 2; -fx-background-color: d3f9eb;">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-               <styleClass>
-                  <String fx:value="playfair-regular" />
-                  <String fx:value="text-field" />
-               </styleClass></PasswordField>
             <Pane layoutX="441.0" layoutY="291.0" prefHeight="45.0" prefWidth="45.0" style="-fx-border-color: #29838c; -fx-border-width: 2;">
                <children>
-                  <ImageView fx:id="hidePasswordButton" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="hidePasswordButton" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" onMouseClicked="#mostrarPassword" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/cerrar-ojo.png" />
                      </image>
@@ -129,7 +129,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Button fx:id="handleLoginButton" layoutX="87.0" layoutY="373.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" style="-fx-background-radius: 0;" text="Ingresar" textFill="#c6e9de">
+            <Button fx:id="handleLoginButton" layoutX="87.0" layoutY="373.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="35.0" prefWidth="150.0" style="-fx-background-radius: 0;" text="Ingresar" textFill="#c6e9de">
                <font>
                   <Font name="Century Gothic" size="21.0" />
                </font>
