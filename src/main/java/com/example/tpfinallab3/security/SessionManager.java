@@ -27,7 +27,6 @@ public class SessionManager {
 
     public boolean iniciarSesion(String nombreUsuario, String contrasena) {
         if (AuthenticationService.getInstance().autenticarUsuario(nombreUsuario, contrasena)) {
-
             PacienteService pacienteService = PacienteService.getInstance();
             MedicoService medicoService = MedicoService.getInstance();
             AdministrativoService administrativoService = AdministrativoService.getInstance();

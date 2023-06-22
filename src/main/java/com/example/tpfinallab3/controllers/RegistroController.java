@@ -2,6 +2,7 @@ package com.example.tpfinallab3.controllers;
 
 import com.example.tpfinallab3.models.Paciente;
 import com.example.tpfinallab3.security.AuthenticationService;
+import com.example.tpfinallab3.security.ValidationService;
 import com.example.tpfinallab3.services.PacienteService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,12 +29,6 @@ public class RegistroController {
 
     @FXML
     private Label emailNuevoPacienteLabel;
-
-    @FXML
-    private TextField fechaNacNuevoPacienteField;
-
-    @FXML
-    private Label fechaNacNuevoPacienteLabel;
 
     @FXML
     private Button guardarNuevoPacienteButton;
@@ -90,69 +85,38 @@ public class RegistroController {
     private Label telefonoNuevoPacienteLabel;
 
     @FXML
-    private CheckBox terminosNuevoPacienteCheckBox;
-
-    @FXML
-    private Label terminosNuevoPacienteLabel;
-
-    @FXML
-    private ChoiceBox<?> tipoDocNuevoPacienteChoiceBox;
-
-    @FXML
-    private Label tipoDocNuevoPacienteLabel;
-
-    @FXML
     private TextField userNuevoPacienteField;
 
     @FXML
     private Label userNuevoPacienteLabel;
 
-    private void clickGuardar(ActionEvent event) {
-        String nombreUsuario = userNuevoPacienteField.getText();
-        String contrasena = passwordNuevoPacienteField.getText();
-        String nombre = nombreNuevoPacienteField.getText();
-        String apellido = apellidoNuevoPacienteField.getText();
-        String mail = emailNuevoPacienteField.getText();
-        String dni = nroDocNuevoPacienteField.getText();
-        String telefono = telefonoNuevoPacienteField.getText();
-        String obraSocial = obraSocialNuevoPacienteField.getText();
-        String numeroAfiliado = nroAfiliadoNuevoPacienteField.getText();
+    @FXML
+    private Button volverButton;
 
-        StringBuilder mensajeError = new StringBuilder();
-        if(AuthenticationService.getInstance().usuarioExiste(nombreUsuario)) {
-            mensajeError.append("Ya existe un usuario registrado con el mismo nombre\n");
-        }
-        if (contrasena.length() < 6) {
-            mensajeError.append("La contraseña es demasiado corta (mínimo 6 caracteres)\n");
-        }
-        if (nombreUsuario.isEmpty() || contrasena.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || mail.isEmpty() || dni.isEmpty()) {
-            mensajeError.append("Debe completar todos los campos marcados con *\n");
-        }
+    @FXML
+    private void clickVolver(ActionEvent event) {
+        LoginController.mostrarLogin();
+    }
 
-        if(mensajeError.isEmpty()) {//si se validó correctamente
-            Paciente paciente = new Paciente(nombreUsuario, contrasena, nombre, apellido, mail, dni, telefono, obraSocial, numeroAfiliado);
+    @FXML
+    void clickGuardar(ActionEvent event) {
+        Paciente paciente = new Paciente(userNuevoPacienteField.getText().toLowerCase(),
+                passwordNuevoPacienteField.getText(),
+                nombreNuevoPacienteField.getText(),
+                apellidoNuevoPacienteField.getText(),
+                emailNuevoPacienteField.getText(),
+                nroDocNuevoPacienteField.getText(),
+                telefonoNuevoPacienteField.getText(),
+                obraSocialNuevoPacienteField.getText(),
+                nroAfiliadoNuevoPacienteField.getText());
+        try {
+            ValidationService.getInstance().validarDatosNuevoUsuario(paciente);
             PacienteService.getInstance().agregarPaciente(paciente);
-            showSuccessAlert("Usuario creado");
-            //todo ir a login
+            LoginController.showSuccessAlert("Nuevo usuario creado exitosamente");
+            LoginController.mostrarLogin();
         }
-        else {
-            showErrorAlert(mensajeError.toString());
+        catch (Exception e) {
+            LoginController.showErrorAlert(e.getMessage());
         }
-    }
-
-    private void showSuccessAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Éxito");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-    private void showErrorAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }
-

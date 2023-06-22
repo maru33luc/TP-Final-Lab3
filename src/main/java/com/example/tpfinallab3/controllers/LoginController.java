@@ -1,7 +1,6 @@
 package com.example.tpfinallab3.controllers;
 
 import com.example.tpfinallab3.models.Autenticable;
-import com.example.tpfinallab3.security.AuthenticationService;
 import com.example.tpfinallab3.security.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -19,14 +17,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoginController {
-
-    private Stage stage;
-
-    @FXML
-    private AnchorPane barraDeTituloPanel;
-
-    @FXML
-    private ImageView closeButton;
 
     @FXML
     private Button handleLoginButton;
@@ -47,12 +37,6 @@ public class LoginController {
     private Separator loginSeparator;
 
     @FXML
-    private ImageView maximizeButton;
-
-    @FXML
-    private ImageView minimizeButton;
-
-    @FXML
     private Hyperlink olvidoPasswordLink;
 
     @FXML
@@ -62,10 +46,10 @@ public class LoginController {
     private PasswordField passwordField;
 
     @FXML
-    private TextField plainPasswordField;
+    private Label passwordLabel;
 
     @FXML
-    private Label passwordLabel;
+    private TextField plainPasswordField;
 
     @FXML
     private ImageView showPasswordButton;
@@ -82,118 +66,116 @@ public class LoginController {
     @FXML
     private Label welcomeLabel;
 
-    private AuthenticationService authService;
+    protected static Stage stage;
 
-    public LoginController() {
-        authService = AuthenticationService.getInstance();
-    }
-
-    @FXML
-    private void initialize() {
-        // Configurar el controlador al inicializar la vista
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
     @FXML
     private void clickLogin(ActionEvent event) {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-
-        if (SessionManager.getInstance().iniciarSesion(username, password)) {
-            // Autenticación exitosa
-            // Realizar acciones después del inicio de sesión (navegar a otra vista, etc.)
-
-            showSuccessAlert("Inicio de sesión exitoso");
-
+        if (SessionManager.getInstance().iniciarSesion(usernameField.getText(), passwordField.getText())) {
             Autenticable usuarioAutenticado = SessionManager.getInstance().getEntidadLogueada();
-            System.out.println("Bienvenido " + usuarioAutenticado.getNombre() + " " + usuarioAutenticado.getApellido()+ "!");
+            showSuccessAlert("Bienvenido " + usuarioAutenticado.getNombre() + " " + usuarioAutenticado.getApellido() + "!");
 
-            // pasar a la ventana de paciente
-
-            Stage stage = (Stage) handleLoginButton.getScene().getWindow();
-            stage.close();
-
-            FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("/com/example/tpfinallab3/paciente-view.fxml"));
+            FXMLLoader fxmlLoader;
             Parent root;
+            if (SessionManager.getInstance().getTipoEntidad().equals("paciente")) {
+                fxmlLoader = new FXMLLoader(LoginController.class.getResource("/com/example/tpfinallab3/paciente-view.fxml"));
+            }
+            else if (SessionManager.getInstance().getTipoEntidad().equals("medico")) {
+                fxmlLoader = new FXMLLoader(LoginController.class.getResource("/com/example/tpfinallab3/medico-view.fxml"));
+            }
+            else {
+                fxmlLoader = new FXMLLoader(LoginController.class.getResource("/com/example/tpfinallab3/admin-view.fxml"));
+            }
+
             try {
                 root = fxmlLoader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
             }
-            PacienteViewController pacienteViewController = fxmlLoader.getController();
-            pacienteViewController.setMainController(this);
+            catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+//todo verificar si lo comentado es necesario
+            /*PacienteViewController pacienteViewController = fxmlLoader.getController();
+            pacienteViewController.setMainController(this);*/
             Scene scene = new Scene(root);
-            Stage newStage = new Stage();
-            newStage.setScene(scene);
-            newStage.show();
-
-
-        } else {
-            // Autenticación fallida
-            // Mostrar mensaje de error en la vista
-            showErrorAlert("Nombre de usuario o contraseña incorrectos");
+            stage.setScene(scene);
+            stage.show();
+            }
+        else {
+            showErrorAlert("Nombre de usuario y/o contraseña incorrectos");
         }
     }
 
     @FXML
-    private void validarUsuario (KeyEvent event) {
-        String username = usernameField.getText();
-        if (username.isEmpty()) {
-            event.consume();
-            //showErrorAlert("El campo de usuario no puede estar vacío");
+    private void clickRegistro(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("/com/example/tpfinallab3/registro-view.fxml"));
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        // validar que el campo de usuario no tenga caracteres especiales ni numeros
-        else if (!username.matches("[a-zA-Z]*")) {
-            showErrorAlert("El campo de usuario no puede contener caracteres especiales ni números");
-        }
-
-
-    }
-
-    @FXML
-    private void validarPassword (KeyEvent event) {
-        String password = passwordField.getText();
-        if (password.isEmpty()) {
-            showErrorAlert("El campo de contraseña no puede estar vacío");
-        }
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     private void mostrarPassword(MouseEvent event) {
-        passwordField.setVisible(false);
-        plainPasswordField.setText(passwordField.getText());
-        plainPasswordField.setVisible(true);
+        plainPasswordField.setVisible(false);
+        passwordField.setText(plainPasswordField.getText());
+        passwordField.setVisible(true);
         showPasswordButton.setVisible(false);
         hidePasswordButton.setVisible(true);
     }
 
     @FXML
     private void ocultarPassword(MouseEvent event) {
-        plainPasswordField.setVisible(false);
-        passwordField.setText(plainPasswordField.getText());
-        passwordField.setVisible(true);
+        passwordField.setVisible(false);
+        plainPasswordField.setText(passwordField.getText());
+        plainPasswordField.setVisible(true);
         showPasswordButton.setVisible(true);
         hidePasswordButton.setVisible(false);
     }
 
+    @FXML
+    void recuperarContrasena(ActionEvent event) {
+        showSuccessAlert("Se abrirá el navegador para acceder al sitio que le permitirá reestablecer su contraseña...");
+    }
 
-    private void showSuccessAlert(String message) {
+    @FXML
+    void recuperarUsuario(ActionEvent event) {
+        showSuccessAlert("Se abrirá el navegador para acceder al sitio que le permitirá recuperar su usuario...");
+    }
+
+    protected static void mostrarLogin() {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("/com/example/tpfinallab3/login-view.fxml"));
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        LoginController.stage.setScene(scene);
+        LoginController.stage.show();
+    }
+
+    protected static void showSuccessAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Éxito");
+        alert.setTitle(null);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }
 
-    private void showErrorAlert(String message) {
+    protected static void showErrorAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
         alert.setContentText(message);
+        alert.setTitle(null);
+        alert.setHeaderText(null);
         alert.showAndWait();
-    }
-
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
     }
 }

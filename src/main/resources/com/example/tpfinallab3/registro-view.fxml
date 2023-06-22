@@ -2,8 +2,6 @@
 
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -11,9 +9,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
-
-
 
 <AnchorPane fx:id="registrarsePanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #5ABAEA;" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.RegistroController">
 
@@ -37,15 +32,18 @@
             <Label fx:id="userNuevoPacienteLabel" layoutX="86.0" layoutY="90.0" styleClass="nanum-regular" text="Nombre de Usuario" textFill="#29838c">
                <font>
                   <Font name="NanumGothic" size="13.0" />
-               </font></Label>
+               </font>
+            </Label>
             <TextField fx:id="userNuevoPacienteField" layoutX="85.0" layoutY="110.0" prefHeight="25.0" prefWidth="400.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                <font>
                   <Font name="Playfair Display Regular" size="13.0" />
-               </font></TextField>
+               </font>
+            </TextField>
             <Label fx:id="passwordNuevoPacienteLabel" layoutX="86.0" layoutY="145.0" styleClass="nanum-regular" text="Contraseña" textFill="#29838c">
                <font>
                   <Font name="NanumGothic" size="13.0" />
-               </font></Label>
+               </font>
+            </Label>
             <PasswordField fx:id="passwordNuevoPacienteField" layoutX="85.0" layoutY="165.0" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                <font>
                   <Font name="Playfair Display Regular" size="13.0" />
@@ -68,86 +66,83 @@
             <Label fx:id="nombreNuevoPacienteLabel" layoutX="86.0" layoutY="200.0" styleClass="nanum-regular" text="Nombre" textFill="#29838c">
                <font>
                   <Font name="NanumGothic" size="13.0" />
-               </font></Label>
+               </font>
+            </Label>
             <TextField fx:id="nombreNuevoPacienteField" layoutX="85.0" layoutY="220.0" prefHeight="25.0" prefWidth="400.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                <font>
                   <Font size="13.0" />
-               </font></TextField>
+               </font>
+            </TextField>
             <Label fx:id="apellidoNuevoPacienteLabel" layoutX="86.0" layoutY="255.0" styleClass="nanum-regular" text="Apellido" textFill="#29838c">
                <font>
                   <Font name="NanumGothic" size="13.0" />
-               </font></Label>
+               </font>
+            </Label>
             <TextField fx:id="apellidoNuevoPacienteField" layoutX="85.0" layoutY="275.0" prefHeight="25.0" prefWidth="400.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                <font>
                   <Font size="13.0" />
-               </font></TextField>
+               </font>
+            </TextField>
             <Label fx:id="emailNuevoPacienteLabel" layoutX="86.0" layoutY="310.0" styleClass="nanum-regular" text="Email" textFill="#29838c">
                <font>
                   <Font name="NanumGothic" size="13.0" />
-               </font></Label>
+               </font>
+            </Label>
             <TextField fx:id="emailNuevoPacienteField" layoutX="85.0" layoutY="330.0" prefHeight="25.0" prefWidth="400.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                <font>
                   <Font size="13.0" />
-               </font></TextField>
-            <Label fx:id="tipoDocNuevoPacienteLabel" layoutX="86.0" layoutY="365.0" styleClass="nanum-regular" text="Tipo de Documento" textFill="#29838c">
-               <font>
-                  <Font name="NanumGothic" size="13.0" />
-               </font></Label>
-            <ChoiceBox fx:id="tipoDocNuevoPacienteChoiceBox" layoutX="85.0" layoutY="385.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" />
-            <Label fx:id="fechaNacNuevoPacienteLabel" layoutX="312.0" layoutY="365.0" styleClass="nanum-regular" text="Fecha de Nacimiento" textFill="#29838c">
-               <font>
-                  <Font name="NanumGothic" size="13.0" />
-               </font></Label>
-            <TextField fx:id="fechaNacNuevoPacienteField" layoutX="311.0" layoutY="385.0" prefHeight="25.0" prefWidth="174.0" promptText="DD / MM / AAAA" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
-               <font>
-                  <Font name="Playfair Display Regular" size="13.0" />
-               </font></TextField>
-            <Label fx:id="nroDocNuevoPacienteLabel" layoutX="86.0" layoutY="420.0" styleClass="nanum-regular" text="Número de Documento" textFill="#29838c">
-               <font>
-                  <Font name="NanumGothic" size="13.0" />
-               </font></Label>
-            <TextField fx:id="nroDocNuevoPacienteField" layoutX="85.0" layoutY="440.0" prefHeight="25.0" prefWidth="400.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
-               <font>
-                  <Font size="13.0" />
-               </font></TextField>
-            <Label fx:id="telefonoNuevoPacienteLabel" layoutX="86.0" layoutY="475.0" styleClass="nanum-regular" text="Telefono" textFill="#29838c">
-               <font>
-                  <Font name="NanumGothic" size="13.0" />
-               </font></Label>
-            <TextField fx:id="telefonoNuevoPacienteField" layoutX="85.0" layoutY="495.0" prefHeight="25.0" prefWidth="400.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
-               <font>
-                  <Font size="13.0" />
-               </font></TextField>
-            <Label fx:id="obraSocialNuevoPacienteLabel" layoutX="86.0" layoutY="530.0" styleClass="nanum-regular" text="Obra Social" textFill="#29838c">
-               <font>
-                  <Font name="NanumGothic" size="13.0" />
-               </font></Label>
-            <TextField fx:id="obraSocialNuevoPacienteField" layoutX="85.0" layoutY="550.0" prefHeight="25.0" prefWidth="400.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
-               <font>
-                  <Font size="13.0" />
-               </font></TextField>
-            <Label fx:id="nroAfiliadoNuevoPacienteLabel" layoutX="86.0" layoutY="585.0" styleClass="nanum-regular" text="Nº de Afiliado" textFill="#29838c">
-               <font>
-                  <Font name="NanumGothic" size="13.0" />
-               </font></Label>
-            <TextField fx:id="nroAfiliadoNuevoPacienteField" layoutX="85.0" layoutY="605.0" prefHeight="25.0" prefWidth="400.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
-               <font>
-                  <Font size="13.0" />
-               </font></TextField>
-            <CheckBox fx:id="terminosNuevoPacienteCheckBox" layoutX="86.0" layoutY="659.0" mnemonicParsing="false" textFill="#255951">
-               <font>
-                  <Font size="14.0" />
                </font>
-               <styleClass>
-                  <String fx:value="check" />
-                  <String fx:value="box" />
-               </styleClass></CheckBox>
-            <Label fx:id="terminosNuevoPacienteLabel" layoutX="114.0" layoutY="661.0" styleClass="playfair-regular" text="Términos y Condiciones" textFill="#255951">
+            </TextField>
+            <Label fx:id="nroDocNuevoPacienteLabel" layoutX="86.0" layoutY="370.0" styleClass="nanum-regular" text="Número de Documento" textFill="#29838c">
                <font>
-                  <Font name="Playfair Display Regular" size="14.0" />
+                  <Font name="NanumGothic" size="13.0" />
                </font>
             </Label>
-            <Button fx:id="guardarNuevoPacienteButton" layoutX="308.0" layoutY="652.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Guardar" textFill="#c4e8dd">
+            <TextField fx:id="nroDocNuevoPacienteField" layoutX="85.0" layoutY="390.0" prefHeight="25.0" prefWidth="400.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+            <Label fx:id="telefonoNuevoPacienteLabel" layoutX="86.0" layoutY="425.0" styleClass="nanum-regular" text="Telefono" textFill="#29838c">
+               <font>
+                  <Font name="NanumGothic" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="telefonoNuevoPacienteField" layoutX="85.0" layoutY="445.0" prefHeight="25.0" prefWidth="400.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+            <Label fx:id="obraSocialNuevoPacienteLabel" layoutX="86.0" layoutY="480.0" styleClass="nanum-regular" text="Obra Social" textFill="#29838c">
+               <font>
+                  <Font name="NanumGothic" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="obraSocialNuevoPacienteField" layoutX="85.0" layoutY="500.0" prefHeight="25.0" prefWidth="400.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+            <Label fx:id="nroAfiliadoNuevoPacienteLabel" layoutX="86.0" layoutY="535.0" styleClass="nanum-regular" text="Nº de Afiliado" textFill="#29838c">
+               <font>
+                  <Font name="NanumGothic" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nroAfiliadoNuevoPacienteField" layoutX="85.0" layoutY="555.0" prefHeight="25.0" prefWidth="400.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+            <Button fx:id="guardarNuevoPacienteButton" layoutX="308.0" layoutY="602.0" mnemonicParsing="false" onAction="#clickGuardar" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Guardar" textFill="#c4e8dd">
+               <font>
+                  <Font name="NanumGothicBold" size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="nanum-bold" />
+                  <String fx:value="button-oscuro" />
+               </styleClass>
+            </Button>
+            <Button fx:id="volverButton" layoutX="85.0" layoutY="602.0" mnemonicParsing="false" onAction="#clickVolver" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Volver" textFill="#c4e8dd">
                <font>
                   <Font name="NanumGothicBold" size="14.0" />
                </font>
