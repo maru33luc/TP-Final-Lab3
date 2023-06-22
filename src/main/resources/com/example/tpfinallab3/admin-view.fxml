@@ -21,7 +21,7 @@
                <children>
                   <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="12.0" layoutY="8.0">
                      <image>
-                        <Image url="@../../../../../../../TP%20FINAL/close.png" />
+                        <Image url="@../../../images/close.png" />
                      </image>
                   </ImageView>
                </children>
@@ -30,14 +30,14 @@
                <children>
                   <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="12.0" layoutY="8.0">
                      <image>
-                        <Image url="@../../../../../../../TP%20FINAL/minimize.png" />
+                        <Image url="@../../../images/minimize.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
             <ImageView accessibleRole="BUTTON" fitHeight="15.0" fitWidth="15.0" layoutX="1009.0" layoutY="8.0">
                <image>
-                  <Image url="@../../../../../../../TP%20FINAL/maximize.png" />
+                  <Image url="@../../../images/maximize.png" />
                </image>
             </ImageView>
             <Label fx:id="docturnoBarraAdminLabel" layoutX="9.0" layoutY="2.0" styleClass="cinzel-regular" text="Docturno" textFill="#ffe9bf">
@@ -51,7 +51,7 @@
          <children>
             <ImageView accessibleRole="BUTTON" fitHeight="720.0" fitWidth="270.0" layoutY="-1.0">
                <image>
-                  <Image url="@../../../../../../../TP%20FINAL/fondo270x720.png" />
+                  <Image url="@../../../images/fondo270x720.png" />
                </image>
             </ImageView>
             <Label layoutX="62.0" layoutY="14.0" styleClass="cinzel-regular" text="Admin" textFill="#ffe9bf">
@@ -128,6 +128,276 @@
                   <Image url="@../../../images/fondoClaro810x720.png" />
                </image>
             </ImageView>
+            <AnchorPane fx:id="buscarEditarUsuarioAdminAnchorPane1" layoutX="135.0" prefHeight="720.0" prefWidth="540.0">
+               <children>
+                  <Label layoutX="141.0" layoutY="14.0" styleClass="cinzel-regular" text="Ver Turnos" textFill="#123440">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane layoutY="93.0" prefHeight="375.0" prefWidth="540.0">
+                     <children>
+                        <CheckBox fx:id="medicoVerTurnosAdminCheckBox" layoutX="114.0" layoutY="88.0" mnemonicParsing="false" onAction="#checkDoctorSearchAppointment" styleClass="check" />
+                        <Label layoutX="142.0" layoutY="88.0" styleClass="nanum-regular" text="Medico" textFill="#29838c">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="fechasVerTurnosAdminCheckBox" layoutX="364.0" layoutY="88.0" mnemonicParsing="false" onAction="#clickIsDateSearchAppointment" styleClass="check" />
+                        <Label layoutX="389.0" layoutY="88.0" styleClass="nanum-regular" text="Fecha" textFill="#29838c">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="201.0" layoutY="50.0" styleClass="nanum-bold" text="Seleccione el filtro:" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="pacienteVerTurnosAdminCheckBox" layoutX="238.0" layoutY="88.0" mnemonicParsing="false" onAction="#clickPatientSearchAppointment" styleClass="check" />
+                        <Label layoutX="263.0" layoutY="88.0" styleClass="nanum-regular" text="Paciente" textFill="#29838c">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="IngreseMedicoVerTurnosAdminLabel" layoutX="203.0" layoutY="143.0" styleClass="nanum-bold" text="Ingrese el medico:" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="IngresePacienteVerTurnosAdminLabel" layoutX="203.0" layoutY="143.0" styleClass="nanum-bold" text="Ingrese el paciente:" textFill="#29838c" visible="false">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="IngreseFechaVerTurnosAdminLabel" layoutX="203.0" layoutY="143.0" styleClass="nanum-bold" text="Ingrese el fecha:" textFill="#29838c" visible="false">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="BuscarVerTurnoAdminField" layoutX="148.0" layoutY="179.0" onAction="#fieldUserSearchEdit" prefHeight="25.0" prefWidth="240.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular" />
+                        <Button fx:id="buscarEditarUsuarioButton1" layoutX="183.0" layoutY="234.0" mnemonicParsing="false" onAction="#clickSearchEdit" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Buscar" textFill="#c4e8dd">
+                           <font>
+                              <Font name="NanumGothicBold" size="14.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="nanum-bold" />
+                              <String fx:value="button-oscuro" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="miPerfilAdminAnchorPane" layoutX="135.0" prefHeight="720.0" prefWidth="540.0" visible="false">
+               <children>
+                  <Label layoutX="182.0" layoutY="14.0" styleClass="cinzel-regular" text="Mi Perfil" textFill="#123440">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane fx:id="mostrarMiPerfilAdminAnchorPane" layoutY="93.0" prefHeight="375.0" prefWidth="540.0" style="-fx-background-color: #123440;" visible="false">
+                     <children>
+                        <Label layoutX="150.0" layoutY="50.0" styleClass="nanum-bold" text="Tipo Usuario:" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="tipoUsuarioMiPerfilAdminLabel" layoutX="275.0" layoutY="50.0" styleClass="nanum-bold" text="TipoUsuario." textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="150.0" layoutY="85.0" styleClass="nanum-bold" text="Usuario: " textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="usuarioMiPerfilAdminLabel" layoutX="275.0" layoutY="85.0" styleClass="nanum-bold" text="Usuario." textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="150.0" layoutY="120.0" styleClass="nanum-bold" text="Nombre: " textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="nombreMiPerfilAdminLabel" layoutX="275.0" layoutY="120.0" styleClass="nanum-bold" text="Nombre." textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="150.0" layoutY="155.0" styleClass="nanum-bold" text="Apellido:" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="apellidoMiPerfilAdminLabel" layoutX="275.0" layoutY="155.0" styleClass="nanum-bold" text="Apellido." textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="150.0" layoutY="190.0" styleClass="nanum-bold" text="Email:" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="emailMiPerfilAdminLabel" layoutX="275.0" layoutY="190.0" styleClass="nanum-bold" text="Email." textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="150.0" layoutY="225.0" styleClass="nanum-bold" text="Puesto:" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="matriculaMiPerfilAdminLabel" layoutX="275.0" layoutY="225.0" styleClass="nanum-bold" text="Puesto." textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="editarMiPerfilAdminButton" layoutX="337.0" layoutY="318.0" mnemonicParsing="false" onAction="#clickEditeMyProfileAdmin" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Editar" textFill="#c4e8dd">
+                           <font>
+                              <Font name="NanumGothicBold" size="14.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="nanum-bold" />
+                              <String fx:value="button-claro" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="edicionEditarUsuarioAdminAnchorPane1" prefHeight="720.0" prefWidth="540.0">
+                     <children>
+                        <Label layoutX="89.0" layoutY="95.0" styleClass="nanum-regular" text="Nombre" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="nombreEdicionMiPerfilAdminField" layoutX="89.0" layoutY="120.0" onAction="#fieldNameEditMyProfileAdmin" prefHeight="25.0" prefWidth="360.0" promptText="Nombre anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="89.0" layoutY="160.0" styleClass="nanum-regular" text="Apellido" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="apellidoEdicionMiPerfilAdminField" layoutX="89.0" layoutY="185.0" onAction="#fieldSurnameEditMyProfileAdmin" prefHeight="25.0" prefWidth="360.0" promptText="Apellido anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="89.0" layoutY="225.0" styleClass="nanum-regular" text="Email" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="emailEdicionMiPerfilAdminField" layoutX="89.0" layoutY="250.0" onAction="#fieldEmailEditMyProfileAdmin" prefHeight="25.0" prefWidth="360.0" promptText="Email anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13; -fx-font-size: 13;" styleClass="playfair-regular">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </TextField>
+                        <Label fx:id="puestoEdicionEditarUsuarioLabel1" layoutX="89.0" layoutY="290.0" styleClass="nanum-regular" text="Puesto" textFill="#29838c" visible="false">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="puestoEdicionEditarUsuarioField1" layoutX="89.0" layoutY="315.0" onAction="#fieldJobEditUser" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular" visible="false">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="89.0" layoutY="290.0" styleClass="nanum-regular" text="Especialidad" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="especialidadEdicionMiPerfilAdminChoiceBox" layoutX="89.0" layoutY="315.0" onKeyPressed="#choiceSpecialityEditMyProfileAdmin" prefHeight="31.0" prefWidth="360.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular" />
+                        <Label layoutX="89.0" layoutY="355.0" styleClass="nanum-regular" text="Puesto" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="puestoEdicionMiPerfilAdminField" layoutX="89.0" layoutY="380.0" onAction="#fieldJobEditMyProfileAdmin" prefHeight="25.0" prefWidth="360.0" promptText="Puesto anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="89.0" layoutY="420.0" styleClass="nanum-regular" text="Contraseña actual:" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="actualPasswordEdicionMiPerfilAdminField" layoutX="89.0" layoutY="445.0" onAction="#fieldOldPasswoordEditMyProfileAdmin" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </PasswordField>
+                        <Label layoutX="89.0" layoutY="485.0" styleClass="nanum-regular" text="Nueva Contraseña:" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="newPasswordEdicionMiPerfilAdminField" layoutX="89.0" layoutY="510.0" onAction="#fielNewPasswordEditMyProfileAdmin" prefHeight="25.0" prefWidth="320.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </PasswordField>
+                        <AnchorPane layoutX="407.0" layoutY="510.0" prefHeight="31.0" prefWidth="35.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;">
+                           <children>
+                              <ImageView fx:id="mostrarNewPasswordEdicionMiPerfilAdminButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onKeyPressed="#clickShowNewPasswordEditMyProfileAdmin" visible="false">
+                                 <image>
+                                    <Image url="@../../../../../../../TP%20FINAL/abrir-ojo.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="ocultarNewPasswordEdicionMiPerfilAdminButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onKeyPressed="#clickHideNewPasswordEditMyProfileAdmin">
+                                 <image>
+                                    <Image url="@../../../../../../../TP%20FINAL/cerrar-ojo.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="89.0" layoutY="550.0" styleClass="nanum-regular" text="Confirmar nueva contraseña:" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="confirmNewPasswordEdicionMiPerfilAdminField" layoutX="89.0" layoutY="575.0" onAction="#fieldConfirmNewPasswordEditMyProfileAdmin" prefHeight="25.0" prefWidth="320.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </PasswordField>
+                        <AnchorPane layoutX="407.0" layoutY="575.0" prefHeight="31.0" prefWidth="35.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;">
+                           <children>
+                              <ImageView fx:id="mostrarConfirmNewPasswordEdicionMiPerfilAdminButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onKeyPressed="#clickShowConfirmNewPasswordEditMyProfileAdmin" visible="false">
+                                 <image>
+                                    <Image url="@../../../../../../../TP%20FINAL/abrir-ojo.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="ocultarConfirmNewPasswordEdicionMiPerfilAdminButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onKeyPressed="#clickHideConfirmNewPasswordEditMyProfileAdmin">
+                                 <image>
+                                    <Image url="@../../../../../../../TP%20FINAL/cerrar-ojo.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <Button fx:id="guardarEdicionMiPerfilAdminButton" layoutX="183.0" layoutY="650.0" mnemonicParsing="false" onAction="#clickSaveEditMyProfileAdmin" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Guardar" textFill="#c4e8dd">
+                           <font>
+                              <Font name="NanumGothicBold" size="14.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="nanum-bold" />
+                              <String fx:value="button-oscuro" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="nuevoUsuarioAdminAnchorPane" layoutX="135.0" prefHeight="720.0" prefWidth="540.0" visible="false">
                <children>
                   <Label layoutX="97.0" layoutY="14.0" styleClass="cinzel-regular" text="Nuevo Usuario" textFill="#123440">
@@ -414,7 +684,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="nombreEdicionEditarUsuarioField" layoutX="89.0" layoutY="120.0" onAction="#fieldNameUserEdit" prefHeight="25.0" prefWidth="360.0" promptText="Nombre anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
+                        <TextField fx:id="nombreEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="120.0" onAction="#fieldNameUserEdit" prefHeight="25.0" prefWidth="360.0" promptText="Nombre anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                            <font>
                               <Font size="13.0" />
                            </font>
@@ -424,7 +694,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="apellidoEdicionEditarUsuarioField" layoutX="89.0" layoutY="185.0" onAction="#fieldSurnameUserEdit" prefHeight="25.0" prefWidth="360.0" promptText="Apellido anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
+                        <TextField fx:id="apellidoEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="185.0" onAction="#fieldSurnameUserEdit" prefHeight="25.0" prefWidth="360.0" promptText="Apellido anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                            <font>
                               <Font size="13.0" />
                            </font>
@@ -434,7 +704,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="emailEdicionEditarUsuarioField" layoutX="89.0" layoutY="250.0" onAction="#fieldEmailUserEdit" prefHeight="25.0" prefWidth="360.0" promptText="Email anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13; -fx-font-size: 13;" styleClass="playfair-regular">
+                        <TextField fx:id="emailEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="250.0" onAction="#fieldEmailUserEdit" prefHeight="25.0" prefWidth="360.0" promptText="Email anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13; -fx-font-size: 13;" styleClass="playfair-regular">
                            <font>
                               <Font size="13.0" />
                            </font>
@@ -444,7 +714,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="puestoEdicionEditarUsuarioField" layoutX="89.0" layoutY="315.0" onAction="#fieldJobEditUser" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular" visible="false">
+                        <TextField fx:id="puestoEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="315.0" onAction="#fieldJobEditUser" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular" visible="false">
                            <font>
                               <Font size="13.0" />
                            </font>
@@ -454,13 +724,13 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="especialidadEdicionEditarUsuarioChoiceBox" layoutX="89.0" layoutY="315.0" onKeyPressed="#choiceSpecialityUserEdit" prefHeight="31.0" prefWidth="360.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular" />
+                        <ChoiceBox fx:id="especialidadEdicionEditarUsuarioAdminChoiceBox" layoutX="89.0" layoutY="315.0" onKeyPressed="#choiceSpecialityUserEdit" prefHeight="31.0" prefWidth="360.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular" />
                         <Label layoutX="89.0" layoutY="355.0" styleClass="nanum-regular" text="Matrícula" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="matriculaEdicionEditarUsuarioField" layoutX="89.0" layoutY="380.0" onAction="#fieldLicenseUserEdit" prefHeight="25.0" prefWidth="360.0" promptText="Matricula anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
+                        <TextField fx:id="matriculaEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="380.0" onAction="#fieldLicenseUserEdit" prefHeight="25.0" prefWidth="360.0" promptText="Matricula anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                            <font>
                               <Font size="13.0" />
                            </font>
@@ -470,7 +740,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="actualPasswordEdicionEditarUsuarioField" layoutX="89.0" layoutY="445.0" onAction="#fieldOldPasswoordUserEdit" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
+                        <PasswordField fx:id="actualPasswordEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="445.0" onAction="#fieldOldPasswoordUserEdit" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
                            <font>
                               <Font size="13.0" />
                            </font>
@@ -480,19 +750,19 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="newPasswordEdicionEditarUsuarioField" layoutX="89.0" layoutY="510.0" onAction="#fielNewPasswordUserEdit" prefHeight="25.0" prefWidth="320.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
+                        <PasswordField fx:id="newPasswordEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="510.0" onAction="#fielNewPasswordUserEdit" prefHeight="25.0" prefWidth="320.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
                            <font>
                               <Font size="13.0" />
                            </font>
                         </PasswordField>
                         <AnchorPane layoutX="407.0" layoutY="510.0" prefHeight="31.0" prefWidth="35.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;">
                            <children>
-                              <ImageView fx:id="mostrarNewPasswordEdicionEditarUsuarioButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onKeyPressed="#clickShowNewPasswordUserEdit" visible="false">
+                              <ImageView fx:id="mostrarNewPasswordEdicionEditarUsuarioAdminButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onKeyPressed="#clickShowNewPasswordUserEdit" visible="false">
                                  <image>
                                     <Image url="@../../../../../../../TP%20FINAL/abrir-ojo.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="ocultarNewPasswordEdicionEditarUsuarioButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onKeyPressed="#clickHideNewPasswordUserEdit">
+                              <ImageView fx:id="ocultarNewPasswordEdicionEditarUsuarioAdminButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onKeyPressed="#clickHideNewPasswordUserEdit">
                                  <image>
                                     <Image url="@../../../../../../../TP%20FINAL/cerrar-ojo.png" />
                                  </image>
@@ -504,26 +774,26 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="confirmNewPasswordEdicionEditarUsuarioField" layoutX="89.0" layoutY="575.0" onAction="#fieldConfirmNewPasswordUserEdit" prefHeight="25.0" prefWidth="320.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
+                        <PasswordField fx:id="confirmNewPasswordEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="575.0" onAction="#fieldConfirmNewPasswordUserEdit" prefHeight="25.0" prefWidth="320.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
                            <font>
                               <Font size="13.0" />
                            </font>
                         </PasswordField>
                         <AnchorPane layoutX="407.0" layoutY="575.0" prefHeight="31.0" prefWidth="35.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;">
                            <children>
-                              <ImageView fx:id="mostrarConfirmNewPasswordEdicionEditarUsuarioButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onKeyPressed="#clickShowConfirmNewPasswordUserEdit" visible="false">
+                              <ImageView fx:id="mostrarConfirmNewPasswordEdicionEditarUsuarioAdminButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onKeyPressed="#clickShowConfirmNewPasswordUserEdit" visible="false">
                                  <image>
                                     <Image url="@../../../../../../../TP%20FINAL/abrir-ojo.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="ocultarConfirmNewPasswordEdicionEditarUsuarioButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onKeyPressed="#clickHideConfirmNewPasswordUserEdit">
+                              <ImageView fx:id="ocultarConfirmNewPasswordEdicionEditarUsuarioAdminButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onKeyPressed="#clickHideConfirmNewPasswordUserEdit">
                                  <image>
                                     <Image url="@../../../../../../../TP%20FINAL/cerrar-ojo.png" />
                                  </image>
                               </ImageView>
                            </children>
                         </AnchorPane>
-                        <Button fx:id="guardarEdicionEditarUsuarioButton" layoutX="183.0" layoutY="650.0" mnemonicParsing="false" onAction="#clickSaveUserEdit" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Guardar" textFill="#c4e8dd">
+                        <Button fx:id="guardarEdicionEditarUsuarioAdminButton" layoutX="183.0" layoutY="650.0" mnemonicParsing="false" onAction="#clickSaveUserEdit" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Guardar" textFill="#c4e8dd">
                            <font>
                               <Font name="NanumGothicBold" size="14.0" />
                            </font>
@@ -536,14 +806,14 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="135.0" prefHeight="720.0" prefWidth="540.0">
+            <AnchorPane fx:id="eliminarUsuarioAdminAnchorPane" layoutX="135.0" prefHeight="720.0" prefWidth="540.0" visible="false">
                <children>
                   <Label fx:id="eliminarUsuarioLabel" layoutX="73.0" layoutY="14.0" styleClass="cinzel-regular" text="Eliminar Usuario" textFill="#123440">
                      <font>
                         <Font size="39.0" />
                      </font>
                   </Label>
-                  <AnchorPane fx:id="buscarUsuarioEditarUsuarioAdminAnchorPane1" prefHeight="720.0" prefWidth="540.0" visible="false">
+                  <AnchorPane fx:id="buscarUsuarioEditarUsuarioAdminAnchorPane1" prefHeight="720.0" prefWidth="540.0">
                      <children>
                         <Label layoutX="148.0" layoutY="150.0" styleClass="nanum-bold" text="Seleccione el tipo de Usuario:" textFill="#29838c">
                            <font>
@@ -579,7 +849,7 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="mostrarUsuarioEditarUsuarioAdminAnchorPane1" layoutY="93.0" prefHeight="375.0" prefWidth="540.0" style="-fx-background-color: #123440;">
+                  <AnchorPane fx:id="mostrarUsuarioEditarUsuarioAdminAnchorPane1" layoutY="93.0" prefHeight="375.0" prefWidth="540.0" style="-fx-background-color: #123440;" visible="false">
                      <children>
                         <AnchorPane fx:id="barraTituloMostrarEliminarUsuarioAnchorPane1" prefHeight="30.0" prefWidth="540.0" style="-fx-background-color: #091A21;">
                            <children>
@@ -587,7 +857,7 @@
                                  <children>
                                     <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="12.0" layoutY="8.0">
                                        <image>
-                                          <Image url="@../../../../../../../TP%20FINAL/close.png" />
+                                          <Image url="@../../../images/close.png" />
                                        </image>
                                     </ImageView>
                                  </children>
