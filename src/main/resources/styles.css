@@ -149,3 +149,8 @@
     -fx-background-color: #C4E8DD;
     -fx-text-fill: #29838C;
 }
+
+
+.table-column{
+    fx-background-color: "#c6e9de";
+}
