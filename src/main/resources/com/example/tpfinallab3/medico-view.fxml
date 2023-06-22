@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1080.0" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1080.0" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MedicoViewController">
    <top>
       <AnchorPane prefHeight="30.0" prefWidth="1080.0" style="-fx-background-color: #091A21;" BorderPane.alignment="CENTER">
          <children>
@@ -79,7 +78,7 @@
                   <Image url="@../../../images/fondoClaro810x720.png" />
                </image>
             </ImageView>
-            <AnchorPane fx:id="myProfileDataMedicoPanel" prefHeight="720.0" prefWidth="810.0" visible="false">
+            <AnchorPane fx:id="myProfileDataMedicoPanel" prefHeight="720.0" prefWidth="810.0">
                <children>
                   <Label layoutX="313.0" layoutY="20.0" styleClass="cinzel-regular" text="Usuario" textFill="#255951">
                      <font>
@@ -91,7 +90,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="nameMedicoLabel" layoutX="293.0" layoutY="109.0" text="nombre.">
+                  <Label fx:id="nombreMedicoLabel" layoutX="293.0" layoutY="109.0" text="nombre.">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -101,7 +100,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lastNameMedicoLabel" layoutX="293.0" layoutY="157.0" text="apellido.">
+                  <Label fx:id="apellidoMedicoLabel" layoutX="293.0" layoutY="157.0" text="apellido.">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -128,7 +127,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="turnosViewMedicoPanel" prefHeight="720.0" prefWidth="810.0">
+            <AnchorPane fx:id="turnosViewMedicoPanel" prefHeight="720.0" prefWidth="810.0" visible="false">
                <children>
                   <TableView fx:id="tablaTurnosMedico" layoutX="195.0" prefHeight="590.0" prefWidth="420.0">
                     <columns>
