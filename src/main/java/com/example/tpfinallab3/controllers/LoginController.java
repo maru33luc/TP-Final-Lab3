@@ -107,9 +107,7 @@ public class LoginController {
             Autenticable usuarioAutenticado = SessionManager.getInstance().getEntidadLogueada();
             System.out.println("Bienvenido " + usuarioAutenticado.getNombre() + " " + usuarioAutenticado.getApellido()+ "!");
 
-            // pasar a otra ventana (vista)
-
-            // Cargar y mostrar la ventana de Registro
+            // pasar a la ventana de paciente
 
             Stage stage = (Stage) handleLoginButton.getScene().getWindow();
             stage.close();

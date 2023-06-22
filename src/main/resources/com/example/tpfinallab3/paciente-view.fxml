@@ -15,18 +15,18 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1080.0" stylesheets="@../../../../../resources/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.PacienteViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1080.0" stylesheets="@/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.PacienteViewController">
     <top>
         <AnchorPane prefHeight="30.0" prefWidth="1080.0" style="-fx-background-color: #091A21;" BorderPane.alignment="CENTER">
             <children>
                 <ImageView fitHeight="20.0" fitWidth="144.0" layoutX="1.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../../../resources/images/Docturno.png" />
+                        <Image url="@/images/Docturno.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="1046.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../../../resources/images/close.png" />
+                        <Image url="@/images/close.png" />
                     </image>
                     <cursor>
                         <Cursor fx:constant="HAND" />
@@ -34,12 +34,12 @@
                 </ImageView>
                 <ImageView disable="true" fitHeight="15.0" fitWidth="15.0" layoutX="1005.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../../../resources/images/maximize.png" />
+                        <Image url="@/images/maximize.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="963.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../../../resources/images/minimize.png" />
+                        <Image url="@/images/minimize.png" />
                     </image>
                     <cursor>
                         <Cursor fx:constant="HAND" />

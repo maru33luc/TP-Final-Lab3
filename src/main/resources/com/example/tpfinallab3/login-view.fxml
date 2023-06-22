@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="loginPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1080.0" stylesheets="@../../../../../resources/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.LoginController">
+<BorderPane fx:id="loginPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1080.0" stylesheets="@/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.LoginController">
    <top>
       <AnchorPane fx:id="barraDeTituloPanel" prefHeight="30.0" prefWidth="1080.0" style="-fx-background-color: #091A21;" BorderPane.alignment="CENTER">
          <children>
@@ -25,13 +25,14 @@
                <children>
                   <ImageView fitHeight="20.0" fitWidth="144.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../resources/images/Docturno.png" />
+
+                        <Image url="@/images/Docturno.png" />
                      </image>
                   </ImageView>
                </children></AnchorPane>
             <ImageView fx:id="minimizeButton" accessibleRole="BUTTON" fitHeight="15.0" fitWidth="15.0" layoutX="963.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../resources/images/minimize.png" />
+                  <Image url="@/images/minimize.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -39,12 +40,12 @@
             </ImageView>
             <ImageView fx:id="maximizeButton" accessibleRole="BUTTON" disable="true" fitHeight="15.0" fitWidth="15.0" layoutX="1005.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../resources/images/maximize.png" />
+                  <Image url="@/images/maximize.png" />
                </image>
             </ImageView>
             <ImageView fx:id="closeButton" accessibleRole="BUTTON" fitHeight="15.0" fitWidth="15.0" layoutX="1046.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../resources/images/close.png" />
+                  <Image url="@/images/close.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -58,17 +59,17 @@
          <children>
             <ImageView fitHeight="720.0" fitWidth="540.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../resources/images/LogoEsculapio.png" />
+                  <Image url="@/images/LogoEsculapio.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="110.0" fitWidth="385.0" layoutX="78.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../resources/images/Docturno.png" />
+                  <Image url="@/images/Docturno.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="62.0" fitWidth="384.0" layoutX="78.0" layoutY="652.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../resources/images/TimToc.png" />
+                  <Image url="@/images/TimToc.png" />
                </image>
             </ImageView>
          </children>
@@ -115,7 +116,7 @@
 
                   <ImageView fx:id="hidePasswordButton" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="13.0" onMouseClicked="#ocultarPassword" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
-                        <Image url="@../../../../../resources/images/cerrar-ojo.png" />
+                        <Image url="@/images/cerrar-ojo.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -123,7 +124,7 @@
                   </ImageView>
                   <ImageView fx:id="showPasswordButton" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="13.0" onMouseClicked="#mostrarPassword" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../resources/images/abrir-ojo.png" />
+                        <Image url="@/images/abrir-ojo.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
