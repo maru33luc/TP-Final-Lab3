@@ -25,15 +25,6 @@
       </AnchorPane>
       <AnchorPane layoutX="264.0" layoutY="30.0" prefHeight="720.0" prefWidth="560.0" style="-fx-background-color: #D3F9EB;" stylesheets="@../../../styles.css">
          <children>
-            <Button fx:id="guardarNuevoPacienteButton" layoutX="308.0" layoutY="652.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Guardar" textFill="#c4e8dd">
-               <font>
-                  <Font name="NanumGothicBold" size="14.0" />
-               </font>
-               <styleClass>
-                  <String fx:value="nanum-bold" />
-                  <String fx:value="button-guardar" />
-               </styleClass>
-            </Button>
             <Label fx:id="nuevoPacienteLabel" layoutX="103.0" styleClass="cinzel-regular" text="Nuevo Paciente" textFill="#255951">
                <font>
                   <Font name="Playfair Display Regular" size="40.0" />
@@ -43,7 +34,7 @@
                <font>
                   <Font name="NanumGothic" size="13.0" />
                </font></Label>
-            <TextField fx:id="userNuevoPacienteField" layoutX="85.0" layoutY="110.0" prefHeight="25.0" prefWidth="400.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular">
+            <TextField fx:id="userNuevoPacienteField" layoutX="85.0" layoutY="110.0" prefHeight="25.0" prefWidth="400.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                <font>
                   <Font name="Playfair Display Regular" size="13.0" />
                </font></TextField>
@@ -51,7 +42,7 @@
                <font>
                   <Font name="NanumGothic" size="13.0" />
                </font></Label>
-            <PasswordField fx:id="passwordNuevoPacienteField" layoutX="85.0" layoutY="165.0" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular">
+            <PasswordField fx:id="passwordNuevoPacienteField" layoutX="85.0" layoutY="165.0" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                <font>
                   <Font name="Playfair Display Regular" size="13.0" />
                </font>
@@ -74,7 +65,7 @@
                <font>
                   <Font name="NanumGothic" size="13.0" />
                </font></Label>
-            <TextField fx:id="nombreNuevoPacienteField" layoutX="85.0" layoutY="220.0" prefHeight="25.0" prefWidth="400.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular">
+            <TextField fx:id="nombreNuevoPacienteField" layoutX="85.0" layoutY="220.0" prefHeight="25.0" prefWidth="400.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                <font>
                   <Font size="13.0" />
                </font></TextField>
@@ -82,7 +73,7 @@
                <font>
                   <Font name="NanumGothic" size="13.0" />
                </font></Label>
-            <TextField fx:id="apellidoNuevoPacienteField" layoutX="85.0" layoutY="275.0" prefHeight="25.0" prefWidth="400.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular">
+            <TextField fx:id="apellidoNuevoPacienteField" layoutX="85.0" layoutY="275.0" prefHeight="25.0" prefWidth="400.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                <font>
                   <Font size="13.0" />
                </font></TextField>
@@ -90,7 +81,7 @@
                <font>
                   <Font name="NanumGothic" size="13.0" />
                </font></Label>
-            <TextField fx:id="emailNuevoPacienteField" layoutX="85.0" layoutY="330.0" prefHeight="25.0" prefWidth="400.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular">
+            <TextField fx:id="emailNuevoPacienteField" layoutX="85.0" layoutY="330.0" prefHeight="25.0" prefWidth="400.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                <font>
                   <Font size="13.0" />
                </font></TextField>
@@ -103,7 +94,7 @@
                <font>
                   <Font name="NanumGothic" size="13.0" />
                </font></Label>
-            <TextField fx:id="fechaNacNuevoPacienteField" layoutX="311.0" layoutY="385.0" prefHeight="25.0" prefWidth="174.0" promptText="DD / MM / AAAA" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular">
+            <TextField fx:id="fechaNacNuevoPacienteField" layoutX="311.0" layoutY="385.0" prefHeight="25.0" prefWidth="174.0" promptText="DD / MM / AAAA" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                <font>
                   <Font name="Playfair Display Regular" size="13.0" />
                </font></TextField>
@@ -111,7 +102,7 @@
                <font>
                   <Font name="NanumGothic" size="13.0" />
                </font></Label>
-            <TextField fx:id="nroDocNuevoPacienteField" layoutX="85.0" layoutY="440.0" prefHeight="25.0" prefWidth="400.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular">
+            <TextField fx:id="nroDocNuevoPacienteField" layoutX="85.0" layoutY="440.0" prefHeight="25.0" prefWidth="400.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                <font>
                   <Font size="13.0" />
                </font></TextField>
@@ -119,7 +110,7 @@
                <font>
                   <Font name="NanumGothic" size="13.0" />
                </font></Label>
-            <TextField fx:id="telefonoNuevoPacienteField" layoutX="85.0" layoutY="495.0" prefHeight="25.0" prefWidth="400.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular">
+            <TextField fx:id="telefonoNuevoPacienteField" layoutX="85.0" layoutY="495.0" prefHeight="25.0" prefWidth="400.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                <font>
                   <Font size="13.0" />
                </font></TextField>
@@ -127,7 +118,7 @@
                <font>
                   <Font name="NanumGothic" size="13.0" />
                </font></Label>
-            <TextField fx:id="obraSocialNuevoPacienteField" layoutX="85.0" layoutY="550.0" prefHeight="25.0" prefWidth="400.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular">
+            <TextField fx:id="obraSocialNuevoPacienteField" layoutX="85.0" layoutY="550.0" prefHeight="25.0" prefWidth="400.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                <font>
                   <Font size="13.0" />
                </font></TextField>
@@ -135,7 +126,7 @@
                <font>
                   <Font name="NanumGothic" size="13.0" />
                </font></Label>
-            <TextField fx:id="nroAfiliadoNuevoPacienteField" layoutX="85.0" layoutY="605.0" prefHeight="25.0" prefWidth="400.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular">
+            <TextField fx:id="nroAfiliadoNuevoPacienteField" layoutX="85.0" layoutY="605.0" prefHeight="25.0" prefWidth="400.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                <font>
                   <Font size="13.0" />
                </font></TextField>
@@ -152,6 +143,15 @@
                   <Font name="Playfair Display Regular" size="14.0" />
                </font>
             </Label>
+            <Button fx:id="guardarNuevoPacienteButton" layoutX="308.0" layoutY="652.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Guardar" textFill="#c4e8dd">
+               <font>
+                  <Font name="NanumGothicBold" size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="nanum-bold" />
+                  <String fx:value="button-oscuro" />
+               </styleClass>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane layoutY="-1.0" prefHeight="30.0" prefWidth="1080.0" style="-fx-background-color: #091A21;">

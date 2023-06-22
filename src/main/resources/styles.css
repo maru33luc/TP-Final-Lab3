@@ -50,36 +50,39 @@
     -fx-font-family: "Playfair Display Regular";
 }
 
-.button-login{
-    -fx-font-size: 21;
+/*BOTON OSCURO - SE REUTILIZA SIEMPRE*/
+.button-oscuro{
+    -fx-font-size: 17;
     -fx-background-color: "#29838c";
     -fx-text-fill: "#c6e9de";
-    -fx-background-width: 150;
-    -fx-background-height: 35;
+    -fx-background-width: 175;
+    -fx-background-height: 25;
 }
-.button-login:hover {
+.button-oscuro:hover {
     -fx-background-color: "#23737A";
 }
-.button-login:pressed {
-    -fx-background-color: "#c6e9de";
+.button-oscuro:pressed {
+    -fx-background-color: "#C4E8DD";
     -fx-text-fill: "#29838c";
 }
 
-.button-sign-up{
-    -fx-font-size: 21;
+/*BOTON CLARO - SE REUTILIZA SIEMPRE*/
+.button-claro{
+    -fx-font-size: 17;
     -fx-background-color: "#c6e9de";
     -fx-text-fill: "#29838c";
-    -fx-background-width: 150;
-    -fx-background-height: 35;
+    -fx-background-width: 175;
+    -fx-background-height: 25;
 }
-.button-sign-up:hover{
+.button-claro:hover{
     -fx-background-color: "#b4d4ca";
 }
-.button-sign-up:pressed{
+.button-claro:pressed{
     -fx-background-color: "#29838c";
     -fx-text-fill: "#c6e9de";
 }
 
+/*LINKS TIPO: OLVIDÉ CONTRASEÑA / USUARIO */
 .forget-link{
     -fx-color: "#255951";
     -fx-font-size: 17;
@@ -92,19 +95,20 @@
     -fx-font-size: 17;
 }
 
+/*BOTON DE PERFIL - REUTILIZADO */
 .profile-button{
     -fx-font-size: 20;
-    -fx-text-fill: "#FFE9BF";
+    -fx-text-fill: "#D3F9EB";
 }
 .profile-button:hover{
-    -fx-font-family: "NanumGothicBold";
+    -fx-text-fill: "#FFE9BF";
 }
 .profile-button:pressed{
     -fx-font-size: 19;
     -fx-text-fill: "#FDC373";
 }
 
-/*CHECK TERMINOS Y CONDICIONES DE USO - REGISTRO NUEVO PACIENTE*/
+/*CHECK BOX - REUTILIZADO */
 
 .check .box{
     -fx-background-color: #C6E9DE;
@@ -132,20 +136,3 @@
     -fx-border-color: #FDC373;
 }
 
-/*BOTON ENVIAR - REGISTRO NUEVO PACIENTE -*/
-.button-guardar{
-    -fx-background-color: #29838C;
-    -fx-text-fill: #C6E9DE;
-    -fx-font-size: 16;
-    -fx-background-width: 175;
-    -fx-background-height: 25;
-}
-.button-guardar:hover{
-    -fx-background-color: #23737A;
-    -fx-text-fill: #C6E9DE;
-}
-
-.button-guardar:pressed{
-    -fx-background-color: #C4E8DD;
-    -fx-text-fill: #29838C;
-}
