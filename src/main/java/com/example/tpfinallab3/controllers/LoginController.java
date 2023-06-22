@@ -1,17 +1,26 @@
 package com.example.tpfinallab3.controllers;
 
+import com.example.tpfinallab3.models.Autenticable;
 import com.example.tpfinallab3.security.AuthenticationService;
+import com.example.tpfinallab3.security.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class LoginController {
+
+    private Stage stage;
 
     @FXML
     private AnchorPane barraDeTituloPanel;
@@ -53,6 +62,9 @@ public class LoginController {
     private PasswordField passwordField;
 
     @FXML
+    private TextField plainPasswordField;
+
+    @FXML
     private Label passwordLabel;
 
     @FXML
@@ -86,10 +98,37 @@ public class LoginController {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        if (authService.autenticarUsuario(username, password)) {
+        if (SessionManager.getInstance().iniciarSesion(username, password)) {
             // Autenticación exitosa
             // Realizar acciones después del inicio de sesión (navegar a otra vista, etc.)
+
             showSuccessAlert("Inicio de sesión exitoso");
+
+            Autenticable usuarioAutenticado = SessionManager.getInstance().getEntidadLogueada();
+            System.out.println("Bienvenido " + usuarioAutenticado.getNombre() + " " + usuarioAutenticado.getApellido()+ "!");
+
+            // pasar a otra ventana (vista)
+
+            // Cargar y mostrar la ventana de Registro
+
+            Stage stage = (Stage) handleLoginButton.getScene().getWindow();
+            stage.close();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("/com/example/tpfinallab3/paciente-view.fxml"));
+            Parent root;
+            try {
+                root = fxmlLoader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            PacienteViewController pacienteViewController = fxmlLoader.getController();
+            pacienteViewController.setMainController(this);
+            Scene scene = new Scene(root);
+            Stage newStage = new Stage();
+            newStage.setScene(scene);
+            newStage.show();
+
+
         } else {
             // Autenticación fallida
             // Mostrar mensaje de error en la vista
@@ -121,11 +160,23 @@ public class LoginController {
     }
 
     @FXML
-    private void mostrarPassword (MouseEvent event) {
-        passwordField.setVisible(true);
+    private void mostrarPassword(MouseEvent event) {
+        passwordField.setVisible(false);
+        plainPasswordField.setText(passwordField.getText());
+        plainPasswordField.setVisible(true);
         showPasswordButton.setVisible(false);
         hidePasswordButton.setVisible(true);
     }
+
+    @FXML
+    private void ocultarPassword(MouseEvent event) {
+        plainPasswordField.setVisible(false);
+        passwordField.setText(plainPasswordField.getText());
+        passwordField.setVisible(true);
+        showPasswordButton.setVisible(true);
+        hidePasswordButton.setVisible(false);
+    }
+
 
     private void showSuccessAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -143,9 +194,8 @@ public class LoginController {
         alert.showAndWait();
     }
 
-    public void setMainController(MainController mainController) {
-        // Configurar el controlador principal
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
-
 }

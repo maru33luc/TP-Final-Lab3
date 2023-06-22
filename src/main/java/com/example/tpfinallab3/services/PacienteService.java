@@ -1,7 +1,7 @@
 package com.example.tpfinallab3.services;
 
 import com.example.tpfinallab3.models.Paciente;
-import com.example.tpfinallab3.security.Autenticable;
+import com.example.tpfinallab3.models.Autenticable;
 
 import java.util.*;
 import java.util.stream.Collectors;

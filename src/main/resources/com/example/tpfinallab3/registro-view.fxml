@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="registrarsePanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #5ABAEA;" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="registrarsePanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #5ABAEA;" stylesheets="@../../../../../resources/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.RegisterController">
    <children>
       <AnchorPane layoutY="29.0" prefHeight="720.0" prefWidth="1080.0">
          <children>
@@ -23,7 +23,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="264.0" layoutY="30.0" prefHeight="720.0" prefWidth="560.0" style="-fx-background-color: #D3F9EB;" stylesheets="@../../../styles.css">
+      <AnchorPane layoutX="264.0" layoutY="30.0" prefHeight="720.0" prefWidth="560.0" style="-fx-background-color: #D3F9EB;" stylesheets="@../../../../../resources/styles.css">
          <children>
             <Button fx:id="guardarNuevoPacienteButton" layoutX="308.0" layoutY="652.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Guardar" textFill="#c4e8dd">
                <font>

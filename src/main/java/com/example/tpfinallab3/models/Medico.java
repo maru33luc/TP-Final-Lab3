@@ -47,4 +47,14 @@ public class Medico extends Usuario {
                 super.toString() +
                 "Especialidad: " + especialidad.getEspecialidad();
     }
+
+    @Override
+    public String getNombre() {
+        return super.getNombre();
+    }
+
+    @Override
+    public String getApellido() {
+        return super.getApellido();
+    }
 }

@@ -60,6 +60,7 @@ public class JsonService {
             }
         } catch (Exception e) {
             System.out.println("Error al leer el archivo JSON");
+            e.printStackTrace();
         }
         return null;
     }

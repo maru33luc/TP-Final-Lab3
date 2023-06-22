@@ -1,7 +1,5 @@
 package com.example.tpfinallab3.models;
 
-import com.example.tpfinallab3.security.Autenticable;
-
 import java.io.Serializable;
 import java.util.Objects;
 

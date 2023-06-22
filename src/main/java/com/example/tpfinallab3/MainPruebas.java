@@ -4,16 +4,10 @@ import com.example.tpfinallab3.models.Administrativo;
 import com.example.tpfinallab3.models.Especialidad;
 import com.example.tpfinallab3.models.Medico;
 import com.example.tpfinallab3.models.Paciente;
-import com.example.tpfinallab3.security.Autenticable;
-import com.example.tpfinallab3.security.AuthenticationService;
 import com.example.tpfinallab3.security.SessionManager;
 import com.example.tpfinallab3.services.AdministrativoService;
 import com.example.tpfinallab3.services.MedicoService;
 import com.example.tpfinallab3.services.PacienteService;
-import com.example.tpfinallab3.services.TurnoService;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class MainPruebas {
 
@@ -85,7 +79,14 @@ public class MainPruebas {
         Medico medico = new Medico("fgildemuro", "12345611", "Federico", "Gil de Muro", "fede@gmail.com", Especialidad.CARDIOLOGIA);
         SessionManager.getInstance().iniciarSesion("carlosfuentes","74185296");
         MedicoService.getInstance().agregarMedico(medico);
+        System.out.println("Administrativos: " + AdministrativoService.getInstance().getAdministrativos());
+        SessionManager.getInstance().cerrarSesion();
 
+        Paciente paciente1 = new Paciente("juanperez", "12345678", "Juan", "Perez", "juan@gmail.com", "12345678", "12345678", "OSDE", "12345678");
+        PacienteService.getInstance().agregarPaciente(paciente1);
+        SessionManager.getInstance().iniciarSesion("juanperez","12345678");
+        System.out.println("Entidad logueada: " + SessionManager.getInstance().getEntidadLogueada());
+        System.out.println("Tipo de entidad: " + SessionManager.getInstance().getTipoEntidad());
 
 
 

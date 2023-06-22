@@ -4,18 +4,18 @@ import java.util.Objects;
 
 
 public class Administrativo extends Usuario {
-    private Boolean isAdmin;
+    private boolean admin;
 
     public Administrativo() {
     }
 
     public Administrativo(String nombreUsuario, String contrasena, String nombre, String apellido, String mail) {
         super(nombreUsuario, contrasena, nombre, apellido, mail);
-        this.isAdmin = false;
+        this.admin = false;
     }
 
     public Boolean getAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     @Override
@@ -42,6 +42,6 @@ public class Administrativo extends Usuario {
     public String toString() {
         return "ADMINISTRATIVO\n" +
                 super.toString() +
-                "Permisos de administrador: " + (isAdmin? "si" : "no");
+                "Permisos de administrador: " + (admin ? "si" : "no");
     }
 }

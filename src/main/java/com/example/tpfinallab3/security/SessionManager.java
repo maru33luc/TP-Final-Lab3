@@ -1,6 +1,7 @@
 package com.example.tpfinallab3.security;
 
 import com.example.tpfinallab3.models.Administrativo;
+import com.example.tpfinallab3.models.Autenticable;
 import com.example.tpfinallab3.models.Medico;
 import com.example.tpfinallab3.models.Paciente;
 import com.example.tpfinallab3.services.AdministrativoService;
