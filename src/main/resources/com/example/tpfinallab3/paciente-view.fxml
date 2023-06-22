@@ -15,18 +15,18 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1080.0" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.PacienteViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1080.0" stylesheets="@../../../../../resources/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.PacienteViewController">
     <top>
         <AnchorPane prefHeight="30.0" prefWidth="1080.0" style="-fx-background-color: #091A21;" BorderPane.alignment="CENTER">
             <children>
                 <ImageView fitHeight="20.0" fitWidth="144.0" layoutX="1.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/Docturno.png" />
+                        <Image url="@../../../../../resources/images/Docturno.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="1046.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/close.png" />
+                        <Image url="@../../../../../resources/images/close.png" />
                     </image>
                     <cursor>
                         <Cursor fx:constant="HAND" />
@@ -34,12 +34,12 @@
                 </ImageView>
                 <ImageView disable="true" fitHeight="15.0" fitWidth="15.0" layoutX="1005.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/maximize.png" />
+                        <Image url="@../../../../../resources/images/maximize.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="963.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/minimize.png" />
+                        <Image url="@../../../../../resources/images/minimize.png" />
                     </image>
                     <cursor>
                         <Cursor fx:constant="HAND" />
@@ -56,7 +56,7 @@
                         <Font size="30.0" />
                     </font>
                 </Label>
-                <Label fx:id="myProfilePacienteButton" alignment="CENTER" layoutY="75.0" prefWidth="270.0" text="MI PERFIL">
+                <Label fx:id="myProfileButton" alignment="CENTER" layoutY="75.0" prefWidth="270.0" text="MI PERFIL">
                     <font>
                         <Font size="20.0" />
                     </font>
@@ -68,7 +68,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Label>
-                <Label fx:id="appointmentsPacienteButton" alignment="CENTER" layoutY="125.0" prefWidth="270.0" text="VER TURNOS">
+                <Label fx:id="appointmentListButton" alignment="CENTER" layoutY="125.0" prefWidth="270.0" text="VER TURNOS">
                     <font>
                         <Font size="20.0" />
                     </font>
@@ -80,7 +80,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Label>
-                <Label fx:id="addAppointmentPacienteButton" alignment="CENTER" layoutY="175.0" prefWidth="270.0" text="PEDIR TURNO">
+                <Label fx:id="addAppointmentButton" alignment="CENTER" layoutY="175.0" prefWidth="270.0" text="PEDIR TURNO">
                     <font>
                         <Font size="20.0" />
                     </font>
@@ -98,157 +98,127 @@
     <center>
         <AnchorPane prefHeight="720.0" prefWidth="810.0" style="-fx-background-color: #d3f9eb;" BorderPane.alignment="CENTER">
             <children>
-                <AnchorPane fx:id="profilePacientePanel" prefHeight="720.0" prefWidth="810.0" visible="false">
+                <AnchorPane fx:id="profilePacientePanel" prefHeight="720.0" prefWidth="810.0">
                     <children>
                         <Label fx:id="pacienteUserName" alignment="CENTER" prefWidth="810.0" styleClass="cinzel-regular" text="Usuario" textFill="#255951">
                             <font>
                                 <Font size="40.0" />
                             </font>
                         </Label>
-                  <AnchorPane fx:id="editProfilePacientePanel" prefHeight="720.0" prefWidth="810.0" visible="false">
-                     <children>
                         <Label layoutX="170.0" layoutY="100.0" prefHeight="36.0" prefWidth="103.0" text="Nombre:">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
+                            <font>
+                                <Font size="25.0" />
+                            </font>
                         </Label>
-                              <TextField fx:id="editNombrePacienteField" layoutX="300.0" layoutY="100.0" prefHeight="40.0" prefWidth="370.0" promptText="nombre anterior" />
                         <Label layoutX="170.0" layoutY="150.0" text="Apellido:">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
+                            <font>
+                                <Font size="25.0" />
+                            </font>
                         </Label>
-                              <TextField fx:id="editApellidoPacienteField" layoutX="300.0" layoutY="150.0" prefHeight="40.0" prefWidth="370.0" promptText="apellido anterior" />
                         <Label layoutX="170.0" layoutY="200.0" text="Telefono:">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
+                            <font>
+                                <Font size="25.0" />
+                            </font>
                         </Label>
-                              <TextField fx:id="editTelefonoPacienteField" layoutX="300.0" layoutY="200.0" prefHeight="40.0" prefWidth="370.0" promptText="telefono anterior" />
                         <Label layoutX="170.0" layoutY="250.0" text="Email:">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
+                            <font>
+                                <Font size="25.0" />
+                            </font>
                         </Label>
-                              <TextField fx:id="editEmailPacienteField" layoutX="300.0" layoutY="250.0" prefHeight="40.0" prefWidth="370.0" promptText="email anterior" />
                         <Label layoutX="170.0" layoutY="300.0" text="Obra social:">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
+                            <font>
+                                <Font size="25.0" />
+                            </font>
                         </Label>
-                              <TextField fx:id="editObraSocPacienteField" layoutX="300.0" layoutY="300.0" prefHeight="40.0" prefWidth="370.0" promptText="obra social anterior" />
                         <Label layoutX="170.0" layoutY="350.0" text="Nº Afiliado:">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
+                            <font>
+                                <Font size="25.0" />
+                            </font>
                         </Label>
-                              <TextField fx:id="editNroAfiliadoPacienteField" layoutX="300.0" layoutY="350.0" prefHeight="40.0" prefWidth="370.0" promptText="numero anterior" />
-                              <Label fx:id="oldPasswordPacienteLabel" layoutX="170.0" layoutY="403.0" text="Contraseña actual:">
-                                  <font>
-                                      <Font size="20.0" />
-                                  </font>
-                              </Label>
-                              <PasswordField fx:id="oldPasswordPacienteField" layoutX="170.0" layoutY="427.0" prefHeight="40.0" prefWidth="500.0" />
-                              <Label fx:id="newPasswordPacienteLabel" layoutX="170.0" layoutY="485.0" text="Nueva contraseña:">
-                                  <font>
-                                      <Font size="20.0" />
-                                  </font>
-                              </Label>
-                              <PasswordField fx:id="newPasswordPacienteField" layoutX="170.0" layoutY="509.0" prefHeight="40.0" prefWidth="500.0" />
-                              <Label fx:id="confirmPasswordPacienteLabel" layoutX="170.0" layoutY="566.0" text="Confirmar contraseña:">
-                                  <font>
-                                      <Font size="20.0" />
-                                  </font>
-                              </Label>
-                              <PasswordField fx:id="confirmPasswordPacienteField" layoutX="170.0" layoutY="590.0" prefHeight="40.0" prefWidth="500.0" />
-                              <Button fx:id="submitChangesPacienteButton" layoutX="630.0" layoutY="660.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="GUARDAR" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="profileDataPacientePanel" prefHeight="720.0" prefWidth="810.0">
-                     <children>
-                              <Label layoutX="170.0" layoutY="100.0" prefHeight="36.0" prefWidth="103.0" text="Nombre:">
-                                  <font>
-                                      <Font size="25.0" />
-                                  </font>
-                              </Label>
-                              <Label fx:id="nombrePacienteLabel" layoutX="280.0" layoutY="100.0" text="nombre.">
-                                  <font>
-                                      <Font size="25.0" />
-                                  </font>
-                              </Label>
-                              <Label layoutX="170.0" layoutY="150.0" text="Apellido:">
-                                  <font>
-                                      <Font size="25.0" />
-                                  </font>
-                              </Label>
-                              <Label fx:id="apellidoPacienteLabel" layoutX="280.0" layoutY="150.0" text="apellido.">
-                                  <font>
-                                      <Font size="25.0" />
-                                  </font>
-                              </Label>
-                              <Label layoutX="170.0" layoutY="200.0" text="Telefono:">
-                                  <font>
-                                      <Font size="25.0" />
-                                  </font>
-                              </Label>
-                              <Label fx:id="telefonoPacienteLabel" layoutX="280.0" layoutY="200.0" text="1234-5678">
-                                  <font>
-                                      <Font size="25.0" />
-                                  </font>
-                              </Label>
-                              <Label layoutX="170.0" layoutY="250.0" text="Email:">
-                                  <font>
-                                      <Font size="25.0" />
-                                  </font>
-                              </Label>
-                              <Label fx:id="emailPacienteLabel" layoutX="250.0" layoutY="250.0" text="emailexample@gmail.com">
-                                  <font>
-                                      <Font size="25.0" />
-                                  </font>
-                              </Label>
-                              <Label layoutX="170.0" layoutY="300.0" text="Obra social:">
-                                  <font>
-                                      <Font size="25.0" />
-                                  </font>
-                              </Label>
-                              <Label fx:id="obraSocialPacienteLabel" layoutX="310.0" layoutY="300.0" text="obra social.">
-                                  <font>
-                                      <Font size="25.0" />
-                                  </font>
-                              </Label>
-                              <Label layoutX="170.0" layoutY="350.0" text="Nº Afiliado:">
-                                  <font>
-                                      <Font size="25.0" />
-                                  </font>
-                              </Label>
-                              <Label fx:id="nroAfiliadoPacienteLabel" layoutX="310.0" layoutY="350.0" text="12345">
-                                  <font>
-                                      <Font size="25.0" />
-                                  </font>
-                              </Label>
-                              <Label fx:id="fechaNacimientoPaciente" layoutX="170.0" layoutY="400.0" text="Fecha de Nacimiento:">
-                                  <font>
-                                      <Font size="25.0" />
-                                  </font>
-                              </Label>
-                              <Label fx:id="fechaNacPacienteLabel" layoutX="420.0" layoutY="400.0" text="dd/mm/aaaa">
-                                  <font>
-                                      <Font size="25.0" />
-                                  </font>
-                              </Label>
-                              <Label fx:id="nroDocumentoPaciente" layoutX="170.0" layoutY="450.0" text="Nº Documento:">
-                                  <font>
-                                      <Font size="25.0" />
-                                  </font>
-                              </Label>
-                              <Label fx:id="nroDocumentoPacienteLabel" layoutX="350.0" layoutY="450.0" text="14725836">
-                                  <font>
-                                      <Font size="25.0" />
-                                  </font>
-                              </Label>
-                              <Button fx:id="editPacienteButton" layoutX="630.0" layoutY="660.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="EDITAR" />
-                     </children>
-                  </AnchorPane>
+                        <AnchorPane fx:id="editProfilePacientePanel" prefHeight="720.0" prefWidth="810.0" visible="false">
+                            <children>
+                                <TextField fx:id="editNombrePacienteField" layoutX="300.0" layoutY="100.0" prefHeight="40.0" prefWidth="370.0" promptText="nombre anterior" />
+                                <TextField fx:id="editApellidoPacienteField" layoutX="300.0" layoutY="150.0" prefHeight="40.0" prefWidth="370.0" promptText="apellido anterior" />
+                                <TextField fx:id="editTelefonoPacienteField" layoutX="300.0" layoutY="200.0" prefHeight="40.0" prefWidth="370.0" promptText="telefono anterior" />
+                                <TextField fx:id="editEmailPacienteField" layoutX="300.0" layoutY="250.0" prefHeight="40.0" prefWidth="370.0" promptText="email anterior" />
+                                <TextField fx:id="editObraSocPacienteField" layoutX="300.0" layoutY="300.0" prefHeight="40.0" prefWidth="370.0" promptText="obra social anterior" />
+                                <TextField fx:id="editNroAfiliadoPacienteField" layoutX="300.0" layoutY="350.0" prefHeight="40.0" prefWidth="370.0" promptText="numero anterior" />
+                                <Label fx:id="oldPasswordPacienteLabel" layoutX="170.0" layoutY="403.0" text="Contraseña actual:">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Label>
+                                <PasswordField fx:id="oldPasswordPacienteField" layoutX="170.0" layoutY="427.0" prefHeight="40.0" prefWidth="500.0" />
+                                <Label fx:id="newPasswordPacienteLabel" layoutX="170.0" layoutY="485.0" text="Nueva contraseña:">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Label>
+                                <PasswordField fx:id="newPasswordPacienteField" layoutX="170.0" layoutY="509.0" prefHeight="40.0" prefWidth="500.0" />
+                                <Label fx:id="confirmPasswordPacienteLabel" layoutX="170.0" layoutY="566.0" text="Confirmar contraseña:">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Label>
+                                <PasswordField fx:id="confirmPasswordPacienteField" layoutX="170.0" layoutY="590.0" prefHeight="40.0" prefWidth="500.0" />
+                                <Button fx:id="submitChangesPacienteButton" layoutX="630.0" layoutY="660.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="GUARDAR" />
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="profileDataPacientePanel" prefHeight="720.0" prefWidth="810.0">
+                            <children>
+                                <Label fx:id="nombrePacienteLabel" layoutX="280.0" layoutY="100.0" text="nombre.">
+                                    <font>
+                                        <Font size="25.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="apellidoPacienteLabel" layoutX="280.0" layoutY="150.0" text="apellido.">
+                                    <font>
+                                        <Font size="25.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="telefonoPacienteLabel" layoutX="280.0" layoutY="200.0" text="1234-5678">
+                                    <font>
+                                        <Font size="25.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="emailPacienteLabel" layoutX="250.0" layoutY="250.0" text="emailexample@gmail.com">
+                                    <font>
+                                        <Font size="25.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="obraSocialPacienteLabel" layoutX="310.0" layoutY="300.0" text="obra social.">
+                                    <font>
+                                        <Font size="25.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="nroAfiliadoPacienteLabel" layoutX="310.0" layoutY="350.0" text="12345">
+                                    <font>
+                                        <Font size="25.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="fechaNacimientoPaciente" layoutX="170.0" layoutY="400.0" text="Fecha de Nacimiento:">
+                                    <font>
+                                        <Font size="25.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="fechaNacPacienteLabel" layoutX="420.0" layoutY="400.0" text="dd/mm/aaaa">
+                                    <font>
+                                        <Font size="25.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="nroDocumentoPaciente" layoutX="170.0" layoutY="450.0" text="Nº Documento:">
+                                    <font>
+                                        <Font size="25.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="nroDocumentoPacienteLabel" layoutX="350.0" layoutY="450.0" text="14725836">
+                                    <font>
+                                        <Font size="25.0" />
+                                    </font>
+                                </Label>
+                                <Button fx:id="editPacienteButton" layoutX="630.0" layoutY="660.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="EDITAR" />
+                            </children>
+                        </AnchorPane>
                     </children>
                 </AnchorPane>
                 <AnchorPane fx:id="misTurnosPacienteView" prefHeight="720.0" prefWidth="810.0" visible="false">
