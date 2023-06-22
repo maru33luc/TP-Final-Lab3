@@ -3,8 +3,10 @@ package com.example.tpfinallab3.controllers;
 import com.example.tpfinallab3.models.Autenticable;
 import com.example.tpfinallab3.models.Paciente;
 import com.example.tpfinallab3.security.SessionManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class PacienteViewController {
@@ -205,6 +207,47 @@ public class PacienteViewController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    void miPerfilAction(MouseEvent event) {
+            profileDataPacientePanel.setVisible(true);
+            pedirTurnoPacienteView.setVisible(false);
+            misTurnosPacienteView.setVisible(false);
+            editProfilePacientePanel.setVisible(false);
+    }
+
+    @FXML
+    void pedirTurnosAction(MouseEvent event) {
+            profileDataPacientePanel.setVisible(false);
+            pedirTurnoPacienteView.setVisible(true);
+            misTurnosPacienteView.setVisible(false);
+            editProfilePacientePanel.setVisible(false);
+    }
+
+    @FXML
+    void verTurnosAction(MouseEvent event) {
+            profileDataPacientePanel.setVisible(false);
+            misTurnosPacienteView.setVisible(true);
+            pedirTurnoPacienteView.setVisible(false);
+            editProfilePacientePanel.setVisible(false);
+    }
+
+    @FXML
+    void editarDatosPacienteEvent(ActionEvent event) {
+        profileDataPacientePanel.setVisible(false);
+        editProfilePacientePanel.setVisible(true);
+        misTurnosPacienteView.setVisible(false);
+        pedirTurnoPacienteView.setVisible(false);
+
+    }
+
+    @FXML
+    void guardarDatosPacienteEvent(ActionEvent event) {
+
+
+    }
+
+
 
     public void setMainController(LoginController loginController) {
           this.loginController = loginController;

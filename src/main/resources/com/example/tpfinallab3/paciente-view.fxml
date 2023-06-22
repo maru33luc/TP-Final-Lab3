@@ -21,12 +21,12 @@
             <children>
                 <ImageView fitHeight="20.0" fitWidth="144.0" layoutX="1.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../../../resources/images/Docturno.png" />
+                        <Image url="@../../../images/Docturno.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="1046.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../../../resources/images/close.png" />
+                        <Image url="@../../../images/close.png" />
                     </image>
                     <cursor>
                         <Cursor fx:constant="HAND" />
@@ -34,12 +34,12 @@
                 </ImageView>
                 <ImageView disable="true" fitHeight="15.0" fitWidth="15.0" layoutX="1005.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../../../resources/images/maximize.png" />
+                        <Image url="@../../../images/maximize.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="963.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../../../resources/images/minimize.png" />
+                        <Image url="@../../../images/minimize.png" />
                     </image>
                     <cursor>
                         <Cursor fx:constant="HAND" />
@@ -56,7 +56,7 @@
                         <Font size="30.0" />
                     </font>
                 </Label>
-                <Label fx:id="myProfileButton" alignment="CENTER" layoutY="75.0" prefWidth="270.0" text="MI PERFIL">
+                <Label fx:id="myProfileButton" alignment="CENTER" layoutY="75.0" onMouseClicked="#miPerfilAction" prefWidth="270.0" text="MI PERFIL">
                     <font>
                         <Font size="20.0" />
                     </font>
@@ -68,7 +68,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Label>
-                <Label fx:id="appointmentListButton" alignment="CENTER" layoutY="125.0" prefWidth="270.0" text="VER TURNOS">
+                <Label fx:id="appointmentListButton" alignment="CENTER" layoutY="125.0" onMouseClicked="#verTurnosAction" prefWidth="270.0" text="VER TURNOS">
                     <font>
                         <Font size="20.0" />
                     </font>
@@ -80,7 +80,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Label>
-                <Label fx:id="addAppointmentButton" alignment="CENTER" layoutY="175.0" prefWidth="270.0" text="PEDIR TURNO">
+                <Label fx:id="addAppointmentButton" alignment="CENTER" layoutY="175.0" onMouseClicked="#pedirTurnosAction" prefWidth="270.0" text="PEDIR TURNO">
                     <font>
                         <Font size="20.0" />
                     </font>
@@ -161,10 +161,10 @@
                                     </font>
                                 </Label>
                                 <PasswordField fx:id="confirmPasswordPacienteField" layoutX="170.0" layoutY="590.0" prefHeight="40.0" prefWidth="500.0" />
-                                <Button fx:id="submitChangesPacienteButton" layoutX="630.0" layoutY="660.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="GUARDAR" />
+                                <Button fx:id="submitChangesPacienteButton" layoutX="630.0" layoutY="660.0" mnemonicParsing="false" onAction="#guardarDatosPacienteEvent" prefHeight="50.0" prefWidth="170.0" text="GUARDAR" />
                             </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="profileDataPacientePanel" prefHeight="720.0" prefWidth="810.0">
+                        <AnchorPane fx:id="profileDataPacientePanel" prefHeight="720.0" prefWidth="810.0" visible="false">
                             <children>
                               <Label layoutX="170.0" layoutY="100.0" prefHeight="36.0" prefWidth="103.0" text="Nombre:">
                                   <font>
@@ -246,12 +246,12 @@
                                         <Font size="25.0" />
                                     </font>
                                 </Label>
-                                <Button fx:id="editPacienteButton" layoutX="630.0" layoutY="660.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="EDITAR" />
+                                <Button fx:id="editPacienteButton" layoutX="630.0" layoutY="660.0" mnemonicParsing="false" onAction="#editarDatosPacienteEvent" prefHeight="50.0" prefWidth="170.0" text="EDITAR" />
                             </children>
                         </AnchorPane>
                     </children>
                 </AnchorPane>
-                <AnchorPane fx:id="misTurnosPacienteView" prefHeight="720.0" prefWidth="810.0" visible="false">
+                <AnchorPane fx:id="misTurnosPacienteView" prefHeight="720.0" prefWidth="810.0">
                     <children>
                         <TableView fx:id="tablaMisTurnosPaciente" prefHeight="720.0" prefWidth="480.0">
                             <columns>
