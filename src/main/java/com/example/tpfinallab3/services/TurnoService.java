@@ -68,7 +68,14 @@ public class TurnoService {
                     .filter(turno -> turno.getDia().equals(dia) && turno.getMedico().equals(medico))
                     .collect(Collectors.toList());
         }
+    }
 
+    public Turno buscarTurnoPorMedicoDiaYHora (Medico medico, LocalDate dia, LocalTime hora){
+        // buscar turno por medica, dia y hora
+        return turnos.stream()
+                .filter(turno -> turno.getMedico().equals(medico) && turno.getDia().equals(dia) && turno.getHora().equals(hora))
+                .findFirst()
+                .orElse(null);
     }
 
     public List<Turno> buscarTurnosPorMedico(Medico medico) {
@@ -125,13 +132,6 @@ public class TurnoService {
         turno.setDisponible(true);
         turno.setPaciente(null);
         //guardarTurnosJson();
-    }
-
-    public Turno buscarTurnoPorPacienteMedicoDiaYHora(Paciente paciente, Medico medico, LocalDate dia, LocalTime hora) {
-        return turnos.stream()
-                .filter(turno -> turno.getPaciente().equals(paciente) && turno.getMedico().equals(medico) && turno.getDia().equals(dia) && turno.getHora().equals(hora))
-                .findFirst()
-                .orElse(null);
     }
 
     /*public List<Turno> buscarTurnosEntreFechas(LocalDate fechaInicio, LocalDate fechaFin) {

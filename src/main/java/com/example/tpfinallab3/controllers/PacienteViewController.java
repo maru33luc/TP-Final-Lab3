@@ -196,7 +196,7 @@ public class PacienteViewController {
     private TableView<TurnoTabla> tablaMisTurnosPaciente;
 
     @FXML
-    private TableView<?> tablaTurnosPaciente;
+    private TableView<TurnoTabla> tablaTurnosPaciente;
 
     @FXML
     private Label telefonoPacienteLabel;
@@ -235,6 +235,7 @@ public class PacienteViewController {
         // ---------------------- ACA TERMINARIA LO HARCODEADO PARA TESTEAR -------------------------------
 
         cargarTablaMisTurnos();
+        cargarTablaTurnos();
 
     }
 
@@ -260,6 +261,27 @@ public class PacienteViewController {
         tablaMisTurnosPaciente.setItems(FXCollections.observableArrayList(listaMisTurnos2));
     }
 
+    void cargarTablaTurnos (){
+            Autenticable paciente= SessionManager.getInstance().getEntidadLogueada();
+        List<Turno> listaTurnos= TurnoService.getInstance().buscarTurnosDisponibles();
+        System.out.println(listaTurnos);
+        List<TurnoTabla> listaTurnos3 = new ArrayList<>();
+
+        // Iterar sobre los turnos y crear instancias de TurnoTabla
+        for (Turno turno : listaTurnos) {
+            Especialidad especialidad = turno.getMedico().getEspecialidad();
+            Medico medico2 = turno.getMedico();
+            TurnoTabla turnoTabla = new TurnoTabla(turno.getDia(), turno.getHora(), especialidad, medico2);
+            listaTurnos3.add(turnoTabla);
+        }
+
+        columnaFechaTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("dia"));
+        columnaHoraTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("hora"));
+        columnaEspecialidadTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("especialidad"));
+        columnaMedicoTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("medico"));
+
+        tablaTurnosPaciente.setItems(FXCollections.observableArrayList(listaTurnos3)); }
+
     @FXML
     void miPerfilAction(MouseEvent event) {
             profileDataPacientePanel.setVisible(true);
@@ -283,7 +305,7 @@ public class PacienteViewController {
             misTurnosPacienteView.setVisible(true);
             pedirTurnoPacienteView.setVisible(false);
             editProfilePacientePanel.setVisible(false);
-
+            cargarTablaMisTurnos();
     }
 
     @FXML
@@ -315,13 +337,72 @@ public class PacienteViewController {
     }
 
     @FXML
+    void seleccionarUnTurnoAction(MouseEvent event) {
+        TurnoTabla turnoTabla = tablaTurnosPaciente.getSelectionModel().getSelectedItem();
+        System.out.println("turnoTabla.toString() = " + turnoTabla.toString());
+        if (turnoTabla != null) {
+            especialidadTurnoPacienteLabel.setText(turnoTabla.getEspecialidad().toString());
+            medicoTurnoPacienteLabel.setText(turnoTabla.getMedico());
+            fechaTurnoPacienteLabel.setText(turnoTabla.getDia().toString());
+            horaTurnoPacienteLabel.setText(turnoTabla.getHora().toString());
+
+        }
+    }
+
+    @FXML
+    void solicitarTurnoAction(ActionEvent event) {
+        if(especialidadTurnoPacienteLabel.getText().equals("")) {
+            LoginController.showErrorAlert("No se ha seleccionado ningun turno");
+        }else{
+            Optional<Paciente> pacienteOptional = PacienteService.getInstance().buscarPacientePorNombreUsuario(SessionManager.getInstance().getEntidadLogueada().getNombreUsuario());
+            Paciente paciente = pacienteOptional.get();
+            System.out.println("paciente.toString() = " + paciente.toString());
+            String input = medicoTurnoPacienteLabel.getText();
+            String[] palabras = input.split(" ");
+
+            String nombreMedico = palabras[0];
+            StringBuilder apellidoMedicoBuilder = new StringBuilder();
+
+            // Combinar las palabras del apellido en una sola cadena
+            for (int i = 1; i < palabras.length; i++) {
+                if (i > 1) {
+                    apellidoMedicoBuilder.append(" ");  // Agregar espacio entre las palabras
+                }
+                apellidoMedicoBuilder.append(palabras[i]);
+            }
+
+            String apellidoMedico = apellidoMedicoBuilder.toString();
+
+            Medico medico = MedicoService.getInstance().buscarMedicoPorNombreYApellido(nombreMedico, apellidoMedico);
+            LocalDate dia = LocalDate.parse(fechaTurnoPacienteLabel.getText());
+            LocalTime hora = LocalTime.parse(horaTurnoPacienteLabel.getText());
+            Turno turno = TurnoService.getInstance().buscarTurnoPorMedicoDiaYHora(medico, dia, hora);
+            System.out.println("turno = " + turno);
+            if(turno!=null){
+                if(TurnoService.getInstance().buscarTurnosPorPaciente(paciente).contains(turno)){
+                    LoginController.showErrorAlert("Ya tiene un turno con ese medico en esa fecha y hora");
+                }else{
+                    TurnoService.getInstance().solicitarTurno(turno, paciente);
+                    LoginController.showSuccessAlert("Turno solicitado con exito");
+                    cargarTablaTurnos();
+                }
+            }
+            System.out.println("Los turnos son " + turno);
+            System.out.println(nombreMedico + " " + apellidoMedico + " " + dia + " " + hora);
+
+
+
+
+
+        }
+    }
+
+    @FXML
     void cancelarTurnoAction(MouseEvent event) {
 
         if(especialidadMiTurnoPacienteLabel.getText().equals("")) {
             LoginController.showErrorAlert("No se ha seleccionado ningun turno");
         }else{
-
-           /* Paciente paciente = PacienteService.getInstance().buscarPacientePorNombreUsuarioYContraseña(SessionManager.getInstance().getEntidadLogueada().getNombreUsuario(), SessionManager.getInstance().getEntidadLogueada().getContrasena());*/
 
             Optional<Paciente> pacienteOptional = PacienteService.getInstance().buscarPacientePorNombreUsuario(SessionManager.getInstance().getEntidadLogueada().getNombreUsuario());
             Paciente paciente = pacienteOptional.get();

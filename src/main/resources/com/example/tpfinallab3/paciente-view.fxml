@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1080.0" stylesheets="@../../../../../resources/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.PacienteViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1080.0" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.PacienteViewController">
     <top>
         <AnchorPane prefHeight="30.0" prefWidth="1080.0" style="-fx-background-color: #091A21;" BorderPane.alignment="CENTER">
             <children>
@@ -251,7 +251,7 @@
                         </AnchorPane>
                     </children>
                 </AnchorPane>
-                <AnchorPane fx:id="misTurnosPacienteView" prefHeight="720.0" prefWidth="810.0">
+                <AnchorPane fx:id="misTurnosPacienteView" prefHeight="720.0" prefWidth="810.0" visible="false">
                     <children>
                         <TableView fx:id="tablaMisTurnosPaciente" onMouseClicked="#seleccionarMisTurnosAction" prefHeight="720.0" prefWidth="480.0">
                             <columns>
@@ -316,9 +316,9 @@
                         </AnchorPane>
                     </children>
                 </AnchorPane>
-                <AnchorPane fx:id="pedirTurnoPacienteView" prefHeight="720.0" prefWidth="810.0" visible="false">
+                <AnchorPane fx:id="pedirTurnoPacienteView" prefHeight="720.0" prefWidth="810.0">
                     <children>
-                        <TableView fx:id="tablaTurnosPaciente" prefHeight="720.0" prefWidth="480.0">
+                        <TableView fx:id="tablaTurnosPaciente" onMouseClicked="#seleccionarUnTurnoAction" prefHeight="720.0" prefWidth="480.0">
                             <columns>
                                 <TableColumn fx:id="columnaFechaTurnoPaciente" prefWidth="120.0" text="Fecha" />
                                 <TableColumn fx:id="columnaHoraTurnoPaciente" prefWidth="120.0" text="Hora" />
@@ -360,7 +360,7 @@
                                         <Font size="20.0" />
                                     </font>
                                 </Label>
-                                <Button fx:id="pedirTurnoPacienteButton" layoutX="156.0" layoutY="536.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" text="PEDIR TURNO" />
+                                <Button fx:id="pedirTurnoPacienteButton" layoutX="114.0" layoutY="537.0" mnemonicParsing="false" onAction="#solicitarTurnoAction" prefHeight="40.0" prefWidth="110.0" text="PEDIR TURNO" />
                                 <Label fx:id="especialidadTurnoPacienteLabel" layoutX="111.0" layoutY="291.0" text="Especialidad">
                                     <font>
                                         <Font size="20.0" />
