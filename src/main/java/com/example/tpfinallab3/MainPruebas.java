@@ -66,6 +66,7 @@ public class MainPruebas {
         AdministrativoService.getInstance().agregarAdministrativo(administrativo);
         Medico medico = new Medico("fgildemuro", "12345611", "Federico", "Gil de Muro", "fede@gmail.com", Especialidad.CARDIOLOGIA);
         SessionManager.getInstance().iniciarSesion("carlosfuentes","74185296");
+        System.out.println("Contraseña de la entidad logueada: " + SessionManager.getInstance().getEntidadLogueada().getContrasena());
         MedicoService.getInstance().agregarMedico(medico);
         System.out.println("Administrativos: " + AdministrativoService.getInstance().getAdministrativos());
 

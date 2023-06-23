@@ -130,14 +130,14 @@
                   <Image url="@../../../images/fondoClaro810x720.png" />
                </image>
             </ImageView>
-            <AnchorPane fx:id="miPerfilAdminAnchorPane" layoutX="135.0" prefHeight="720.0" prefWidth="540.0" visible="false">
+            <AnchorPane fx:id="miPerfilAdminAnchorPane" layoutX="135.0" prefHeight="720.0" prefWidth="540.0">
                <children>
                   <Label layoutX="182.0" layoutY="14.0" styleClass="cinzel-regular" text="Mi Perfil" textFill="#123440">
                      <font>
                         <Font size="40.0" />
                      </font>
                   </Label>
-                  <AnchorPane fx:id="mostrarMiPerfilAdminAnchorPane" layoutY="93.0" prefHeight="375.0" prefWidth="540.0" style="-fx-background-color: #123440;" visible="false">
+                  <AnchorPane fx:id="mostrarMiPerfilAdminAnchorPane" layoutY="93.0" prefHeight="375.0" prefWidth="540.0" style="-fx-background-color: #123440;">
                      <children>
                         <Label layoutX="150.0" layoutY="64.0" styleClass="nanum-bold" text="Usuario: " textFill="#29838c">
                            <font>
@@ -190,7 +190,7 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="editarMiPerfilAdminAnchorPane" prefHeight="720.0" prefWidth="540.0">
+                  <AnchorPane fx:id="editarMiPerfilAdminAnchorPane" prefHeight="720.0" prefWidth="540.0" visible="false">
                      <children>
                         <Label layoutX="89.0" layoutY="95.0" styleClass="nanum-regular" text="Nombre" textFill="#29838c">
                            <font>
@@ -474,7 +474,7 @@
                         <Font size="40.0" />
                      </font>
                   </Label>
-                  <AnchorPane fx:id="buscarEditarUsuarioAdminAnchorPane" prefHeight="720.0" prefWidth="540.0" visible="false">
+                  <AnchorPane fx:id="buscarEditarUsuarioAdminAnchorPane" prefHeight="720.0" prefWidth="540.0">
                      <children>
                         <Label layoutX="148.0" layoutY="150.0" styleClass="nanum-bold" text="Seleccione el tipo de Usuario:" textFill="#29838c">
                            <font>
@@ -605,7 +605,7 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="edicionEditarUsuarioAdminAnchorPane" prefHeight="720.0" prefWidth="540.0">
+                  <AnchorPane fx:id="edicionEditarUsuarioAdminAnchorPane" prefHeight="720.0" prefWidth="540.0" visible="false">
                      <children>
                         <Label layoutX="89.0" layoutY="95.0" styleClass="nanum-regular" text="Nombre" textFill="#29838c">
                            <font>
@@ -721,7 +721,7 @@
                         <Font size="39.0" />
                      </font>
                   </Label>
-                  <AnchorPane fx:id="buscarEliminarUsuarioAdminAnchorPane" prefHeight="720.0" prefWidth="540.0">
+                  <AnchorPane fx:id="buscarEliminarUsuarioAdminAnchorPane" prefHeight="720.0" prefWidth="540.0" visible="false">
                      <children>
                         <Label layoutX="148.0" layoutY="150.0" styleClass="nanum-bold" text="Seleccione el tipo de Usuario:" textFill="#29838c">
                            <font>
@@ -757,7 +757,7 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="mostrarEliminarUsuarioAdminAnchorPane" layoutY="93.0" prefHeight="375.0" prefWidth="540.0" style="-fx-background-color: #123440;" visible="false">
+                  <AnchorPane fx:id="mostrarEliminarUsuarioAdminAnchorPane" layoutY="93.0" prefHeight="375.0" prefWidth="540.0" style="-fx-background-color: #123440;">
                      <children>
                         <AnchorPane fx:id="barraTituloMostrarEliminarUsuarioAnchorPane" prefHeight="30.0" prefWidth="540.0" style="-fx-background-color: #091A21;">
                            <children>
