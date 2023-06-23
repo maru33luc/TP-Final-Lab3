@@ -73,11 +73,10 @@ public class Turno implements Serializable {
             return false;
         }
         Turno other = (Turno) obj;
-        // Check if Paciente is null before invoking equals
-        if ((getPaciente() == null || other.getPaciente() == null)) {
-            return false;
-        }
-        return getPaciente().equals(other.getPaciente());
+        // Compare dia, hora y medico
+        return getDia().equals(other.getDia()) &&
+                getHora().equals(other.getHora()) &&
+                getMedico().equals(other.getMedico());
     }
 
 
