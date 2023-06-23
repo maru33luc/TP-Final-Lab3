@@ -26,6 +26,7 @@ public class TurnoService {
             synchronized (TurnoService.class) {
                 if (instance == null) {
                     instance = new TurnoService();
+                    instance.setTurnos();
                 }
             }
         }
@@ -59,9 +60,15 @@ public class TurnoService {
     }
 
     public List<Turno> buscarTurnosPorDiaPorMedico(LocalDate dia, Medico medico) {
-        return turnos.stream()
-                .filter(turno -> turno.getDia().equals(dia) && turno.getMedico().equals(medico))
-                .collect(Collectors.toList());
+        if(this.turnos == null)
+            // retorna una lista vacia
+            return new ArrayList<>();
+        else{
+            return turnos.stream()
+                    .filter(turno -> turno.getDia().equals(dia) && turno.getMedico().equals(medico))
+                    .collect(Collectors.toList());
+        }
+
     }
 
     public List<Turno> buscarTurnosPorMedico(Medico medico) {
@@ -71,10 +78,21 @@ public class TurnoService {
     }
 
     public List<Turno> buscarTurnosPorPaciente(Paciente paciente) {
-        return turnos.stream()
-                .filter(turno -> turno.getPaciente().equals(paciente))
-                .collect(Collectors.toList());
+        if (paciente == null) {
+
+            return null;
+
+        } else {
+            return turnos.stream()
+                    .filter(turno -> {
+                        Paciente pacienteTurno = turno.getPaciente();
+                        return pacienteTurno != null && pacienteTurno.equals(paciente);
+                    })
+                    .collect(Collectors.toList());
+        }
+
     }
+
 
     public List<Turno> buscarTurnosPorDia(LocalDate dia) {
         return turnos.stream()

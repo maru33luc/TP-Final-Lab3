@@ -32,6 +32,8 @@ public enum Especialidad {
         return especialidad;
     }
 
+
+
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }

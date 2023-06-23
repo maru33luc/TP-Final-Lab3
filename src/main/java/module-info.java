@@ -21,9 +21,10 @@ module com.example.tpfinallab3 {
 
 
     opens com.example.tpfinallab3.controllers to javafx.fxml; // Abre el paquete de los controladores para la reflexión de JavaFX
-    opens com.example.tpfinallab3.models to com.fasterxml.jackson.databind;
+    opens com.example.tpfinallab3.models to com.fasterxml.jackson.databind, javafx.base;
     exports com.example.tpfinallab3.models to com.fasterxml.jackson.databind;
 
     opens com.example.tpfinallab3 to javafx.fxml;
+
 
 }

@@ -1,13 +1,16 @@
 package com.example.tpfinallab3;
 
-import com.example.tpfinallab3.models.Administrativo;
 import com.example.tpfinallab3.models.Especialidad;
 import com.example.tpfinallab3.models.Medico;
 import com.example.tpfinallab3.models.Paciente;
+import com.example.tpfinallab3.models.Turno;
 import com.example.tpfinallab3.security.SessionManager;
-import com.example.tpfinallab3.services.AdministrativoService;
 import com.example.tpfinallab3.services.MedicoService;
 import com.example.tpfinallab3.services.PacienteService;
+import com.example.tpfinallab3.services.TurnoService;
+
+import java.time.LocalDate;
+import java.util.Optional;
 
 public class MainPruebas {
 
@@ -58,35 +61,56 @@ public class MainPruebas {
         System.out.println("Fin de sesión exitoso");
         System.out.println("Entidad logueada: " + sessionManager.getEntidadLogueada());
         System.out.println("Tipo de entidad: " + sessionManager.getTipoEntidad());
+        */
 
 
-        // PROBANDO HABILITAR TURNOS
-
-        LocalDate dia = LocalDate.of(2023, 6, 16);
-        LocalTime horaInicio = LocalTime.of(10, 0);
-        LocalTime horaFin = LocalTime.of(11, 0);
-        Medico medico = new Medico("fgildemuro", "123456", "Federico", "Gil de Muro", "fgildemuro@hotmail.com", Especialidad.CARDIOLOGIA);
-        TurnoService.getInstance().habilitarTurnos(dia, horaInicio, horaFin, medico );
-        dia = LocalDate.of(2023, 6, 17);
-        TurnoService.getInstance().habilitarTurnos(dia, horaInicio, horaFin, medico );
-        dia = LocalDate.of(2023, 6, 19);
-        System.out.println(TurnoService.getInstance().buscarTurnosPorDiaPorMedico(dia, medico));*/
 
         // PROBANDO PERMISOS DE ADMINISTRATIVO
 
-        Administrativo administrativo = new Administrativo("carlosfuentes", "74185296", "Carlos", "Fuentes", "carlos@gmail.com");
+        /*Administrativo administrativo = new Administrativo("carlosfuentes", "74185296", "Carlos", "Fuentes", "carlos@gmail.com");
         AdministrativoService.getInstance().agregarAdministrativo(administrativo);
         Medico medico = new Medico("fgildemuro", "12345611", "Federico", "Gil de Muro", "fede@gmail.com", Especialidad.CARDIOLOGIA);
         SessionManager.getInstance().iniciarSesion("carlosfuentes","74185296");
         MedicoService.getInstance().agregarMedico(medico);
         System.out.println("Administrativos: " + AdministrativoService.getInstance().getAdministrativos());
-        SessionManager.getInstance().cerrarSesion();
+        SessionManager.getInstance().cerrarSesion();*/
 
-        Paciente paciente1 = new Paciente("juanperez", "12345678", "Juan", "Perez", "juan@gmail.com", "12345678", "12345678", "OSDE", "12345678");
+        // PROBANDO HABILITAR TURNOS
+
+
+        LocalDate dia = LocalDate.of(2023, 6, 16);
+        /*LocalTime horaInicio = LocalTime.of(10, 0);
+        LocalTime horaFin = LocalTime.of(11, 0);
+        //Medico medico = new Medico("fgildemuro", "123456", "Federico", "Gil de Muro", "fgildemuro@hotmail.com", Especialidad.CARDIOLOGIA);
+        TurnoService.getInstance().habilitarTurnos(dia, horaInicio, horaFin, medico );
+        dia = LocalDate.of(2023, 6, 17);
+        TurnoService.getInstance().habilitarTurnos(dia, horaInicio, horaFin, medico );
+        dia = LocalDate.of(2023, 6, 19);
+        System.out.println(TurnoService.getInstance().buscarTurnosPorDiaPorMedico(dia, medico));*/
+        Medico medico = new Medico("fgildemuro", "123456", "Federico", "Gil de Muro", "fgildemuro@hotmail.com", Especialidad.CARDIOLOGIA);
+
+        // imprimir todos los turnos existentes
+        System.out.println(TurnoService.getInstance().getTurnos());
+
+
+        Turno turno = TurnoService.getInstance().buscarTurnosPorDiaPorMedico(dia, medico).get(0);
+        System.out.println(turno);
+        PacienteService.getInstance().agregarPaciente(new Paciente("lauragonzalez","22334455","Laura","Gonzalez","laura@gmail.com","22334455","22334455","OSDE","22334455"));
+        Optional<Paciente> paciente = PacienteService.getInstance().buscarPacientePorNombreUsuario("lauragonzalez");
+        SessionManager.getInstance().iniciarSesion("lauragonzalez","22334455");
+        TurnoService.getInstance().solicitarTurno(turno,paciente.get());
+        System.out.println(TurnoService.getInstance().buscarTurnosPorPaciente(paciente.get()));
+
+
+
+        /*Paciente paciente1 = new Paciente("juanperez", "12345678", "Juan", "Perez", "juan@gmail.com", "12345678", "12345678", "OSDE", "12345678");
         PacienteService.getInstance().agregarPaciente(paciente1);
         SessionManager.getInstance().iniciarSesion("juanperez","12345678");
         System.out.println("Entidad logueada: " + SessionManager.getInstance().getEntidadLogueada());
-        System.out.println("Tipo de entidad: " + SessionManager.getInstance().getTipoEntidad());
+        System.out.println("Tipo de entidad: " + SessionManager.getInstance().getTipoEntidad());*/
+
+        Medico medico3 = new Medico("fgildemuro", "123456", "Federico", "Gil de Muro", "fgildemuro@hotmail.com", Especialidad.CARDIOLOGIA);
+        MedicoService.getInstance().agregarMedico(medico3);
 
 
 

@@ -65,19 +65,21 @@ public class Turno implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if(this == o) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if(o == null) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        if(!(o instanceof Turno)) {
+        Turno other = (Turno) obj;
+        // Check if Paciente is null before invoking equals
+        if ((getPaciente() == null || other.getPaciente() == null)) {
             return false;
         }
-        Turno turno = (Turno) o;
-        return this.getDia().isEqual(turno.getDia()) && this.getPaciente().equals(turno.getPaciente()) && this.getMedico().equals(turno.getMedico());
+        return getPaciente().equals(other.getPaciente());
     }
+
 
     @Override
     public int hashCode() {

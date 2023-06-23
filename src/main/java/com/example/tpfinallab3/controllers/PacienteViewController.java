@@ -1,13 +1,22 @@
 package com.example.tpfinallab3.controllers;
 
-import com.example.tpfinallab3.models.Autenticable;
-import com.example.tpfinallab3.models.Paciente;
+import com.example.tpfinallab3.models.*;
 import com.example.tpfinallab3.security.SessionManager;
+import com.example.tpfinallab3.services.PacienteService;
+import com.example.tpfinallab3.services.TurnoService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class PacienteViewController {
 
@@ -182,13 +191,15 @@ public class PacienteViewController {
     private Button submitChangesPacienteButton;
 
     @FXML
-    private TableView<?> tablaMisTurnosPaciente;
+    private TableView<TurnoTabla> tablaMisTurnosPaciente;
 
     @FXML
     private TableView<?> tablaTurnosPaciente;
 
     @FXML
     private Label telefonoPacienteLabel;
+
+    private ObservableList<Turno> turnosPaciente;
 
     @FXML
     public void initialize() {
@@ -206,6 +217,40 @@ public class PacienteViewController {
             System.out.println("El usuario logueado no es un paciente");
             e.printStackTrace();
         }
+
+        turnosPaciente = FXCollections.observableArrayList();
+
+        // ------------------------ DESCA ACA LO Q HAGO ES PARA CARGAR ALGUN TURNO O MAS DE UNO Y TESTEAR ----------------
+
+        // desde el usuario logueado recuperar la instancia de Paciente
+        Optional<Paciente> paciente = PacienteService.getInstance().buscarPacientePorNombreUsuario(usuarioLogueado.getNombreUsuario());
+
+        Medico medico = new Medico("fgildemuro", "123456", "Federico", "Gil de Muro", "fgildemuro@hotmail.com", Especialidad.CARDIOLOGIA);
+        LocalDate dia = LocalDate.of(2023, 6, 16);
+        Turno turno = TurnoService.getInstance().buscarTurnosPorDiaPorMedico(dia, medico).get(0);
+        TurnoService.getInstance().solicitarTurno(turno,paciente.get());
+
+        // ---------------------- ACA TERMINARIA LO HARCODEADO PARA TESTEAR -------------------------------
+
+        List<Turno> listaMisTurnos= TurnoService.getInstance().buscarTurnosPorPaciente(paciente.get());
+
+        List<TurnoTabla> listaMisTurnos2 = new ArrayList<>();
+
+        // Iterar sobre los turnos y crear instancias de TurnoTabla
+        for (Turno turno5 : listaMisTurnos) {
+            Especialidad especialidad = turno5.getMedico().getEspecialidad();
+            Medico medico2 = turno5.getMedico();
+            TurnoTabla turnoTabla = new TurnoTabla(turno5.getDia(), turno5.getHora(), especialidad, medico2);
+            listaMisTurnos2.add(turnoTabla);
+        }
+
+        columnaFechaMiTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("dia"));
+        columnaHoraMiTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("hora"));
+        columnaEspMiTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("especialidad"));
+        columnaMedicoMiTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("medico"));
+
+        tablaMisTurnosPaciente.setItems(FXCollections.observableArrayList(listaMisTurnos2));
+
     }
 
     @FXML
@@ -222,6 +267,7 @@ public class PacienteViewController {
             pedirTurnoPacienteView.setVisible(true);
             misTurnosPacienteView.setVisible(false);
             editProfilePacientePanel.setVisible(false);
+
     }
 
     @FXML
@@ -230,6 +276,7 @@ public class PacienteViewController {
             misTurnosPacienteView.setVisible(true);
             pedirTurnoPacienteView.setVisible(false);
             editProfilePacientePanel.setVisible(false);
+
     }
 
     @FXML

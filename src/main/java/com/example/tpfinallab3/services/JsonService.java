@@ -4,6 +4,7 @@ import com.example.tpfinallab3.models.Administrativo;
 import com.example.tpfinallab3.models.Medico;
 import com.example.tpfinallab3.models.Paciente;
 import com.example.tpfinallab3.models.UsuarioInfo;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -78,6 +79,15 @@ public class JsonService {
 
     public <T> void guardarJsonUsuariosYContraseñas(List<T> lista, String ruta) {
         Map<String, UsuarioInfo> usuarioInfoMap = new HashMap<>();
+        // Lee el archivo JSON existente y almacena su contenido en el mapa
+
+        try {
+            usuarioInfoMap = objectMapper.readValue(new File(ruta), new TypeReference<Map<String, UsuarioInfo>>() {});
+        } catch (IOException e) {
+            // Si ocurre una excepción al leer el archivo, se asume que no existe o está vacío
+            usuarioInfoMap = new HashMap<>();
+        }
+
 
         for (T elemento : lista) {
             if (elemento instanceof Paciente) {

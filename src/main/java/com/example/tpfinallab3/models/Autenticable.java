@@ -11,7 +11,7 @@ public interface Autenticable {
 
     public String getMail();
 
-
+    public void setNombre(String nombre);
 
 
 
