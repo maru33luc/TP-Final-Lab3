@@ -12,10 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -77,6 +74,29 @@ public class MedicoController {
     @FXML
     private AnchorPane turnosViewMedicoPanel;
 
+    @FXML
+    private AnchorPane filtrarFechaPanel;
+
+    @FXML
+    private AnchorPane filtrarPacientePanel;
+
+    @FXML
+    private TextField filtrarFechaField;
+
+    @FXML
+    private Button filtrarFechaAcceptButton;
+
+    @FXML
+    private Button filtrarFechaCancelButton;
+
+    @FXML
+    private TextField filtrarPacienteField;
+    @FXML
+    private Button filtrarPacienteAcceptButton;
+
+    @FXML
+    private Button filtrarPacienteCancelButton;
+
     private ObservableList<Turno> turnosMedico;
 
     @FXML
@@ -121,17 +141,40 @@ public class MedicoController {
 
     @FXML
     private void buscarTurnosPorFechaMedico(ActionEvent event) {
-        //filtrar por fecha
+        filtrarPacientePanel.setVisible(false);
+        filtrarFechaPanel.setVisible(true);
     }
 
     @FXML
     private void buscarTurnosPorPacienteMedico(ActionEvent event) {
-        ///filtrar por paciente
+        filtrarFechaPanel.setVisible(false);
+        filtrarPacientePanel.setVisible(true);
     }
 
     @FXML
     void verTodosLosTurnosMedico(){
         //muestra todos los turnos del medico logueado
+    }
+
+    @FXML
+    void turnosPorFecha(ActionEvent event) {
+        //filtra por fecha
+    }
+
+    @FXML
+    void turnosPorPaciente(ActionEvent event) {
+        //filtra por paciente
+    }
+
+    @FXML
+    void cancelFiltrarPorFecha(ActionEvent event) {
+        //vuelve a la vista anterior
+    }
+
+    @FXML
+    void cancelFiltrarPorPaciente(ActionEvent event) {
+        //vuelve a la vista anterior
+
     }
     public void setStage(Stage stage) {
         this.stage = stage;

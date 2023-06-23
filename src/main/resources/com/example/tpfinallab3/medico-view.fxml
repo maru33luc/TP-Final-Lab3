@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -156,6 +157,30 @@
                         <Font size="25.0" />
                      </font>
                   </Label>
+                  <AnchorPane fx:id="filtrarFechaPanel" layoutX="205.0" layoutY="250.0" prefHeight="130.0" prefWidth="400.0" style="-fx-background-color: #29838c;" visible="false">
+                     <children>
+                        <Label fx:id="ingresarFechaLabel" layoutX="111.0" layoutY="6.0" text="Ingrese la fecha (dd/mm/aaaa):" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="filtrarFechaField" layoutX="15.0" layoutY="31.0" prefHeight="38.0" prefWidth="371.0" />
+                        <Button fx:id="filtrarFechaAcceptButton" layoutX="192.0" layoutY="80.0" mnemonicParsing="false" onAction="#turnosPorFecha" prefHeight="36.0" prefWidth="90.0" text="Aceptar" />
+                        <Button fx:id="filtrarFechaCancelButton" layoutX="294.0" layoutY="80.0" mnemonicParsing="false" onAction="#cancelFiltrarPorFecha" prefHeight="36.0" prefWidth="92.0" text="Cancelar" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="filtrarPacientePanel" layoutX="205.0" layoutY="250.0" prefHeight="130.0" prefWidth="400.0" style="-fx-background-color: #29838c;" visible="false">
+                     <children>
+                        <Label layoutX="140.0" layoutY="6.0" text="Ingrese el usuario:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="filtrarPacienteField" layoutX="15.0" layoutY="31.0" prefHeight="38.0" prefWidth="371.0" />
+                        <Button fx:id="filtrarPacienteAcceptButton" layoutX="192.0" layoutY="80.0" mnemonicParsing="false" onAction="#turnosPorPaciente" prefHeight="36.0" prefWidth="90.0" text="Aceptar" />
+                        <Button fx:id="filtrarPacienteCancelButton" layoutX="294.0" layoutY="80.0" mnemonicParsing="false" onAction="#cancelFiltrarPorPaciente" prefHeight="36.0" prefWidth="92.0" text="Cancelar" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </children>
