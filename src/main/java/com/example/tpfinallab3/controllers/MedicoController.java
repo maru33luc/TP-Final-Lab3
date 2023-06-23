@@ -248,7 +248,8 @@ public class MedicoController {
     @FXML
     void logoutMedico(MouseEvent event) {
         SessionManager.getInstance().cerrarSesion();
-        ///volver a la vista del login
+        //volver a la vista principal
+        LoginController.mostrarLogin();
     }
 
     public void setStage(Stage stage) {
