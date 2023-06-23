@@ -620,12 +620,14 @@ public class AdminViewController {
 
     }
 
+
   /*  @FXML
     void choiceSpecialityNewUser(KeyEvent event) { //ChoiceBox Especialidad en Nuevo Usuario
 
     }*/
     public void choiceSpecialityNewUser(KeyEvent keyEvent) {
     }
+
 
 
     @FXML
@@ -787,14 +789,35 @@ public class AdminViewController {
     void choiceSpecialityUserEdit(KeyEvent event) { //ChoiceBox Especialidad en Editar Usuario
 
     }
+
     */
     public void choiceSpecialityUserEdit(KeyEvent keyEvent) {
     }
+
+
+
 
     //EN PROGRESO
     @FXML
     void fieldOldPasswoordUserEdit(ActionEvent event) { //Field Contraseña Actual en Editar Usuario
         //valido que la password ingresada coincida con la del usuario
+
+
+        /*if (medic.isPresent()) {
+            if (medic.get().getPassword().equals(oldPasswordEdicionEditarUsuarioAdminField.getText())) {
+                //si coincide, muestro el resto de los campos
+                nombreEdicionEditarUsuarioAdminField.setVisible(true);
+                apellidoEdicionEditarUsuarioAdminField.setVisible(true);
+                emailEdicionEditarUsuarioAdminField.setVisible(true);
+                especialidadEdicionEditarUsuarioAdminChoiceBox.setVisible(true);
+                confirmarEdicionEditarUsuarioAdminButton.setVisible(true);
+            }else{
+                //si no coincide, muestro un error
+                showErrorAlert("La contraseña ingresada no es correcta.");
+            }
+    }*/
+
+
         if (medic.isPresent()) {
             if (!medic.get().getContrasena().equals(actualPasswordEdicionEditarUsuarioAdminField.getText()))
                 showErrorAlert("Contraseña inválida.");
@@ -808,6 +831,7 @@ public class AdminViewController {
                 showSuccessAlert("Contraseña válida.");
         }
     }
+
 
     @FXML
     void fieldNewPasswordUserEdit(ActionEvent event) { //Field Nueva Contraseña en Editar Usuario
