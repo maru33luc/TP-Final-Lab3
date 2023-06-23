@@ -337,7 +337,7 @@
                                     </font>
                                 </Label>
                                 <Label layoutX="90.0" layoutY="95.0" text="ESP" />
-                                <ChoiceBox fx:id="especialidadPacienteChoiceBox" layoutX="90.0" layoutY="112.0" prefWidth="150.0" />
+                                <ChoiceBox fx:id="especialidadPacienteChoiceBox" layoutX="90.0" layoutY="112.0" onMouseClicked="#filtrarEspecialidadAction" prefWidth="150.0" />
                                 <Label layoutX="90.0" layoutY="164.0" text="MEDICO" />
                                 <ChoiceBox fx:id="medicoPacienteChoiceBox" layoutX="90.0" layoutY="181.0" prefWidth="150.0" />
                                 <Label layoutX="42.0" layoutY="291.0" text="Esp:">

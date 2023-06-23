@@ -97,7 +97,7 @@ public class PacienteViewController {
     private Label especialidadMiTurnoPacienteLabel;
 
     @FXML
-    private ChoiceBox<?> especialidadPacienteChoiceBox;
+    private ChoiceBox<Especialidad> especialidadPacienteChoiceBox;
 
     @FXML
     private Label especialidadTurnoPacienteLabel;
@@ -205,7 +205,7 @@ public class PacienteViewController {
 
     @FXML
     public void initialize() {
-        Autenticable usuarioLogueado= SessionManager.getInstance().getEntidadLogueada();
+        Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
 
         try {
             nombrePacienteLabel.setText(usuarioLogueado.getNombre());
@@ -220,7 +220,7 @@ public class PacienteViewController {
             e.printStackTrace();
         }
 
-       // turnosPaciente = FXCollections.observableArrayList();
+        // turnosPaciente = FXCollections.observableArrayList();
 
         // ------------------------ DESCA ACA LO Q HAGO ES PARA CARGAR ALGUN TURNO O MAS DE UNO Y TESTEAR ----------------
 
@@ -230,18 +230,26 @@ public class PacienteViewController {
         Medico medico = new Medico("fgildemuro", "123456", "Federico", "Gil de Muro", "fgildemuro@hotmail.com", Especialidad.CARDIOLOGIA);
         LocalDate dia = LocalDate.of(2023, 6, 16);
         Turno turno = TurnoService.getInstance().buscarTurnosPorDiaPorMedico(dia, medico).get(0);
-        TurnoService.getInstance().solicitarTurno(turno,paciente.get());
+        TurnoService.getInstance().solicitarTurno(turno, paciente.get());
 
         // ---------------------- ACA TERMINARIA LO HARCODEADO PARA TESTEAR -------------------------------
 
         cargarTablaMisTurnos();
         cargarTablaTurnos();
 
+        // obtener todos los enums de Especialidad dentro de un array pasandolos a String
+        especialidadPacienteChoiceBox.getItems().addAll(Especialidad.values());
+        especialidadPacienteChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                filtrarTurnos();
+            }
+        });
+
     }
 
-    void cargarTablaMisTurnos(){
-        Autenticable paciente= SessionManager.getInstance().getEntidadLogueada();
-        List<Turno> listaMisTurnos= TurnoService.getInstance().buscarTurnosPorPaciente((Paciente) paciente);
+    void cargarTablaMisTurnos() {
+        Autenticable paciente = SessionManager.getInstance().getEntidadLogueada();
+        List<Turno> listaMisTurnos = TurnoService.getInstance().buscarTurnosPorPaciente((Paciente) paciente);
 
         List<TurnoTabla> listaMisTurnos2 = new ArrayList<>();
 
@@ -261,9 +269,9 @@ public class PacienteViewController {
         tablaMisTurnosPaciente.setItems(FXCollections.observableArrayList(listaMisTurnos2));
     }
 
-    void cargarTablaTurnos (){
-            Autenticable paciente= SessionManager.getInstance().getEntidadLogueada();
-        List<Turno> listaTurnos= TurnoService.getInstance().buscarTurnosDisponibles();
+    void cargarTablaTurnos() {
+        Autenticable paciente = SessionManager.getInstance().getEntidadLogueada();
+        List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosDisponibles();
         System.out.println(listaTurnos);
         List<TurnoTabla> listaTurnos3 = new ArrayList<>();
 
@@ -280,7 +288,40 @@ public class PacienteViewController {
         columnaEspecialidadTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("especialidad"));
         columnaMedicoTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("medico"));
 
-        tablaTurnosPaciente.setItems(FXCollections.observableArrayList(listaTurnos3)); }
+        tablaTurnosPaciente.setItems(FXCollections.observableArrayList(listaTurnos3));
+    }
+
+    //-------------------------------- SEGUIR ACA ----------------------------------------
+
+    @FXML
+    void filtrarEspecialidadAction(MouseEvent event) {
+
+    }
+    void filtrarTurnos() {
+        // filtrar turnos por especialidad
+        List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosDisponibles();
+        ObservableList<TurnoTabla> listaTurnos2 = FXCollections.observableArrayList();
+
+        for (Turno turno : listaTurnos) {
+            System.out.println("entra al foreach");
+            if (especialidadPacienteChoiceBox.getSelectionModel().getSelectedItem().equals(turno.getMedico().getEspecialidad())) {
+                System.out.println("turno dentro= " + turno);
+                Especialidad especialidad = turno.getMedico().getEspecialidad();
+                Medico medico2 = turno.getMedico();
+                TurnoTabla turnoTabla = new TurnoTabla(turno.getDia(), turno.getHora(), especialidad, medico2);
+                listaTurnos2.add(turnoTabla);
+            }
+        }
+        
+        columnaFechaTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("dia"));
+        columnaHoraTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("hora"));
+        columnaEspecialidadTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("especialidad"));
+        columnaMedicoTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("medico"));
+
+        tablaTurnosPaciente.setItems(FXCollections.observableArrayList(listaTurnos2));
+    }
+
+
 
     @FXML
     void miPerfilAction(MouseEvent event) {
@@ -296,7 +337,7 @@ public class PacienteViewController {
             pedirTurnoPacienteView.setVisible(true);
             misTurnosPacienteView.setVisible(false);
             editProfilePacientePanel.setVisible(false);
-
+            cargarTablaTurnos();
     }
 
     @FXML
@@ -306,7 +347,11 @@ public class PacienteViewController {
             pedirTurnoPacienteView.setVisible(false);
             editProfilePacientePanel.setVisible(false);
             cargarTablaMisTurnos();
+
+
     }
+
+
 
     @FXML
     void editarDatosPacienteEvent(ActionEvent event) {
@@ -390,12 +435,10 @@ public class PacienteViewController {
             System.out.println("Los turnos son " + turno);
             System.out.println(nombreMedico + " " + apellidoMedico + " " + dia + " " + hora);
 
-
-
-
-
         }
     }
+
+
 
     @FXML
     void cancelarTurnoAction(MouseEvent event) {
