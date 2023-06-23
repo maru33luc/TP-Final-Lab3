@@ -291,7 +291,7 @@
                                         <Font size="20.0" />
                                     </font>
                                 </Label>
-                                <Button fx:id="cancelarTurnoPacienteButton" layoutX="110.0" layoutY="534.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" text="Cancelar Turno" />
+                                <Button fx:id="cancelarTurnoPacienteButton" layoutX="110.0" layoutY="534.0" mnemonicParsing="false" onMouseClicked="#cancelarTurnoAction" prefHeight="40.0" prefWidth="110.0" text="Cancelar Turno" />
                                 <Label fx:id="especialidadMiTurnoPacienteLabel" layoutX="119.0" layoutY="161.0" text="Especialidad">
                                     <font>
                                         <Font size="20.0" />

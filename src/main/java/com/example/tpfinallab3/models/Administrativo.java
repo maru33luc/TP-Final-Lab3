@@ -19,6 +19,16 @@ public class Administrativo extends Usuario {
     }
 
     @Override
+    public String getContrasena() {
+        return super.getContrasena();
+    }
+
+    @Override
+    public void setContrasena(String contrasena) {
+        super.setContrasena(contrasena);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if(this == o) {
             return true;
@@ -44,4 +54,6 @@ public class Administrativo extends Usuario {
                 super.toString() +
                 "Permisos de administrador: " + (admin ? "si" : "no");
     }
+
+
 }

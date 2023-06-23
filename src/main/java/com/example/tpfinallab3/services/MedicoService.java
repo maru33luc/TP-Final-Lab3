@@ -105,4 +105,13 @@ public class MedicoService {
     public void guardarMedicosJson() {
         JsonService.getInstance().guardarJson(medicos, RUTA_JSON);
     }
+
+    public Medico buscarMedicoPorNombreYApellido(String nombreMedico, String apellidoMedico) {
+        System.out.println("nombreMedico = " + nombreMedico);
+        System.out.println("apellidoMedico = " + apellidoMedico);
+        return medicos.stream()
+                .filter(medico -> medico.getNombre().equalsIgnoreCase(nombreMedico) && medico.getApellido().equalsIgnoreCase(apellidoMedico))
+                .findFirst()
+                .orElse(null);
+    }
 }

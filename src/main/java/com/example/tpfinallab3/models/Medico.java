@@ -17,10 +17,30 @@ public class Medico extends Usuario {
         return especialidad;
     }
 
-
-
     public void setEspecialidad(Especialidad especialidad) {
         this.especialidad = especialidad;
+    }
+
+
+
+    @Override
+    public String getNombre() {
+        return super.getNombre();
+    }
+
+    @Override
+    public String getApellido() {
+        return super.getApellido();
+    }
+
+    @Override
+    public String getContrasena() {
+        return super.getContrasena();
+    }
+
+    @Override
+    public void setContrasena(String contrasena) {
+        super.setContrasena(contrasena);
     }
 
     @Override
@@ -49,16 +69,5 @@ public class Medico extends Usuario {
                 super.toString() +
                 "Especialidad: " + especialidad.getEspecialidad();
     }
-
-    @Override
-    public String getNombre() {
-        return super.getNombre();
-    }
-
-    @Override
-    public String getApellido() {
-        return super.getApellido();
-    }
-
 
 }

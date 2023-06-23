@@ -53,6 +53,15 @@ public class Paciente extends Usuario {
     }
 
     @Override
+    public String getContrasena() {
+        return super.getContrasena();
+    }
+
+    @Override
+    public void setContrasena(String contrasena) {
+        super.setContrasena(contrasena);
+    }
+    @Override
     public boolean equals(Object o) {
         if(this == o) {
             return true;
@@ -81,4 +90,6 @@ public class Paciente extends Usuario {
                 "Obra Social: " + obraSocial + "\n" +
                 "Numero de afiliado: " + numeroAfiliado;
     }
+
+
 }

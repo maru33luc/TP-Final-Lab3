@@ -148,5 +148,23 @@ public class TurnoService {
     public void guardarTurnosJson(){
         JsonService.getInstance().guardarJson(turnos, RUTA_JSON);
     }
+
+    public Turno buscarTurnoPorPacienteMedicoYFecha(Paciente paciente, Medico medico, LocalDate dia, LocalTime hora) {
+        System.out.println("Paciente buscado: " + paciente);
+        System.out.println("Medico buscado: " + medico);
+        System.out.println("Dia buscado: " + dia);
+        System.out.println("Hora buscada: " + hora);
+        System.out.println("Turnos: " + turnos);
+        for(Turno turno : turnos){
+
+            if(turno.getPaciente()!=null && turno.getMedico()!=null && turno.getDia()!=null && turno.getHora()!=null && !turno.getDisponible()){
+                if(turno.getPaciente().equals(paciente) && turno.getMedico().equals(medico) && turno.getDia().equals(dia) && turno.getHora().equals(hora)){
+                    System.out.println("turno dentro de la funcion de buscar en TurnoService = " + turno);
+                    return turno;
+                }
+            }
+        }
+        return null;
+    }
 }
 

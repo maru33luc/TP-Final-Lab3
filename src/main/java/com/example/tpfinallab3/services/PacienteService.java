@@ -94,5 +94,12 @@ public class PacienteService {
     public void guardarPacientesJson() {
         JsonService.getInstance().guardarJson(pacientes, RUTA_JSON);
     }
+
+    public Paciente buscarPacientePorNombreUsuarioYContraseña(String nombreUsuario, String contrasena) {
+        return pacientes.stream()
+                .filter(paciente -> paciente.getNombreUsuario().equalsIgnoreCase(nombreUsuario) && paciente.getContrasena().equals(contrasena))
+                .findFirst()
+                .orElse(null);
+    }
 }
 

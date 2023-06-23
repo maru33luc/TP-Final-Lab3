@@ -1,15 +1,11 @@
 package com.example.tpfinallab3;
 
-import com.example.tpfinallab3.models.*;
+import com.example.tpfinallab3.models.Administrativo;
+import com.example.tpfinallab3.models.Especialidad;
+import com.example.tpfinallab3.models.Medico;
 import com.example.tpfinallab3.security.SessionManager;
 import com.example.tpfinallab3.services.AdministrativoService;
 import com.example.tpfinallab3.services.MedicoService;
-import com.example.tpfinallab3.services.PacienteService;
-import com.example.tpfinallab3.services.TurnoService;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Optional;
 
 public class MainPruebas {
 
@@ -72,11 +68,12 @@ public class MainPruebas {
         SessionManager.getInstance().iniciarSesion("carlosfuentes","74185296");
         MedicoService.getInstance().agregarMedico(medico);
         System.out.println("Administrativos: " + AdministrativoService.getInstance().getAdministrativos());
+
        // SessionManager.getInstance().cerrarSesion();
 
         // PROBANDO HABILITAR TURNOS
 
-
+/*
         LocalDate dia = LocalDate.of(2023, 6, 16);
         LocalTime horaInicio = LocalTime.of(10, 0);
         LocalTime horaFin = LocalTime.of(11, 0);
@@ -102,7 +99,7 @@ public class MainPruebas {
         System.out.println("turno "+ turno.toString());
         Turno turno2 = TurnoService.getInstance().buscarTurnoPorPacienteMedicoDiaYHora(paciente.get(), medico, turno.getDia(), turno.getHora());
         TurnoService.getInstance().marcarTurnoComoDisponible(turno2);
-        System.out.println("turno2.toString() = " + turno2.toString());
+        System.out.println("turno2.toString() = " + turno2.toString());*/
 
 
         /*Paciente paciente1 = new Paciente("juanperez", "12345678", "Juan", "Perez", "juan@gmail.com", "12345678", "12345678", "OSDE", "12345678");

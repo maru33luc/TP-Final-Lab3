@@ -32,7 +32,6 @@ public abstract class Usuario implements Autenticable, Serializable {
         this.nombreUsuario = nombreUsuario;
     }
 
-    @Override
     public String getContrasena() {
         return contrasena;
     }
@@ -110,4 +109,6 @@ public abstract class Usuario implements Autenticable, Serializable {
             isActivo = true;
         }
     }
+
+
 }

@@ -2,6 +2,7 @@ package com.example.tpfinallab3.controllers;
 
 import com.example.tpfinallab3.models.*;
 import com.example.tpfinallab3.security.SessionManager;
+import com.example.tpfinallab3.services.MedicoService;
 import com.example.tpfinallab3.services.PacienteService;
 import com.example.tpfinallab3.services.TurnoService;
 import javafx.collections.FXCollections;
@@ -14,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -311,6 +313,50 @@ public class PacienteViewController {
 
         }
     }
+
+    @FXML
+    void cancelarTurnoAction(MouseEvent event) {
+
+        if(especialidadMiTurnoPacienteLabel.getText().equals("")) {
+            LoginController.showErrorAlert("No se ha seleccionado ningun turno");
+        }else{
+
+           /* Paciente paciente = PacienteService.getInstance().buscarPacientePorNombreUsuarioYContraseña(SessionManager.getInstance().getEntidadLogueada().getNombreUsuario(), SessionManager.getInstance().getEntidadLogueada().getContrasena());*/
+
+            Optional<Paciente> pacienteOptional = PacienteService.getInstance().buscarPacientePorNombreUsuario(SessionManager.getInstance().getEntidadLogueada().getNombreUsuario());
+            Paciente paciente = pacienteOptional.get();
+            System.out.println("paciente.toString() = " + paciente.toString());
+            String input = medicoMiTurnoPacienteLabel.getText();
+            String[] palabras = input.split(" ");
+
+            String nombreMedico = palabras[0];
+            StringBuilder apellidoMedicoBuilder = new StringBuilder();
+
+            // Combinar las palabras del apellido en una sola cadena
+            for (int i = 1; i < palabras.length; i++) {
+                if (i > 1) {
+                    apellidoMedicoBuilder.append(" ");  // Agregar espacio entre las palabras
+                }
+                apellidoMedicoBuilder.append(palabras[i]);
+            }
+
+            String apellidoMedico = apellidoMedicoBuilder.toString();
+
+            Medico medico = MedicoService.getInstance().buscarMedicoPorNombreYApellido(nombreMedico, apellidoMedico);
+            LocalDate dia = LocalDate.parse(fechaMiTurnoPacienteLabel.getText());
+            LocalTime hora = LocalTime.parse(horaMiTurnoPacienteLabel.getText());
+            Turno turno = TurnoService.getInstance().buscarTurnoPorPacienteMedicoYFecha(paciente, medico, dia, hora);
+            System.out.println("turno = " + turno);
+            if(turno!=null){
+                TurnoService.getInstance().marcarTurnoComoDisponible(turno) ;
+                LoginController.showSuccessAlert("Turno cancelado con exito");
+                cargarTablaMisTurnos();
+            }
+            System.out.println("Los turnos son " + turno);
+            System.out.println(nombreMedico + " " + apellidoMedico + " " + dia + " " + hora);
+        }
+    }
+
 
     public void setMainController(LoginController loginController) {
           this.loginController = loginController;

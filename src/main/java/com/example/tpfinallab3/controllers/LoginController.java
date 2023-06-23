@@ -176,7 +176,7 @@ public class LoginController {
     }
 
 
-    private void showSuccessAlert(String message) {
+    public static void showSuccessAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Éxito");
         alert.setHeaderText(null);
@@ -184,7 +184,7 @@ public class LoginController {
         alert.showAndWait();
     }
 
-    private void showErrorAlert(String message) {
+    public static void showErrorAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText(null);
