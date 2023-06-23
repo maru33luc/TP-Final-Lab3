@@ -1,9 +1,1 @@
-{"juanperez":{"usuario":"juanperez","contrasena":"$2a$10$/jYVMWtzOhOBdWU5kSbCtuNJ9zJPR2Od8LyoCObQnQ02j4W2lyYd2","claseEntidad":"Paciente"},
-  "ceciliagomez":{"usuario":"ceciliagomez","contrasena":"$2a$10$lguOjSIJZBtKPdDP8NfFIOzkoLguwrI//uGxXyqqjqb2xAUQIvQ5C","claseEntidad":"Paciente"},
-  "lauragonzalez":{"usuario":"lauragonzalez","contrasena":"$2a$10$RSPe5rynPyJ/IAnJBulMq.v3u12lW/nhjgs1t2NEaBTdwmDrb4Jq.","claseEntidad":"Paciente"},
-  "mariagomez":{"usuario":"mariagomez","contrasena":"$2a$10$.K2DIBBjTUL5nZYC0ClR2uAyhphcRfBwuaymqVeZ5Bh9k5nEz3T.S","claseEntidad":"Paciente"},
-  "jorgelopez":{"usuario":"jorgelopez","contrasena":"$2a$10$OrQnAlYTjELP.KKgRb/3NeuwGjQoxA4NqX2AdTUR41UySKMUEE8fa","claseEntidad":"Paciente"},
-  "carlosfuentes":{"usuario":"carlosfuentes","contrasena":"$2a$10$kPiSH0K396pVUoSzHJaAOusLF3LrCyODMJJTzYu0XHVTu7J5u/cTK","claseEntidad":"Administrativo"},
-  "fgildemuro":{"usuario":"fgildemuro","contrasena":"$2a$10$xia9ZEM0RnIX2yrdKXu3gOVVRplB1Gh5x5sYSjRwgMcTGhtU8R.aC","claseEntidad":"Medico"}}
-
-
+{"juanperez":{"usuario":"juanperez","contrasena":"$2a$10$/jYVMWtzOhOBdWU5kSbCtuNJ9zJPR2Od8LyoCObQnQ02j4W2lyYd2","claseEntidad":"Paciente"},"ceciliagomez":{"usuario":"ceciliagomez","contrasena":"$2a$10$lguOjSIJZBtKPdDP8NfFIOzkoLguwrI//uGxXyqqjqb2xAUQIvQ5C","claseEntidad":"Paciente"},"lauragonzalez":{"usuario":"lauragonzalez","contrasena":"$2a$10$RSPe5rynPyJ/IAnJBulMq.v3u12lW/nhjgs1t2NEaBTdwmDrb4Jq.","claseEntidad":"Paciente"},"mariagomez":{"usuario":"mariagomez","contrasena":"$2a$10$.K2DIBBjTUL5nZYC0ClR2uAyhphcRfBwuaymqVeZ5Bh9k5nEz3T.S","claseEntidad":"Paciente"},"jorgelopez":{"usuario":"jorgelopez","contrasena":"$2a$10$OrQnAlYTjELP.KKgRb/3NeuwGjQoxA4NqX2AdTUR41UySKMUEE8fa","claseEntidad":"Paciente"},"carlosfuentes":{"usuario":"carlosfuentes","contrasena":"$2a$10$fa7.pIxrI8ANi25.CZdp6e6V.FYrrDZ65c7M5kXW2/xCFgqfvfb1G","claseEntidad":"Administrativo"},"fgildemuro":{"usuario":"fgildemuro","contrasena":"$2a$10$capJTVwTNvuhUAet5Ea2EOZ9F1RvgIiw9.DaKyzFdmexlp3ibeZIG","claseEntidad":"Medico"}}
