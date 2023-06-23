@@ -1,13 +1,11 @@
 package com.example.tpfinallab3.controllers;
 
 import com.example.tpfinallab3.models.Autenticable;
-import com.example.tpfinallab3.models.Especialidad;
 import com.example.tpfinallab3.models.Medico;
 import com.example.tpfinallab3.models.Turno;
 import com.example.tpfinallab3.security.SessionManager;
 import com.example.tpfinallab3.services.MedicoService;
 import com.example.tpfinallab3.services.TurnoService;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
