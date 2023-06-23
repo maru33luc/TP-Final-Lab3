@@ -92,6 +92,18 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Label>
+            <Label fx:id="logoutPacienteButton" alignment="CENTER" layoutY="262.0" onMouseClicked="#logoutPaciente" prefWidth="270.0" text="CERRAR SESION">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="nanum-regular" />
+                  <String fx:value="profile-button" />
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
             </children>
         </AnchorPane>
     </left>
@@ -164,7 +176,7 @@
                                 <Button fx:id="submitChangesPacienteButton" layoutX="630.0" layoutY="660.0" mnemonicParsing="false" onAction="#guardarDatosPacienteEvent" prefHeight="50.0" prefWidth="170.0" text="GUARDAR" />
                             </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="profileDataPacientePanel" prefHeight="720.0" prefWidth="810.0" visible="false">
+                        <AnchorPane fx:id="profileDataPacientePanel" prefHeight="720.0" prefWidth="810.0">
                             <children>
                               <Label layoutX="170.0" layoutY="100.0" prefHeight="36.0" prefWidth="103.0" text="Nombre:">
                                   <font>
@@ -316,7 +328,7 @@
                         </AnchorPane>
                     </children>
                 </AnchorPane>
-                <AnchorPane fx:id="pedirTurnoPacienteView" prefHeight="720.0" prefWidth="810.0">
+                <AnchorPane fx:id="pedirTurnoPacienteView" prefHeight="720.0" prefWidth="810.0" visible="false">
                     <children>
                         <TableView fx:id="tablaTurnosPaciente" onMouseClicked="#seleccionarUnTurnoAction" prefHeight="720.0" prefWidth="480.0">
                             <columns>

@@ -35,6 +35,9 @@ public class PacienteViewController {
     private Label appointmentListButton;
 
     @FXML
+    private Label logoutPacienteButton;
+
+    @FXML
     private Button cancelarTurnoPacienteButton;
 
     @FXML
@@ -338,8 +341,7 @@ public class PacienteViewController {
 
         tablaTurnosPaciente.setItems(FXCollections.observableArrayList(listaTurnos2));
     }
-
-    // ---------------------------- ESTOY SOLUCIONANDO ESTO -----------------------------------
+    
     void filtrarTurnosPorMedico() {
         // filtrar turnos por medico seleccionado
         List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosDisponibles();
@@ -521,6 +523,11 @@ public class PacienteViewController {
             System.out.println("Los turnos son " + turno);
             System.out.println(nombreMedico + " " + apellidoMedico + " " + dia + " " + hora);
         }
+    }
+
+    @FXML
+    void logoutPaciente(MouseEvent event) {
+
     }
 
 
