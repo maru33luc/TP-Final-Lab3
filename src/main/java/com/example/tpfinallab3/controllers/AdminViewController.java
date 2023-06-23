@@ -701,23 +701,28 @@ public class AdminViewController {
 
         editarUsuarioAdminAnchorPane.setVisible(true);
         edicionEditarUsuarioAdminAnchorPane.setVisible(true);
-
-
+        agregarDatosAFieldEditarUsuario();
     }
 
+    private void agregarDatosAFieldEditarUsuario(){
+        nombreEdicionEditarUsuarioAdminField.setPromptText(nombreMostrarEditarUsuarioAdminLabel.getText());
+        apellidoEdicionEditarUsuarioAdminField.setPromptText(apellidoMostrarEditarUsuarioAdminLabel.getText());
+        emailEdicionEditarUsuarioAdminField.setPromptText(emailMostrarEditarUsuarioAdminLabel.getText());
 
+        if (tipoUsuarioMostrarEditarUsuarioAdminField.getText().equals("Médico")) {
+            especialidadEdicionEditarUsuarioAdminChoiceBox.setOnAction(event1-> {
+                seleccionEspecialidad = Especialidad.valueOf(especialidadEdicionEditarUsuarioAdminChoiceBox.getValue());}); //REVISAR: estas ultimas lineas no se si funcionarán
+        }else{
+            especialidadEdicionEditarUsuarioAdminChoiceBox.setVisible(false);
+        }
+    }
 
-    /*EN PROCESO...
     @FXML
     void clickCloseShowUserEdit(KeyEvent event) {//Botón Cerrar en Mostrar de Editar Usuario
         ocultarTodosLosAnchorPane();
 
         editarUsuarioAdminAnchorPane.setVisible(true);
         buscarEditarUsuarioAdminAnchorPane.setVisible(true);
-
-
-
-
     }
 
 
@@ -725,24 +730,8 @@ public class AdminViewController {
 
     @FXML
     void fieldNameUserEdit(ActionEvent event) { //Field Nombre en Editar Usuario
-        nombreEdicionEditarUsuarioAdminField.setPromptText(nombreMostrarEditarUsuarioAdminLabel.getText());
-        apellidoEdicionEditarUsuarioAdminField.setPromptText(apellidoMostrarEditarUsuarioAdminLabel.getText());
-        emailEdicionEditarUsuarioAdminField.setPromptText(emailMostrarEditarUsuarioAdminLabel.getText());
 
-        //muestro especialidad solo si es medico
-        if (tipoUsuarioMostrarEditarUsuarioAdminField.getText().equals("Médico")) {
-            especialidadEdicionEditarUsuarioAdminChoiceBox.setVisible(true);
-            especialidadEdicionEditarUsuarioAdminChoiceBox.setOnAction(event1-> {
-                seleccionEspecialidad = Especialidad.valueOf(especialidadEdicionEditarUsuarioAdminChoiceBox.getValue());}); //REVISAR: estas ultimas lineas no se si funcionarán
-        }else {
-            especialidadEdicionEditarUsuarioAdminChoiceBox.setVisible(false);
-        }
-
-        //contraseña
-
-
-
-    }*/
+    }
 
     @FXML
     void fieldLastnameUserEdit(ActionEvent event) { //Field Apellido en Editar Usuario
@@ -760,9 +749,22 @@ public class AdminViewController {
     }
     */
 
+    //EN PROGRESO
     @FXML
     void fieldOldPasswoordUserEdit(ActionEvent event) {
-
+        //valido que la password ingresada coincida con la del usuario
+        /*if (medic.isPresent()) {
+            if (medic.get().getPassword().equals(oldPasswordEdicionEditarUsuarioAdminField.getText())) {
+                //si coincide, muestro el resto de los campos
+                nombreEdicionEditarUsuarioAdminField.setVisible(true);
+                apellidoEdicionEditarUsuarioAdminField.setVisible(true);
+                emailEdicionEditarUsuarioAdminField.setVisible(true);
+                especialidadEdicionEditarUsuarioAdminChoiceBox.setVisible(true);
+                confirmarEdicionEditarUsuarioAdminButton.setVisible(true);
+            }else{
+                //si no coincide, muestro un error
+                showErrorAlert("La contraseña ingresada no es correcta.");
+            }*/
     }
 
     @FXML
