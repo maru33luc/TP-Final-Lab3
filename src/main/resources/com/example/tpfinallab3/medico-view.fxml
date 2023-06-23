@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1080.0" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.MedicoController">
 
    <top>
@@ -73,6 +72,17 @@
                </cursor>
             </Label>
             <Label fx:id="appointmentsMedicoButton" layoutX="45.0" layoutY="160.0" onMouseClicked="#verTurnosMedico" styleClass="nanum-regular" text="Ver turnos" textFill="#d3f9eb">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <Separator prefWidth="20.0" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="logoutMedicoButton" layoutX="45.0" layoutY="210.0" onMouseClicked="#logoutMedico" styleClass="nanum-regular" text="Cerrar sesion" textFill="#d3f9eb">
                <font>
                   <Font size="20.0" />
                </font>

@@ -9,6 +9,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
@@ -96,8 +98,11 @@ public class MedicoController {
 
     @FXML
     private Button filtrarPacienteCancelButton;
+    @FXML
+    private Label logoutMedicoButton;
 
     private ObservableList<Turno> turnosMedico;
+
 
     @FXML
     public void initialize(){
@@ -239,6 +244,13 @@ public class MedicoController {
         filtrarPacientePanel.setVisible(false);
 
     }
+
+    @FXML
+    void logoutMedico(MouseEvent event) {
+        SessionManager.getInstance().cerrarSesion();
+        ///volver a la vista del login
+    }
+
     public void setStage(Stage stage) {
         this.stage = stage;
     }
