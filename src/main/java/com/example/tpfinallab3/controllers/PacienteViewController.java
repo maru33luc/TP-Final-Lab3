@@ -19,6 +19,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public class PacienteViewController {
 
@@ -124,7 +125,7 @@ public class PacienteViewController {
     private Label medicoMiTurnoPacienteLabel;
 
     @FXML
-    private ChoiceBox<?> medicoPacienteChoiceBox;
+    private ChoiceBox<String> medicoPacienteChoiceBox;
 
     @FXML
     private Label medicoTurnoPacienteLabel;
@@ -244,6 +245,20 @@ public class PacienteViewController {
                 filtrarTurnos();
             }
         });
+
+        // cargar los nombres y apellidos de los medicos dentro del choice box
+        Set<Medico> medicos = MedicoService.getInstance().getMedicos();
+
+        for (Medico medico2 : medicos) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(medico2.getNombre());
+            sb.append(" ");
+            sb.append(medico2.getApellido());
+
+            medicoPacienteChoiceBox.getItems().add(sb.toString());
+
+        }
+
 
     }
 
