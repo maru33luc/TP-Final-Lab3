@@ -351,12 +351,12 @@
                            <children>
                               <ImageView fx:id="mostrarNewPasswordEdicionMiPerfilAdminButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onKeyPressed="#clickShowNewPasswordEditMyProfileAdmin" visible="false">
                                  <image>
-                                    <Image url="@../../../../../../../TP%20FINAL/abrir-ojo.png" />
+                                    <Image url="@../../../images/abrir-ojo.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="ocultarNewPasswordEdicionMiPerfilAdminButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onKeyPressed="#clickHideNewPasswordEditMyProfileAdmin">
                                  <image>
-                                    <Image url="@../../../../../../../TP%20FINAL/cerrar-ojo.png" />
+                                    <Image url="@../../../images/cerrar-ojo.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -375,12 +375,12 @@
                            <children>
                               <ImageView fx:id="mostrarConfirmNewPasswordEdicionMiPerfilAdminButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onKeyPressed="#clickShowConfirmNewPasswordEditMyProfileAdmin" visible="false">
                                  <image>
-                                    <Image url="@../../../../../../../TP%20FINAL/abrir-ojo.png" />
+                                    <Image url="@../../../images/abrir-ojo.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="ocultarConfirmNewPasswordEdicionMiPerfilAdminButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onKeyPressed="#clickHideConfirmNewPasswordEditMyProfileAdmin">
                                  <image>
-                                    <Image url="@../../../../../../../TP%20FINAL/cerrar-ojo.png" />
+                                    <Image url="@../../../images/cerrar-ojo.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -570,7 +570,7 @@
                                  <children>
                                     <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="12.0" layoutY="8.0">
                                        <image>
-                                          <Image url="@/images/close.png" />
+                                          <Image url="@../../../images/close.png" />
                                        </image>
                                     </ImageView>
                                  </children>

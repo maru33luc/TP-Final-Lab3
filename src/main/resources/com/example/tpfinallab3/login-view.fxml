@@ -17,43 +17,6 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="loginPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1080.0" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.LoginController">
-   <top>
-      <AnchorPane fx:id="barraDeTituloPanel" prefHeight="30.0" prefWidth="1080.0" style="-fx-background-color: #091A21;" BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane layoutY="1.0" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #091A21;" />
-            <AnchorPane layoutX="1.0" prefHeight="30.0" prefWidth="144.0" style="-fx-background-color: #091A21;">
-               <children>
-                  <ImageView fitHeight="20.0" fitWidth="144.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-
-                        <Image url="@../../../images/Docturno.png"/>
-                     </image>
-                  </ImageView>
-               </children></AnchorPane>
-            <ImageView fx:id="minimizeButton" accessibleRole="BUTTON" fitHeight="15.0" fitWidth="15.0" layoutX="963.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/minimize.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView fx:id="maximizeButton" accessibleRole="BUTTON" disable="true" fitHeight="15.0" fitWidth="15.0" layoutX="1005.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/maximize.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="closeButton" accessibleRole="BUTTON" fitHeight="15.0" fitWidth="15.0" layoutX="1046.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/close.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-         </children>
-      </AnchorPane>
-   </top>
    <left>
       <AnchorPane prefHeight="720.0" prefWidth="540.0" style="-fx-background-color: #29828B;" BorderPane.alignment="CENTER">
          <children>
@@ -78,26 +41,17 @@
    <right>
       <AnchorPane fx:id="loginField" prefHeight="720.0" prefWidth="540.0" style="-fx-background-color: d3f9eb;" BorderPane.alignment="CENTER">
          <children>
-            <PasswordField fx:id="passwordField" layoutX="66.0" layoutY="291.0" onKeyTyped="#validarPassword" prefHeight="45.0" prefWidth="375.0" style="-fx-border-color: #29838c; -fx-border-width: 2; -fx-background-color: d3f9eb;">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-               <styleClass>
-                  <String fx:value="playfair-regular" />
-                  <String fx:value="text-field" />
-               </styleClass></PasswordField>
-            <TextField fx:id="plainPasswordField" layoutX="66.0" layoutY="291.0" prefHeight="45.0" prefWidth="375.0" style="-fx-border-color: #29838c; -fx-border-width: 2; -fx-background-color: d3f9eb" promptText="Contraseña" visible="false" />
-            <Label fx:id="welcomeLabel" layoutX="111.0" layoutY="39.0" styleClass="playfair-regular" text="¡Bienvenido!" textFill="#255951">
+            <Label fx:id="welcomeLabel" layoutX="131.0" layoutY="39.0" styleClass="playfair-regular" text="¡Bienvenido!" textFill="#255951">
                <font>
                   <Font name="Century Schoolbook" size="55.0" />
                </font>
             </Label>
-            <Label fx:id="usuarioLabel" layoutX="66.0" layoutY="166.0" styleClass="nanum-regular" text="Usuario" textFill="#29838c">
+            <Label fx:id="usuarioLabel" layoutX="43.0" layoutY="164.0" styleClass="nanum-regular" text="Usuario" textFill="#29838c">
                <font>
                   <Font name="Century Gothic" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="usernameField" layoutX="66.0" layoutY="191.0" onKeyTyped="#validarUsuario" prefHeight="45.0" prefWidth="420.0" style="-fx-border-color: #29838c; -fx-background-color: d3f9eb; -fx-border-width: 2;">
+            <TextField fx:id="usernameField" layoutX="43.0" layoutY="192.0" prefHeight="45.0" prefWidth="459.0" style="-fx-border-color: #29838c; -fx-background-color: d3f9eb; -fx-border-width: 2;">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -106,25 +60,34 @@
                   <String fx:value="text-field" />
                </styleClass>
             </TextField>
-            <Label fx:id="passwordLabel" layoutX="66.0" layoutY="266.0" styleClass="nanum-regular" text="Contraseña" textFill="#29838c">
+            <Label fx:id="passwordLabel" layoutX="44.0" layoutY="263.0" styleClass="nanum-regular" text="Contraseña" textFill="#29838c">
                <font>
                   <Font name="Century Gothic" size="20.0" />
                </font>
             </Label>
-            <Pane layoutX="450.0" layoutY="291.0" prefHeight="45.0" prefWidth="71.0" style="-fx-border-color: #29838c; -fx-border-width: 2;">
+            <PasswordField fx:id="passwordField" layoutX="44.0" layoutY="291.0" prefHeight="45.0" prefWidth="375.0" style="-fx-border-color: #29838c; -fx-border-width: 2; -fx-background-color: d3f9eb;">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <styleClass>
+                  <String fx:value="playfair-regular" />
+                  <String fx:value="text-field" />
+               </styleClass></PasswordField>
+            <TextField fx:id="plainPasswordField" layoutX="44.0" layoutY="291.0" prefHeight="45.0" prefWidth="375.0" style="-fx-border-color: #29838c; -fx-border-width: 2; -fx-background-color: d3f9eb" visible="false" />
+            <Pane layoutX="428.0" layoutY="291.0" prefHeight="45.0" prefWidth="71.0" style="-fx-border-color: #29838c; -fx-border-width: 2;">
                <children>
-
-                  <ImageView fx:id="hidePasswordButton" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="13.0" onMouseClicked="#ocultarPassword" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="showPasswordButton" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="13.0" layoutY="3.0" onMouseClicked="#ocultarPassword" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
-                        <Image url="@../../../images/cerrar-ojo.png" />
+                        <Image url="@../../../images/abrir-ojo.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="showPasswordButton" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="13.0" onMouseClicked="#mostrarPassword" pickOnBounds="true" preserveRatio="true">
+
+                  <ImageView fx:id="hidePasswordButton" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="13.0" layoutY="1.0" onMouseClicked="#mostrarPassword" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../images/abrir-ojo.png" />
+                        <Image url="@../../../images/cerrar-ojo.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -135,7 +98,7 @@
 
 
 
-            <Button fx:id="handleLoginButton" layoutX="87.0" layoutY="373.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="35.0" prefWidth="150.0" style="-fx-background-radius: 0;" text="Ingresar" textFill="#c6e9de">
+            <Button fx:id="handleLoginButton" layoutX="85.0" layoutY="373.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="35.0" prefWidth="150.0" style="-fx-background-radius: 0;" text="Ingresar" textFill="#29838c">
                <font>
                   <Font name="Century Gothic" size="21.0" />
                </font>
@@ -147,7 +110,7 @@
                   <String fx:value="button-login" />
                </styleClass>
             </Button>
-            <Hyperlink fx:id="olvidoUsuarioLink" layoutX="286.0" layoutY="366.0" text="¿Olvidó su usuario?" textFill="#255951">
+            <Hyperlink fx:id="olvidoUsuarioLink" layoutX="284.0" layoutY="366.0" onAction="#recuperarUsuario" text="¿Olvidó su usuario?" textFill="#255951">
                <font>
                   <Font name="Century Schoolbook" size="17.0" />
                </font>
@@ -156,7 +119,7 @@
                   <String fx:value="forget-link" />
                </styleClass>
             </Hyperlink>
-            <Hyperlink fx:id="olvidoPasswordLink" layoutX="273.0" layoutY="395.0" text="¿Olvidó su contraseña?" textFill="#255951">
+            <Hyperlink fx:id="olvidoPasswordLink" layoutX="271.0" layoutY="395.0" onAction="#recuperarContrasena" text="¿Olvidó su contraseña?" textFill="#255951">
                <font>
                   <Font name="Century Schoolbook" size="17.0" />
                </font>
@@ -170,12 +133,12 @@
                   <Glow level="0.0" />
                </effect>
             </Separator>
-            <Label fx:id="loginRegistroLabel" layoutX="139.0" layoutY="536.0" styleClass="playfair-regular" text="¿No tiene una cuenta de usuario?" textFill="#255951">
+            <Label fx:id="loginRegistroLabel" layoutX="135.0" layoutY="536.0" styleClass="playfair-regular" text="¿No tiene una cuenta de usuario?" textFill="#255951">
                <font>
                   <Font name="Century Schoolbook" size="17.0" />
                </font>
             </Label>
-            <Button fx:id="signUpButton" layoutX="195.0" layoutY="575.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" style="-fx-background-radius: 0;" text="Regístrese" textFill="#29838c">
+            <Button fx:id="signUpButton" layoutX="188.0" layoutY="575.0" mnemonicParsing="false" onAction="#clickRegistro" prefHeight="35.0" prefWidth="150.0" style="-fx-background-radius: 0;" text="Regístrese" textFill="#29838c">
                <font>
                   <Font name="Century Gothic" size="21.0" />
                </font>

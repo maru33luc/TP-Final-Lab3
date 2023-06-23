@@ -36,7 +36,6 @@ public class AuthenticationService {
         cargarUsuariosDesdeJson();
         if(this.usuarios!=null){
             if (usuarios.containsKey(nombreUsuario)) {
-                //String contrasenaAlmacenada = usuarios.get(nombreUsuario);
                 String contrasenaAlmacenada = obtenerContrasenaAlmacenada(nombreUsuario);
                 return BCrypt.checkpw(contrasena, contrasenaAlmacenada);
             }
