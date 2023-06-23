@@ -242,7 +242,7 @@ public class PacienteViewController {
         especialidadPacienteChoiceBox.getItems().addAll(Especialidad.values());
         especialidadPacienteChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                filtrarTurnos();
+                filtrarTurnosPorEspecialidad();
             }
         });
 
@@ -256,8 +256,13 @@ public class PacienteViewController {
             sb.append(medico2.getApellido());
 
             medicoPacienteChoiceBox.getItems().add(sb.toString());
-
         }
+        // QUE DETECTE EL CAMBIO DE MEDICO Y FILTRE LOS TURNOS POR MEDICO
+        medicoPacienteChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                filtrarTurnosPorMedico();
+            }
+        });
 
 
     }
@@ -306,13 +311,11 @@ public class PacienteViewController {
         tablaTurnosPaciente.setItems(FXCollections.observableArrayList(listaTurnos3));
     }
 
-    //-------------------------------- SEGUIR ACA ----------------------------------------
-
     @FXML
     void filtrarEspecialidadAction(MouseEvent event) {
 
     }
-    void filtrarTurnos() {
+    void filtrarTurnosPorEspecialidad() {
         // filtrar turnos por especialidad
         List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosDisponibles();
         ObservableList<TurnoTabla> listaTurnos2 = FXCollections.observableArrayList();
@@ -336,7 +339,31 @@ public class PacienteViewController {
         tablaTurnosPaciente.setItems(FXCollections.observableArrayList(listaTurnos2));
     }
 
+    // ---------------------------- ESTOY SOLUCIONANDO ESTO -----------------------------------
+    void filtrarTurnosPorMedico() {
+        // filtrar turnos por medico seleccionado
+        List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosDisponibles();
+        ObservableList<TurnoTabla> listaTurnos2 = FXCollections.observableArrayList();
 
+        for (Turno turno : listaTurnos) {
+            System.out.println("entra al foreach");
+            if (medicoPacienteChoiceBox.getSelectionModel().getSelectedItem().equals(turno.getMedico().getNombre() + " " + turno.getMedico().getApellido())) {
+                System.out.println("turno dentro= " + turno);
+                Especialidad especialidad = turno.getMedico().getEspecialidad();
+                Medico medico2 = turno.getMedico();
+                TurnoTabla turnoTabla = new TurnoTabla(turno.getDia(), turno.getHora(), especialidad, medico2);
+                listaTurnos2.add(turnoTabla);
+            }
+        }
+
+
+        columnaFechaTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("dia"));
+        columnaHoraTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("hora"));
+        columnaEspecialidadTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("especialidad"));
+        columnaMedicoTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("medico"));
+
+        tablaTurnosPaciente.setItems(FXCollections.observableArrayList(listaTurnos2));
+    }
 
     @FXML
     void miPerfilAction(MouseEvent event) {
