@@ -450,26 +450,28 @@ public class AdminViewController {
 
         miPerfilAdminAnchorPane.setVisible(true);
         editarMiPerfilAdminAnchorPane.setVisible(true);
+    }
 
-
-
-
+    private void agregarDatosAFieldEditarMiPerfil (){
+        nombreEdicionMiPerfilAdminField.setPromptText(nombreMiPerfilAdminLabel.getText());
+        apellidoEdicionMiPerfilAdminField.setPromptText(apellidoMiPerfilAdminLabel.getText());
+        emailEdicionMiPerfilAdminField.setPromptText(emailMiPerfilAdminLabel.getText());
     }
 
     //[ EDITAR PERFIL ]
     @FXML
     void fieldNameEditMyProfileAdmin(ActionEvent event) { //Field Nombre en Editar Mi Perfil
-        nombreEdicionMiPerfilAdminField.setPromptText(nombreMiPerfilAdminLabel.getText());
+
     }
 
     @FXML
     void fieldSurnameEditMyProfileAdmin(ActionEvent event) { //Field Apellido en Editar Mi Perfil
-        apellidoEdicionMiPerfilAdminField.setPromptText(apellidoMiPerfilAdminLabel.getText());
+
     }
 
     @FXML
     void fieldEmailEditMyProfileAdmin(ActionEvent event) { //Field Email en Editar Mi Perfil
-        emailEdicionMiPerfilAdminField.setPromptText(emailMiPerfilAdminLabel.getText());
+
     }
 
     @FXML
@@ -477,8 +479,8 @@ public class AdminViewController {
         Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
 
         //valido contraseña vieja con ingresada
-      /*  if (!actualPasswordEdicionMiPerfilAdminField.getText().equals(usuarioLogueado.getContrasena())) //AVERIGUAR ERROR
-            showErrorAlert("¡Contraseña incorrecta!");*/
+        if (!actualPasswordEdicionMiPerfilAdminField.getText().equals(usuarioLogueado.getContrasena())) //AVERIGUAR ERROR
+            showErrorAlert("¡Contraseña incorrecta!");
     }
 
     @FXML
@@ -491,12 +493,13 @@ public class AdminViewController {
 
     @FXML
     void clickHideNewPasswordEditMyProfileAdmin(KeyEvent event) { //Botón ojo Ocultar "Nueva Contraseña" en Editar Mi Perfil
+        //COMPLETAR
 
     }
 
     @FXML
     void clickShowNewPasswordEditMyProfileAdmin(KeyEvent event) { //Botón ojo Mostrar "Nueva Contraseña" en Editar Mi Perfil
-
+        //COMPLETAR
     }
 
     @FXML
@@ -509,12 +512,12 @@ public class AdminViewController {
 
     @FXML
     void clickHideConfirmNewPasswordEditMyProfileAdmin(KeyEvent event) { //Botón ojo Ocultar "Confirmar Nueva Contraseña" en Editar Mi Perfil
-
+        //COMPLETAR
     }
 
     @FXML
     void clickShowConfirmNewPasswordEditMyProfileAdmin(KeyEvent event) { //Botón ojo Mostrar "Confirmar Nueva Contraseña" en Editar Mi Perfil
-
+        //COMPLETAR
     }
     @FXML
     void clickSaveEditMyProfileAdmin(ActionEvent event) { //Botón guardar cambios en Editar Mi Perfil
@@ -527,7 +530,10 @@ public class AdminViewController {
         SessionManager.getInstance().getEntidadLogueada().setNombre(nombre);
         SessionManager.getInstance().getEntidadLogueada().setApellido(apellido);
         SessionManager.getInstance().getEntidadLogueada().setMail(email);
-     //   SessionManager.getInstance().getEntidadLogueada().setContrasena(password); //AVERIGUAR ERROR
+     //   SessionManager.getInstance().getEntidadLogueada().setContrasena(password); //SOLUCIONAR ERROR
+
+        //mostrar mensaje de confirmación
+        showSuccessAlert("¡Cambios guardados con éxito!");
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -750,55 +756,97 @@ public class AdminViewController {
 
     //EN PROGRESO
     @FXML
-    void fieldOldPasswoordUserEdit(ActionEvent event) {
+    void fieldOldPasswoordUserEdit(ActionEvent event) { //Field Contraseña Actual en Editar Usuario
         //valido que la password ingresada coincida con la del usuario
-        /*if (medic.isPresent()) {
-            if (medic.get().getPassword().equals(oldPasswordEdicionEditarUsuarioAdminField.getText())) {
-                //si coincide, muestro el resto de los campos
-                nombreEdicionEditarUsuarioAdminField.setVisible(true);
-                apellidoEdicionEditarUsuarioAdminField.setVisible(true);
-                emailEdicionEditarUsuarioAdminField.setVisible(true);
-                especialidadEdicionEditarUsuarioAdminChoiceBox.setVisible(true);
-                confirmarEdicionEditarUsuarioAdminButton.setVisible(true);
-            }else{
-                //si no coincide, muestro un error
-                showErrorAlert("La contraseña ingresada no es correcta.");
-            }*/
+        if (medic.isPresent()) {
+            if (!medic.get().getContrasena().equals(actualPasswordEdicionEditarUsuarioAdminField.getText()))
+                showErrorAlert("Contraseña inválida.");
+            else
+                showSuccessAlert("Contraseña válida.");
+
+        }else if (admin.isPresent()) {
+            if (!admin.get().getContrasena().equals(actualPasswordEdicionEditarUsuarioAdminField.getText()))
+                showErrorAlert("Contraseña inválida.");
+            else
+                showSuccessAlert("Contraseña válida.");
+        }
     }
 
     @FXML
     void fieldNewPasswordUserEdit(ActionEvent event) { //Field Nueva Contraseña en Editar Usuario
+        //valido que la nueva contraseña sea distinta a la vieja
+        if (medic.isPresent()) {
+            if (medic.get().getContrasena().equals(newPasswordEdicionEditarUsuarioAdminField.getText()))
+                showErrorAlert("La nueva contraseña debe ser distinta a la anterior.");
+            else
+                showSuccessAlert("Contraseña válida.");
+        }else if (admin.isPresent()) {
+            if (admin.get().getContrasena().equals(newPasswordEdicionEditarUsuarioAdminField.getText()))
+                showErrorAlert("La nueva contraseña debe ser distinta a la anterior.");
+            else
+                showSuccessAlert("Contraseña válida.");
+        }
 
     }
 
     @FXML
     void clickHideNewPasswordUserEdit(KeyEvent event) { //Botón ojo Ocultar "Nueva Contraseña" en Editar Usuario
-
+        //COMPLETAR
     }
 
     @FXML
     void clickShowNewPasswordUserEdit(KeyEvent event) { //Botón ojo Mostrar "Nueva Contraseña" en Editar Usuario
-
+        //COMPLTAR
     }
 
     @FXML
     void fieldConfirmNewPasswordUserEdit(ActionEvent event) { //Field Confirmar Nueva Contraseña en Editar Usuario
-
+        //Valido que la confirmacion sea la misma contraseña que la nueva.
+        if (medic.isPresent()) {
+            if (!medic.get().getContrasena().equals(confirmNewPasswordEdicionEditarUsuarioAdminField.getText()))
+                showErrorAlert("Las contraseñas no coinciden.");
+            else
+                showSuccessAlert("Contraseña válida.");
+        }else if (admin.isPresent()){
+            if (!admin.get().getContrasena().equals(confirmNewPasswordEdicionEditarUsuarioAdminField.getText()))
+                showErrorAlert("Las contraseñas no coinciden.");
+            else
+                showSuccessAlert("Contraseña válida.");
+        }
     }
 
     @FXML
     void clickHideConfirmNewPasswordUserEdit(KeyEvent event) { //Botón ojo Ocultar "Confirmar Nueva Contraseña" en Editar Usuario
-
+        //COMPLETAR
     }
 
     @FXML
     void clickShowConfirmNewPasswordUserEdit(KeyEvent event) { //Botón ojo Mostrar "Confirmar Nueva Contraseña" en Editar Usuario
-
+        //COMPLETAR
     }
 
     @FXML
     void clickSaveUserEdit(ActionEvent event) { //Botón Guardar Cambios en Editar Usuario
+        String nombre = nombreEdicionEditarUsuarioAdminField.getText();
+        String apellido = apellidoEdicionEditarUsuarioAdminField.getText();
+        String email = emailEdicionEditarUsuarioAdminField.getText();
+        String password = confirmNewPasswordEdicionEditarUsuarioAdminField.getText();
 
+        //setear el usuario con los datos ingresados
+        if (medic.isPresent()) {
+            medic.get().setNombre(nombre);
+            medic.get().setApellido(apellido);
+            medic.get().setMail(email);
+            medic.get().setContrasena(password);
+        }else if (admin.isPresent()){
+            admin.get().setNombre(nombre);
+            admin.get().setApellido(apellido);
+            admin.get().setMail(email);
+            admin.get().setContrasena(password);
+        }
+
+        //mostrar mensaje de confirmación
+        showSuccessAlert("¡Cambios guardados con éxito!");
     }
 
 
