@@ -6,6 +6,10 @@ import com.example.tpfinallab3.models.Medico;
 import com.example.tpfinallab3.security.SessionManager;
 import com.example.tpfinallab3.services.AdministrativoService;
 import com.example.tpfinallab3.services.MedicoService;
+import com.example.tpfinallab3.services.TurnoService;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class MainPruebas {
 
@@ -68,18 +72,24 @@ public class MainPruebas {
         SessionManager.getInstance().iniciarSesion("carlosfuentes","74185296");
         System.out.println("Contraseña de la entidad logueada: " + SessionManager.getInstance().getEntidadLogueada().getContrasena());
         MedicoService.getInstance().agregarMedico(medico);
+        Medico medico2 = new Medico("soniabazan","147258","Sonia","Bazan","sonia@gmail.com",Especialidad.PEDIATRIA);
+        MedicoService.getInstance().agregarMedico(medico2);
+
         System.out.println("Administrativos: " + AdministrativoService.getInstance().getAdministrativos());
 
        // SessionManager.getInstance().cerrarSesion();
 
         // PROBANDO HABILITAR TURNOS
 
-/*
+
         LocalDate dia = LocalDate.of(2023, 6, 16);
         LocalTime horaInicio = LocalTime.of(10, 0);
         LocalTime horaFin = LocalTime.of(11, 0);
+        TurnoService.getInstance().habilitarTurnos(dia, horaInicio, horaFin, medico2 );
+        System.out.println("Los turnos de Sonia son: " + TurnoService.getInstance().buscarTurnosPorDiaPorMedico(dia, medico2));
+
         //Medico medico = new Medico("fgildemuro", "123456", "Federico", "Gil de Muro", "fgildemuro@hotmail.com", Especialidad.CARDIOLOGIA);
-        TurnoService.getInstance().habilitarTurnos(dia, horaInicio, horaFin, medico );
+/*        TurnoService.getInstance().habilitarTurnos(dia, horaInicio, horaFin, medico );
         dia = LocalDate.of(2023, 6, 17);
         TurnoService.getInstance().habilitarTurnos(dia, horaInicio, horaFin, medico );
         dia = LocalDate.of(2023, 6, 19);
