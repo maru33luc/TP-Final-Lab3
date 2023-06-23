@@ -296,7 +296,7 @@ public class PacienteViewController {
             pedirTurnoPacienteView.setVisible(true);
             misTurnosPacienteView.setVisible(false);
             editProfilePacientePanel.setVisible(false);
-
+            cargarTablaTurnos();
     }
 
     @FXML
