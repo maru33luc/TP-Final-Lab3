@@ -1,12 +1,11 @@
 package com.example.tpfinallab3.controllers;
 
-import com.example.tpfinallab3.models.Administrativo;
-import com.example.tpfinallab3.models.Autenticable;
-import com.example.tpfinallab3.models.Especialidad;
-import com.example.tpfinallab3.models.Medico;
+import com.example.tpfinallab3.models.*;
 import com.example.tpfinallab3.security.SessionManager;
+import com.example.tpfinallab3.security.ValidationService;
 import com.example.tpfinallab3.services.AdministrativoService;
 import com.example.tpfinallab3.services.MedicoService;
+import com.example.tpfinallab3.services.PacienteService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -16,6 +15,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.Optional;
+
+import static com.example.tpfinallab3.controllers.LoginController.showErrorAlert;
 
 public class AdminViewController {
 
@@ -167,7 +168,10 @@ public class AdminViewController {
     private Label especialidadMostrarEliminarUsuarioAdminLabel;
 
     @FXML
-    private ChoiceBox<String> especialidadNuevoUsuarioChoiceBox;
+    private Label especialidadLabel;
+
+    @FXML
+    private ChoiceBox<Especialidad> especialidadNuevoUsuarioChoiceBox;
 
     @FXML
     private CheckBox fechaVerTurnosAdminCheckBox;
@@ -296,6 +300,9 @@ public class AdminViewController {
     private PasswordField passwordNuevoUsuarioField;
 
     @FXML
+    private TextField plainPasswordNuevoUsuarioField;
+
+    @FXML
     private TableColumn<?, ?> tablaMedicoColumnaHora;
 
     @FXML
@@ -347,7 +354,7 @@ public class AdminViewController {
     public void initialize() {
         Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
         especialidadEdicionEditarUsuarioAdminChoiceBox.getItems().addAll(Especialidad.values().toString());
-        especialidadNuevoUsuarioChoiceBox.getItems().addAll(Especialidad.values().toString());
+        especialidadNuevoUsuarioChoiceBox.getItems().addAll(Especialidad.values());
 
         try{
             usuarioMiPerfilAdminLabel.setText(usuarioLogueado.getNombreUsuario());
@@ -562,61 +569,94 @@ public class AdminViewController {
 
 
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //----------------------------[ VIEW - NUEVO USUARIO ] (FEDE)
-    @FXML
-    void fieldUserNewUser(ActionEvent event) { //Field Usuario en Nuevo Usuario
+//NUEVO USUARIO////////////////////////////////////////////////////////////////////////////////////////////////
 
+    @FXML
+    private void mostrarPassword(MouseEvent event) {
+        passwordNuevoUsuarioField.setVisible(false);
+        plainPasswordNuevoUsuarioField.setText(passwordNuevoUsuarioField.getText());
+        plainPasswordNuevoUsuarioField.setVisible(true);
+        mostrarPasswordNuevoUsuarioButton.setVisible(true);
+        ocultarPasswordNuevoUsuarioButton.setVisible(false);
     }
 
     @FXML
-    void fieldPasswordNewUser(ActionEvent event) { //Field Contraseña en Nuevo Usuario
-
-    }
-
-    @FXML
-    void clickHidePasswordNewUser(KeyEvent event) { //Botón ojo Ocultar "Contraseña" en Nuevo Usuario
-
-    }
-
-    @FXML
-    void clickShowPasswordNewUser(KeyEvent event) { //Botón ojo Mostrar "Contraseña" en Nuevo Usuario
-
-    }
-
-    @FXML
-    void fieldNameNewUser(ActionEvent event) { //Field Nombre en Nuevo Usuario
-
-    }
-
-    @FXML
-    void fieldLastnameNewUser(ActionEvent event) { //Field Apellido en Nuevo Usuario
-
-    }
-
-    @FXML
-    void fieldEmailNewUser(ActionEvent event) { //Field Email en Nuevo Usuario
-
+    private void ocultarPassword(MouseEvent event) {
+        plainPasswordNuevoUsuarioField.setVisible(false);
+        passwordNuevoUsuarioField.setText(plainPasswordNuevoUsuarioField.getText());
+        passwordNuevoUsuarioField.setVisible(true);
+        mostrarPasswordNuevoUsuarioButton.setVisible(false);
+        ocultarPasswordNuevoUsuarioButton.setVisible(true);
     }
 
     @FXML
     void checkNewDoctor(ActionEvent event) { //CheckBox isMedico en Nuevo Usuario
-
+        if (isMedicoNuevoUsuarioCheckBox.isSelected()) {
+            isAdminNuevoUsuarioCheckBox.setSelected(false);
+            especialidadLabel.setVisible(true);
+            especialidadNuevoUsuarioChoiceBox.setVisible(true);
+        }
+        if (!isMedicoNuevoUsuarioCheckBox.isSelected()) {
+            especialidadLabel.setVisible(false);
+            especialidadNuevoUsuarioChoiceBox.setVisible(false);
+        }
     }
 
     @FXML
     void checkNewAdmin(ActionEvent event) { //CheckBox isAdmin en Nuevo Usuario
-
+        if (isAdminNuevoUsuarioCheckBox.isSelected()) {
+            isMedicoNuevoUsuarioCheckBox.setSelected(false);
+            especialidadLabel.setVisible(false);
+            especialidadNuevoUsuarioChoiceBox.setVisible(false);
+        }
     }
 
-  /*  @FXML
-    void choiceSpecialityNewUser(KeyEvent event) { //ChoiceBox Especialidad en Nuevo Usuario
-
-    }*/
-
     @FXML
-    void clickSaveNewUser(ActionEvent event) { //Boton Guardar Nuevo Usuario
-
+    void clickSaveNewUser(ActionEvent event) { //Botón para crear nuevo usuario
+        //si no se seleccionó tipo de usuario
+        if (!isMedicoNuevoUsuarioCheckBox.isSelected() && !isAdminNuevoUsuarioCheckBox.isSelected()) {
+            showErrorAlert("Debe seleccionar el tipo de usuario que quiere crear");
+        }
+        else {
+            //si se seleccionó médico
+            if (isMedicoNuevoUsuarioCheckBox.isSelected()) {
+                //se instancia un objeto Médico con los datos ingresados
+                Medico medico = new Medico(userNuevoUsuarioField.getText().toLowerCase(),
+                        passwordNuevoUsuarioField.getText(),
+                        nombreNuevoUsuarioField.getText(),
+                        apellidoNuevoUsuarioField.getText(),
+                        emailNuevoUsuarioField.getText(),
+                        especialidadNuevoUsuarioChoiceBox.getValue());
+                //se valida el ingreso de datos y se agrega a la lista de médicos
+                try {
+                    ValidationService.getInstance().validarDatosNuevoUsuario(medico);
+                    MedicoService.getInstance().agregarMedico(medico);
+                    LoginController.showSuccessAlert("Nuevo medico creado exitosamente");
+                    ocultarTodosLosAnchorPane();
+                } catch (Exception e) {
+                    showErrorAlert(e.getMessage());
+                }
+            }
+            //si se seleccionó administrativo
+            else {
+                //se instancia un objeto Administrativo con los datos ingresados
+                Administrativo administrativo = new Administrativo(
+                        userNuevoUsuarioField.getText().toLowerCase(),
+                        passwordNuevoUsuarioField.getText(),
+                        nombreNuevoUsuarioField.getText(),
+                        apellidoNuevoUsuarioField.getText(),
+                        emailNuevoUsuarioField.getText());
+                //se valida el ingreso de datos y se agrega a la lista de administrativos
+                try {
+                    ValidationService.getInstance().validarDatosNuevoUsuario(administrativo);
+                    AdministrativoService.getInstance().agregarAdministrativo(administrativo);
+                    LoginController.showSuccessAlert("Nuevo administrativo creado exitosamente");
+                    ocultarTodosLosAnchorPane();
+                } catch (Exception e) {
+                    showErrorAlert(e.getMessage());
+                }
+            }
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -746,7 +786,7 @@ public class AdminViewController {
     void choiceSpecialityUserEdit(KeyEvent event) { //ChoiceBox Especialidad en Editar Usuario
 
     }
-    */
+
 
     //EN PROGRESO
     @FXML
@@ -763,8 +803,8 @@ public class AdminViewController {
             }else{
                 //si no coincide, muestro un error
                 showErrorAlert("La contraseña ingresada no es correcta.");
-            }*/
-    }
+            }
+    }*/
 
     @FXML
     void fieldNewPasswordUserEdit(ActionEvent event) { //Field Nueva Contraseña en Editar Usuario

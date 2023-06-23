@@ -377,25 +377,26 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="userNuevoUsuarioField" layoutX="89.0" layoutY="120.0" onAction="#fieldUserNewUser" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular" />
+                  <TextField fx:id="userNuevoUsuarioField" layoutX="89.0" layoutY="120.0" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular" />
                   <Label layoutX="89.0" layoutY="160.0" styleClass="nanum-regular" text="Contraseña " textFill="#29838c">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="passwordNuevoUsuarioField" layoutX="89.0" layoutY="185.0" onAction="#fieldPasswordNewUser" prefHeight="31.0" prefWidth="320.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
+                  <PasswordField fx:id="passwordNuevoUsuarioField" layoutX="89.0" layoutY="185.0" prefHeight="31.0" prefWidth="320.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                      <font>
                         <Font name="Playfair Display Regular" size="13.0" />
                      </font>
                   </PasswordField>
+                  <TextField fx:id="plainPasswordNuevoUsuarioField" layoutX="90.0" layoutY="185.0" prefHeight="31.0" prefWidth="320.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular" visible="false" />
                   <AnchorPane layoutX="408.0" layoutY="185.0" prefHeight="31.0" prefWidth="35.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;">
                      <children>
-                        <ImageView fx:id="mostrarPasswordNuevoUsuarioButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onKeyReleased="#clickShowPasswordNewUser" visible="false">
+                        <ImageView fx:id="mostrarPasswordNuevoUsuarioButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onMouseClicked="#ocultarPassword" pickOnBounds="true" visible="false">
                            <image>
                               <Image url="@../../../images/abrir-ojo.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="ocultarPasswordNuevoUsuarioButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onKeyPressed="#clickHidePasswordNewUser">
+                        <ImageView fx:id="ocultarPasswordNuevoUsuarioButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onMouseClicked="#mostrarPassword" pickOnBounds="true">
                            <image>
                               <Image url="@../../../images/cerrar-ojo.png" />
                            </image>
@@ -407,7 +408,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="nombreNuevoUsuarioField" layoutX="89.0" layoutY="250.0" onAction="#fieldNameNewUser" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
+                  <TextField fx:id="nombreNuevoUsuarioField" layoutX="89.0" layoutY="250.0" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -417,7 +418,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="apellidoNuevoUsuarioField" layoutX="89.0" layoutY="315.0" onAction="#fieldLastnameNewUser" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
+                  <TextField fx:id="apellidoNuevoUsuarioField" layoutX="89.0" layoutY="315.0" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -427,7 +428,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="emailNuevoUsuarioField" layoutX="89.0" layoutY="380.0" onAction="#fieldEmailNewUser" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13; -fx-font-size: 13;" styleClass="playfair-regular">
+                  <TextField fx:id="emailNuevoUsuarioField" layoutX="89.0" layoutY="380.0" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13; -fx-font-size: 13;" styleClass="playfair-regular">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -449,12 +450,12 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="89.0" layoutY="495.0" styleClass="nanum-regular" text="Especialidad" textFill="#29838c">
+                  <Label fx:id="especialidadLabel" layoutX="89.0" layoutY="495.0" styleClass="nanum-regular" text="Especialidad" textFill="#29838c" visible="false">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="especialidadNuevoUsuarioChoiceBox" layoutX="89.0" layoutY="520.0" onKeyPressed="#choiceSpecialityNewUser" prefHeight="31.0" prefWidth="360.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular" />
+                  <ChoiceBox fx:id="especialidadNuevoUsuarioChoiceBox" layoutX="89.0" layoutY="520.0" onKeyPressed="#choiceSpecialityNewUser" prefHeight="31.0" prefWidth="360.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular" visible="false" />
                   <Button fx:id="guardarNuevoUsuarioButton" layoutX="182.0" layoutY="653.0" mnemonicParsing="false" onAction="#clickSaveNewUser" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Guardar" textFill="#c4e8dd">
                      <font>
                         <Font name="NanumGothicBold" size="14.0" />
@@ -466,7 +467,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="editarUsuarioAdminAnchorPane" layoutX="135.0" prefHeight="720.0" prefWidth="540.0">
+            <AnchorPane fx:id="editarUsuarioAdminAnchorPane" layoutX="135.0" prefHeight="720.0" prefWidth="540.0" visible="false">
                <children>
                   <Label layoutX="97.0" layoutY="14.0" styleClass="cinzel-regular" text="Editar Usuario" textFill="#123440">
                      <font>
@@ -647,7 +648,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="actualPasswordEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="445.0" onAction="#fieldOldPasswoordUserEdit" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
+                        <PasswordField fx:id="actualPasswordEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="445.0" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
                            <font>
                               <Font size="13.0" />
                            </font>
