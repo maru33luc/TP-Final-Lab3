@@ -160,3 +160,38 @@
     fx-background-color: "#c6e9de";
 }
 
+
+/*PRUEBA MODIFICACION BARRA DE TITULO*/
+
+/*
+.root .title-bar {
+    -fx-background-color: #091A21;
+    -fx-text-fill: #FDC373;
+}
+
+.root .title-bar .window-close-button {
+    -fx-text-fill: #FDC373;
+}
+
+.root .title-bar .window-minimize-button {
+    -fx-text-fill: #FDC373;
+}
+
+.root .title-bar .window-maximize-button {
+    -fx-text-fill: #FDC373;
+}*/
+
+/*PRUEBA MODIFICACION ALERTS*/
+
+/*.alert {
+    -fx-background-color: #091A21;
+    -fx-text-fill: #D3F9EB ;
+    -fx-border-color: #23737A;
+    -fx-border-width: 2;
+    -fx-pane-background: #091A21;
+    -fx-padding: 10;
+    -fx-width: 200;
+    -fx-height: 200;*/
+
+
+}

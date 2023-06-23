@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="loginPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1080.0" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.LoginController">
+<BorderPane fx:id="loginPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="root" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.LoginController">
    <left>
       <AnchorPane prefHeight="720.0" prefWidth="540.0" style="-fx-background-color: #29828B;" BorderPane.alignment="CENTER">
          <children>
@@ -41,17 +41,22 @@
    <right>
       <AnchorPane fx:id="loginField" prefHeight="720.0" prefWidth="540.0" style="-fx-background-color: d3f9eb;" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="welcomeLabel" layoutX="131.0" layoutY="39.0" styleClass="playfair-regular" text="¡Bienvenido!" textFill="#255951">
+            <ImageView fitHeight="720.0" fitWidth="540.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/fondoClaro540x720.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="welcomeLabel" layoutX="110.0" layoutY="43.0" styleClass="playfair-regular" text="¡Bienvenido!" textFill="#255951">
                <font>
-                  <Font name="Century Schoolbook" size="55.0" />
+                  <Font name="Playfair Display Regular" size="55.0" />
                </font>
             </Label>
-            <Label fx:id="usuarioLabel" layoutX="43.0" layoutY="164.0" styleClass="nanum-regular" text="Usuario" textFill="#29838c">
+            <Label fx:id="usuarioLabel" layoutX="49.0" layoutY="159.0" styleClass="nanum-regular" text="Usuario" textFill="#29838c">
                <font>
                   <Font name="Century Gothic" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="usernameField" layoutX="43.0" layoutY="192.0" prefHeight="45.0" prefWidth="459.0" style="-fx-border-color: #29838c; -fx-background-color: d3f9eb; -fx-border-width: 2;">
+            <TextField fx:id="usernameField" layoutX="49.0" layoutY="189.0" prefHeight="45.0" prefWidth="445.0" style="-fx-border-color: #29838c; -fx-background-color: d3f9eb; -fx-border-width: 2;">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -60,12 +65,12 @@
                   <String fx:value="text-field" />
                </styleClass>
             </TextField>
-            <Label fx:id="passwordLabel" layoutX="44.0" layoutY="263.0" styleClass="nanum-regular" text="Contraseña" textFill="#29838c">
+            <Label fx:id="passwordLabel" layoutX="49.0" layoutY="261.0" styleClass="nanum-regular" text="Contraseña" textFill="#29838c">
                <font>
                   <Font name="Century Gothic" size="20.0" />
                </font>
             </Label>
-            <PasswordField fx:id="passwordField" layoutX="44.0" layoutY="291.0" prefHeight="45.0" prefWidth="375.0" style="-fx-border-color: #29838c; -fx-border-width: 2; -fx-background-color: d3f9eb;">
+            <PasswordField fx:id="passwordField" layoutX="49.0" layoutY="291.0" prefHeight="45.0" prefWidth="375.0" style="-fx-border-color: #29838c; -fx-border-width: 2; -fx-background-color: d3f9eb;">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -73,10 +78,10 @@
                   <String fx:value="playfair-regular" />
                   <String fx:value="text-field" />
                </styleClass></PasswordField>
-            <TextField fx:id="plainPasswordField" layoutX="44.0" layoutY="291.0" prefHeight="45.0" prefWidth="375.0" style="-fx-border-color: #29838c; -fx-border-width: 2; -fx-background-color: d3f9eb" visible="false" />
-            <Pane layoutX="428.0" layoutY="291.0" prefHeight="45.0" prefWidth="71.0" style="-fx-border-color: #29838c; -fx-border-width: 2;">
+            <TextField fx:id="plainPasswordField" layoutX="49.0" layoutY="291.0" prefHeight="45.0" prefWidth="375.0" style="-fx-border-color: #29838c; -fx-border-width: 2; -fx-background-color: d3f9eb" visible="false" />
+            <Pane layoutX="421.0" layoutY="291.0" prefHeight="45.0" prefWidth="70.0" style="-fx-border-color: #29838c; -fx-border-width: 2;">
                <children>
-                  <ImageView fx:id="showPasswordButton" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="13.0" layoutY="3.0" onMouseClicked="#ocultarPassword" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="showPasswordButton" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="13.0" layoutY="2.0" onMouseClicked="#ocultarPassword" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../images/abrir-ojo.png" />
                      </image>
@@ -85,7 +90,7 @@
                      </cursor>
                   </ImageView>
 
-                  <ImageView fx:id="hidePasswordButton" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="13.0" layoutY="1.0" onMouseClicked="#mostrarPassword" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="hidePasswordButton" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="13.0" onMouseClicked="#mostrarPassword" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/cerrar-ojo.png" />
                      </image>
@@ -107,7 +112,7 @@
                </cursor>
                <styleClass>
                   <String fx:value="nanum-bold" />
-                  <String fx:value="button-login" />
+                  <String fx:value="button-oscuro" />
                </styleClass>
             </Button>
             <Hyperlink fx:id="olvidoUsuarioLink" layoutX="284.0" layoutY="366.0" onAction="#recuperarUsuario" text="¿Olvidó su usuario?" textFill="#255951">
@@ -128,7 +133,7 @@
                   <String fx:value="forget-link" />
                </styleClass>
             </Hyperlink>
-            <Separator fx:id="loginSeparator" layoutX="26.0" layoutY="488.0" prefHeight="0.0" prefWidth="500.0" style="-fx-background-color: #29838c;">
+            <Separator fx:id="loginSeparator" layoutX="49.0" layoutY="471.0" prefHeight="0.0" prefWidth="445.0" style="-fx-background-color: #29838c;">
                <effect>
                   <Glow level="0.0" />
                </effect>
@@ -147,7 +152,7 @@
                </cursor>
                <styleClass>
                   <String fx:value="nanum-bold" />
-                  <String fx:value="button-sign-up" />
+                  <String fx:value="button-claro" />
                </styleClass>
             </Button>
          </children>
