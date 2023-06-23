@@ -1,13 +1,13 @@
 package com.example.tpfinallab3.controllers;
 
 import com.example.tpfinallab3.models.Paciente;
-import com.example.tpfinallab3.security.AuthenticationService;
 import com.example.tpfinallab3.security.ValidationService;
 import com.example.tpfinallab3.services.PacienteService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class RegistroController {
@@ -32,6 +32,9 @@ public class RegistroController {
 
     @FXML
     private Button guardarNuevoPacienteButton;
+
+    @FXML
+    private ImageView hidePasswordButton;
 
     @FXML
     private AnchorPane minimizeNuevoPacienteButton;
@@ -64,19 +67,19 @@ public class RegistroController {
     private Label obraSocialNuevoPacienteLabel;
 
     @FXML
-    private ImageView ojoCloseNuevoPacienteButton;
-
-    @FXML
-    private ImageView ojoOpenNuevoPacienteButton;
-
-    @FXML
     private PasswordField passwordNuevoPacienteField;
 
     @FXML
     private Label passwordNuevoPacienteLabel;
 
     @FXML
+    private TextField plainPasswordNuevoPacienteField;
+
+    @FXML
     private AnchorPane registrarsePanel;
+
+    @FXML
+    private ImageView showPasswordButton;
 
     @FXML
     private TextField telefonoNuevoPacienteField;
@@ -100,6 +103,7 @@ public class RegistroController {
 
     @FXML
     void clickGuardar(ActionEvent event) {
+        //se instancia un objeto Paciente con los datos ingresados
         Paciente paciente = new Paciente(userNuevoPacienteField.getText().toLowerCase(),
                 passwordNuevoPacienteField.getText(),
                 nombreNuevoPacienteField.getText(),
@@ -109,6 +113,8 @@ public class RegistroController {
                 telefonoNuevoPacienteField.getText(),
                 obraSocialNuevoPacienteField.getText(),
                 nroAfiliadoNuevoPacienteField.getText());
+
+        //se validan los datos ingresados y si son correctos se agrega el paciente y se regresa a login
         try {
             ValidationService.getInstance().validarDatosNuevoUsuario(paciente);
             PacienteService.getInstance().agregarPaciente(paciente);
@@ -118,5 +124,23 @@ public class RegistroController {
         catch (Exception e) {
             LoginController.showErrorAlert(e.getMessage());
         }
+    }
+
+    @FXML
+    private void mostrarPassword(MouseEvent event) {
+        passwordNuevoPacienteField.setVisible(false);
+        plainPasswordNuevoPacienteField.setText(passwordNuevoPacienteField.getText());
+        plainPasswordNuevoPacienteField.setVisible(true);
+        showPasswordButton.setVisible(true);
+        hidePasswordButton.setVisible(false);
+    }
+
+    @FXML
+    private void ocultarPassword(MouseEvent event) {
+        plainPasswordNuevoPacienteField.setVisible(false);
+        passwordNuevoPacienteField.setText(plainPasswordNuevoPacienteField.getText());
+        passwordNuevoPacienteField.setVisible(true);
+        showPasswordButton.setVisible(false);
+        hidePasswordButton.setVisible(true);
     }
 }

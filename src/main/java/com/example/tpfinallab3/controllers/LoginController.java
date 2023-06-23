@@ -74,10 +74,13 @@ public class LoginController {
 
     @FXML
     private void clickLogin(ActionEvent event) {
+
+        //si el nombre de usuario y contraseña ingresados son correctos
         if (SessionManager.getInstance().iniciarSesion(usernameField.getText(), passwordField.getText())) {
             Autenticable usuarioAutenticado = SessionManager.getInstance().getEntidadLogueada();
             showSuccessAlert("Bienvenido " + usuarioAutenticado.getNombre() + " " + usuarioAutenticado.getApellido() + "!");
 
+            //según el tipo de usuario que ingresó se carga la vista correspondiente
             FXMLLoader fxmlLoader;
             Parent root;
             if (SessionManager.getInstance().getTipoEntidad().equals("paciente")) {
@@ -96,13 +99,12 @@ public class LoginController {
             catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
-//todo verificar si lo comentado es necesario
-            /*PacienteViewController pacienteViewController = fxmlLoader.getController();
-            pacienteViewController.setMainController(this);*/
+
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-            }
+        }
+        //si el nombre de usuario y/o contraseña ingresados son incorrectos
         else {
             showErrorAlert("Nombre de usuario y/o contraseña incorrectos");
         }
@@ -124,20 +126,20 @@ public class LoginController {
 
     @FXML
     private void mostrarPassword(MouseEvent event) {
-        plainPasswordField.setVisible(false);
-        passwordField.setText(plainPasswordField.getText());
-        passwordField.setVisible(true);
-        showPasswordButton.setVisible(false);
-        hidePasswordButton.setVisible(true);
-    }
-
-    @FXML
-    private void ocultarPassword(MouseEvent event) {
         passwordField.setVisible(false);
         plainPasswordField.setText(passwordField.getText());
         plainPasswordField.setVisible(true);
         showPasswordButton.setVisible(true);
         hidePasswordButton.setVisible(false);
+    }
+
+    @FXML
+    private void ocultarPassword(MouseEvent event) {
+        plainPasswordField.setVisible(false);
+        passwordField.setText(plainPasswordField.getText());
+        passwordField.setVisible(true);
+        showPasswordButton.setVisible(false);
+        hidePasswordButton.setVisible(true);
     }
 
     @FXML

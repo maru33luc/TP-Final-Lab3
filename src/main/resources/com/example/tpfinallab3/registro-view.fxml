@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -8,6 +9,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="registrarsePanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #5ABAEA;" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.RegistroController">
@@ -49,20 +51,31 @@
                   <Font name="Playfair Display Regular" size="13.0" />
                </font>
             </PasswordField>
-            <AnchorPane layoutX="445.0" layoutY="165.0" prefHeight="31.0" prefWidth="40.0" style="-fx-border-color: #29838C; -fx-border-width: 2;">
+            <TextField fx:id="plainPasswordNuevoPacienteField" layoutX="85.0" layoutY="165.0" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular" visible="false">
+               <font>
+                  <Font name="Playfair Display Regular" size="13.0" />
+               </font>
+            </TextField>
+            <Pane layoutX="443.0" layoutY="165.0" prefHeight="31.0" prefWidth="40.0" style="-fx-border-color: #29838C; -fx-border-width: 2;">
                <children>
-                  <ImageView fx:id="ojoOpenNuevoPacienteButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="34.0" layoutX="3.0" layoutY="4.0" visible="false">
+                  <ImageView fx:id="showPasswordButton" accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" layoutX="5.0" layoutY="2.5" onMouseClicked="#ocultarPassword" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../images/abrir-ojo.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
-                  <ImageView fx:id="ojoCloseNuevoPacienteButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="34.0" layoutX="3.0" layoutY="5.0">
+                  <ImageView fx:id="hidePasswordButton" accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" layoutX="5.0" layoutY="2.5" onMouseClicked="#mostrarPassword" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/cerrar-ojo.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                </children>
-            </AnchorPane>
+            </Pane>
             <Label fx:id="nombreNuevoPacienteLabel" layoutX="86.0" layoutY="200.0" styleClass="nanum-regular" text="Nombre" textFill="#29838c">
                <font>
                   <Font name="NanumGothic" size="13.0" />
@@ -83,7 +96,7 @@
                   <Font size="13.0" />
                </font>
             </TextField>
-            <Label fx:id="emailNuevoPacienteLabel" layoutX="86.0" layoutY="310.0" styleClass="nanum-regular" text="Email" textFill="#29838c">
+            <Label fx:id="emailNuevoPacienteLabel" layoutX="86.0" layoutY="310.0" styleClass="nanum-regular" text="Correo electrónico" textFill="#29838c">
                <font>
                   <Font name="NanumGothic" size="13.0" />
                </font>
@@ -123,7 +136,7 @@
                   <Font size="13.0" />
                </font>
             </TextField>
-            <Label fx:id="nroAfiliadoNuevoPacienteLabel" layoutX="86.0" layoutY="535.0" styleClass="nanum-regular" text="Nº de Afiliado" textFill="#29838c">
+            <Label fx:id="nroAfiliadoNuevoPacienteLabel" layoutX="86.0" layoutY="535.0" styleClass="nanum-regular" text="Número de Afiliado" textFill="#29838c">
                <font>
                   <Font name="NanumGothic" size="13.0" />
                </font>
