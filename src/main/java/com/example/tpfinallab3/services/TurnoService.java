@@ -114,6 +114,7 @@ public class TurnoService {
         }else{
             System.out.println("No tiene permisos para solicitar un turno");
         }
+        guardarTurnosJson();
     }
 
     public void marcarTurnoComoOcupado(Turno turno) {
@@ -122,6 +123,15 @@ public class TurnoService {
 
     public void marcarTurnoComoDisponible(Turno turno) {
         turno.setDisponible(true);
+        turno.setPaciente(null);
+        //guardarTurnosJson();
+    }
+
+    public Turno buscarTurnoPorPacienteMedicoDiaYHora(Paciente paciente, Medico medico, LocalDate dia, LocalTime hora) {
+        return turnos.stream()
+                .filter(turno -> turno.getPaciente().equals(paciente) && turno.getMedico().equals(medico) && turno.getDia().equals(dia) && turno.getHora().equals(hora))
+                .findFirst()
+                .orElse(null);
     }
 
     /*public List<Turno> buscarTurnosEntreFechas(LocalDate fechaInicio, LocalDate fechaFin) {

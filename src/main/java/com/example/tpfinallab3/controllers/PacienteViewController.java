@@ -232,7 +232,13 @@ public class PacienteViewController {
 
         // ---------------------- ACA TERMINARIA LO HARCODEADO PARA TESTEAR -------------------------------
 
-        List<Turno> listaMisTurnos= TurnoService.getInstance().buscarTurnosPorPaciente(paciente.get());
+        cargarTablaMisTurnos();
+
+    }
+
+    void cargarTablaMisTurnos(){
+        Autenticable paciente= SessionManager.getInstance().getEntidadLogueada();
+        List<Turno> listaMisTurnos= TurnoService.getInstance().buscarTurnosPorPaciente((Paciente) paciente);
 
         List<TurnoTabla> listaMisTurnos2 = new ArrayList<>();
 
@@ -250,7 +256,6 @@ public class PacienteViewController {
         columnaMedicoMiTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("medico"));
 
         tablaMisTurnosPaciente.setItems(FXCollections.observableArrayList(listaMisTurnos2));
-
     }
 
     @FXML
@@ -294,7 +299,10 @@ public class PacienteViewController {
 
     }
 
+    @FXML
+    void seleccionarMisTurnosAction(MouseEvent event) {
 
+    }
 
     public void setMainController(LoginController loginController) {
           this.loginController = loginController;

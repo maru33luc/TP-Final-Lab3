@@ -17,9 +17,7 @@ public class Medico extends Usuario {
         return especialidad;
     }
 
-    public String getNombreyApellido() {
-        return this.getNombre() + " " + this.getApellido();
-    }
+
 
     public void setEspecialidad(Especialidad especialidad) {
         this.especialidad = especialidad;
@@ -62,7 +60,5 @@ public class Medico extends Usuario {
         return super.getApellido();
     }
 
-    public String getNombreApellido() {
-        return this.getNombre() + " " + this.getApellido();
-    }
+
 }
