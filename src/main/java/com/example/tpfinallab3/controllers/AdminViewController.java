@@ -1,16 +1,21 @@
 package com.example.tpfinallab3.controllers;
 
+import com.example.tpfinallab3.models.Administrativo;
+import com.example.tpfinallab3.models.Autenticable;
+import com.example.tpfinallab3.models.Especialidad;
+import com.example.tpfinallab3.models.Medico;
+import com.example.tpfinallab3.security.SessionManager;
+import com.example.tpfinallab3.services.AdministrativoService;
+import com.example.tpfinallab3.services.MedicoService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+
+import java.util.Optional;
 
 public class AdminViewController {
 
@@ -25,6 +30,9 @@ public class AdminViewController {
 
     @FXML
     private Label IngresePacienteVerTurnosAdminLabel;
+
+    @FXML
+    private AnchorPane verTurnosAdminAnchorPane;
 
     @FXML
     private PasswordField actualPasswordEdicionEditarUsuarioAdminField;
@@ -57,25 +65,25 @@ public class AdminViewController {
     private AnchorPane barraTituloMostrarEditarUsuarioAnchorPane;
 
     @FXML
-    private AnchorPane barraTituloMostrarEliminarUsuarioAnchorPane1;
+    private AnchorPane barraTituloMostrarEliminarUsuarioAnchorPane;
 
     @FXML
     private AnchorPane buscarEditarUsuarioAdminAnchorPane;
 
     @FXML
-    private AnchorPane buscarEditarUsuarioAdminAnchorPane1;
-
-    @FXML
     private Button buscarEditarUsuarioButton;
 
     @FXML
-    private Button buscarEditarUsuarioButton1;
+    private AnchorPane buscarEliminarUsuarioAdminAnchorPane;
 
     @FXML
     private Button buscarEliminarUsuarioButton;
 
     @FXML
-    private AnchorPane buscarUsuarioEditarUsuarioAdminAnchorPane1;
+    private AnchorPane buscarVerTurnosAdminAnchorPane;
+
+    @FXML
+    private Button buscarVerTurnosAdminButton;
 
     @FXML
     private Button cancelarEditarUsuarioButton;
@@ -111,7 +119,7 @@ public class AdminViewController {
     private AnchorPane edicionEditarUsuarioAdminAnchorPane;
 
     @FXML
-    private AnchorPane edicionEditarUsuarioAdminAnchorPane1;
+    private AnchorPane editarMiPerfilAdminAnchorPane;
 
     @FXML
     private Button editarMiPerfilAdminButton;
@@ -150,25 +158,19 @@ public class AdminViewController {
     private TextField emailNuevoUsuarioField;
 
     @FXML
-    private ChoiceBox<?> especialidadEdicionEditarUsuarioAdminChoiceBox;
-
-    @FXML
-    private ChoiceBox<?> especialidadEdicionMiPerfilAdminChoiceBox;
+    private ChoiceBox<String> especialidadEdicionEditarUsuarioAdminChoiceBox;
 
     @FXML
     private Label especialidadMostrarEditarUsuarioAdminLabel;
 
     @FXML
-    private Label especialidadMostrarEditarUsuarioAdminLabel1;
-
-    @FXML
     private Label especialidadMostrarEliminarUsuarioAdminLabel;
 
     @FXML
-    private ChoiceBox<?> especialidadNuevoUsuarioChoiceBox;
+    private ChoiceBox<String> especialidadNuevoUsuarioChoiceBox;
 
     @FXML
-    private CheckBox fechasVerTurnosAdminCheckBox;
+    private CheckBox fechaVerTurnosAdminCheckBox;
 
     @FXML
     private Button guardarEdicionEditarUsuarioAdminButton;
@@ -198,21 +200,6 @@ public class AdminViewController {
     private CheckBox isMedicoNuevoUsuarioCheckBox;
 
     @FXML
-    private TextField matriculaEdicionEditarUsuarioAdminField;
-
-    @FXML
-    private Label matriculaMiPerfilAdminLabel;
-
-    @FXML
-    private Label matriculaMostrarEditarUsuarioAdminLabel;
-
-    @FXML
-    private Label matriculaMostrarEliminarUsuarioAdminLabel;
-
-    @FXML
-    private TextField matriculaNuevoUsuarioField;
-
-    @FXML
     private CheckBox medicoVerTurnosAdminCheckBox;
 
     @FXML
@@ -234,6 +221,12 @@ public class AdminViewController {
     private ImageView mostrarConfirmNewPasswordEdicionMiPerfilAdminButton;
 
     @FXML
+    private AnchorPane mostrarEditarUsuarioAdminAnchorPane;
+
+    @FXML
+    private AnchorPane mostrarEliminarUsuarioAdminAnchorPane;
+
+    @FXML
     private AnchorPane mostrarMiPerfilAdminAnchorPane;
 
     @FXML
@@ -246,10 +239,7 @@ public class AdminViewController {
     private ImageView mostrarPasswordNuevoUsuarioButton;
 
     @FXML
-    private AnchorPane mostrarUsuarioEditarUsuarioAdminAnchorPane;
-
-    @FXML
-    private AnchorPane mostrarUsuarioEditarUsuarioAdminAnchorPane1;
+    private AnchorPane mostrarVerTurnosAdminAnchorPane;
 
     @FXML
     private PasswordField newPasswordEdicionEditarUsuarioAdminField;
@@ -306,34 +296,16 @@ public class AdminViewController {
     private PasswordField passwordNuevoUsuarioField;
 
     @FXML
-    private TextField puestoEdicionEditarUsuarioAdminField;
+    private TableColumn<?, ?> tablaMedicoColumnaHora;
 
     @FXML
-    private TextField puestoEdicionEditarUsuarioField1;
+    private TableColumn<?, ?> tablaMedicoColumnaPaciente;
 
     @FXML
-    private Label puestoEdicionEditarUsuarioLabel;
+    private TableColumn<?, ?> tablaTurnoMedicoColumnaFecha;
 
     @FXML
-    private Label puestoEdicionEditarUsuarioLabel1;
-
-    @FXML
-    private TextField puestoEdicionMiPerfilAdminField;
-
-    @FXML
-    private Label puestoMostrarEditarUsuarioAdmin;
-
-    @FXML
-    private Label puestoMostrarEditarUsuarioAdmin1;
-
-    @FXML
-    private TextField puestoNuevoUsuarioField;
-
-    @FXML
-    private Label puestoNuevoUsuarioLabel;
-
-    @FXML
-    private Label tipoUsuarioMiPerfilAdminLabel;
+    private TableView<?> tablaTurnosMedico;
 
     @FXML
     private Label tipoUsuarioMostrarEditarUsuarioAdminField;
@@ -365,313 +337,482 @@ public class AdminViewController {
     @FXML
     private AnchorPane vistaAdminAnchorPane;
 
+    //Variables extras.
+    private Especialidad seleccionEspecialidad; //para guardar la seleccion del choice box especialidades
+    private Optional<Medico> medic; //para guardar el medico que se esta editando
+    private Optional<Administrativo> admin; //para guardar el administrativo que se esta editando
+
+
     @FXML
-    void buttonDeleteUserAdmin(KeyEvent event) {
+    public void initialize() {
+        Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
+        especialidadEdicionEditarUsuarioAdminChoiceBox.getItems().addAll(Especialidad.values().toString());
+        especialidadNuevoUsuarioChoiceBox.getItems().addAll(Especialidad.values().toString());
+
+        try{
+            usuarioMiPerfilAdminLabel.setText(usuarioLogueado.getNombreUsuario());
+            nombreMiPerfilAdminLabel.setText(usuarioLogueado.getNombre());
+            apellidoMiPerfilAdminLabel.setText(usuarioLogueado.getApellido());
+            emailMiPerfilAdminLabel.setText(usuarioLogueado.getMail());
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //----------------------------[ MENU OPCIONES ]
+    //"Mi Perfil", "Ver Turnos", "Nuevo Usuario", "Editar Usuario", "Eliminar Usuario"
+    @FXML
+    public void ocultarTodosLosAnchorPane (){
+        //MI PERFIL
+        miPerfilAdminAnchorPane.setVisible(false);
+        mostrarMiPerfilAdminAnchorPane.setVisible(false);
+        editarMiPerfilAdminAnchorPane.setVisible(false);
+        //VER TURNOS
+        verTurnosAdminAnchorPane.setVisible(false);
+        buscarVerTurnosAdminAnchorPane.setVisible(false);
+        mostrarVerTurnosAdminAnchorPane.setVisible(false);
+        //NUEVO USUARIO
+        nuevoUsuarioAdminAnchorPane.setVisible(false);
+        //EDITAR USUARIO
+        editarUsuarioAdminAnchorPane.setVisible(false);
+        buscarEditarUsuarioAdminAnchorPane.setVisible(false);
+        mostrarEditarUsuarioAdminAnchorPane.setVisible(false);
+        edicionEditarUsuarioAdminAnchorPane.setVisible(false);
+        //ELIMINAR USUARIO
+        eliminarUsuarioAdminAnchorPane.setVisible(false);
+        buscarEliminarUsuarioAdminAnchorPane.setVisible(false);
+        mostrarEliminarUsuarioAdminAnchorPane.setVisible(false);
+    }
+
+
+    @FXML
+    void buttonMyProfileAdmin(MouseEvent event) { //Opción "Mi Perfil" de Menú-Admin
+        ocultarTodosLosAnchorPane();
+
+        miPerfilAdminAnchorPane.setVisible(true);
+        mostrarMiPerfilAdminAnchorPane.setVisible(true);
+    }
+
+    @FXML
+    void buttonViewAppointmentAdmin(MouseEvent event) { //Opción "Ver Turnos" de Menú-Admin
+        ocultarTodosLosAnchorPane();
+
+        verTurnosAdminAnchorPane.setVisible(true);
+        buscarVerTurnosAdminAnchorPane.setVisible(true);
+    }
+
+    @FXML
+    void buttonNewUserAdmin(MouseEvent event) { //Opción "Nuevo Usuario" de Menú-Admin
+        ocultarTodosLosAnchorPane();
+
+        nuevoUsuarioAdminAnchorPane.setVisible(true);
+    }
+
+    @FXML
+    void buttonEditUserAdmin(MouseEvent event) { //Opción "Editar Usuario" de Menú-Admin
+        ocultarTodosLosAnchorPane();
+
+        editarUsuarioAdminAnchorPane.setVisible(true);
+        buscarEditarUsuarioAdminAnchorPane.setVisible(true);
+    }
+
+    @FXML
+    void buttonDeleteUserAdmin(MouseEvent event) { //Opción "Eliminar Usuario" de Menú-Admin
+        ocultarTodosLosAnchorPane();
+
+        eliminarUsuarioAdminAnchorPane.setVisible(true);
+        buscarEliminarUsuarioAdminAnchorPane.setVisible(true);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //----------------------------[ BARRA TITULO ]
+    //BOTONES: "Minimizar", "Cerrar".
+    @FXML
+    void clickClose(KeyEvent event) { //Botón Cerrar View-Admin
+        //para cerrar ventana.
+    }
+
+    @FXML
+    void clickMinimize(KeyEvent event) { //Botón Minimizar View-Admin
+        //para minimizar ventana.
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //----------------------------[ VIEW - MI PERFIL ]
+
+    //[ MOSTRAR PERFIL ]
+    @FXML
+    void clickEditeMyProfileAdmin(ActionEvent event) { //Botón Editar Mi Perfil
+        ocultarTodosLosAnchorPane();
+
+        miPerfilAdminAnchorPane.setVisible(true);
+        editarMiPerfilAdminAnchorPane.setVisible(true);
+
+
+
+
+    }
+
+    //[ EDITAR PERFIL ]
+    @FXML
+    void fieldNameEditMyProfileAdmin(ActionEvent event) { //Field Nombre en Editar Mi Perfil
+        nombreEdicionMiPerfilAdminField.setPromptText(nombreMiPerfilAdminLabel.getText());
+    }
+
+    @FXML
+    void fieldSurnameEditMyProfileAdmin(ActionEvent event) { //Field Apellido en Editar Mi Perfil
+        apellidoEdicionMiPerfilAdminField.setPromptText(apellidoMiPerfilAdminLabel.getText());
+    }
+
+    @FXML
+    void fieldEmailEditMyProfileAdmin(ActionEvent event) { //Field Email en Editar Mi Perfil
+        emailEdicionMiPerfilAdminField.setPromptText(emailMiPerfilAdminLabel.getText());
+    }
+
+    @FXML
+    void fieldOldPasswoordEditMyProfileAdmin(ActionEvent event) { //Field Contraseña Actual en Editar Mi Perfil
+        Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
+
+        //valido contraseña vieja con ingresada
+      /*  if (!actualPasswordEdicionMiPerfilAdminField.getText().equals(usuarioLogueado.getContrasena())) //AVERIGUAR ERROR
+            showErrorAlert("¡Contraseña incorrecta!");*/
+    }
+
+    @FXML
+    void fieldNewPasswordEditMyProfileAdmin(ActionEvent event) { //Field Nueva Contraseña en Editar Mi Perfil
+        //valido que la nueva contraseña no sea igual a la vieja
+        if (actualPasswordEdicionMiPerfilAdminField.getText().equals(newPasswordEdicionMiPerfilAdminField.getText())) {
+            showErrorAlert("La nueva contraseña no puede ser igual a la anterior.");
+        }//FALTA validar seguridad de la clave
+    }
+
+    @FXML
+    void clickHideNewPasswordEditMyProfileAdmin(KeyEvent event) { //Botón ojo Ocultar "Nueva Contraseña" en Editar Mi Perfil
 
     }
 
     @FXML
-    void buttonEditUserAdmin(KeyEvent event) {
+    void clickShowNewPasswordEditMyProfileAdmin(KeyEvent event) { //Botón ojo Mostrar "Nueva Contraseña" en Editar Mi Perfil
 
     }
 
     @FXML
-    void buttonMyProfileAdmin(KeyEvent event) {
+    void fieldConfirmNewPasswordEditMyProfileAdmin(ActionEvent event) { //Field Confirmar Nueva Contraseña en Editar Mi Perfil
+        //valido que la nueva contraseña coincida con la confirmación
+        if (!newPasswordEdicionMiPerfilAdminField.getText().equals(confirmNewPasswordEdicionMiPerfilAdminField.getText())) {
+            showErrorAlert("La contraseña no coincide.");
+        }
+    }
+
+    @FXML
+    void clickHideConfirmNewPasswordEditMyProfileAdmin(KeyEvent event) { //Botón ojo Ocultar "Confirmar Nueva Contraseña" en Editar Mi Perfil
 
     }
 
     @FXML
-    void buttonNewUserAdmin(KeyEvent event) {
+    void clickShowConfirmNewPasswordEditMyProfileAdmin(KeyEvent event) { //Botón ojo Mostrar "Confirmar Nueva Contraseña" en Editar Mi Perfil
+
+    }
+    @FXML
+    void clickSaveEditMyProfileAdmin(ActionEvent event) { //Botón guardar cambios en Editar Mi Perfil
+        String nombre = nombreMiPerfilAdminLabel.getText();
+        String apellido = apellidoMiPerfilAdminLabel.getText();
+        String email = emailMiPerfilAdminLabel.getText();
+        String password = confirmNewPasswordEdicionMiPerfilAdminField.getText();
+
+        //setear el usuario con los datos ingresados
+        SessionManager.getInstance().getEntidadLogueada().setNombre(nombre);
+        SessionManager.getInstance().getEntidadLogueada().setApellido(apellido);
+        SessionManager.getInstance().getEntidadLogueada().setMail(email);
+     //   SessionManager.getInstance().getEntidadLogueada().setContrasena(password); //AVERIGUAR ERROR
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //----------------------------[ VIEW - VER TURNOS ]
+
+    //[ BUSCAR TURNOS ] //PENDIENTE HASTA TENER LAS VISTAS DE MOSTRAR TURNOS
+    @FXML
+    void checkDoctorSearchAppointment(ActionEvent event) { //CheckBox buscar por Doctor en Ver Turnos
 
     }
 
     @FXML
-    void buttonViewAppointmentAdmin(KeyEvent event) {
+    void checkPatientSearchAppointment(ActionEvent event) { //CheckBox buscar por Paciente en Ver Turnos
 
     }
 
     @FXML
-    void checkDoctorSearchAppointment(ActionEvent event) {
+    void checkIsDateSearchAppointment(ActionEvent event) { //CheckBox buscar por Fecha en Ver Turnos
+
+    }
+    @FXML
+    void fieldSearchAppointmentAdmin (ActionEvent event) { //Field buscar en Ver Turnos
+
+    }
+    @FXML
+    void clickSearchAppointment (ActionEvent event){ //Botón buscar Turnos en Ver Turnos
+
+    }
+
+    //[ MOSTRAR TURNOS ] PENDIENTE
+
+
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //----------------------------[ VIEW - NUEVO USUARIO ] (FEDE)
+    @FXML
+    void fieldUserNewUser(ActionEvent event) { //Field Usuario en Nuevo Usuario
 
     }
 
     @FXML
-    void checkIsDoctorSearchDelete(ActionEvent event) {
+    void fieldPasswordNewUser(ActionEvent event) { //Field Contraseña en Nuevo Usuario
 
     }
 
     @FXML
-    void checkIsDoctorSearchEdit(ActionEvent event) {
+    void clickHidePasswordNewUser(KeyEvent event) { //Botón ojo Ocultar "Contraseña" en Nuevo Usuario
 
     }
 
     @FXML
-    void checkNewAdmin(ActionEvent event) {
+    void clickShowPasswordNewUser(KeyEvent event) { //Botón ojo Mostrar "Contraseña" en Nuevo Usuario
 
     }
 
     @FXML
-    void checkNewDoctor(ActionEvent event) {
+    void fieldNameNewUser(ActionEvent event) { //Field Nombre en Nuevo Usuario
 
     }
 
     @FXML
-    void choiceSpecialityEditMyProfileAdmin(KeyEvent event) {
+    void fieldLastnameNewUser(ActionEvent event) { //Field Apellido en Nuevo Usuario
 
     }
 
     @FXML
-    void choiceSpecialityNewUser(KeyEvent event) {
+    void fieldEmailNewUser(ActionEvent event) { //Field Email en Nuevo Usuario
 
     }
 
     @FXML
-    void choiceSpecialityUserEdit(KeyEvent event) {
+    void checkNewDoctor(ActionEvent event) { //CheckBox isMedico en Nuevo Usuario
 
     }
 
     @FXML
-    void clickCancelUserDelete(ActionEvent event) {
+    void checkNewAdmin(ActionEvent event) { //CheckBox isAdmin en Nuevo Usuario
+
+    }
+
+  /*  @FXML
+    void choiceSpecialityNewUser(KeyEvent event) { //ChoiceBox Especialidad en Nuevo Usuario
+
+    }*/
+
+    @FXML
+    void clickSaveNewUser(ActionEvent event) { //Boton Guardar Nuevo Usuario
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //----------------------------[ VIEW - EDITAR USUARIO ]
+
+    //[ BUSCAR USUARIO ]
+    @FXML
+    void checkIsDoctorSearchEdit(ActionEvent event) { //CheckBox buscarMedico en Buscar de Editar Usuario
+    }
+
+    @FXML
+    void checkIsAdminSearchEdit(ActionEvent event) { //CheckBox isAdmin en Buscar de Editar Usuario
+    }
+
+    @FXML
+    void fieldUserSearchEdit(ActionEvent event) { //Field Usuario en Buscar de Editar Usuario
+    }
+
+    @FXML
+    void clickSearchEdit(ActionEvent event) { //Botón Buscar en Buscar de Editar Usuario
+        //busco el usuario a editar
+        if (isMedicoBuscarEditarUsuarioCheckBox.isSelected())
+            medic = MedicoService.getInstance().buscarMedicoPorNombreUsuario(userBuscarEditarUsuarioField.getText());
+        else if (isAdminBuscarEditarUsuarioCheckBox.isSelected())
+            admin = AdministrativoService.getInstance().buscarAdministrativoPorNombreUsuario(userBuscarEditarUsuarioField.getText());
+        else
+            showErrorAlert("Debe seleccionar un tipo de usuario.");
+
+        //valido que el medico o admin existan.
+        if (medic.isPresent() || admin.isPresent()) {
+            //si existe, muestro anchorPane
+            ocultarTodosLosAnchorPane();
+
+            editarUsuarioAdminAnchorPane.setVisible(true);
+            mostrarEditarUsuarioAdminAnchorPane.setVisible(true);
+            //agrego los datos del usuario a los labels
+            if (medic.isPresent()) {
+                mostrarMedicoEnEditarUsuario (medic);
+            }else if (admin.isPresent()) {
+                mostrarAdminEnEditarUsuario(admin);
+            }
+
+        }else{
+            //si no existe, muestro un error
+            showErrorAlert("El usuario no existe.");
+        }
+    }
+
+    private void mostrarMedicoEnEditarUsuario (Optional<Medico> medic){
+        tipoUsuarioMostrarEditarUsuarioAdminField.setText("Médico");
+        usuarioMostrarEditarUsuarioAdminLabel.setText(medic.get().getNombreUsuario());
+        nombreMostrarEditarUsuarioAdminLabel.setText(medic.get().getNombre());
+        apellidoMostrarEditarUsuarioAdminLabel.setText(medic.get().getApellido());
+        emailMostrarEditarUsuarioAdminLabel.setText(medic.get().getMail());
+        especialidadMostrarEditarUsuarioAdminLabel.setText(medic.get().getEspecialidad().getEspecialidad());
+    }
+
+    private void mostrarAdminEnEditarUsuario (Optional<Administrativo> admin){
+        tipoUsuarioMostrarEditarUsuarioAdminField.setText("Administrativo");
+        usuarioMostrarEditarUsuarioAdminLabel.setText(admin.get().getNombreUsuario());
+        nombreMostrarEditarUsuarioAdminLabel.setText(admin.get().getNombre());
+        apellidoMostrarEditarUsuarioAdminLabel.setText(admin.get().getApellido());
+        emailMostrarEditarUsuarioAdminLabel.setText(admin.get().getMail());
+    }
+
+
+
+
+    //[ MOSTRAR USUARIO BUSCADO ]
+    @FXML
+    void clickCancelUserEdit(ActionEvent event) { //Botón Cancelar en Mostrar de Editar Usuario
+        ocultarTodosLosAnchorPane();
+
+        editarUsuarioAdminAnchorPane.setVisible(true);
+        buscarEditarUsuarioAdminAnchorPane.setVisible(true);
+    }
+
+    @FXML
+    void clickConfirmUserEdit(ActionEvent event) { //Botón Confirmar en Mostrar de Editar Usuario
+        ocultarTodosLosAnchorPane();
+
+        editarUsuarioAdminAnchorPane.setVisible(true);
+        edicionEditarUsuarioAdminAnchorPane.setVisible(true);
+        agregarDatosAFieldEditarUsuario();
+    }
+
+    private void agregarDatosAFieldEditarUsuario(){
+        nombreEdicionEditarUsuarioAdminField.setPromptText(nombreMostrarEditarUsuarioAdminLabel.getText());
+        apellidoEdicionEditarUsuarioAdminField.setPromptText(apellidoMostrarEditarUsuarioAdminLabel.getText());
+        emailEdicionEditarUsuarioAdminField.setPromptText(emailMostrarEditarUsuarioAdminLabel.getText());
+
+        if (tipoUsuarioMostrarEditarUsuarioAdminField.getText().equals("Médico")) {
+            especialidadEdicionEditarUsuarioAdminChoiceBox.setOnAction(event1-> {
+                seleccionEspecialidad = Especialidad.valueOf(especialidadEdicionEditarUsuarioAdminChoiceBox.getValue());}); //REVISAR: estas ultimas lineas no se si funcionarán
+        }else{
+            especialidadEdicionEditarUsuarioAdminChoiceBox.setVisible(false);
+        }
+    }
+
+    @FXML
+    void clickCloseShowUserEdit(KeyEvent event) {//Botón Cerrar en Mostrar de Editar Usuario
+        ocultarTodosLosAnchorPane();
+
+        editarUsuarioAdminAnchorPane.setVisible(true);
+        buscarEditarUsuarioAdminAnchorPane.setVisible(true);
+    }
+
+
+    //[ EDITAR USUARIO ]
+
+    @FXML
+    void fieldNameUserEdit(ActionEvent event) { //Field Nombre en Editar Usuario
 
     }
 
     @FXML
-    void clickCancelUserEdit(ActionEvent event) {
+    void fieldLastnameUserEdit(ActionEvent event) { //Field Apellido en Editar Usuario
 
     }
 
     @FXML
-    void clickClose(KeyEvent event) {
+    void fieldEmailUserEdit(ActionEvent event) { //Field Email en Editar Usuario
 
     }
 
-    @FXML
-    void clickCloseShowUserEdit(KeyEvent event) {
+    /*@FXML
+    void choiceSpecialityUserEdit(KeyEvent event) { //ChoiceBox Especialidad en Editar Usuario
 
     }
+    */
 
-    @FXML
-    void clickConfirmUserDelete(ActionEvent event) {
-
-    }
-
-    @FXML
-    void clickConfirmUserEdit(ActionEvent event) {
-
-    }
-
-    @FXML
-    void clickEditeMyProfileAdmin(ActionEvent event) {
-
-    }
-
-    @FXML
-    void clickHideConfirmNewPasswordEditMyProfileAdmin(KeyEvent event) {
-
-    }
-
-    @FXML
-    void clickHideConfirmNewPasswordUserEdit(KeyEvent event) {
-
-    }
-
-    @FXML
-    void clickHideNewPasswordEditMyProfileAdmin(KeyEvent event) {
-
-    }
-
-    @FXML
-    void clickHideNewPasswordUserEdit(KeyEvent event) {
-
-    }
-
-    @FXML
-    void clickHidePasswordNewUser(KeyEvent event) {
-
-    }
-
-    @FXML
-    void clickIsAdminSearchDelete(ActionEvent event) {
-
-    }
-
-    @FXML
-    void clickIsAdminSearchEdit(ActionEvent event) {
-
-    }
-
-    @FXML
-    void clickIsDateSearchAppointment(ActionEvent event) {
-
-    }
-
-    @FXML
-    void clickMinimize(KeyEvent event) {
-
-    }
-
-    @FXML
-    void clickPatientSearchAppointment(ActionEvent event) {
-
-    }
-
-    @FXML
-    void clickSaveEditMyProfileAdmin(ActionEvent event) {
-
-    }
-
-    @FXML
-    void clickSaveNewUser(ActionEvent event) {
-
-    }
-
-    @FXML
-    void clickSaveUserEdit(ActionEvent event) {
-
-    }
-
-    @FXML
-    void clickSearchEdit(ActionEvent event) {
-
-    }
-
-    @FXML
-    void clickSearchUserDelete(ActionEvent event) {
-
-    }
-
-    @FXML
-    void clickShowConfirmNewPasswordEditMyProfileAdmin(KeyEvent event) {
-
-    }
-
-    @FXML
-    void clickShowConfirmNewPasswordUserEdit(KeyEvent event) {
-
-    }
-
-    @FXML
-    void clickShowNewPasswordEditMyProfileAdmin(KeyEvent event) {
-
-    }
-
-    @FXML
-    void clickShowNewPasswordUserEdit(KeyEvent event) {
-
-    }
-
-    @FXML
-    void clickShowPasswordNewUser(KeyEvent event) {
-
-    }
-
-    @FXML
-    void fielNewPasswordEditMyProfileAdmin(ActionEvent event) {
-
-    }
-
-    @FXML
-    void fielNewPasswordUserEdit(ActionEvent event) {
-
-    }
-
-    @FXML
-    void fieldConfirmNewPasswordEditMyProfileAdmin(ActionEvent event) {
-
-    }
-
-    @FXML
-    void fieldConfirmNewPasswordUserEdit(ActionEvent event) {
-
-    }
-
-    @FXML
-    void fieldEmailEditMyProfileAdmin(ActionEvent event) {
-
-    }
-
-    @FXML
-    void fieldEmailNewUser(ActionEvent event) {
-
-    }
-
-    @FXML
-    void fieldEmailUserEdit(ActionEvent event) {
-
-    }
-
-    @FXML
-    void fieldJobEditMyProfileAdmin(ActionEvent event) {
-
-    }
-
-    @FXML
-    void fieldJobEditUser(ActionEvent event) {
-
-    }
-
-    @FXML
-    void fieldJobNewUser(ActionEvent event) {
-
-    }
-
-    @FXML
-    void fieldLastnameNewUser(ActionEvent event) {
-
-    }
-
-    @FXML
-    void fieldLicenseNewUser(ActionEvent event) {
-
-    }
-
-    @FXML
-    void fieldLicenseUserEdit(ActionEvent event) {
-
-    }
-
-    @FXML
-    void fieldNameEditMyProfileAdmin(ActionEvent event) {
-
-    }
-
-    @FXML
-    void fieldNameNewUser(ActionEvent event) {
-
-    }
-
-    @FXML
-    void fieldNameUserEdit(ActionEvent event) {
-
-    }
-
-    @FXML
-    void fieldOldPasswoordEditMyProfileAdmin(ActionEvent event) {
-
-    }
-
+    //EN PROGRESO
     @FXML
     void fieldOldPasswoordUserEdit(ActionEvent event) {
+        //valido que la password ingresada coincida con la del usuario
+        /*if (medic.isPresent()) {
+            if (medic.get().getPassword().equals(oldPasswordEdicionEditarUsuarioAdminField.getText())) {
+                //si coincide, muestro el resto de los campos
+                nombreEdicionEditarUsuarioAdminField.setVisible(true);
+                apellidoEdicionEditarUsuarioAdminField.setVisible(true);
+                emailEdicionEditarUsuarioAdminField.setVisible(true);
+                especialidadEdicionEditarUsuarioAdminChoiceBox.setVisible(true);
+                confirmarEdicionEditarUsuarioAdminButton.setVisible(true);
+            }else{
+                //si no coincide, muestro un error
+                showErrorAlert("La contraseña ingresada no es correcta.");
+            }*/
+    }
+
+    @FXML
+    void fieldNewPasswordUserEdit(ActionEvent event) { //Field Nueva Contraseña en Editar Usuario
 
     }
 
     @FXML
-    void fieldPasswordNewUser(ActionEvent event) {
+    void clickHideNewPasswordUserEdit(KeyEvent event) { //Botón ojo Ocultar "Nueva Contraseña" en Editar Usuario
 
     }
 
     @FXML
-    void fieldSurnameEditMyProfileAdmin(ActionEvent event) {
+    void clickShowNewPasswordUserEdit(KeyEvent event) { //Botón ojo Mostrar "Nueva Contraseña" en Editar Usuario
 
     }
 
     @FXML
-    void fieldSurnameUserEdit(ActionEvent event) {
+    void fieldConfirmNewPasswordUserEdit(ActionEvent event) { //Field Confirmar Nueva Contraseña en Editar Usuario
 
     }
 
     @FXML
-    void fieldUserNewUser(ActionEvent event) {
+    void clickHideConfirmNewPasswordUserEdit(KeyEvent event) { //Botón ojo Ocultar "Confirmar Nueva Contraseña" en Editar Usuario
+
+    }
+
+    @FXML
+    void clickShowConfirmNewPasswordUserEdit(KeyEvent event) { //Botón ojo Mostrar "Confirmar Nueva Contraseña" en Editar Usuario
+
+    }
+
+    @FXML
+    void clickSaveUserEdit(ActionEvent event) { //Botón Guardar Cambios en Editar Usuario
+
+    }
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //----------------------------[ VIEW - ELIMINAR USUARIO ]
+
+    //[ BUSCAR USUARIO ]
+    @FXML
+    void checkIsDoctorSearchDelete(ActionEvent event) { //CheckBox buscarDoctor en Eliminar Usuario
+
+    }
+
+    @FXML
+    void checkIsAdminSearchDelete(ActionEvent event) { //CheckBox isAdmin en Eliminar Usuario
 
     }
 
@@ -681,8 +822,49 @@ public class AdminViewController {
     }
 
     @FXML
-    void fieldUserSearchEdit(ActionEvent event) {
+    void clickSearchUserDelete(ActionEvent event) {
 
     }
 
+
+    //[ MOSTRAR USUARIO BUSCADO ]
+    @FXML
+    void clickCancelUserDelete(ActionEvent event) { //Botón Cancelar en Eliminar Usuario
+
+    }
+
+    @FXML
+    void clickConfirmUserDelete(ActionEvent event) { //Botón Confirmar en Eliminar Usuario
+
+    }
+
+    @FXML
+    void clickCloseSearchDelete (KeyEvent event) { //Botón Cerrar Ventana en Eliminar Usuario
+
+    }
+
+
+    //ALERTAS
+    private void showSuccessAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Éxito");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void showErrorAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+
+    public void choiceSpecialityNewUser(KeyEvent keyEvent) {
+    }
+
+    public void choiceSpecialityUserEdit(KeyEvent keyEvent) {
+    }
 }
