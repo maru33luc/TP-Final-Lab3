@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1080.0" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.MedicoViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1080.0" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.MedicoController">
    <top>
       <AnchorPane prefHeight="30.0" prefWidth="1080.0" style="-fx-background-color: #091A21;" BorderPane.alignment="CENTER">
          <children>
@@ -144,13 +144,13 @@
                <children>
                   <TableView fx:id="tablaTurnosMedico" layoutX="195.0" prefHeight="590.0" prefWidth="420.0">
                     <columns>
-                      <TableColumn fx:id="tablaTurnoMedicoColumnaFecha" prefWidth="120.0" text="Fecha" />
-                      <TableColumn fx:id="tablaMedicoColumnaHora" prefWidth="120.0" text="Hora" />
-                        <TableColumn fx:id="tablaMedicoColumnaPaciente" prefWidth="180.0" text="Paciente" />
+                      <TableColumn fx:id="tablaTurnoMedicoColumnaFecha" editable="false" prefWidth="120.0" text="Fecha" />
+                      <TableColumn fx:id="tablaMedicoColumnaHora" editable="false" prefWidth="120.0" text="Hora" />
+                        <TableColumn fx:id="tablaMedicoColumnaPaciente" editable="false" prefWidth="180.0" text="Paciente" />
                     </columns>
                   </TableView>
-                  <Button fx:id="filtrarFechaTurnoMedicoButton" layoutX="195.0" layoutY="649.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Fecha" />
-                  <Button fx:id="filtrarPacienteTurnoMedicoButton" layoutX="444.0" layoutY="649.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Paciente" />
+                  <Button fx:id="filtrarFechaTurnoMedicoButton" layoutX="195.0" layoutY="649.0" mnemonicParsing="false" onAction="#buscarTurnosPorFechaMedico" prefHeight="50.0" prefWidth="170.0" text="Fecha" />
+                  <Button fx:id="filtrarPacienteTurnoMedicoButton" layoutX="444.0" layoutY="649.0" mnemonicParsing="false" onAction="#buscarTurnosPorPacienteMedico" prefHeight="50.0" prefWidth="170.0" text="Paciente" />
                   <Label layoutX="327.0" layoutY="596.0" text="Buscar turnos:">
                      <font>
                         <Font size="25.0" />

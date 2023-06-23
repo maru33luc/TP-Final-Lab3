@@ -1,21 +1,34 @@
 package com.example.tpfinallab3.controllers;
 
 import com.example.tpfinallab3.models.Autenticable;
+import com.example.tpfinallab3.models.Especialidad;
 import com.example.tpfinallab3.models.Medico;
 import com.example.tpfinallab3.models.Turno;
 import com.example.tpfinallab3.security.SessionManager;
+import com.example.tpfinallab3.services.MedicoService;
+import com.example.tpfinallab3.services.TurnoService;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
-public class MedicoViewController {
+import java.util.List;
+import java.util.Optional;
 
+public class MedicoController {
+
+    private LoginController loginController;
+    private Stage stage;
     @FXML
     private Label apellidoMedicoLabel;
 
@@ -50,19 +63,21 @@ public class MedicoViewController {
     private Label nombreMedicoLabel;
 
     @FXML
-    private TableColumn<Turno, String> tablaMedicoColumnaHora;
+    private TableColumn tablaMedicoColumnaHora;
 
     @FXML
-    private TableColumn<Turno, String> tablaMedicoColumnaPaciente;
+    private TableColumn tablaMedicoColumnaPaciente;
 
     @FXML
-    private TableColumn<Turno, String> tablaTurnoMedicoColumnaFecha;
+    private TableColumn tablaTurnoMedicoColumnaFecha;
 
     @FXML
     private TableView<Turno> tablaTurnosMedico;
 
     @FXML
     private AnchorPane turnosViewMedicoPanel;
+
+    private ObservableList<Turno> turnosMedico;
 
     @FXML
     public void initialize(){
@@ -72,10 +87,23 @@ public class MedicoViewController {
             apellidoMedicoLabel.setText(usuarioLogueado.getApellido());
             emailMedicoLabel.setText(usuarioLogueado.getMail());
             especialidadMedicoLabel.setText(((Medico) usuarioLogueado).getEspecialidad().toString());
+
         }catch (ClassCastException e){
             System.out.println("El usuario logueado no es un medico");
             e.printStackTrace();
         }
+
+        turnosMedico = FXCollections.observableArrayList();
+        Optional<Medico> medic = MedicoService.getInstance().buscarMedicoPorNombreUsuario(usuarioLogueado.getNombreUsuario());
+        System.out.println(usuarioLogueado.toString());
+
+        List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosPorMedico(medic.get());
+
+        tablaTurnoMedicoColumnaFecha.setCellValueFactory(new PropertyValueFactory("fecha"));
+        tablaMedicoColumnaHora.setCellValueFactory(new PropertyValueFactory("hora"));
+        tablaMedicoColumnaPaciente.setCellValueFactory(new PropertyValueFactory("paciente"));
+
+        tablaTurnosMedico.setItems(FXCollections.observableArrayList(listaTurnos));
     }
 
     @FXML
@@ -105,6 +133,13 @@ public class MedicoViewController {
     void verTodosLosTurnosMedico(){
         //muestra todos los turnos del medico logueado
     }
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+    public void setMainController(LoginController loginController) {
+        this.loginController = loginController;
+    }
+
 }
 
 

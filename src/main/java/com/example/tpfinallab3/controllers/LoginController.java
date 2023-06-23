@@ -1,8 +1,11 @@
 package com.example.tpfinallab3.controllers;
 
 import com.example.tpfinallab3.models.Autenticable;
+import com.example.tpfinallab3.models.Especialidad;
+import com.example.tpfinallab3.models.Medico;
 import com.example.tpfinallab3.security.AuthenticationService;
 import com.example.tpfinallab3.security.SessionManager;
+import com.example.tpfinallab3.services.MedicoService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
