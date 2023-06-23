@@ -218,7 +218,7 @@ public class PacienteViewController {
             e.printStackTrace();
         }
 
-        turnosPaciente = FXCollections.observableArrayList();
+       // turnosPaciente = FXCollections.observableArrayList();
 
         // ------------------------ DESCA ACA LO Q HAGO ES PARA CARGAR ALGUN TURNO O MAS DE UNO Y TESTEAR ----------------
 
@@ -301,7 +301,15 @@ public class PacienteViewController {
 
     @FXML
     void seleccionarMisTurnosAction(MouseEvent event) {
+        TurnoTabla turnoTabla = tablaMisTurnosPaciente.getSelectionModel().getSelectedItem();
+        System.out.println("turnoTabla.toString() = " + turnoTabla.toString());
+        if (turnoTabla != null) {
+            especialidadMiTurnoPacienteLabel.setText(turnoTabla.getEspecialidad().toString());
+            medicoMiTurnoPacienteLabel.setText(turnoTabla.getMedico());
+            fechaMiTurnoPacienteLabel.setText(turnoTabla.getDia().toString());
+            horaMiTurnoPacienteLabel.setText(turnoTabla.getHora().toString());
 
+        }
     }
 
     public void setMainController(LoginController loginController) {

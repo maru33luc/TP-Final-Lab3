@@ -253,7 +253,7 @@
                 </AnchorPane>
                 <AnchorPane fx:id="misTurnosPacienteView" prefHeight="720.0" prefWidth="810.0">
                     <children>
-                        <TableView fx:id="tablaMisTurnosPaciente" prefHeight="720.0" prefWidth="480.0">
+                        <TableView fx:id="tablaMisTurnosPaciente" onMouseClicked="#seleccionarMisTurnosAction" prefHeight="720.0" prefWidth="480.0">
                             <columns>
                                 <TableColumn fx:id="columnaFechaMiTurnoPaciente" prefWidth="120.0" text="Fecha" />
                                 <TableColumn fx:id="columnaHoraMiTurnoPaciente" prefWidth="120.0" text="Hora" />
