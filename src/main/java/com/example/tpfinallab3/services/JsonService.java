@@ -122,7 +122,6 @@ public class JsonService {
 
         try {
             objectMapper.writeValue(new File(ruta), usuarioInfoMap);
-            System.out.println("Json guardado");
         } catch (IOException e) {
             e.printStackTrace();
         }
