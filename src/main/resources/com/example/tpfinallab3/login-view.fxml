@@ -46,7 +46,7 @@
                   <Image url="@../../../images/fondoClaro540x720.png" />
                </image>
             </ImageView>
-            <Label fx:id="welcomeLabel" layoutX="110.0" layoutY="43.0" styleClass="playfair-regular" text="¡Bienvenido!" textFill="#255951">
+            <Label fx:id="welcomeLabel" layoutX="118.0" layoutY="43.0" styleClass="playfair-regular" text="¡Bienvenido!" textFill="#184752">
                <font>
                   <Font name="Playfair Display Regular" size="55.0" />
                </font>
@@ -79,7 +79,7 @@
                   <String fx:value="text-field" />
                </styleClass></PasswordField>
             <TextField fx:id="plainPasswordField" layoutX="49.0" layoutY="291.0" prefHeight="45.0" prefWidth="375.0" style="-fx-border-color: #29838c; -fx-border-width: 2; -fx-background-color: d3f9eb" visible="false" />
-            <Pane layoutX="421.0" layoutY="291.0" prefHeight="45.0" prefWidth="70.0" style="-fx-border-color: #29838c; -fx-border-width: 2;">
+            <Pane layoutX="424.0" layoutY="291.0" prefHeight="45.0" prefWidth="70.0" style="-fx-border-color: #29838c; -fx-border-width: 2;">
                <children>
                   <ImageView fx:id="showPasswordButton" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="13.0" layoutY="2.0" onMouseClicked="#ocultarPassword" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
@@ -111,11 +111,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                <styleClass>
-                  <String fx:value="nanum-bold" />
                   <String fx:value="button-oscuro" />
+                  <String fx:value="nanum-bold" />
                </styleClass>
             </Button>
-            <Hyperlink fx:id="olvidoUsuarioLink" layoutX="284.0" layoutY="366.0" onAction="#recuperarUsuario" text="¿Olvidó su usuario?" textFill="#255951">
+            <Hyperlink fx:id="olvidoUsuarioLink" layoutX="284.0" layoutY="366.0" onAction="#recuperarUsuario" text="¿Olvidó su usuario?" textFill="#184752">
                <font>
                   <Font name="Century Schoolbook" size="17.0" />
                </font>
@@ -124,7 +124,7 @@
                   <String fx:value="forget-link" />
                </styleClass>
             </Hyperlink>
-            <Hyperlink fx:id="olvidoPasswordLink" layoutX="271.0" layoutY="395.0" onAction="#recuperarContrasena" text="¿Olvidó su contraseña?" textFill="#255951">
+            <Hyperlink fx:id="olvidoPasswordLink" layoutX="271.0" layoutY="395.0" onAction="#recuperarContrasena" text="¿Olvidó su contraseña?" textFill="#184752">
                <font>
                   <Font name="Century Schoolbook" size="17.0" />
                </font>
@@ -138,7 +138,7 @@
                   <Glow level="0.0" />
                </effect>
             </Separator>
-            <Label fx:id="loginRegistroLabel" layoutX="135.0" layoutY="536.0" styleClass="playfair-regular" text="¿No tiene una cuenta de usuario?" textFill="#255951">
+            <Label fx:id="loginRegistroLabel" layoutX="135.0" layoutY="536.0" styleClass="playfair-regular" text="¿No tiene una cuenta de usuario?" textFill="#184752">
                <font>
                   <Font name="Century Schoolbook" size="17.0" />
                </font>
@@ -151,8 +151,8 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                <styleClass>
-                  <String fx:value="nanum-bold" />
                   <String fx:value="button-claro" />
+                  <String fx:value="nanum-bold" />
                </styleClass>
             </Button>
          </children>
