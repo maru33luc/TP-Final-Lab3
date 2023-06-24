@@ -41,6 +41,9 @@ public class Medico extends Usuario {
         super.setContrasena(contrasena);
     }
 
+
+
+
     @Override
     public boolean equals(Object o) {
         if(this == o) {

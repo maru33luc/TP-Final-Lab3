@@ -12,7 +12,7 @@ public class AuthorizationService {
     private AuthorizationService() {
         permisos = new HashMap<>();
         // Inicializar los permisos de los usuarios
-        permisos.put("Administrativo", Arrays.asList("crearTurno", "editarTurno", "eliminarTurno", "agregarMedico", "eliminarMedico","habilitarTurnos"));
+        permisos.put("Administrativo", Arrays.asList("crearTurno", "editarTurno", "eliminarTurno", "agregarMedico", "eliminarMedico","habilitarTurnos","darDeBajaMedico", "darDeAltaMedico"));
         permisos.put("Medico", Arrays.asList("verTurnos", "editarPaciente"));
         permisos.put("Paciente", Arrays.asList("verHistorial", "solicitarTurno"));
     }

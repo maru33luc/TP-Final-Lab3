@@ -9,7 +9,9 @@ import com.example.tpfinallab3.security.SessionManager;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class TurnoService {
@@ -30,6 +32,7 @@ public class TurnoService {
                 }
             }
         }
+
         return instance;
     }
 
@@ -43,52 +46,64 @@ public class TurnoService {
 
     public void habilitarTurnos(LocalDate dia, LocalTime hora, LocalTime horaFin, Medico medico) {
         if(AuthorizationService.getInstance().verificarPermiso(SessionManager.getInstance().getTipoEntidad(), "habilitarTurnos")) {
-            if (dia.getDayOfWeek().equals(DayOfWeek.SATURDAY)) { //si el día de inicio es sábado lo pasa a lunes
-                dia = dia.plusDays(2);
-            } else if (dia.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {// si el día de inicio es domingo lo pasa a lunes
-                dia = dia.plusDays(1);
+
+            if(MedicoService.getInstance().chequearEstadoMedico(medico)){
+                if (dia.getDayOfWeek().equals(DayOfWeek.SATURDAY)) { //si el día de inicio es sábado lo pasa a lunes
+                    dia = dia.plusDays(2);
+                } else if (dia.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {// si el día de inicio es domingo lo pasa a lunes
+                    dia = dia.plusDays(1);
+                }
+                do {//agrega turnos en el día cada media hora
+                    turnos.add(new Turno(dia, hora, medico));
+                    hora = hora.plusMinutes(30);//agrega media hora para el siguiente turno
+                } while (hora.isBefore(horaFin) || hora.equals(horaFin));//el bucle termina cuando la hora es anterior o igual a la final
+                System.out.println("Turnos habilitados correctamente");
+                guardarTurnosJson();
+            }else{
+                System.out.println("El medico no esta activo");
             }
-            do {//agrega turnos en el día cada media hora
-                turnos.add(new Turno(dia, hora, medico));
-                hora = hora.plusMinutes(30);//agrega media hora para el siguiente turno
-            } while (hora.isBefore(horaFin) || hora.equals(horaFin));//el bucle termina cuando la hora es anterior o igual a la final
-            System.out.println("Turnos habilitados correctamente");
-            guardarTurnosJson();
         }else{
             System.out.println("No tiene permisos para habilitar turnos");
         }
     }
 
     public List<Turno> buscarTurnosPorDiaPorMedico(LocalDate dia, Medico medico) {
-        if(this.turnos == null)
-            // retorna una lista vacia
-            return new ArrayList<>();
-        else{
+        if(medico.getActivo()) {
             return turnos.stream()
                     .filter(turno -> turno.getDia().equals(dia) && turno.getMedico().equals(medico))
                     .collect(Collectors.toList());
+        }else{
+            System.out.println("El medico no esta activo");
+            return null;
         }
     }
 
     public Turno buscarTurnoPorMedicoDiaYHora (Medico medico, LocalDate dia, LocalTime hora){
-        // buscar turno por medica, dia y hora
-        return turnos.stream()
-                .filter(turno -> turno.getMedico().equals(medico) && turno.getDia().equals(dia) && turno.getHora().equals(hora))
-                .findFirst()
-                .orElse(null);
+        if(medico.getActivo()){
+            return turnos.stream()
+                    .filter(turno -> turno.getMedico().equals(medico) && turno.getDia().equals(dia) && turno.getHora().equals(hora))
+                    .findFirst()
+                    .orElse(null);
+        }else{
+            System.out.println("El medico no esta activo");
+            return null;
+        }
     }
 
     public List<Turno> buscarTurnosPorMedico(Medico medico) {
-        return turnos.stream()
-                .filter(turno -> turno.getMedico().equals(medico))
-                .collect(Collectors.toList());
+        if(medico.getActivo()){
+            return turnos.stream()
+                    .filter(turno -> turno.getMedico().equals(medico))
+                    .collect(Collectors.toList());
+        }else{
+            System.out.println("El medico no esta activo");
+            return null;
+        }
     }
 
     public List<Turno> buscarTurnosPorPaciente(Paciente paciente) {
         if (paciente == null) {
-
             return null;
-
         } else {
             return turnos.stream()
                     .filter(turno -> {
@@ -97,27 +112,31 @@ public class TurnoService {
                     })
                     .collect(Collectors.toList());
         }
-
     }
-
 
     public List<Turno> buscarTurnosPorDia(LocalDate dia) {
         return turnos.stream()
-                .filter(turno -> turno.getDia().equals(dia))
+                .filter(turno -> turno.getDia().equals(dia) && turno.getMedico().getActivo())
                 .collect(Collectors.toList());
     }
 
     public List<Turno> buscarTurnosDisponibles() {
         return turnos.stream()
-                .filter(Turno::getDisponible)
+                .filter(turno -> turno.getDisponible() && turno.getMedico().getActivo())
                 .collect(Collectors.toList());
     }
 
     public void solicitarTurno(Turno turno, Paciente paciente) {
         if(AuthorizationService.getInstance().verificarPermiso(SessionManager.getInstance().getTipoEntidad(), "solicitarTurno")) {
-            turno.setPaciente(paciente);
-            marcarTurnoComoOcupado(turno);
-            System.out.println("Se ha solicitado un turno");
+
+            if(turno.getDisponible() && turno.getMedico().getActivo()){
+                turno.setPaciente(paciente);
+                marcarTurnoComoOcupado(turno);
+                System.out.println("Se ha solicitado un turno");
+            }else{
+                System.out.println("El turno no esta disponible");
+            }
+
         }else{
             System.out.println("No tiene permisos para solicitar un turno");
         }
@@ -131,35 +150,17 @@ public class TurnoService {
     public void marcarTurnoComoDisponible(Turno turno) {
         turno.setDisponible(true);
         turno.setPaciente(null);
-        //guardarTurnosJson();
     }
 
-    /*public List<Turno> buscarTurnosEntreFechas(LocalDate fechaInicio, LocalDate fechaFin) {
->>>>>>> 79ac0773243faa9247ec7f90ca0cdd752dbfa074
-        return turnos.stream()
-                .filter(turno -> turno.getFecha().isAfter(fechaInicio) && turno.getFecha().isBefore(fechaFin))
-                .collect(Collectors.toList());
-    }*/
-
-    /*public boolean validarDisponibilidadTurno(Turno turno) {
-        return turnos.stream()
-                .anyMatch(t -> t.getFecha().equals(turno.getFecha()) && t.getHora().equals(turno.getHora()) && !t.getDisponible());
-    }*/
     public void guardarTurnosJson(){
         JsonService.getInstance().guardarJson(turnos, RUTA_JSON);
     }
 
     public Turno buscarTurnoPorPacienteMedicoYFecha(Paciente paciente, Medico medico, LocalDate dia, LocalTime hora) {
-        System.out.println("Paciente buscado: " + paciente);
-        System.out.println("Medico buscado: " + medico);
-        System.out.println("Dia buscado: " + dia);
-        System.out.println("Hora buscada: " + hora);
-        System.out.println("Turnos: " + turnos);
         for(Turno turno : turnos){
 
             if(turno.getPaciente()!=null && turno.getMedico()!=null && turno.getDia()!=null && turno.getHora()!=null && !turno.getDisponible()){
                 if(turno.getPaciente().equals(paciente) && turno.getMedico().equals(medico) && turno.getDia().equals(dia) && turno.getHora().equals(hora)){
-                    System.out.println("turno dentro de la funcion de buscar en TurnoService = " + turno);
                     return turno;
                 }
             }

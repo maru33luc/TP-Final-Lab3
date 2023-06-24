@@ -248,7 +248,7 @@ public class PacienteViewController {
         });
 
         // cargar los nombres y apellidos de los medicos dentro del choice box
-        Set<Medico> medicos = MedicoService.getInstance().getMedicos();
+        Set<Medico> medicos = MedicoService.getInstance().getMedicosActivos();
 
         for (Medico medico2 : medicos) {
             StringBuilder sb = new StringBuilder();

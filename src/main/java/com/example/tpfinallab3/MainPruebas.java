@@ -74,13 +74,22 @@ public class MainPruebas {
         MedicoService.getInstance().agregarMedico(medico);
         Medico medico2 = new Medico("soniabazan","147258","Sonia","Bazan","sonia@gmail.com",Especialidad.PEDIATRIA);
         MedicoService.getInstance().agregarMedico(medico2);
+        System.out.println("medico2 = " + medico2);
 
+        //  PROBANDO DAR DE ALTA Y BAJA MEDICO
+        
+        MedicoService.getInstance().darDeAltaMedico(medico2);
+        //MedicoService.getInstance().darDeBajaMedico(medico2);
+        MedicoService.getInstance().chequearEstadoMedico(medico2);
+        System.out.println("---------------- CHEQUEANDO ESTADO MEDICO DADO DE BAJA  ----------------------------");
+        System.out.println("Medico dado de baja: " + MedicoService.getInstance().chequearEstadoMedico(medico2));
+        System.out.println("Medico dado de baja: " + MedicoService.getInstance().buscarMedicoPorNombreYApellido("Sonia", "Bazan").toString());
         System.out.println("Administrativos: " + AdministrativoService.getInstance().getAdministrativos());
-
+        AdministrativoService.getInstance().modificarAdministrativo("carlosfuentes",  "Carlos", "Fuentes", "carlosFuentes@gmail.com");
+        System.out.println("Administrativos: " + AdministrativoService.getInstance().getAdministrativos());
        // SessionManager.getInstance().cerrarSesion();
 
         // PROBANDO HABILITAR TURNOS
-
 
         LocalDate dia = LocalDate.of(2023, 6, 16);
         LocalTime horaInicio = LocalTime.of(10, 0);
@@ -89,8 +98,8 @@ public class MainPruebas {
         System.out.println("Los turnos de Sonia son: " + TurnoService.getInstance().buscarTurnosPorDiaPorMedico(dia, medico2));
 
         //Medico medico = new Medico("fgildemuro", "123456", "Federico", "Gil de Muro", "fgildemuro@hotmail.com", Especialidad.CARDIOLOGIA);
-/*        TurnoService.getInstance().habilitarTurnos(dia, horaInicio, horaFin, medico );
-        dia = LocalDate.of(2023, 6, 17);
+        TurnoService.getInstance().habilitarTurnos(dia, horaInicio, horaFin, medico );
+        /*dia = LocalDate.of(2023, 6, 17);
         TurnoService.getInstance().habilitarTurnos(dia, horaInicio, horaFin, medico );
         dia = LocalDate.of(2023, 6, 19);
         System.out.println(TurnoService.getInstance().buscarTurnosPorDiaPorMedico(dia, medico));

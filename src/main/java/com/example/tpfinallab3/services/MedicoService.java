@@ -107,11 +107,51 @@ public class MedicoService {
     }
 
     public Medico buscarMedicoPorNombreYApellido(String nombreMedico, String apellidoMedico) {
-        System.out.println("nombreMedico = " + nombreMedico);
-        System.out.println("apellidoMedico = " + apellidoMedico);
         return medicos.stream()
                 .filter(medico -> medico.getNombre().equalsIgnoreCase(nombreMedico) && medico.getApellido().equalsIgnoreCase(apellidoMedico))
                 .findFirst()
                 .orElse(null);
     }
+
+    public void darDeBajaMedico(Medico medico) {
+        if(AuthorizationService.getInstance().verificarPermiso(SessionManager.getInstance().getTipoEntidad(), "darDeBajaMedico")){
+            Medico medico1= buscarMedicoPorNombreYApellido(medico.getNombre(), medico.getApellido());
+            medico1.setActivo(false);
+            System.out.println("Medico dado de baja correctamente");
+            guardarMedicosJson();
+        }else
+        {
+            System.out.println("No tiene permisos para dar de baja un medico");
+        }
+    }
+
+    public void darDeAltaMedico(Medico medico) {
+        if(AuthorizationService.getInstance().verificarPermiso(SessionManager.getInstance().getTipoEntidad(), "darDeAltaMedico")){
+            Medico medico1= buscarMedicoPorNombreYApellido(medico.getNombre(), medico.getApellido());
+            medico1.setActivo(true);
+            System.out.println("Medico dado de alta correctamente");
+            guardarMedicosJson();
+        }else
+        {
+            System.out.println("No tiene permisos para dar de alta un medico");
+        }
+    }
+
+    public boolean chequearEstadoMedico(Medico medico) {
+        return medicos.stream()
+                .filter(medico1 -> medico1.getNombre().equalsIgnoreCase(medico.getNombre()) && medico1.getApellido().equalsIgnoreCase(medico.getApellido()))
+                .findFirst()
+                .get().getActivo();
+    }
+
+    public Set<Medico> getMedicosActivos() {
+        Set<Medico> medicosActivos = new HashSet<>();
+        for (Medico medico : medicos) {
+            if (medico.getActivo()) {
+                medicosActivos.add(medico);
+            }
+        }
+        return medicosActivos;
+    }
+
 }

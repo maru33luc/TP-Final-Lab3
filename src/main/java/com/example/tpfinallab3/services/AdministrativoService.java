@@ -50,6 +50,32 @@ public class AdministrativoService {
                 .findFirst();
     }
 
+    public void modificarAdministrativo(String usuario, String nombre, String apellido, String mail) {
+        /*Iterator iterator = administrativos.iterator();
+        while (iterator.hasNext()) {
+            Administrativo administrativo = (Administrativo) iterator.next();
+            if (administrativo.getNombreUsuario().equalsIgnoreCase(usuario)) {
+                administrativo.setNombre(nombre);
+                administrativo.setApellido(apellido);
+                administrativo.setMail(mail);
+                guardarAdministrativosJson();
+            }
+        }*/
+
+        // buscar en la lista de administrativos y setear los datos
+        administrativos.stream()
+                .filter(a -> a.getNombreUsuario().equalsIgnoreCase(usuario))
+                .findFirst()
+                .ifPresent(a -> {
+                    a.setNombre(nombre);
+                    a.setApellido(apellido);
+                    a.setMail(mail);
+                    guardarAdministrativosJson();
+                });
+        System.out.println("Lista de administrativos dentro del service: " + administrativos);
+
+    }
+
     public boolean existeAdministrativoPorNombreUsuario(String nombreUsuario) {
         return administrativos.stream()
                 .anyMatch(a -> a.getNombreUsuario().equalsIgnoreCase(nombreUsuario));

@@ -72,6 +72,7 @@ public abstract class Usuario implements Autenticable, Serializable {
         isActivo = activo;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if(this == o) {
@@ -98,7 +99,8 @@ public abstract class Usuario implements Autenticable, Serializable {
                 "Contraseña: " + contrasena + "\n" +
                 "Nombre: " + nombre + "\n" +
                 "Apellido: " + apellido + "\n" +
-                "Correo electrónico: " + mail + "\n";
+                "Correo electrónico: " + mail + "\n" +
+                "Activo: " + isActivo + "\n";
     }
 
     public void cambiarEstado() {
