@@ -21,8 +21,6 @@ public class Medico extends Usuario {
         this.especialidad = especialidad;
     }
 
-
-
     @Override
     public String getNombre() {
         return super.getNombre();

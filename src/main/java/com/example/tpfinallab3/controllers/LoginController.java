@@ -167,7 +167,6 @@ public class LoginController {
     }
 
     protected static void showSuccessAlert(String message) {
-
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(null);
         alert.setHeaderText(null);
@@ -176,7 +175,6 @@ public class LoginController {
     }
 
     protected static void showErrorAlert(String message) {
-
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText(message);
         alert.setTitle(null);

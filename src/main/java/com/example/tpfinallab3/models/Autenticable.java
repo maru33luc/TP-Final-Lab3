@@ -4,7 +4,6 @@ public interface Autenticable {
     public String getNombreUsuario();
 
    public String getContrasena();
-    // Otros métodos relacionados con la autenticación, si los necesitas
 
     public String getNombre();
 
@@ -15,7 +14,6 @@ public interface Autenticable {
     public void setApellido(String apellido);
 
     public String getMail();
-
 
     public void setMail(String mail);
 

@@ -316,7 +316,6 @@ public class PacienteViewController {
 
         List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosDisponibles();
         ObservableList<TurnoTabla> listaTurnos2 = FXCollections.observableArrayList();
-
         for (Turno turno : listaTurnos) {
 
             if (especialidadPacienteChoiceBox.getSelectionModel().getSelectedItem().equals(turno.getMedico().getEspecialidad())) {
@@ -383,8 +382,6 @@ public class PacienteViewController {
             cargarTablaMisTurnos();
     }
 
-
-
     @FXML
     void editarDatosPacienteEvent(ActionEvent event) {
         profileDataPacientePanel.setVisible(false);
@@ -395,13 +392,11 @@ public class PacienteViewController {
 
     @FXML
     void guardarDatosPacienteEvent(ActionEvent event) {
-
     }
 
     @FXML
     void seleccionarMisTurnosAction(MouseEvent event) {
         TurnoTabla turnoTabla = tablaMisTurnosPaciente.getSelectionModel().getSelectedItem();
-
         if (turnoTabla != null) {
             especialidadMiTurnoPacienteLabel.setText(turnoTabla.getEspecialidad().toString());
             medicoMiTurnoPacienteLabel.setText(turnoTabla.getMedico());
@@ -413,13 +408,11 @@ public class PacienteViewController {
     @FXML
     void seleccionarUnTurnoAction(MouseEvent event) {
         TurnoTabla turnoTabla = tablaTurnosPaciente.getSelectionModel().getSelectedItem();
-
         if (turnoTabla != null) {
             especialidadTurnoPacienteLabel.setText(turnoTabla.getEspecialidad().toString());
             medicoTurnoPacienteLabel.setText(turnoTabla.getMedico());
             fechaTurnoPacienteLabel.setText(turnoTabla.getDia().toString());
             horaTurnoPacienteLabel.setText(turnoTabla.getHora().toString());
-
         }
     }
 
@@ -446,7 +439,6 @@ public class PacienteViewController {
             }
 
             String apellidoMedico = apellidoMedicoBuilder.toString();
-
             Medico medico = MedicoService.getInstance().buscarMedicoPorNombreYApellido(nombreMedico, apellidoMedico);
             LocalDate dia = LocalDate.parse(fechaTurnoPacienteLabel.getText());
             LocalTime hora = LocalTime.parse(horaTurnoPacienteLabel.getText());
@@ -503,7 +495,6 @@ public class PacienteViewController {
     @FXML
     void logoutPaciente(MouseEvent event) {
     }
-
 
     public void setMainController(LoginController loginController) {
           this.loginController = loginController;
