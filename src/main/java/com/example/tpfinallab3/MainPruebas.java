@@ -8,6 +8,7 @@ import com.example.tpfinallab3.security.SessionManager;
 import com.example.tpfinallab3.services.AdministrativoService;
 import com.example.tpfinallab3.services.MedicoService;
 import com.example.tpfinallab3.services.TurnoService;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -82,7 +83,19 @@ public class MainPruebas {
         AuthenticationService.getInstance().modificarContraseña("carlosfuentes",  "123456");
 
         String nombreUsuario = SessionManager.getInstance().getEntidadLogueada().getNombreUsuario();
-        System.out.println("Contraseña de la entidad logueada: " + AuthenticationService.getInstance().getContraseñaEntidadLogueada(nombreUsuario));
+
+        String contraseña = AuthenticationService.getInstance().getContraseñaEntidadLogueada(nombreUsuario);
+        String password = "123456";
+
+        boolean passwordMatch = BCrypt.checkpw(password, contraseña);
+        System.out.println("passwordMatch = " + passwordMatch);
+        if (passwordMatch) {
+            System.out.println("La contraseña se modifico correctamente.");
+        } else {
+            System.out.println("La contraseña no se modifico");
+        }
+
+
 
         //  PROBANDO DAR DE ALTA Y BAJA MEDICO
 

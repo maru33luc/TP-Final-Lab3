@@ -39,4 +39,13 @@ public class UsuarioInfo implements Serializable {
     public void setClaseEntidad(String claseEntidad) {
         this.claseEntidad = claseEntidad;
     }
+
+    @Override
+    public String toString() {
+        return "UsuarioInfo{" +
+                "usuario='" + usuario + '\'' +
+                ", contrasena='" + contrasena + '\'' +
+                ", claseEntidad='" + claseEntidad + '\'' +
+                '}';
+    }
 }

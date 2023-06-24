@@ -352,7 +352,9 @@ public class AdminViewController {
 
     @FXML
     public void initialize() {
+
         Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
+
         especialidadEdicionEditarUsuarioAdminChoiceBox.getItems().addAll(Especialidad.values().toString());
         especialidadNuevoUsuarioChoiceBox.getItems().addAll(Especialidad.values());
 

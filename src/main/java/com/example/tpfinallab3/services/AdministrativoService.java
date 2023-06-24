@@ -4,9 +4,7 @@ import com.example.tpfinallab3.models.Administrativo;
 import com.example.tpfinallab3.security.AuthorizationService;
 import com.example.tpfinallab3.security.SessionManager;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class AdministrativoService {
     private static AdministrativoService instance;
@@ -55,27 +53,18 @@ public class AdministrativoService {
     }
 
     public void modificarAdministrativo(String usuario, String nombre, String apellido, String mail) {
-        /*Iterator iterator = administrativos.iterator();
-        while (iterator.hasNext()) {
-            Administrativo administrativo = (Administrativo) iterator.next();
+
+        // buscar en la lista de administrativos y setear los datos
+        List<Administrativo> lista = new ArrayList<>(administrativos);
+        for (Administrativo administrativo : lista) {
             if (administrativo.getNombreUsuario().equalsIgnoreCase(usuario)) {
                 administrativo.setNombre(nombre);
                 administrativo.setApellido(apellido);
                 administrativo.setMail(mail);
-                guardarAdministrativosJson();
             }
-        }*/
+        }
+        administrativos=new HashSet<>(lista);
 
-        // buscar en la lista de administrativos y setear los datos
-        administrativos.stream()
-                .filter(a -> a.getNombreUsuario().equalsIgnoreCase(usuario))
-                .findFirst()
-                .ifPresent(a -> {
-                    a.setNombre(nombre);
-                    a.setApellido(apellido);
-                    a.setMail(mail);
-                    guardarAdministrativosJson();
-                });
         System.out.println("Lista de administrativos dentro del service: " + administrativos);
 
     }

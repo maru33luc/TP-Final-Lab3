@@ -127,6 +127,31 @@ public class JsonService {
             e.printStackTrace();
         }
     }
+
+    // buscar por usuario en el json y modificar la contraseña
+
+    public void cambiarContraseñaJson (String nombreUsuario, String contraseñaHasheada, String ruta){
+        Map<String, UsuarioInfo> usuarioInfoMap = new HashMap<>();
+        // Lee el archivo JSON existente y almacena su contenido en el mapa
+
+        try {
+            usuarioInfoMap = objectMapper.readValue(new File(ruta), new TypeReference<Map<String, UsuarioInfo>>() {});
+        } catch (IOException e) {
+            // Si ocurre una excepción al leer el archivo, se asume que no existe o está vacío
+            usuarioInfoMap = new HashMap<>();
+        }
+        UsuarioInfo usuarioInfo = usuarioInfoMap.get(nombreUsuario);
+        usuarioInfo.setContrasena(contraseñaHasheada);
+        usuarioInfoMap.put(nombreUsuario, usuarioInfo);
+        try {
+            objectMapper.writeValue(new File(ruta), usuarioInfoMap);
+            System.out.println("Json guardado");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }
 
 
