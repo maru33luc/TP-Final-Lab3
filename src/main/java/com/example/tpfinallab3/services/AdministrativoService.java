@@ -40,6 +40,18 @@ public class AdministrativoService {
         guardarAdministrativosJson();
     }
 
+    public void modificarAdministrativo(String usuario, String nombre, String apellido, String mail) {
+        administrativos.stream()
+                .filter(a -> a.getNombreUsuario().equalsIgnoreCase(usuario))
+                .findFirst()
+                .ifPresent(a -> {
+                    a.setNombre(nombre);
+                    a.setApellido(apellido);
+                    a.setMail(mail);
+                });
+        guardarAdministrativosJson();
+    }
+
     public void eliminarAdministrativoPorNombreUsuario(String nombreUsuario) {
         administrativos.removeIf(a -> a.getNombreUsuario().equalsIgnoreCase(nombreUsuario));
     }

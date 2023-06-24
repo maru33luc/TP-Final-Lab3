@@ -106,4 +106,38 @@ public class ValidationService {
             throw new ValidationException (mensaje.toString());
         }
     }
+
+    public void validarDatosEditarPerfilAdmin(String nombre, String apellido, String mail) throws ValidationException {
+
+        StringBuilder mensaje = new StringBuilder();
+
+        //si el nombre está vacío y si tiene números
+        if (nombre.isEmpty()) {
+            mensaje.append("Nombre obligatorio\n");
+        }
+        else if (nombre.matches("^\\d")) {
+            mensaje.append("Nombre no puede contener números\n");
+        }
+
+        //si el apellido está vacío y si tiene números
+        if (apellido.isEmpty()) {
+            mensaje.append("Apellido obligatorio\n");
+        }
+        else if (apellido.matches("^\\d")) {
+            mensaje.append("Apellido no puede contener números\n");
+        }
+
+        //si el mail está vacío y si tiene formato válido
+        if (mail.isEmpty()) {
+            mensaje.append("Correo electrónico obligatorio\n");
+        }
+        else if (!mail.matches("[\\w-]+(\\.[\\w-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
+            mensaje.append("Correo electrónico inválido\n");
+        }
+
+        //si el mensaje no está vacío es porque se detectó algún error en el ingreso de datos y se lanza excepción
+        if (!mensaje.toString().isEmpty()) {
+            throw new ValidationException (mensaje.toString());
+        }
+    }
 }

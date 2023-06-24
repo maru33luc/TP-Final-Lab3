@@ -1,5 +1,6 @@
 package com.example.tpfinallab3.controllers;
 
+import com.example.tpfinallab3.exceptions.ValidationException;
 import com.example.tpfinallab3.models.Administrativo;
 import com.example.tpfinallab3.models.Autenticable;
 import com.example.tpfinallab3.models.Especialidad;
@@ -222,9 +223,6 @@ public class AdminViewController {
     private ImageView mostrarConfirmNewPasswordEdicionEditarUsuarioAdminButton;
 
     @FXML
-    private ImageView mostrarConfirmNewPasswordEdicionMiPerfilAdminButton;
-
-    @FXML
     private AnchorPane mostrarEditarUsuarioAdminAnchorPane;
 
     @FXML
@@ -237,9 +235,6 @@ public class AdminViewController {
     private ImageView mostrarNewPasswordEdicionEditarUsuarioAdminButton;
 
     @FXML
-    private ImageView mostrarNewPasswordEdicionMiPerfilAdminButton;
-
-    @FXML
     private ImageView mostrarPasswordNuevoUsuarioButton;
 
     @FXML
@@ -247,9 +242,6 @@ public class AdminViewController {
 
     @FXML
     private PasswordField newPasswordEdicionEditarUsuarioAdminField;
-
-    @FXML
-    private PasswordField newPasswordEdicionMiPerfilAdminField;
 
     @FXML
     private TextField nombreEdicionEditarUsuarioAdminField;
@@ -279,13 +271,7 @@ public class AdminViewController {
     private ImageView ocultarConfirmNewPasswordEdicionEditarUsuarioAdminButton;
 
     @FXML
-    private ImageView ocultarConfirmNewPasswordEdicionMiPerfilAdminButton;
-
-    @FXML
     private ImageView ocultarNewPasswordEdicionEditarUsuarioAdminButton;
-
-    @FXML
-    private ImageView ocultarNewPasswordEdicionMiPerfilAdminButton;
 
     @FXML
     private ImageView ocultarPasswordNuevoUsuarioButton;
@@ -451,14 +437,12 @@ public class AdminViewController {
         //para minimizar ventana.
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //----------------------------[ VIEW - MI PERFIL ]
+//MI PERFIL///////////////////////////////////////////////////////////////////////////////////////////////////
+    //MOSTRAR PERFIL//////////////////////////////////////////////////////////////////////////////////////////
 
-    //[ MOSTRAR PERFIL ]
     @FXML
     void clickEditeMyProfileAdmin(ActionEvent event) { //Botón Editar Mi Perfil
         ocultarTodosLosAnchorPane();
-
         miPerfilAdminAnchorPane.setVisible(true);
         editarMiPerfilAdminAnchorPane.setVisible(true);
         agregarDatosAFieldEditarMiPerfil();
@@ -470,82 +454,37 @@ public class AdminViewController {
         emailEdicionMiPerfilAdminField.setPromptText(emailMiPerfilAdminLabel.getText());
     }
 
-    //[ EDITAR PERFIL ]
-    @FXML
-    void fieldNameEditMyProfileAdmin(ActionEvent event) { //Field Nombre en Editar Mi Perfil
-
-    }
+    //EDITAR PERFIL///////////////////////////////////////////////////////////////////////////////////////////
 
     @FXML
-    void fieldSurnameEditMyProfileAdmin(ActionEvent event) { //Field Apellido en Editar Mi Perfil
+    void guardarEditarPerfilAdmin(ActionEvent event) {
+        //se guardan los datos ingresados
+        String nombre = nombreEdicionMiPerfilAdminField.getText();
+        String apellido = apellidoEdicionMiPerfilAdminField.getText();
+        String mail = emailEdicionMiPerfilAdminField.getText();
 
-    }
-
-    @FXML
-    void fieldEmailEditMyProfileAdmin(ActionEvent event) { //Field Email en Editar Mi Perfil
-
-    }
-
-    @FXML
-    void fieldOldPasswoordEditMyProfileAdmin(ActionEvent event) { //Field Contraseña Actual en Editar Mi Perfil
-        Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
-
-        //valido contraseña vieja con ingresada
-        if (!actualPasswordEdicionMiPerfilAdminField.getText().equals(usuarioLogueado.getContrasena())) //AVERIGUAR ERROR
-            showErrorAlert("¡Contraseña incorrecta!");
-    }
-
-    @FXML
-    void fieldNewPasswordEditMyProfileAdmin(ActionEvent event) { //Field Nueva Contraseña en Editar Mi Perfil
-        //valido que la nueva contraseña no sea igual a la vieja
-        if (actualPasswordEdicionMiPerfilAdminField.getText().equals(newPasswordEdicionMiPerfilAdminField.getText())) {
-            showErrorAlert("La nueva contraseña no puede ser igual a la anterior.");
-        }//FALTA validar seguridad de la clave
-    }
-
-    @FXML
-    void clickHideNewPasswordEditMyProfileAdmin(KeyEvent event) { //Botón ojo Ocultar "Nueva Contraseña" en Editar Mi Perfil
-        //COMPLETAR
-
-    }
-
-    @FXML
-    void clickShowNewPasswordEditMyProfileAdmin(KeyEvent event) { //Botón ojo Mostrar "Nueva Contraseña" en Editar Mi Perfil
-        //COMPLETAR
-    }
-
-    @FXML
-    void fieldConfirmNewPasswordEditMyProfileAdmin(ActionEvent event) { //Field Confirmar Nueva Contraseña en Editar Mi Perfil
-        //valido que la nueva contraseña coincida con la confirmación
-        if (!newPasswordEdicionMiPerfilAdminField.getText().equals(confirmNewPasswordEdicionMiPerfilAdminField.getText())) {
-            showErrorAlert("La contraseña no coincide.");
+        try {
+            //se validan los datos ingresados
+            ValidationService.getInstance().validarDatosEditarPerfilAdmin(nombre, apellido, mail);
+            //se recupera el usuario logueado
+            String usuario = SessionManager.getInstance().getEntidadLogueada().getNombreUsuario();
+            //se modifica el usuario logueado en la lista de administrativos y el json
+            AdministrativoService.getInstance().modificarAdministrativo(usuario, nombre, apellido, mail);
+            //se setean los datos a mostrar en el perfil para esta sesión
+            nombreMiPerfilAdminLabel.setText(nombre);
+            apellidoMiPerfilAdminLabel.setText(apellido);
+            emailMiPerfilAdminLabel.setText(mail);
+            //se envía mensaje de éxito en la modificación
+            LoginController.showSuccessAlert("Datos modificados exitosamente");
+            ocultarTodosLosAnchorPane();
+        } catch (Exception e) {
+            showErrorAlert(e.getMessage());
         }
-    }
-
-    @FXML
-    void clickHideConfirmNewPasswordEditMyProfileAdmin(KeyEvent event) { //Botón ojo Ocultar "Confirmar Nueva Contraseña" en Editar Mi Perfil
-        //COMPLETAR
-    }
-
-    @FXML
-    void clickShowConfirmNewPasswordEditMyProfileAdmin(KeyEvent event) { //Botón ojo Mostrar "Confirmar Nueva Contraseña" en Editar Mi Perfil
-        //COMPLETAR
-    }
-    @FXML
-    void clickSaveEditMyProfileAdmin(ActionEvent event) { //Botón guardar cambios en Editar Mi Perfil
-        String nombre = nombreMiPerfilAdminLabel.getText();
-        String apellido = apellidoMiPerfilAdminLabel.getText();
-        String email = emailMiPerfilAdminLabel.getText();
-        String password = confirmNewPasswordEdicionMiPerfilAdminField.getText();
 
         //setear el usuario con los datos ingresados
-        SessionManager.getInstance().getEntidadLogueada().setNombre(nombre);
+        /*SessionManager.getInstance().getEntidadLogueada().setNombre(nombre);
         SessionManager.getInstance().getEntidadLogueada().setApellido(apellido);
-        SessionManager.getInstance().getEntidadLogueada().setMail(email);
-        //   SessionManager.getInstance().getEntidadLogueada().setContrasena(password); //SOLUCIONAR ERROR
-
-        //mostrar mensaje de confirmación
-        showSuccessAlert("¡Cambios guardados con éxito!");
+        SessionManager.getInstance().getEntidadLogueada().setMail(mail);*/
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -622,16 +561,6 @@ public class AdminViewController {
         }
     }
 
-
-    /*  @FXML
-      void choiceSpecialityNewUser(KeyEvent event) { //ChoiceBox Especialidad en Nuevo Usuario
-
-      }*/
-    public void choiceSpecialityNewUser(KeyEvent keyEvent) {
-    }
-
-
-
     @FXML
     void clickSaveNewUser(ActionEvent event) { //Botón para crear nuevo usuario
         //si no se seleccionó tipo de usuario
@@ -680,10 +609,9 @@ public class AdminViewController {
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //----------------------------[ VIEW - EDITAR USUARIO ]
+//EDITAR USUARIO//////////////////////////////////////////////////////////////////////////////////////////////
 
-    //[ BUSCAR USUARIO ]
+    //BUSCAR USUARIO//////////////////////////////////////////////////////////////////////////////////////////
 
     @FXML
     void checkIsDoctorSearchEdit(ActionEvent event) { //CheckBox buscarMedico en Buscar de Editar Usuario
@@ -699,12 +627,6 @@ public class AdminViewController {
         if (isMedicoBuscarEditarUsuarioCheckBox.isSelected()) {
             isMedicoBuscarEditarUsuarioCheckBox.setSelected(false);
         }
-    }
-
-
-    @FXML
-    void fieldUserSearchEdit(ActionEvent event) { //Field Usuario en Buscar de Editar Usuario
-
     }
 
     private boolean validarFieldUserSearchEdit() {
