@@ -480,13 +480,8 @@ public class AdminViewController {
             LoginController.showSuccessAlert("Datos modificados exitosamente");
             ocultarTodosLosAnchorPane();
         } catch (Exception e) {
-            showErrorAlert(e.getMessage());
+            LoginController.showErrorAlert(e.getMessage());
         }
-
-        //setear el usuario con los datos ingresados
-        /*SessionManager.getInstance().getEntidadLogueada().setNombre(nombre);
-        SessionManager.getInstance().getEntidadLogueada().setApellido(apellido);
-        SessionManager.getInstance().getEntidadLogueada().setMail(mail);*/
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

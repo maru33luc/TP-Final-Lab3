@@ -43,6 +43,21 @@ public class PacienteService {
         guardarPacientesJson();
     }
 
+    public void modificarPaciente(String usuario, String nombre, String apellido, String mail, String telefono, String obraSocial, String numeroAfiliado) {
+        pacientes.stream()
+                .filter(p -> p.getNombreUsuario().equalsIgnoreCase(usuario))
+                .findFirst()
+                .ifPresent(p -> {
+                    p.setNombre(nombre);
+                    p.setApellido(apellido);
+                    p.setMail(mail);
+                    p.setTelefono(telefono);
+                    p.setObraSocial(obraSocial);
+                    p.setNumeroAfiliado(numeroAfiliado);
+                });
+        guardarPacientesJson();
+    }
+
     public void actualizarPaciente(String dni, Paciente pacienteActualizado) {
         pacientes.stream()
                 .filter(paciente -> paciente.getDni().equals(dni))
