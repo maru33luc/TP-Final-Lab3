@@ -77,7 +77,7 @@ public class MainPruebas {
         System.out.println("medico2 = " + medico2);
 
         //  PROBANDO DAR DE ALTA Y BAJA MEDICO
-        
+
         MedicoService.getInstance().darDeAltaMedico(medico2);
         //MedicoService.getInstance().darDeBajaMedico(medico2);
         MedicoService.getInstance().chequearEstadoMedico(medico2);
@@ -96,6 +96,13 @@ public class MainPruebas {
         LocalTime horaFin = LocalTime.of(11, 0);
         TurnoService.getInstance().habilitarTurnos(dia, horaInicio, horaFin, medico2 );
         System.out.println("Los turnos de Sonia son: " + TurnoService.getInstance().buscarTurnosPorDiaPorMedico(dia, medico2));
+
+        AdministrativoService.getInstance().darDeBajaAdministrativo(administrativo);
+        System.out.println("-------------------------- ADMINISTRATIVO DADO DE BAJA ------------------------------");
+        System.out.println("Administrativos: " + AdministrativoService.getInstance().getAdministrativos());
+        AdministrativoService.getInstance().darDeAltaAdministrativo(administrativo);
+        System.out.println("-------------------------- ADMINISTRATIVO DADO DE ALTA ------------------------------");
+        System.out.println("Administrativos: " + AdministrativoService.getInstance().getAdministrativos());
 
         //Medico medico = new Medico("fgildemuro", "123456", "Federico", "Gil de Muro", "fgildemuro@hotmail.com", Especialidad.CARDIOLOGIA);
         TurnoService.getInstance().habilitarTurnos(dia, horaInicio, horaFin, medico );

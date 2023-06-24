@@ -1,8 +1,12 @@
 package com.example.tpfinallab3.services;
 
 import com.example.tpfinallab3.models.Administrativo;
+import com.example.tpfinallab3.security.AuthorizationService;
+import com.example.tpfinallab3.security.SessionManager;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 public class AdministrativoService {
     private static AdministrativoService instance;
@@ -92,7 +96,39 @@ public class AdministrativoService {
         return resultado;
     }*/
 
-   public void guardarAdministrativosJson() {
+    public void darDeBajaAdministrativo(Administrativo administrativo) {
+        if (AuthorizationService.getInstance().verificarPermiso(SessionManager.getInstance().getTipoEntidad(), "darDeBajaAdministrativo")) {
+            buscarAdministrativoPorNombreUsuario(administrativo.getNombreUsuario())
+                    .ifPresentOrElse(
+                            administrativoEncontrado -> {
+                                administrativoEncontrado.setActivo(false);
+                                System.out.println("Administrativo dado de baja correctamente");
+                                guardarAdministrativosJson();
+                            },
+                            () -> System.out.println("No se encontró el administrativo")
+                    );
+        } else {
+            System.out.println("No tiene permisos para dar de baja un administrativo");
+        }
+    }
+
+    public void darDeAltaAdministrativo(Administrativo administrativo) {
+        if (AuthorizationService.getInstance().verificarPermiso(SessionManager.getInstance().getTipoEntidad(), "darDeAltaAdministrativo")) {
+            buscarAdministrativoPorNombreUsuario(administrativo.getNombreUsuario())
+                    .ifPresentOrElse(
+                            administrativoEncontrado -> {
+                                administrativoEncontrado.setActivo(true);
+                                System.out.println("Administrativo dado de alta correctamente");
+                                guardarAdministrativosJson();
+                            },
+                            () -> System.out.println("No se encontró el administrativo")
+                    );
+        } else {
+            System.out.println("No tiene permisos para dar de alta un administrativo");
+        }
+    }
+
+    public void guardarAdministrativosJson() {
         JsonService.getInstance().guardarJson(administrativos, RUTA_JSON);
     }
 }
