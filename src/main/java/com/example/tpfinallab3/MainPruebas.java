@@ -3,6 +3,7 @@ package com.example.tpfinallab3;
 import com.example.tpfinallab3.models.Administrativo;
 import com.example.tpfinallab3.models.Especialidad;
 import com.example.tpfinallab3.models.Medico;
+import com.example.tpfinallab3.security.AuthenticationService;
 import com.example.tpfinallab3.security.SessionManager;
 import com.example.tpfinallab3.services.AdministrativoService;
 import com.example.tpfinallab3.services.MedicoService;
@@ -75,6 +76,13 @@ public class MainPruebas {
         Medico medico2 = new Medico("soniabazan","147258","Sonia","Bazan","sonia@gmail.com",Especialidad.PEDIATRIA);
         MedicoService.getInstance().agregarMedico(medico2);
         System.out.println("medico2 = " + medico2);
+
+        //  PROBANDO MODIFICAR CONTRSEÑA
+        System.out.println("---------------- MODIFICANDO CONTRASEÑA  ----------------------------");
+        AuthenticationService.getInstance().modificarContraseña("carlosfuentes",  "123456");
+
+        String nombreUsuario = SessionManager.getInstance().getEntidadLogueada().getNombreUsuario();
+        System.out.println("Contraseña de la entidad logueada: " + AuthenticationService.getInstance().getContraseñaEntidadLogueada(nombreUsuario));
 
         //  PROBANDO DAR DE ALTA Y BAJA MEDICO
 

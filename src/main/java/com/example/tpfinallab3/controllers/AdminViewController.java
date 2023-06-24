@@ -834,9 +834,7 @@ public class AdminViewController {
     void choiceSpecialityUserEdit(KeyEvent event) { //ChoiceBox Especialidad en Editar Usuario
 
     }
-<<<<<<< HEAD
 
-=======
     */
     public void choiceSpecialityUserEdit(KeyEvent keyEvent) {
     }

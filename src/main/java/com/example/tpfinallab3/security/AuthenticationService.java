@@ -4,6 +4,7 @@ import com.example.tpfinallab3.models.UsuarioInfo;
 import com.example.tpfinallab3.services.JsonService;
 import org.mindrot.jbcrypt.BCrypt;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,5 +61,25 @@ public class AuthenticationService {
             return true;
         }
         return false;
+    }
+
+    public void modificarContraseña(String nombreUsuario, String nuevaContraseña) {
+        cargarUsuariosDesdeJson();
+        if (usuarios.containsKey(nombreUsuario)) {
+            String contraseñaHasheada = BCrypt.hashpw(nuevaContraseña, BCrypt.gensalt());
+            UsuarioInfo usuarioInfo = usuarios.get(nombreUsuario);
+            usuarioInfo.setContrasena(contraseñaHasheada);
+            JsonService.getInstance().guardarJsonUsuariosYContraseñas(new ArrayList<>(usuarios.values()), RUTA_JSON);
+            System.out.println("Contraseña modificada correctamente");
+        } else {
+            System.out.println("El usuario no existe");
+        }
+    }
+
+    public String getContraseñaEntidadLogueada(String nombreUsuario){
+        cargarUsuariosDesdeJson();
+        // retornar la contraseña de la entidad logueada descifrada
+
+        return usuarios.get(nombreUsuario).getContrasena();
     }
 }
