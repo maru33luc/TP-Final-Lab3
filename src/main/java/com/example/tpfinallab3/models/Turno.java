@@ -79,7 +79,6 @@ public class Turno implements Serializable {
                 getMedico().equals(other.getMedico());
     }
 
-
     @Override
     public int hashCode() {
         return Objects.hash(dia, paciente, medico);

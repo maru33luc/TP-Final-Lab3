@@ -19,7 +19,6 @@ public class Paciente extends Usuario {
         this.numeroAfiliado = numeroAfiliado;
     }
 
-
     public String getDni() {
         return dni;
     }
