@@ -5,6 +5,7 @@ import com.example.tpfinallab3.models.Autenticable;
 import com.example.tpfinallab3.models.Especialidad;
 import com.example.tpfinallab3.models.Medico;
 import com.example.tpfinallab3.security.SessionManager;
+import com.example.tpfinallab3.security.ValidationService;
 import com.example.tpfinallab3.services.AdministrativoService;
 import com.example.tpfinallab3.services.MedicoService;
 import javafx.event.ActionEvent;
@@ -167,7 +168,10 @@ public class AdminViewController {
     private Label especialidadMostrarEliminarUsuarioAdminLabel;
 
     @FXML
-    private ChoiceBox<String> especialidadNuevoUsuarioChoiceBox;
+    private Label especialidadLabel;
+
+    @FXML
+    private ChoiceBox<Especialidad> especialidadNuevoUsuarioChoiceBox;
 
     @FXML
     private CheckBox fechaVerTurnosAdminCheckBox;
@@ -296,6 +300,9 @@ public class AdminViewController {
     private PasswordField passwordNuevoUsuarioField;
 
     @FXML
+    private TextField plainPasswordNuevoUsuarioField;
+
+    @FXML
     private TableColumn<?, ?> tablaMedicoColumnaHora;
 
     @FXML
@@ -347,7 +354,7 @@ public class AdminViewController {
     public void initialize() {
         Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
         especialidadEdicionEditarUsuarioAdminChoiceBox.getItems().addAll(Especialidad.values().toString());
-        especialidadNuevoUsuarioChoiceBox.getItems().addAll(Especialidad.values().toString());
+        especialidadNuevoUsuarioChoiceBox.getItems().addAll(Especialidad.values());
 
         try{
             usuarioMiPerfilAdminLabel.setText(usuarioLogueado.getNombreUsuario());
@@ -417,6 +424,8 @@ public class AdminViewController {
 
         editarUsuarioAdminAnchorPane.setVisible(true);
         buscarEditarUsuarioAdminAnchorPane.setVisible(true);
+        isMedicoBuscarEditarUsuarioCheckBox.setSelected(false);
+        isAdminBuscarEditarUsuarioCheckBox.setSelected(false);
     }
 
     @FXML
@@ -425,6 +434,8 @@ public class AdminViewController {
 
         eliminarUsuarioAdminAnchorPane.setVisible(true);
         buscarEliminarUsuarioAdminAnchorPane.setVisible(true);
+        isMedicoBuscarEliminarUsuarioCheckBox.setSelected(false);
+        isAdminBuscarEliminarUsuarioCheckBox.setSelected(false);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -450,26 +461,29 @@ public class AdminViewController {
 
         miPerfilAdminAnchorPane.setVisible(true);
         editarMiPerfilAdminAnchorPane.setVisible(true);
+        agregarDatosAFieldEditarMiPerfil();
+    }
 
-
-
-
+    private void agregarDatosAFieldEditarMiPerfil (){
+        nombreEdicionMiPerfilAdminField.setPromptText(nombreMiPerfilAdminLabel.getText());
+        apellidoEdicionMiPerfilAdminField.setPromptText(apellidoMiPerfilAdminLabel.getText());
+        emailEdicionMiPerfilAdminField.setPromptText(emailMiPerfilAdminLabel.getText());
     }
 
     //[ EDITAR PERFIL ]
     @FXML
     void fieldNameEditMyProfileAdmin(ActionEvent event) { //Field Nombre en Editar Mi Perfil
-        nombreEdicionMiPerfilAdminField.setPromptText(nombreMiPerfilAdminLabel.getText());
+
     }
 
     @FXML
     void fieldSurnameEditMyProfileAdmin(ActionEvent event) { //Field Apellido en Editar Mi Perfil
-        apellidoEdicionMiPerfilAdminField.setPromptText(apellidoMiPerfilAdminLabel.getText());
+
     }
 
     @FXML
     void fieldEmailEditMyProfileAdmin(ActionEvent event) { //Field Email en Editar Mi Perfil
-        emailEdicionMiPerfilAdminField.setPromptText(emailMiPerfilAdminLabel.getText());
+
     }
 
     @FXML
@@ -477,8 +491,8 @@ public class AdminViewController {
         Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
 
         //valido contraseña vieja con ingresada
-      /*  if (!actualPasswordEdicionMiPerfilAdminField.getText().equals(usuarioLogueado.getContrasena())) //AVERIGUAR ERROR
-            showErrorAlert("¡Contraseña incorrecta!");*/
+        if (!actualPasswordEdicionMiPerfilAdminField.getText().equals(usuarioLogueado.getContrasena())) //AVERIGUAR ERROR
+            showErrorAlert("¡Contraseña incorrecta!");
     }
 
     @FXML
@@ -491,12 +505,13 @@ public class AdminViewController {
 
     @FXML
     void clickHideNewPasswordEditMyProfileAdmin(KeyEvent event) { //Botón ojo Ocultar "Nueva Contraseña" en Editar Mi Perfil
+        //COMPLETAR
 
     }
 
     @FXML
     void clickShowNewPasswordEditMyProfileAdmin(KeyEvent event) { //Botón ojo Mostrar "Nueva Contraseña" en Editar Mi Perfil
-
+        //COMPLETAR
     }
 
     @FXML
@@ -509,12 +524,12 @@ public class AdminViewController {
 
     @FXML
     void clickHideConfirmNewPasswordEditMyProfileAdmin(KeyEvent event) { //Botón ojo Ocultar "Confirmar Nueva Contraseña" en Editar Mi Perfil
-
+        //COMPLETAR
     }
 
     @FXML
     void clickShowConfirmNewPasswordEditMyProfileAdmin(KeyEvent event) { //Botón ojo Mostrar "Confirmar Nueva Contraseña" en Editar Mi Perfil
-
+        //COMPLETAR
     }
     @FXML
     void clickSaveEditMyProfileAdmin(ActionEvent event) { //Botón guardar cambios en Editar Mi Perfil
@@ -527,7 +542,10 @@ public class AdminViewController {
         SessionManager.getInstance().getEntidadLogueada().setNombre(nombre);
         SessionManager.getInstance().getEntidadLogueada().setApellido(apellido);
         SessionManager.getInstance().getEntidadLogueada().setMail(email);
-     //   SessionManager.getInstance().getEntidadLogueada().setContrasena(password); //AVERIGUAR ERROR
+     //   SessionManager.getInstance().getEntidadLogueada().setContrasena(password); //SOLUCIONAR ERROR
+
+        //mostrar mensaje de confirmación
+        showSuccessAlert("¡Cambios guardados con éxito!");
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -562,88 +580,161 @@ public class AdminViewController {
 
 
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //----------------------------[ VIEW - NUEVO USUARIO ] (FEDE)
-    @FXML
-    void fieldUserNewUser(ActionEvent event) { //Field Usuario en Nuevo Usuario
+//NUEVO USUARIO////////////////////////////////////////////////////////////////////////////////////////////////
 
+    @FXML
+    private void mostrarPassword(MouseEvent event) {
+        passwordNuevoUsuarioField.setVisible(false);
+        plainPasswordNuevoUsuarioField.setText(passwordNuevoUsuarioField.getText());
+        plainPasswordNuevoUsuarioField.setVisible(true);
+        mostrarPasswordNuevoUsuarioButton.setVisible(true);
+        ocultarPasswordNuevoUsuarioButton.setVisible(false);
     }
 
     @FXML
-    void fieldPasswordNewUser(ActionEvent event) { //Field Contraseña en Nuevo Usuario
-
-    }
-
-    @FXML
-    void clickHidePasswordNewUser(KeyEvent event) { //Botón ojo Ocultar "Contraseña" en Nuevo Usuario
-
-    }
-
-    @FXML
-    void clickShowPasswordNewUser(KeyEvent event) { //Botón ojo Mostrar "Contraseña" en Nuevo Usuario
-
-    }
-
-    @FXML
-    void fieldNameNewUser(ActionEvent event) { //Field Nombre en Nuevo Usuario
-
-    }
-
-    @FXML
-    void fieldLastnameNewUser(ActionEvent event) { //Field Apellido en Nuevo Usuario
-
-    }
-
-    @FXML
-    void fieldEmailNewUser(ActionEvent event) { //Field Email en Nuevo Usuario
-
+    private void ocultarPassword(MouseEvent event) {
+        plainPasswordNuevoUsuarioField.setVisible(false);
+        passwordNuevoUsuarioField.setText(plainPasswordNuevoUsuarioField.getText());
+        passwordNuevoUsuarioField.setVisible(true);
+        mostrarPasswordNuevoUsuarioButton.setVisible(false);
+        ocultarPasswordNuevoUsuarioButton.setVisible(true);
     }
 
     @FXML
     void checkNewDoctor(ActionEvent event) { //CheckBox isMedico en Nuevo Usuario
-
+        if (isMedicoNuevoUsuarioCheckBox.isSelected()) {
+            isAdminNuevoUsuarioCheckBox.setSelected(false);
+            especialidadLabel.setVisible(true);
+            especialidadNuevoUsuarioChoiceBox.setVisible(true);
+        }
+        if (!isMedicoNuevoUsuarioCheckBox.isSelected()) {
+            especialidadLabel.setVisible(false);
+            especialidadNuevoUsuarioChoiceBox.setVisible(false);
+        }
     }
 
     @FXML
     void checkNewAdmin(ActionEvent event) { //CheckBox isAdmin en Nuevo Usuario
-
+        if (isAdminNuevoUsuarioCheckBox.isSelected()) {
+            isMedicoNuevoUsuarioCheckBox.setSelected(false);
+            especialidadLabel.setVisible(false);
+            especialidadNuevoUsuarioChoiceBox.setVisible(false);
+        }
     }
+
 
   /*  @FXML
     void choiceSpecialityNewUser(KeyEvent event) { //ChoiceBox Especialidad en Nuevo Usuario
 
     }*/
+    public void choiceSpecialityNewUser(KeyEvent keyEvent) {
+    }
+
+
 
     @FXML
-    void clickSaveNewUser(ActionEvent event) { //Boton Guardar Nuevo Usuario
-
+    void clickSaveNewUser(ActionEvent event) { //Botón para crear nuevo usuario
+        //si no se seleccionó tipo de usuario
+        if (!isMedicoNuevoUsuarioCheckBox.isSelected() && !isAdminNuevoUsuarioCheckBox.isSelected()) {
+            showErrorAlert("Debe seleccionar el tipo de usuario que quiere crear");
+        }
+        else {
+            //si se seleccionó médico
+            if (isMedicoNuevoUsuarioCheckBox.isSelected()) {
+                //se instancia un objeto Médico con los datos ingresados
+                Medico medico = new Medico(userNuevoUsuarioField.getText().toLowerCase(),
+                        passwordNuevoUsuarioField.getText(),
+                        nombreNuevoUsuarioField.getText(),
+                        apellidoNuevoUsuarioField.getText(),
+                        emailNuevoUsuarioField.getText(),
+                        especialidadNuevoUsuarioChoiceBox.getValue());
+                //se valida el ingreso de datos y se agrega a la lista de médicos
+                try {
+                    ValidationService.getInstance().validarDatosNuevoUsuario(medico);
+                    MedicoService.getInstance().agregarMedico(medico);
+                    LoginController.showSuccessAlert("Nuevo medico creado exitosamente");
+                    ocultarTodosLosAnchorPane();
+                } catch (Exception e) {
+                    showErrorAlert(e.getMessage());
+                }
+            }
+            //si se seleccionó administrativo
+            else {
+                //se instancia un objeto Administrativo con los datos ingresados
+                Administrativo administrativo = new Administrativo(
+                        userNuevoUsuarioField.getText().toLowerCase(),
+                        passwordNuevoUsuarioField.getText(),
+                        nombreNuevoUsuarioField.getText(),
+                        apellidoNuevoUsuarioField.getText(),
+                        emailNuevoUsuarioField.getText());
+                //se valida el ingreso de datos y se agrega a la lista de administrativos
+                try {
+                    ValidationService.getInstance().validarDatosNuevoUsuario(administrativo);
+                    AdministrativoService.getInstance().agregarAdministrativo(administrativo);
+                    LoginController.showSuccessAlert("Nuevo administrativo creado exitosamente");
+                    ocultarTodosLosAnchorPane();
+                } catch (Exception e) {
+                    showErrorAlert(e.getMessage());
+                }
+            }
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //----------------------------[ VIEW - EDITAR USUARIO ]
 
     //[ BUSCAR USUARIO ]
+
     @FXML
     void checkIsDoctorSearchEdit(ActionEvent event) { //CheckBox buscarMedico en Buscar de Editar Usuario
+        //si se selecciona el checkbox de buscarMedico, se deselecciona el de buscarAdmin
+        if (isAdminBuscarEditarUsuarioCheckBox.isSelected()) {
+            isAdminBuscarEditarUsuarioCheckBox.setSelected(false);
+        }
     }
 
     @FXML
     void checkIsAdminSearchEdit(ActionEvent event) { //CheckBox isAdmin en Buscar de Editar Usuario
+        //validar que solo un checkbox esté accionado
+        if (isMedicoBuscarEditarUsuarioCheckBox.isSelected()) {
+            isMedicoBuscarEditarUsuarioCheckBox.setSelected(false);
+        }
     }
+
 
     @FXML
     void fieldUserSearchEdit(ActionEvent event) { //Field Usuario en Buscar de Editar Usuario
+
+    }
+
+    private boolean validarFieldUserSearchEdit() {
+        if (userBuscarEditarUsuarioField.getText().isEmpty()) {
+            showErrorAlert("Debe ingresar un nombre de usuario.");
+            return false;
+        }
+        return true;
     }
 
     @FXML
     void clickSearchEdit(ActionEvent event) { //Botón Buscar en Buscar de Editar Usuario
-        //busco el usuario a editar
-        if (isMedicoBuscarEditarUsuarioCheckBox.isSelected())
-            medic = MedicoService.getInstance().buscarMedicoPorNombreUsuario(userBuscarEditarUsuarioField.getText());
-        else if (isAdminBuscarEditarUsuarioCheckBox.isSelected())
-            admin = AdministrativoService.getInstance().buscarAdministrativoPorNombreUsuario(userBuscarEditarUsuarioField.getText());
-        else
-            showErrorAlert("Debe seleccionar un tipo de usuario.");
+        medic = null;
+        admin = null;
+
+        //validar que se haya ingresado un nombre de usuario
+        if (validarFieldUserSearchEdit()){
+            //validar que se haya seleccionado un tipo de usuario
+            if (isMedicoBuscarEditarUsuarioCheckBox.isSelected()) {
+                medic = MedicoService.getInstance().buscarMedicoPorNombreUsuario(userBuscarEditarUsuarioField.getText());
+                if (!medic.isPresent()) //acá valido que el usuario exista y sea médico
+                    showErrorAlert("El usuario no existe o no es médico.");
+            }else if (isAdminBuscarEditarUsuarioCheckBox.isSelected()) {
+                admin = AdministrativoService.getInstance().buscarAdministrativoPorNombreUsuario(userBuscarEditarUsuarioField.getText());
+                if (!admin.isPresent())
+                    showErrorAlert("El usuario no existe o no es administrativo.");
+            }else {
+                showErrorAlert("Debe seleccionar un tipo de usuario.");
+            }
+        }
 
         //valido que el medico o admin existan.
         if (medic.isPresent() || admin.isPresent()) {
@@ -658,10 +749,10 @@ public class AdminViewController {
             }else if (admin.isPresent()) {
                 mostrarAdminEnEditarUsuario(admin);
             }
-
         }else{
             //si no existe, muestro un error
             showErrorAlert("El usuario no existe.");
+
         }
     }
 
@@ -681,9 +772,6 @@ public class AdminViewController {
         apellidoMostrarEditarUsuarioAdminLabel.setText(admin.get().getApellido());
         emailMostrarEditarUsuarioAdminLabel.setText(admin.get().getMail());
     }
-
-
-
 
     //[ MOSTRAR USUARIO BUSCADO ]
     @FXML
@@ -746,12 +834,19 @@ public class AdminViewController {
     void choiceSpecialityUserEdit(KeyEvent event) { //ChoiceBox Especialidad en Editar Usuario
 
     }
+<<<<<<< HEAD
+
+=======
     */
+    public void choiceSpecialityUserEdit(KeyEvent keyEvent) {
+    }
+
 
     //EN PROGRESO
     @FXML
-    void fieldOldPasswoordUserEdit(ActionEvent event) {
+    void fieldOldPasswoordUserEdit(ActionEvent event) { //Field Contraseña Actual en Editar Usuario
         //valido que la password ingresada coincida con la del usuario
+
         /*if (medic.isPresent()) {
             if (medic.get().getPassword().equals(oldPasswordEdicionEditarUsuarioAdminField.getText())) {
                 //si coincide, muestro el resto de los campos
@@ -763,42 +858,99 @@ public class AdminViewController {
             }else{
                 //si no coincide, muestro un error
                 showErrorAlert("La contraseña ingresada no es correcta.");
-            }*/
+            }
+    }*/
+
+        if (medic.isPresent()) {
+            if (!medic.get().getContrasena().equals(actualPasswordEdicionEditarUsuarioAdminField.getText()))
+                showErrorAlert("Contraseña inválida.");
+            else
+                showSuccessAlert("Contraseña válida.");
+
+        }else if (admin.isPresent()) {
+            if (!admin.get().getContrasena().equals(actualPasswordEdicionEditarUsuarioAdminField.getText()))
+                showErrorAlert("Contraseña inválida.");
+            else
+                showSuccessAlert("Contraseña válida.");
+        }
     }
+
 
     @FXML
     void fieldNewPasswordUserEdit(ActionEvent event) { //Field Nueva Contraseña en Editar Usuario
+        //valido que la nueva contraseña sea distinta a la vieja
+        if (medic.isPresent()) {
+            if (medic.get().getContrasena().equals(newPasswordEdicionEditarUsuarioAdminField.getText()))
+                showErrorAlert("La nueva contraseña debe ser distinta a la anterior.");
+            else
+                showSuccessAlert("Contraseña válida.");
+        }else if (admin.isPresent()) {
+            if (admin.get().getContrasena().equals(newPasswordEdicionEditarUsuarioAdminField.getText()))
+                showErrorAlert("La nueva contraseña debe ser distinta a la anterior.");
+            else
+                showSuccessAlert("Contraseña válida.");
+        }
 
     }
 
     @FXML
     void clickHideNewPasswordUserEdit(KeyEvent event) { //Botón ojo Ocultar "Nueva Contraseña" en Editar Usuario
-
+        //COMPLETAR
     }
 
     @FXML
     void clickShowNewPasswordUserEdit(KeyEvent event) { //Botón ojo Mostrar "Nueva Contraseña" en Editar Usuario
-
+        //COMPLTAR
     }
 
     @FXML
     void fieldConfirmNewPasswordUserEdit(ActionEvent event) { //Field Confirmar Nueva Contraseña en Editar Usuario
-
+        //Valido que la confirmacion sea la misma contraseña que la nueva.
+        if (medic.isPresent()) {
+            if (!medic.get().getContrasena().equals(confirmNewPasswordEdicionEditarUsuarioAdminField.getText()))
+                showErrorAlert("Las contraseñas no coinciden.");
+            else
+                showSuccessAlert("Contraseña válida.");
+        }else if (admin.isPresent()){
+            if (!admin.get().getContrasena().equals(confirmNewPasswordEdicionEditarUsuarioAdminField.getText()))
+                showErrorAlert("Las contraseñas no coinciden.");
+            else
+                showSuccessAlert("Contraseña válida.");
+        }
     }
 
     @FXML
     void clickHideConfirmNewPasswordUserEdit(KeyEvent event) { //Botón ojo Ocultar "Confirmar Nueva Contraseña" en Editar Usuario
-
+        //COMPLETAR
     }
 
     @FXML
     void clickShowConfirmNewPasswordUserEdit(KeyEvent event) { //Botón ojo Mostrar "Confirmar Nueva Contraseña" en Editar Usuario
-
+        //COMPLETAR
     }
 
     @FXML
     void clickSaveUserEdit(ActionEvent event) { //Botón Guardar Cambios en Editar Usuario
+        String nombre = nombreEdicionEditarUsuarioAdminField.getText();
+        String apellido = apellidoEdicionEditarUsuarioAdminField.getText();
+        String email = emailEdicionEditarUsuarioAdminField.getText();
+        String password = confirmNewPasswordEdicionEditarUsuarioAdminField.getText();
 
+        //setear el usuario con los datos ingresados
+        if (medic.isPresent()) {
+            medic.get().setNombre(nombre);
+            medic.get().setApellido(apellido);
+            medic.get().setMail(email);
+            medic.get().setContrasena(password);
+        }else if (admin.isPresent()){
+            admin.get().setNombre(nombre);
+            admin.get().setApellido(apellido);
+            admin.get().setMail(email);
+            admin.get().setContrasena(password);
+        }
+
+        //mostrar mensaje de confirmación
+        showSuccessAlert("¡Cambios guardados con éxito!");
     }
 
 
@@ -821,26 +973,98 @@ public class AdminViewController {
 
     }
 
+    private boolean validarFieldUserSearchDelete() {
+        if (userBuscarEliminarUsuarioField.getText().isEmpty()) {
+            showErrorAlert("Debe ingresar un nombre de usuario.");
+            return false;
+        }
+        return true;
+    }
+
     @FXML
     void clickSearchUserDelete(ActionEvent event) {
+        medic = null;
+        admin = null;
 
+        //validar que se haya ingresado un nombre de usuario
+        if (validarFieldUserSearchDelete()){
+            //validar que se haya seleccionado un tipo de usuario
+            if (isMedicoBuscarEliminarUsuarioCheckBox.isSelected()) {
+                medic = MedicoService.getInstance().buscarMedicoPorNombreUsuario(userBuscarEliminarUsuarioField.getText());
+                if (!medic.isPresent()) //acá valido que el usuario exista y sea médico
+                    showErrorAlert("El usuario no existe o no es médico.");
+            }else if (isAdminBuscarEliminarUsuarioCheckBox.isSelected()) {
+                admin = AdministrativoService.getInstance().buscarAdministrativoPorNombreUsuario(userBuscarEliminarUsuarioField.getText());
+                if (!admin.isPresent())
+                    showErrorAlert("El usuario no existe o no es administrativo.");
+            }else {
+                showErrorAlert("Debe seleccionar un tipo de usuario.");
+            }
+        }
+
+        //valido que el medico o admin existan.
+        if (medic.isPresent() || admin.isPresent()) {
+            //si existe, muestro anchorPane
+            ocultarTodosLosAnchorPane();
+
+            eliminarUsuarioAdminAnchorPane.setVisible(true);
+            mostrarEliminarUsuarioAdminAnchorPane.setVisible(true);
+            //agrego los datos del usuario a los labels
+            if (medic.isPresent()) {
+                mostrarMedicoEnEliminarUsuario (medic);
+            }else if (admin.isPresent()) {
+                mostrarAdminEnEliminarUsuario(admin);
+            }
+        }else{
+            //si no existe, muestro un error
+            showErrorAlert("El usuario no existe.");
+        }
+    }
+
+    private void mostrarMedicoEnEliminarUsuario (Optional<Medico> medico){
+        tipoUsuarioMostrarEliminarUsuarioAdminLabel.setText("Médico");
+        nombreMostrarEliminarUsuarioAdminLabel.setText(medico.get().getNombre());
+        apellidoMostrarEliminarUsuarioAdminLabel.setText(medico.get().getApellido());
+        emailMostrarEliminarUsuarioAdminLabel.setText(medico.get().getMail());
+        especialidadEdicionEditarUsuarioAdminChoiceBox.setOnAction(event1-> {
+            seleccionEspecialidad = Especialidad.valueOf(especialidadEdicionEditarUsuarioAdminChoiceBox.getValue());}); //CORREGIR ESTO
+    }
+
+    private void mostrarAdminEnEliminarUsuario (Optional<Administrativo> admin){
+        tipoUsuarioMostrarEliminarUsuarioAdminLabel.setText("Administrativo");
+        nombreMostrarEliminarUsuarioAdminLabel.setText(admin.get().getNombre());
+        apellidoMostrarEliminarUsuarioAdminLabel.setText(admin.get().getApellido());
+        emailMostrarEliminarUsuarioAdminLabel.setText(admin.get().getMail());
+        especialidadMostrarEliminarUsuarioAdminLabel.setVisible(false);
     }
 
 
     //[ MOSTRAR USUARIO BUSCADO ]
     @FXML
     void clickCancelUserDelete(ActionEvent event) { //Botón Cancelar en Eliminar Usuario
+        ocultarTodosLosAnchorPane();
 
+        eliminarUsuarioAdminAnchorPane.setVisible(true);
+        buscarEliminarUsuarioAdminAnchorPane.setVisible(true);
     }
 
     @FXML
     void clickConfirmUserDelete(ActionEvent event) { //Botón Confirmar en Eliminar Usuario
+        //TERMINAR
+        if (medic.isPresent()) {
+            MedicoService.getInstance().eliminarMedico(medic.get());
+        }else if (admin.isPresent()) {
+            AdministrativoService.getInstance().eliminarAdministrativoPorNombreUsuario(admin.get().getNombreUsuario());
+        }
 
     }
 
     @FXML
     void clickCloseSearchDelete (KeyEvent event) { //Botón Cerrar Ventana en Eliminar Usuario
+        ocultarTodosLosAnchorPane();
 
+        eliminarUsuarioAdminAnchorPane.setVisible(true);
+        buscarEliminarUsuarioAdminAnchorPane.setVisible(true);
     }
 
 
@@ -862,9 +1086,6 @@ public class AdminViewController {
     }
 
 
-    public void choiceSpecialityNewUser(KeyEvent keyEvent) {
-    }
 
-    public void choiceSpecialityUserEdit(KeyEvent keyEvent) {
-    }
+
 }

@@ -1,14 +1,10 @@
 package com.example.tpfinallab3.security;
+
 import com.example.tpfinallab3.models.UsuarioInfo;
 import com.example.tpfinallab3.services.JsonService;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.mindrot.jbcrypt.BCrypt;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class AuthenticationService {
@@ -20,6 +16,8 @@ public class AuthenticationService {
     private AuthenticationService() {
         cargarUsuariosDesdeJson();
     }
+
+
 
     public static AuthenticationService getInstance() {
         if (instance == null) {
