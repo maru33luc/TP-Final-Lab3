@@ -494,6 +494,9 @@ public class PacienteViewController {
 
     @FXML
     void logoutPaciente(MouseEvent event) {
+        SessionManager.getInstance().cerrarSesion();
+        //volver a la vista principal
+        LoginController.mostrarLogin();
     }
 
     public void setMainController(LoginController loginController) {
