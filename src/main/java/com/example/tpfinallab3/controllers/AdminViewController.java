@@ -5,6 +5,7 @@ import com.example.tpfinallab3.models.Autenticable;
 import com.example.tpfinallab3.models.Especialidad;
 import com.example.tpfinallab3.models.Medico;
 import com.example.tpfinallab3.security.SessionManager;
+import com.example.tpfinallab3.security.ValidationService;
 import com.example.tpfinallab3.services.AdministrativoService;
 import com.example.tpfinallab3.services.MedicoService;
 import javafx.event.ActionEvent;
@@ -167,7 +168,10 @@ public class AdminViewController {
     private Label especialidadMostrarEliminarUsuarioAdminLabel;
 
     @FXML
-    private ChoiceBox<String> especialidadNuevoUsuarioChoiceBox;
+    private Label especialidadLabel;
+
+    @FXML
+    private ChoiceBox<Especialidad> especialidadNuevoUsuarioChoiceBox;
 
     @FXML
     private CheckBox fechaVerTurnosAdminCheckBox;
@@ -296,6 +300,9 @@ public class AdminViewController {
     private PasswordField passwordNuevoUsuarioField;
 
     @FXML
+    private TextField plainPasswordNuevoUsuarioField;
+
+    @FXML
     private TableColumn<?, ?> tablaMedicoColumnaHora;
 
     @FXML
@@ -347,7 +354,7 @@ public class AdminViewController {
     public void initialize() {
         Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
         especialidadEdicionEditarUsuarioAdminChoiceBox.getItems().addAll(Especialidad.values().toString());
-        especialidadNuevoUsuarioChoiceBox.getItems().addAll(Especialidad.values().toString());
+        especialidadNuevoUsuarioChoiceBox.getItems().addAll(Especialidad.values());
 
         try{
             usuarioMiPerfilAdminLabel.setText(usuarioLogueado.getNombreUsuario());
@@ -535,7 +542,7 @@ public class AdminViewController {
         SessionManager.getInstance().getEntidadLogueada().setNombre(nombre);
         SessionManager.getInstance().getEntidadLogueada().setApellido(apellido);
         SessionManager.getInstance().getEntidadLogueada().setMail(email);
-     //   SessionManager.getInstance().getEntidadLogueada().setContrasena(password); //SOLUCIONAR ERROR
+        //   SessionManager.getInstance().getEntidadLogueada().setContrasena(password); //SOLUCIONAR ERROR
 
         //mostrar mensaje de confirmación
         showSuccessAlert("¡Cambios guardados con éxito!");
@@ -573,66 +580,104 @@ public class AdminViewController {
 
 
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //----------------------------[ VIEW - NUEVO USUARIO ] (FEDE)
-    @FXML
-    void fieldUserNewUser(ActionEvent event) { //Field Usuario en Nuevo Usuario
+//NUEVO USUARIO////////////////////////////////////////////////////////////////////////////////////////////////
 
+    @FXML
+    private void mostrarPassword(MouseEvent event) {
+        passwordNuevoUsuarioField.setVisible(false);
+        plainPasswordNuevoUsuarioField.setText(passwordNuevoUsuarioField.getText());
+        plainPasswordNuevoUsuarioField.setVisible(true);
+        mostrarPasswordNuevoUsuarioButton.setVisible(true);
+        ocultarPasswordNuevoUsuarioButton.setVisible(false);
     }
 
     @FXML
-    void fieldPasswordNewUser(ActionEvent event) { //Field Contraseña en Nuevo Usuario
-
-    }
-
-    @FXML
-    void clickHidePasswordNewUser(KeyEvent event) { //Botón ojo Ocultar "Contraseña" en Nuevo Usuario
-
-    }
-
-    @FXML
-    void clickShowPasswordNewUser(KeyEvent event) { //Botón ojo Mostrar "Contraseña" en Nuevo Usuario
-
-    }
-
-    @FXML
-    void fieldNameNewUser(ActionEvent event) { //Field Nombre en Nuevo Usuario
-
-    }
-
-    @FXML
-    void fieldLastnameNewUser(ActionEvent event) { //Field Apellido en Nuevo Usuario
-
-    }
-
-    @FXML
-    void fieldEmailNewUser(ActionEvent event) { //Field Email en Nuevo Usuario
-
+    private void ocultarPassword(MouseEvent event) {
+        plainPasswordNuevoUsuarioField.setVisible(false);
+        passwordNuevoUsuarioField.setText(plainPasswordNuevoUsuarioField.getText());
+        passwordNuevoUsuarioField.setVisible(true);
+        mostrarPasswordNuevoUsuarioButton.setVisible(false);
+        ocultarPasswordNuevoUsuarioButton.setVisible(true);
     }
 
     @FXML
     void checkNewDoctor(ActionEvent event) { //CheckBox isMedico en Nuevo Usuario
-
+        if (isMedicoNuevoUsuarioCheckBox.isSelected()) {
+            isAdminNuevoUsuarioCheckBox.setSelected(false);
+            especialidadLabel.setVisible(true);
+            especialidadNuevoUsuarioChoiceBox.setVisible(true);
+        }
+        if (!isMedicoNuevoUsuarioCheckBox.isSelected()) {
+            especialidadLabel.setVisible(false);
+            especialidadNuevoUsuarioChoiceBox.setVisible(false);
+        }
     }
 
     @FXML
     void checkNewAdmin(ActionEvent event) { //CheckBox isAdmin en Nuevo Usuario
-
+        if (isAdminNuevoUsuarioCheckBox.isSelected()) {
+            isMedicoNuevoUsuarioCheckBox.setSelected(false);
+            especialidadLabel.setVisible(false);
+            especialidadNuevoUsuarioChoiceBox.setVisible(false);
+        }
     }
 
 
-  /*  @FXML
-    void choiceSpecialityNewUser(KeyEvent event) { //ChoiceBox Especialidad en Nuevo Usuario
+    /*  @FXML
+      void choiceSpecialityNewUser(KeyEvent event) { //ChoiceBox Especialidad en Nuevo Usuario
 
-    }*/
+      }*/
     public void choiceSpecialityNewUser(KeyEvent keyEvent) {
     }
 
 
 
     @FXML
-    void clickSaveNewUser(ActionEvent event) { //Boton Guardar Nuevo Usuario
-
+    void clickSaveNewUser(ActionEvent event) { //Botón para crear nuevo usuario
+        //si no se seleccionó tipo de usuario
+        if (!isMedicoNuevoUsuarioCheckBox.isSelected() && !isAdminNuevoUsuarioCheckBox.isSelected()) {
+            showErrorAlert("Debe seleccionar el tipo de usuario que quiere crear");
+        }
+        else {
+            //si se seleccionó médico
+            if (isMedicoNuevoUsuarioCheckBox.isSelected()) {
+                //se instancia un objeto Médico con los datos ingresados
+                Medico medico = new Medico(userNuevoUsuarioField.getText().toLowerCase(),
+                        passwordNuevoUsuarioField.getText(),
+                        nombreNuevoUsuarioField.getText(),
+                        apellidoNuevoUsuarioField.getText(),
+                        emailNuevoUsuarioField.getText(),
+                        especialidadNuevoUsuarioChoiceBox.getValue());
+                //se valida el ingreso de datos y se agrega a la lista de médicos
+                try {
+                    ValidationService.getInstance().validarDatosNuevoUsuario(medico);
+                    MedicoService.getInstance().agregarMedico(medico);
+                    LoginController.showSuccessAlert("Nuevo medico creado exitosamente");
+                    ocultarTodosLosAnchorPane();
+                } catch (Exception e) {
+                    showErrorAlert(e.getMessage());
+                }
+            }
+            //si se seleccionó administrativo
+            else {
+                //se instancia un objeto Administrativo con los datos ingresados
+                Administrativo administrativo = new Administrativo(
+                        userNuevoUsuarioField.getText().toLowerCase(),
+                        passwordNuevoUsuarioField.getText(),
+                        nombreNuevoUsuarioField.getText(),
+                        apellidoNuevoUsuarioField.getText(),
+                        emailNuevoUsuarioField.getText());
+                //se valida el ingreso de datos y se agrega a la lista de administrativos
+                try {
+                    ValidationService.getInstance().validarDatosNuevoUsuario(administrativo);
+                    AdministrativoService.getInstance().agregarAdministrativo(administrativo);
+                    LoginController.showSuccessAlert("Nuevo administrativo creado exitosamente");
+                    ocultarTodosLosAnchorPane();
+                } catch (Exception e) {
+                    showErrorAlert(e.getMessage());
+                }
+            }
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -789,19 +834,18 @@ public class AdminViewController {
     void choiceSpecialityUserEdit(KeyEvent event) { //ChoiceBox Especialidad en Editar Usuario
 
     }
+<<<<<<< HEAD
 
+=======
     */
     public void choiceSpecialityUserEdit(KeyEvent keyEvent) {
     }
-
-
 
 
     //EN PROGRESO
     @FXML
     void fieldOldPasswoordUserEdit(ActionEvent event) { //Field Contraseña Actual en Editar Usuario
         //valido que la password ingresada coincida con la del usuario
-
 
         /*if (medic.isPresent()) {
             if (medic.get().getPassword().equals(oldPasswordEdicionEditarUsuarioAdminField.getText())) {
@@ -816,7 +860,6 @@ public class AdminViewController {
                 showErrorAlert("La contraseña ingresada no es correcta.");
             }
     }*/
-
 
         if (medic.isPresent()) {
             if (!medic.get().getContrasena().equals(actualPasswordEdicionEditarUsuarioAdminField.getText()))
@@ -1043,9 +1086,6 @@ public class AdminViewController {
     }
 
 
-    public void ocultarPassword(MouseEvent mouseEvent) {
-    }
 
-    public void mostrarPassword(MouseEvent mouseEvent) {
-    }
+
 }
