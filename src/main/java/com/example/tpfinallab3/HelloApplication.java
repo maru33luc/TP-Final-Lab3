@@ -28,6 +28,18 @@ public class HelloApplication extends Application {
         loginController.setStage(stage);
     }
 
+    @Override
+    public void init() throws Exception {
+        super.init();
+    }
+
+    //--------------  ESTO ES PARA GUARDAR LOS DATOS EN UN JSON AL CERRAR LA APP ----------------
+  /*  @Override
+    public void stop() throws Exception {
+        MedicoService.getInstance().guardarMedicosJson();
+
+    }*/
+
     public static void main(String[] args) {
         launch();
     }
