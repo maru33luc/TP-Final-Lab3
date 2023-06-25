@@ -61,15 +61,6 @@ public class AdminViewController {
     private TextField apellidoNuevoUsuarioField;
 
     @FXML
-    private AnchorPane barraTituloAdminAnchorPane;
-
-    @FXML
-    private AnchorPane barraTituloMostrarEditarUsuarioAnchorPane;
-
-    @FXML
-    private AnchorPane barraTituloMostrarEliminarUsuarioAnchorPane;
-
-    @FXML
     private AnchorPane buscarEditarUsuarioAdminAnchorPane;
 
     @FXML
@@ -94,15 +85,6 @@ public class AdminViewController {
     private Button cancelarEliminarUsuarioButton;
 
     @FXML
-    private AnchorPane cerrarMostrarEditarUsuarioAdminButton;
-
-    @FXML
-    private AnchorPane closeAdminButton;
-
-    @FXML
-    private AnchorPane closeUserDeleteAdminButton;
-
-    @FXML
     private PasswordField confirmNewPasswordEdicionEditarUsuarioAdminField;
 
     @FXML
@@ -113,9 +95,6 @@ public class AdminViewController {
 
     @FXML
     private Button confirmarUsuarioEditarUsuarioButton;
-
-    @FXML
-    private Label docturnoBarraAdminLabel;
 
     @FXML
     private AnchorPane edicionEditarUsuarioAdminAnchorPane;
