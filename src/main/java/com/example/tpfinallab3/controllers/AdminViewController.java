@@ -17,6 +17,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -120,6 +122,18 @@ public class AdminViewController {
 
     @FXML
     private TableColumn<?, ?> columnaEspecialidadTurnosPaciente;
+
+    @FXML
+    private TableColumn<?, ?> columnaHoraTurnosFecha;
+
+    @FXML
+    private TableColumn<?, ?> columnaPacienteTurnosFecha;
+
+    @FXML
+    private TableColumn<?, ?> columnaMedicoTurnosFecha;
+
+    @FXML
+    private TableColumn<?, ?> columnaEspecialidadTurnosFecha;
 
     @FXML
     private PasswordField confirmNewPasswordEdicionMiPerfilAdminField;
@@ -331,6 +345,9 @@ public class AdminViewController {
 
     @FXML
     private TableView<TurnoTabla> tablaTurnosPacienteAdmin;
+
+    @FXML
+    private TableView<TurnoTabla> tablaTurnosFechaAdmin;
 
     @FXML
     private Label tipoUsuarioMostrarEditarUsuarioAdminField;
@@ -622,8 +639,6 @@ public class AdminViewController {
             userPacienteVerTurnosLabel.setText(BuscarVerTurnoAdminField.getText());
             //tablaTurnosPacienteAdmin tabla a rellenar con los turnos del paciente
 
-
-
             Paciente paciente = PacienteService.getInstance().retornaPacientePorCampoTextField(BuscarVerTurnoAdminField.getText());
 
             List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosPorPaciente(paciente);
@@ -648,9 +663,34 @@ public class AdminViewController {
             filtrarVerTurnosAdminAnchorPane.setVisible(false);
             mostrarVerTurnosAdminAnchorPane.setVisible(true);
             listaTurnosFechaVerTurnosAdminAnchorPane.setVisible(true);
+            listaTurnosPacienteVerTurnosAdminAnchorPane.setVisible(false);
+            listaTurnosMedicoVerTurnosAdminAnchorPane.setVisible(false);
             fechaVerTurnosLabel.setText(BuscarVerTurnoAdminField.getText());
             //tablaTurnosFechaAdmin tabla a rellenar con los turnos de la fecha
 
+
+            String fechaString = BuscarVerTurnoAdminField.getText();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate fecha = LocalDate.parse(fechaString, formatter);
+
+            List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosPorDia(fecha);
+            List <TurnoTabla> listaTurnos2 = new ArrayList<>();
+
+            for(Turno turno : listaTurnos){
+                Especialidad especialidad = turno.getMedico().getEspecialidad();
+                Medico medico2 = turno.getMedico();
+                Paciente paciente = turno.getPaciente();
+                TurnoTabla turnoTabla = new TurnoTabla(turno.getDia(), turno.getHora(), especialidad, medico2, paciente, (paciente != null) ? paciente.getObraSocial() : null);
+
+                listaTurnos2.add(turnoTabla);
+            }
+
+            columnaHoraTurnosFecha.setCellValueFactory(new PropertyValueFactory<>("hora"));
+            columnaMedicoTurnosFecha.setCellValueFactory(new PropertyValueFactory<>("medico"));
+            columnaEspecialidadTurnosFecha.setCellValueFactory(new PropertyValueFactory<>("especialidad"));
+            columnaPacienteTurnosFecha.setCellValueFactory(new PropertyValueFactory<>("paciente"));
+
+            tablaTurnosFechaAdmin.setItems(FXCollections.observableArrayList(listaTurnos2));
 
 
         } else {
