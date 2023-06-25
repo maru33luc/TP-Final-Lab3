@@ -36,7 +36,7 @@
                   <Font name="Playfair Display Regular" size="40.0" />
                </font>
             </Label>
-            <Label fx:id="userNuevoPacienteLabel" layoutX="70.0" layoutY="90.0" styleClass="nanum-regular" text="Nombre de Usuario" textFill="#29838c">
+            <Label fx:id="userNuevoPacienteLabel" layoutX="70.0" layoutY="90.0" styleClass="nanum-regular" text="Usuario" textFill="#29838c">
                <font>
                   <Font name="NanumGothic" size="15.0" />
                </font>
@@ -151,15 +151,6 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Button fx:id="guardarNuevoPacienteButton" layoutX="295.0" layoutY="653.0" mnemonicParsing="false" onAction="#clickGuardar" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Guardar" textFill="#c4e8dd">
-               <font>
-                  <Font name="NanumGothicBold" size="14.0" />
-               </font>
-               <styleClass>
-                  <String fx:value="nanum-bold" />
-                  <String fx:value="button-oscuro" />
-               </styleClass>
-            </Button>
             <Button fx:id="volverButton" layoutX="70.0" layoutY="653.0" mnemonicParsing="false" onAction="#clickVolver" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Volver" textFill="#c4e8dd">
                <font>
                   <Font name="NanumGothicBold" size="14.0" />
@@ -167,6 +158,15 @@
                <styleClass>
                   <String fx:value="nanum-bold" />
                   <String fx:value="button-claro" />
+               </styleClass>
+            </Button>
+            <Button fx:id="guardarNuevoPacienteButton" layoutX="295.0" layoutY="653.0" mnemonicParsing="false" onAction="#clickGuardar" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Guardar" textFill="#c4e8dd">
+               <font>
+                  <Font name="NanumGothicBold" size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="nanum-bold" />
+                  <String fx:value="button-oscuro" />
                </styleClass>
             </Button>
          </children>

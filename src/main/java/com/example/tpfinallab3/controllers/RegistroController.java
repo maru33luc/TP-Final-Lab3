@@ -1,6 +1,7 @@
 package com.example.tpfinallab3.controllers;
 
 import com.example.tpfinallab3.models.Paciente;
+import com.example.tpfinallab3.security.AuthenticationService;
 import com.example.tpfinallab3.security.ValidationService;
 import com.example.tpfinallab3.services.PacienteService;
 import javafx.event.ActionEvent;
@@ -19,12 +20,6 @@ public class RegistroController {
     private Label apellidoNuevoPacienteLabel;
 
     @FXML
-    private AnchorPane closeNuevoPacienteButton;
-
-    @FXML
-    private Label docturnoBarraNuevoPacienteLabel;
-
-    @FXML
     private TextField emailNuevoPacienteField;
 
     @FXML
@@ -35,9 +30,6 @@ public class RegistroController {
 
     @FXML
     private ImageView hidePasswordButton;
-
-    @FXML
-    private AnchorPane minimizeNuevoPacienteButton;
 
     @FXML
     private TextField nombreNuevoPacienteField;
@@ -103,7 +95,8 @@ public class RegistroController {
 
     @FXML
     void clickGuardar(ActionEvent event) {
-        //se instancia un objeto Paciente con los datos ingresados
+
+        //se crea un paciente con los datos ingresados
         Paciente paciente = new Paciente(userNuevoPacienteField.getText().toLowerCase(),
                 passwordNuevoPacienteField.getText(),
                 nombreNuevoPacienteField.getText(),
@@ -114,10 +107,13 @@ public class RegistroController {
                 obraSocialNuevoPacienteField.getText(),
                 nroAfiliadoNuevoPacienteField.getText());
 
-        //se validan los datos ingresados y si son correctos se agrega el paciente y se regresa a login
         try {
+            //se validan los datos ingresados
             ValidationService.getInstance().validarDatosNuevoUsuario(paciente);
+            //se agrega el paciente al listado de pacientos
             PacienteService.getInstance().agregarPaciente(paciente);
+            //se muestra un mensaje de éxito y se vuelve al login
+            System.out.println(AuthenticationService.getInstance().getUsuarios());
             LoginController.showSuccessAlert("Nuevo usuario creado exitosamente");
             LoginController.mostrarLogin();
         }

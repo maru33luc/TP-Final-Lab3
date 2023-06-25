@@ -28,7 +28,6 @@ public class HelloApplication extends Application {
         loginController.setStage(stage);
     }
 
-
     public static void main(String[] args) {
         launch();
     }

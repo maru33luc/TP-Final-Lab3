@@ -77,6 +77,8 @@ public class LoginController {
 
         //si el nombre de usuario y contraseña ingresados son correctos
         if (SessionManager.getInstance().iniciarSesion(usernameField.getText(), passwordField.getText())) {
+
+            //se muestra un mensaje de bienvenida
             Autenticable usuarioAutenticado = SessionManager.getInstance().getEntidadLogueada();
             showSuccessAlert("Bienvenido " + usuarioAutenticado.getNombre() + " " + usuarioAutenticado.getApellido() + "!");
 
@@ -104,7 +106,7 @@ public class LoginController {
             stage.setScene(scene);
             stage.show();
         }
-        //si el nombre de usuario y/o contraseña ingresados son incorrectos
+        //si el nombre de usuario y/o contraseña ingresados son incorrectos se muestra un mensaje de error
         else {
             showErrorAlert("Nombre de usuario y/o contraseña incorrectos");
         }
@@ -146,7 +148,6 @@ public class LoginController {
     void recuperarContrasena(ActionEvent event) {
         showSuccessAlert("Se abrirá el navegador para acceder al sitio que le permitirá reestablecer su contraseña...");
     }
-
 
     @FXML
     void recuperarUsuario(ActionEvent event) {

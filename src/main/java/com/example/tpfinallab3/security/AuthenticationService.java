@@ -17,7 +17,9 @@ public class AuthenticationService {
         cargarUsuariosDesdeJson();
     }
 
-
+    public Map<String, UsuarioInfo> getUsuarios() {
+        return usuarios;
+    }
 
     public static AuthenticationService getInstance() {
         if (instance == null) {
@@ -31,7 +33,7 @@ public class AuthenticationService {
     }
 
     public boolean autenticarUsuario(String nombreUsuario, String contrasena) {
-        //cargarUsuariosDesdeJson();
+        cargarUsuariosDesdeJson();
         if(this.usuarios!=null){
             if (usuarios.containsKey(nombreUsuario)) {
                 String contrasenaAlmacenada = obtenerContrasenaAlmacenada(nombreUsuario);
