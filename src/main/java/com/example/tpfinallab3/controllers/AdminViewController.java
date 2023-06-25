@@ -1,6 +1,7 @@
 package com.example.tpfinallab3.controllers;
 
 import com.example.tpfinallab3.models.*;
+import com.example.tpfinallab3.security.AuthenticationService;
 import com.example.tpfinallab3.security.SessionManager;
 import com.example.tpfinallab3.security.ValidationService;
 import com.example.tpfinallab3.services.AdministrativoService;
@@ -44,9 +45,6 @@ public class AdminViewController {
     private AnchorPane verTurnosAdminAnchorPane;
     @FXML
     private AnchorPane bienvenidoAdminPanel;
-
-    @FXML
-    private PasswordField actualPasswordEdicionEditarUsuarioAdminField;
 
     @FXML
     private PasswordField actualPasswordEdicionMiPerfilAdminField;
@@ -100,7 +98,10 @@ public class AdminViewController {
     private Button cancelarEliminarUsuarioButton;
 
     @FXML
-    private PasswordField confirmNewPasswordEdicionEditarUsuarioAdminField;
+    private PasswordField passwordEdicionEditarUsuarioAdminField;
+
+    @FXML
+    private TextField plainPasswordEdicionEditarUsuarioAdminField;
 
     @FXML
     private TableColumn<?, ?> columnaFechaTurnosMedico;
@@ -277,7 +278,7 @@ public class AdminViewController {
     private Label miperfilAdminButton;
 
     @FXML
-    private ImageView mostrarConfirmNewPasswordEdicionEditarUsuarioAdminButton;
+    private ImageView mostrarPasswordEdicionEditarUsuarioAdminButton;
 
     @FXML
     private AnchorPane mostrarEditarUsuarioAdminAnchorPane;
@@ -287,16 +288,10 @@ public class AdminViewController {
     private AnchorPane mostrarMiPerfilAdminAnchorPane;
 
     @FXML
-    private ImageView mostrarNewPasswordEdicionEditarUsuarioAdminButton;
-
-    @FXML
     private ImageView mostrarPasswordNuevoUsuarioButton;
 
     @FXML
     private AnchorPane mostrarVerTurnosAdminAnchorPane;
-
-    @FXML
-    private PasswordField newPasswordEdicionEditarUsuarioAdminField;
 
     @FXML
     private TextField nombreEdicionEditarUsuarioAdminField;
@@ -323,10 +318,7 @@ public class AdminViewController {
     private Label nuevoUsuarioAdminButton;
 
     @FXML
-    private ImageView ocultarConfirmNewPasswordEdicionEditarUsuarioAdminButton;
-
-    @FXML
-    private ImageView ocultarNewPasswordEdicionEditarUsuarioAdminButton;
+    private ImageView ocultarPasswordEdicionEditarUsuarioAdminButton;
 
     @FXML
     private ImageView ocultarPasswordNuevoUsuarioButton;
@@ -1156,7 +1148,6 @@ public class AdminViewController {
     @FXML
     void clickConfirmUserEdit(ActionEvent event) { //Botón Confirmar en Mostrar de Editar Usuario
         ocultarTodosLosAnchorPane();
-       // mostrarEditarUsuarioAdminAnchorPane.setVisible(false); // por las dudas la agregue
         editarUsuarioAdminAnchorPane.setVisible(true);
         edicionEditarUsuarioAdminAnchorPane.setVisible(true);
         agregarDatosAFieldEditarUsuario();
@@ -1255,125 +1246,58 @@ public class AdminViewController {
 
     }
 
-    /*@FXML
-    void choiceSpecialityUserEdit(KeyEvent event) { //ChoiceBox Especialidad en Editar Usuario
-
-    }
-
-    */
     public void choiceSpecialityUserEdit(KeyEvent keyEvent) {
     }
 
-
-    //EN PROGRESO
     @FXML
-    void fieldOldPasswoordUserEdit(ActionEvent event) { //Field Contraseña Actual en Editar Usuario
-        //valido que la password ingresada coincida con la del usuario
-
-        /*if (medic.isPresent()) {
-            if (medic.get().getPassword().equals(oldPasswordEdicionEditarUsuarioAdminField.getText())) {
-                //si coincide, muestro el resto de los campos
-                nombreEdicionEditarUsuarioAdminField.setVisible(true);
-                apellidoEdicionEditarUsuarioAdminField.setVisible(true);
-                emailEdicionEditarUsuarioAdminField.setVisible(true);
-                especialidadEdicionEditarUsuarioAdminChoiceBox.setVisible(true);
-                confirmarEdicionEditarUsuarioAdminButton.setVisible(true);
-            }else{
-                //si no coincide, muestro un error
-                showErrorAlert("La contraseña ingresada no es correcta.");
-            }
-    }*/
-
-        if (medic.isPresent()) {
-            if (!medic.get().getContrasena().equals(actualPasswordEdicionEditarUsuarioAdminField.getText()))
-                showErrorAlert("Contraseña inválida.");
-            else
-                showSuccessAlert("Contraseña válida.");
-
-        }else if (admin.isPresent()) {
-            if (!admin.get().getContrasena().equals(actualPasswordEdicionEditarUsuarioAdminField.getText()))
-                showErrorAlert("Contraseña inválida.");
-            else
-                showSuccessAlert("Contraseña válida.");
-        }
-    }
-
-
-    @FXML
-    void fieldNewPasswordUserEdit(ActionEvent event) { //Field Nueva Contraseña en Editar Usuario
-        //valido que la nueva contraseña sea distinta a la vieja
-        if (medic.isPresent()) {
-            if (medic.get().getContrasena().equals(newPasswordEdicionEditarUsuarioAdminField.getText()))
-                showErrorAlert("La nueva contraseña debe ser distinta a la anterior.");
-            else
-                showSuccessAlert("Contraseña válida.");
-        }else if (admin.isPresent()) {
-            if (admin.get().getContrasena().equals(newPasswordEdicionEditarUsuarioAdminField.getText()))
-                showErrorAlert("La nueva contraseña debe ser distinta a la anterior.");
-            else
-                showSuccessAlert("Contraseña válida.");
-        }
-
+    void clickMostrarPasswordEdicionEditarUsuarioAdminButton(MouseEvent event) {
+        passwordEdicionEditarUsuarioAdminField.setVisible(false);
+        plainPasswordEdicionEditarUsuarioAdminField.setText(passwordEdicionEditarUsuarioAdminField.getText());
+        plainPasswordEdicionEditarUsuarioAdminField.setVisible(true);
+        mostrarPasswordEdicionEditarUsuarioAdminButton.setVisible(true);
+        ocultarPasswordEdicionEditarUsuarioAdminButton.setVisible(false);
     }
 
     @FXML
-    void clickHideNewPasswordUserEdit(KeyEvent event) { //Botón ojo Ocultar "Nueva Contraseña" en Editar Usuario
-        //COMPLETAR
-    }
-
-    @FXML
-    void clickShowNewPasswordUserEdit(KeyEvent event) { //Botón ojo Mostrar "Nueva Contraseña" en Editar Usuario
-        //COMPLTAR
-    }
-
-    @FXML
-    void fieldConfirmNewPasswordUserEdit(ActionEvent event) { //Field Confirmar Nueva Contraseña en Editar Usuario
-        //Valido que la confirmacion sea la misma contraseña que la nueva.
-        if (medic.isPresent()) {
-            if (!medic.get().getContrasena().equals(confirmNewPasswordEdicionEditarUsuarioAdminField.getText()))
-                showErrorAlert("Las contraseñas no coinciden.");
-            else
-                showSuccessAlert("Contraseña válida.");
-        }else if (admin.isPresent()){
-            if (!admin.get().getContrasena().equals(confirmNewPasswordEdicionEditarUsuarioAdminField.getText()))
-                showErrorAlert("Las contraseñas no coinciden.");
-            else
-                showSuccessAlert("Contraseña válida.");
-        }
-    }
-
-    @FXML
-    void clickHideConfirmNewPasswordUserEdit(KeyEvent event) { //Botón ojo Ocultar "Confirmar Nueva Contraseña" en Editar Usuario
-        //COMPLETAR
-    }
-
-    @FXML
-    void clickShowConfirmNewPasswordUserEdit(KeyEvent event) { //Botón ojo Mostrar "Confirmar Nueva Contraseña" en Editar Usuario
-        //COMPLETAR
+    void clickOcultarPasswordEdicionEditarUsuarioAdminButton(MouseEvent event) {
+        plainPasswordEdicionEditarUsuarioAdminField.setVisible(false);
+        passwordEdicionEditarUsuarioAdminField.setText(plainPasswordEdicionEditarUsuarioAdminField.getText());
+        passwordEdicionEditarUsuarioAdminField.setVisible(true);
+        mostrarPasswordEdicionEditarUsuarioAdminButton.setVisible(false);
+        ocultarPasswordEdicionEditarUsuarioAdminButton.setVisible(true);
     }
 
     @FXML
     void clickSaveUserEdit(ActionEvent event) { //Botón Guardar Cambios en Editar Usuario
+
+        //se guardan los datos ingresados
         String nombre = nombreEdicionEditarUsuarioAdminField.getText();
         String apellido = apellidoEdicionEditarUsuarioAdminField.getText();
-        String email = emailEdicionEditarUsuarioAdminField.getText();
-        String password = confirmNewPasswordEdicionEditarUsuarioAdminField.getText();
+        String mail = emailEdicionEditarUsuarioAdminField.getText();
+        String contrasena = passwordEdicionEditarUsuarioAdminField.getText();
 
-        //setear el usuario con los datos ingresados
-        if (medic.isPresent()) {
-            medic.get().setNombre(nombre);
-            medic.get().setApellido(apellido);
-            medic.get().setMail(email);
-            medic.get().setContrasena(password);
-        }else if (admin.isPresent()){
-            admin.get().setNombre(nombre);
-            admin.get().setApellido(apellido);
-            admin.get().setMail(email);
-            admin.get().setContrasena(password);
+        try {
+            //se validan los datos ingresados
+            ValidationService.getInstance().validarDatosEditarUsuario(nombre, apellido, mail, contrasena);
+            //se verifica si el usuario que está siendo modificado es médico o administrativo
+            Medico medico = MedicoService.getInstance().buscarMedicoPorNombreYApellido(nombreMostrarEditarUsuarioAdminLabel.getText(), apellidoMostrarEditarUsuarioAdminLabel.getText());
+            Administrativo administrativo = AdministrativoService.getInstance().buscarAdministrativoPorNombreYApellido(nombreMostrarEditarUsuarioAdminLabel.getText(), apellidoMostrarEditarUsuarioAdminLabel.getText());
+            //si es medico se modifica la contraseña, en lista de medicos y el json
+            if (medico != null) {
+                AuthenticationService.getInstance().modificarContraseña(medico.getNombreUsuario(), contrasena);
+                MedicoService.getInstance().modificarMedico(medico.getNombreUsuario(), nombre, apellido, mail);
+            }
+            //si es administrativo se modifica la contraseña, en lista de administrativos y el json
+            else if (administrativo != null) {
+                AuthenticationService.getInstance().modificarContraseña(administrativo.getNombreUsuario(), contrasena);
+                AdministrativoService.getInstance().modificarAdministrativo(administrativo.getNombreUsuario(), nombre, apellido, mail);
+            }
+            //se envía mensaje de éxito en la modificación
+            LoginController.showSuccessAlert("Datos modificados exitosamente");
+            ocultarTodosLosAnchorPane();
+        } catch (Exception e) {
+            LoginController.showErrorAlert(e.getMessage());
         }
-
-        //mostrar mensaje de confirmación
-        showSuccessAlert("¡Cambios guardados con éxito!");
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

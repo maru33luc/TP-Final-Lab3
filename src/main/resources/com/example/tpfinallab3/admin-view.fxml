@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -519,7 +520,7 @@
                         <Font size="40.0" />
                      </font>
                   </Label>
-                  <AnchorPane fx:id="buscarEditarUsuarioAdminAnchorPane" prefHeight="720.0" prefWidth="810.0">
+                  <AnchorPane fx:id="buscarEditarUsuarioAdminAnchorPane" prefHeight="720.0" prefWidth="810.0" visible="false">
                      <children>
                         <AnchorPane layoutY="110.0" prefHeight="600.0" prefWidth="290.0">
                            <children>
@@ -646,7 +647,7 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="edicionEditarUsuarioAdminAnchorPane" layoutX="135.0" prefHeight="720.0" prefWidth="540.0" visible="false">
+                  <AnchorPane fx:id="edicionEditarUsuarioAdminAnchorPane" layoutX="135.0" prefHeight="720.0" prefWidth="540.0">
                      <children>
                         <Label layoutX="89.0" layoutY="118.0" styleClass="nanum-regular" text="Nombre" textFill="#29838c">
                            <font>
@@ -668,7 +669,7 @@
                               <Font size="13.0" />
                            </font>
                         </TextField>
-                        <Label layoutX="89.0" layoutY="248.0" styleClass="nanum-regular" text="Email" textFill="#29838c">
+                        <Label layoutX="89.0" layoutY="248.0" styleClass="nanum-regular" text="Correo electrónico" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -678,71 +679,48 @@
                               <Font size="13.0" />
                            </font>
                         </TextField>
-                        <Label layoutX="89.0" layoutY="313.0" styleClass="nanum-regular" text="Especialidad" textFill="#29838c">
+                        <Label layoutX="89.0" layoutY="316.0" styleClass="nanum-regular" text="Contraseña" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="especialidadEdicionEditarUsuarioAdminChoiceBox" layoutX="89.0" layoutY="338.0" onKeyPressed="#choiceSpecialityUserEdit" prefHeight="31.0" prefWidth="360.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular" />
-                        <Label layoutX="89.0" layoutY="378.0" styleClass="nanum-regular" text="Contraseña actual:" textFill="#29838c">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <PasswordField fx:id="actualPasswordEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="403.0" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
+                        <PasswordField fx:id="passwordEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="341.0" prefHeight="25.0" prefWidth="320.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
                            <font>
                               <Font size="13.0" />
                            </font>
                         </PasswordField>
-                        <Label layoutX="89.0" layoutY="443.0" styleClass="nanum-regular" text="Nueva Contraseña:" textFill="#29838c">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <PasswordField fx:id="newPasswordEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="468.0" onAction="#fieldNewPasswordUserEdit" prefHeight="25.0" prefWidth="320.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
+                        <TextField fx:id="plainPasswordEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="349.0" prefHeight="25.0" prefWidth="320.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13; -fx-font-size: 13;" styleClass="playfair-regular" visible="false">
                            <font>
                               <Font size="13.0" />
                            </font>
-                        </PasswordField>
-                        <AnchorPane layoutX="407.0" layoutY="468.0" prefHeight="31.0" prefWidth="35.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;">
+                        </TextField>
+                        <AnchorPane layoutX="407.0" layoutY="341.0" prefHeight="31.0" prefWidth="35.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;">
                            <children>
-                              <ImageView fx:id="mostrarNewPasswordEdicionEditarUsuarioAdminButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onKeyPressed="#clickShowNewPasswordUserEdit" visible="false">
+                              <ImageView fx:id="mostrarPasswordEdicionEditarUsuarioAdminButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onMouseClicked="#clickOcultarPasswordEdicionEditarUsuarioAdminButton" pickOnBounds="true" visible="false">
                                  <image>
                                     <Image url="@../../../images/abrir-ojo.png" />
                                  </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </ImageView>
-                              <ImageView fx:id="ocultarNewPasswordEdicionEditarUsuarioAdminButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onKeyPressed="#clickHideNewPasswordUserEdit">
+                              <ImageView fx:id="ocultarPasswordEdicionEditarUsuarioAdminButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onMouseClicked="#clickMostrarPasswordEdicionEditarUsuarioAdminButton" pickOnBounds="true">
                                  <image>
                                     <Image url="@../../../images/cerrar-ojo.png" />
                                  </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </ImageView>
                            </children>
                         </AnchorPane>
-                        <Label layoutX="89.0" layoutY="508.0" styleClass="nanum-regular" text="Confirmar nueva contraseña:" textFill="#29838c">
+                        <Label layoutX="89.0" layoutY="392.0" styleClass="nanum-regular" text="Especialidad" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="confirmNewPasswordEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="533.0" onAction="#fieldConfirmNewPasswordUserEdit" prefHeight="25.0" prefWidth="320.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </PasswordField>
-                        <AnchorPane layoutX="407.0" layoutY="533.0" prefHeight="31.0" prefWidth="35.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;">
-                           <children>
-                              <ImageView fx:id="mostrarConfirmNewPasswordEdicionEditarUsuarioAdminButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onKeyPressed="#clickShowConfirmNewPasswordUserEdit" visible="false">
-                                 <image>
-                                    <Image url="@../../../images/abrir-ojo.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="ocultarConfirmNewPasswordEdicionEditarUsuarioAdminButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onKeyPressed="#clickHideConfirmNewPasswordUserEdit">
-                                 <image>
-                                    <Image url="@../../../images/cerrar-ojo.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </AnchorPane>
-                        <Button fx:id="guardarEdicionEditarUsuarioAdminButton" layoutX="182.0" layoutY="607.0" mnemonicParsing="false" onAction="#clickSaveUserEdit" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Guardar" textFill="#c4e8dd">
+                        <ChoiceBox fx:id="especialidadEdicionEditarUsuarioAdminChoiceBox" layoutX="89.0" layoutY="417.0" onKeyPressed="#choiceSpecialityUserEdit" prefHeight="31.0" prefWidth="360.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular" />
+                        <Button fx:id="guardarEdicionEditarUsuarioAdminButton" layoutX="183.0" layoutY="472.0" mnemonicParsing="false" onAction="#clickSaveUserEdit" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Guardar" textFill="#c4e8dd">
                            <font>
                               <Font name="NanumGothicBold" size="14.0" />
                            </font>
