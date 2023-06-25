@@ -201,9 +201,20 @@ public class MedicoController {
 
     @FXML
     void turnosPorPaciente(ActionEvent event) {
-        Optional<Paciente> paciente = PacienteService.getInstance().buscarPacientePorNombreUsuario(filtrarPacienteField.getText());
+        String input = filtrarPacienteField.getText();
+        String [] palabras = input.split(" ");
+        String nombrePaciente = palabras[0];
+        StringBuilder apellidoPacienteBuilder = new StringBuilder();
+        for (int i = 1; i < palabras.length; i++) {
+            if (i > 1) {
+                apellidoPacienteBuilder.append(" ");  // Agregar espacio entre las palabras
+            }
+            apellidoPacienteBuilder.append(palabras[i]);
+        }
+        String apellidoPaciente = apellidoPacienteBuilder.toString();
+        Paciente paciente = PacienteService.getInstance().buscarPacientePorNombreYApellido(nombrePaciente, apellidoPaciente);
         try{
-            cargarTurnosPorPaciente(paciente.get());
+            cargarTurnosPorPaciente(paciente);
             filtrarPacientePanel.setVisible(false);
             filtrarPacienteField.setText("");
         }catch (Exception e){
@@ -232,8 +243,8 @@ public class MedicoController {
                 tablaTurnosMedico.setItems(FXCollections.observableArrayList(listaTurnosTabla));
             }
         }
-    }
 
+    }
     @FXML
     void cancelFiltrarPorFecha(ActionEvent event) {
         filtrarFechaPanel.setVisible(false);
