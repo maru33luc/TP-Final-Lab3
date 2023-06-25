@@ -18,8 +18,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-import java.text.SimpleDateFormat;
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -52,6 +50,15 @@ public class AdminViewController {
     private PasswordField actualPasswordEdicionMiPerfilAdminField;
 
     @FXML
+    private Label altaUsuarioLabel1;
+
+    @FXML
+    private AnchorPane altaUsuarioAdminAnchorPane1;
+
+    @FXML
+    private Label altaUsuarioAdminButton1;
+
+    @FXML
     private TextField apellidoEdicionEditarUsuarioAdminField;
 
     @FXML
@@ -68,6 +75,15 @@ public class AdminViewController {
 
     @FXML
     private TextField apellidoNuevoUsuarioField;
+
+    @FXML
+    private Label apellidoMostrarAltaUsuarioAdminLabel1;
+
+    @FXML
+    private Label emailMostrarAltaUsuarioAdminLabel1;
+
+    @FXML
+    private Label especialidadMostrarAltaUsuarioAdminLabel1;
 
     @FXML
     private AnchorPane buscarEditarUsuarioAdminAnchorPane;
@@ -88,6 +104,11 @@ public class AdminViewController {
     private Button buscarEliminarUsuarioButton;
 
     @FXML
+    private AnchorPane buscarAltaUsuarioAdminAnchorPane1;
+
+    @FXML
+    private Button buscarEliminarUsuarioButton1;
+    @FXML
     private AnchorPane buscarVerTurnosAdminAnchorPane;
 
     @FXML
@@ -98,6 +119,12 @@ public class AdminViewController {
 
     @FXML
     private Button cancelarEliminarUsuarioButton;
+
+    @FXML
+    private Button cancelarAltaUsuarioButton1;
+
+    @FXML
+    private Button confirmarAltaUsuarioAdminButton1;
 
     @FXML
     private PasswordField confirmNewPasswordEdicionEditarUsuarioAdminField;
@@ -149,6 +176,18 @@ public class AdminViewController {
 
     @FXML
     private TableColumn<?, ?> columnaTipoUsuarioBuscarEditarUsuario;
+
+    @FXML
+    private TableColumn<?, ?> columnaUsuarioBuscarAltaUsuario1;
+
+    @FXML
+    private TableColumn<?, ?> columnaNombreBuscarAltaUsuario1;
+
+    @FXML
+    private TableColumn<?, ?> columnaApellidoBuscarAltaUsuario1;
+
+    @FXML
+    private TableColumn<?, ?> columnaTipoUsuarioBuscarAltaUsuario1;
 
     @FXML
     private PasswordField confirmNewPasswordEdicionMiPerfilAdminField;
@@ -226,6 +265,9 @@ public class AdminViewController {
     private AnchorPane filtrarVerTurnosAdminAnchorPane;
 
     @FXML
+    private AnchorPane filtrarAltaUsuarioAdminAnchorPane1;
+
+    @FXML
     private Button guardarEdicionEditarUsuarioAdminButton;
 
     @FXML
@@ -251,6 +293,12 @@ public class AdminViewController {
 
     @FXML
     private CheckBox isMedicoNuevoUsuarioCheckBox;
+
+    @FXML
+    private CheckBox isMedicoBuscarAltaUsuarioCheckBox1;
+
+    @FXML
+    private CheckBox isAdminBuscarAltaUsuarioCheckBox1;
 
     @FXML
     private AnchorPane listaTurnosPacienteVerTurnosAdminAnchorPane;
@@ -296,6 +344,9 @@ public class AdminViewController {
     private AnchorPane mostrarVerTurnosAdminAnchorPane;
 
     @FXML
+    private AnchorPane mostrarAltaUsuarioAdminAnchorPane1;
+
+    @FXML
     private PasswordField newPasswordEdicionEditarUsuarioAdminField;
 
     @FXML
@@ -315,6 +366,9 @@ public class AdminViewController {
 
     @FXML
     private TextField nombreNuevoUsuarioField;
+
+    @FXML
+    private Label nombreMostrarAltaUsuarioAdminLabel1;
 
     @FXML
     private AnchorPane nuevoUsuarioAdminAnchorPane;
@@ -368,10 +422,19 @@ public class AdminViewController {
     private TableView<TablaUsuario> tablaBuscarEditarUsuarioAdminAnchorPane;
 
     @FXML
+    private TableView<TablaUsuario> tablaBuscarAltaUsuarioAdminAnchorPane1;
+
+    @FXML
     private Label tipoUsuarioMostrarEditarUsuarioAdminField;
 
     @FXML
     private Label tipoUsuarioMostrarEliminarUsuarioAdminLabel;
+
+    @FXML
+    private Label tipoUsuarioMostrarAltaUsuarioAdminLabel1;
+
+    @FXML
+    private Label usuarioMostrarAltaUsuarioAdminLabel1;
 
     @FXML
     private TextField userBuscarEditarUsuarioField;
@@ -471,6 +534,8 @@ public class AdminViewController {
     @FXML
     public void initialize() {
 
+        bienvenidoAdminPanel.setVisible(true);
+        altaUsuarioAdminAnchorPane1.setVisible(false);
         Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
 
         especialidadEdicionEditarUsuarioAdminChoiceBox.getItems().addAll(Especialidad.values().toString());
@@ -516,12 +581,17 @@ public class AdminViewController {
         eliminarUsuarioAdminAnchorPane.setVisible(false);
         buscarEliminarUsuarioAdminAnchorPane.setVisible(false);
         mostrarEliminarUsuarioAdminAnchorPane.setVisible(false);
+
+        // ALTA USUARIO
+        altaUsuarioAdminAnchorPane1.setVisible(false);
+        buscarAltaUsuarioAdminAnchorPane1.setVisible(false);
+
     }
 
 
     @FXML
     void buttonMyProfileAdmin(MouseEvent event) { //Opción "Mi Perfil" de Menú-Admin
-        //ocultarTodosLosAnchorPane();
+        ocultarTodosLosAnchorPane();
         bienvenidoAdminPanel.setVisible(false);
         verTurnosAdminAnchorPane.setVisible(false);
         nuevoUsuarioAdminAnchorPane.setVisible(false);
@@ -535,7 +605,7 @@ public class AdminViewController {
 
     @FXML
     void buttonViewAppointmentAdmin(MouseEvent event) { //Opción "Ver Turnos" de Menú-Admin
-        //ocultarTodosLosAnchorPane();
+        ocultarTodosLosAnchorPane();
         bienvenidoAdminPanel.setVisible(false);
         miPerfilAdminAnchorPane.setVisible(false);
         nuevoUsuarioAdminAnchorPane.setVisible(false);
@@ -558,7 +628,7 @@ public class AdminViewController {
 
     @FXML
     void buttonAddAppointmentAdmin (MouseEvent event){ //Opción "Habilitar Turno" de Menú-Admin
-        //ocultar
+        ocultarTodosLosAnchorPane();
         bienvenidoAdminPanel.setVisible(false);
         miPerfilAdminAnchorPane.setVisible(false);
         nuevoUsuarioAdminAnchorPane.setVisible(false);
@@ -571,7 +641,7 @@ public class AdminViewController {
 
     @FXML
     void buttonNewUserAdmin(MouseEvent event) { //Opción "Nuevo Usuario" de Menú-Admin
-        //ocultarTodosLosAnchorPane();
+        ocultarTodosLosAnchorPane();
         bienvenidoAdminPanel.setVisible(false);
         miPerfilAdminAnchorPane.setVisible(false);
         verTurnosAdminAnchorPane.setVisible(false);
@@ -613,7 +683,7 @@ public class AdminViewController {
             nombreMostrarEditarUsuarioAdminLabel.setText(tablaBuscarEditarUsuarioAdminAnchorPane.getSelectionModel().getSelectedItem().getNombre());
             apellidoMostrarEditarUsuarioAdminLabel.setText(tablaBuscarEditarUsuarioAdminAnchorPane.getSelectionModel().getSelectedItem().getApellido());
             String nombreUsuario= tablaBuscarEditarUsuarioAdminAnchorPane.getSelectionModel().getSelectedItem().getUsuario();
-            // recuperar el mail del usuario seleccionado
+
 
             Optional<Medico> medico = MedicoService.getInstance().buscarMedicoPorNombreUsuario(nombreUsuario);
             Optional<Administrativo> administrativo = AdministrativoService.getInstance().buscarAdministrativoPorNombreUsuario(nombreUsuario);
@@ -680,7 +750,7 @@ public class AdminViewController {
 
     @FXML
     void buttonDeleteUserAdmin(MouseEvent event) { //Opción "Eliminar Usuario" de Menú-Admin
-        //ocultarTodosLosAnchorPane();
+        ocultarTodosLosAnchorPane();
 
         bienvenidoAdminPanel.setVisible(false);
         miPerfilAdminAnchorPane.setVisible(false);
@@ -695,6 +765,8 @@ public class AdminViewController {
         isAdminBuscarEliminarUsuarioCheckBox.setSelected(false);
         cargarUsuariosEnTablaEliminar();
     }
+
+
 
     public void cargarUsuariosEnTablaEliminar() {
         Map <String, Usuario> listaAutenticables = new HashMap<>();
@@ -741,6 +813,64 @@ public class AdminViewController {
         tablaBuscarEliminarUsuarioAdminAnchorPane.setItems(FXCollections.observableArrayList(turnosTablaUsuario));
 
     }
+
+    @FXML
+    void buttonAltaUserAdmin(MouseEvent event) { //Opción "Alta Usuario" de Menú-Admin
+        ocultarTodosLosAnchorPane();
+
+        buscarAltaUsuarioAdminAnchorPane1.setVisible(true);
+        altaUsuarioAdminAnchorPane1.setVisible(true);
+        cargarUsuariosEnTablaAlta();
+    }
+
+    public void cargarUsuariosEnTablaAlta() {
+        Map <String, Usuario> listaAutenticables = new HashMap<>();
+
+        Set<Medico> listaMedicos = MedicoService.getInstance().getMedicos();
+        Set<Administrativo> listaAdministrativos = AdministrativoService.getInstance().getAdministrativos();
+        Set<Paciente> listaPacientes = PacienteService.getInstance().getPacientes();
+
+        for (Medico medico : listaMedicos) {
+            if(!medico.getActivo()){
+                listaAutenticables.put(medico.getNombreUsuario(), medico);
+            }
+
+        }
+        for (Administrativo administrativo : listaAdministrativos) {
+            if(!administrativo.getActivo()){
+                listaAutenticables.put(administrativo.getNombreUsuario(), administrativo);
+            }
+
+        }
+        List<TablaUsuario> turnosTablaUsuario = new ArrayList<>();
+        //recorrer el map y pasar los datos a un objeto de tipo TurnoTablaUsuario
+        //para luego agregarlo a la lista de turnosTablaUsuario
+        for (Map.Entry<String, Usuario> entry : listaAutenticables.entrySet()) {
+            String key = entry.getKey();
+            Usuario value = entry.getValue();
+            if (value instanceof Medico) {
+                Medico medico = (Medico) value;
+                turnosTablaUsuario.add(new TablaUsuario(medico.getNombreUsuario(), medico.getNombre(), medico.getApellido(), "Medico"));
+            }
+            if (value instanceof Administrativo) {
+                Administrativo administrativo = (Administrativo) value;
+                turnosTablaUsuario.add(new TablaUsuario(administrativo.getNombreUsuario(), administrativo.getNombre(), administrativo.getApellido(), "Administrativo"));
+            }
+            if (value instanceof Paciente) {
+                Paciente paciente = (Paciente) value;
+                turnosTablaUsuario.add(new TablaUsuario(paciente.getNombreUsuario(), paciente.getNombre(), paciente.getApellido(),  "Paciente"));
+            }
+        }
+        columnaUsuarioBuscarAltaUsuario1.setCellValueFactory(new PropertyValueFactory<>("usuario"));
+        columnaNombreBuscarAltaUsuario1.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        columnaApellidoBuscarAltaUsuario1.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        columnaTipoUsuarioBuscarAltaUsuario1.setCellValueFactory(new PropertyValueFactory<>("entidad"));
+
+        //cargar la lista de turnosTablaUsuario en la tabla
+        tablaBuscarAltaUsuarioAdminAnchorPane1.setItems(FXCollections.observableArrayList(turnosTablaUsuario));
+
+    }
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //----------------------------[ BARRA TITULO ]
@@ -1536,9 +1666,89 @@ public class AdminViewController {
         LoginController.mostrarLogin();
     }
 
+    ////////////////////////////////     ALTA USUARIOS     -----------------------------
+
+
+    @FXML
+    void tableAltaUserAction(MouseEvent event) {
+        if(tablaBuscarAltaUsuarioAdminAnchorPane1.getSelectionModel().getSelectedItem() != null){
+            mostrarAltaUsuarioAdminAnchorPane1.setVisible(true);
+            buscarAltaUsuarioAdminAnchorPane1.setVisible(false);
+            tipoUsuarioMostrarAltaUsuarioAdminLabel1.setText(tablaBuscarAltaUsuarioAdminAnchorPane1.getSelectionModel().getSelectedItem().getEntidad());
+            usuarioMostrarAltaUsuarioAdminLabel1.setText(tablaBuscarAltaUsuarioAdminAnchorPane1.getSelectionModel().getSelectedItem().getUsuario());
+            nombreMostrarAltaUsuarioAdminLabel1.setText(tablaBuscarAltaUsuarioAdminAnchorPane1.getSelectionModel().getSelectedItem().getNombre());
+            apellidoMostrarAltaUsuarioAdminLabel1.setText(tablaBuscarAltaUsuarioAdminAnchorPane1.getSelectionModel().getSelectedItem().getApellido());
+            String nombreUsuario= tablaBuscarAltaUsuarioAdminAnchorPane1.getSelectionModel().getSelectedItem().getUsuario();
+            // recuperar el mail del usuario seleccionado
+
+            Optional<Medico> medico = MedicoService.getInstance().buscarMedicoPorNombreUsuario(nombreUsuario);
+            Optional<Administrativo> administrativo = AdministrativoService.getInstance().buscarAdministrativoPorNombreUsuario(nombreUsuario);
+            Optional<Paciente> paciente = PacienteService.getInstance().buscarPacientePorNombreUsuario(nombreUsuario);
+            if(medico.isPresent()){
+                emailMostrarAltaUsuarioAdminLabel1.setText(medico.get().getMail());
+                especialidadMostrarAltaUsuarioAdminLabel1.setText(medico.get().getEspecialidad().toString());
+            }else if(administrativo.isPresent()){
+                emailMostrarAltaUsuarioAdminLabel1.setText(administrativo.get().getMail());
+            }else if(paciente.isPresent()){
+                emailMostrarAltaUsuarioAdminLabel1.setText(paciente.get().getMail());
+            }
+
+        }
+    }
+
+    @FXML
+    void clickSearchUserAlta(ActionEvent event) {
+        if(isMedicoBuscarAltaUsuarioCheckBox1.isSelected()&& !isAdminBuscarAltaUsuarioCheckBox1.isSelected()){
+            ObservableList<TablaUsuario> listaActual = tablaBuscarAltaUsuarioAdminAnchorPane1.getItems();
+            List<TablaUsuario> listaFiltrada = new ArrayList<>();
+            for (TablaUsuario usuario : listaActual) {
+                if (usuario.getEntidad().equals("Medico")) {
+                    listaFiltrada.add(usuario);
+                }
+            }
+            tablaBuscarAltaUsuarioAdminAnchorPane1.setItems(FXCollections.observableArrayList(listaFiltrada));
+        }else if(!isMedicoBuscarAltaUsuarioCheckBox1.isSelected()&& isAdminBuscarAltaUsuarioCheckBox1.isSelected()){
+            ObservableList<TablaUsuario> listaActual = tablaBuscarAltaUsuarioAdminAnchorPane1.getItems();
+            List<TablaUsuario> listaFiltrada = new ArrayList<>();
+            for (TablaUsuario usuario : listaActual) {
+                if (usuario.getEntidad().equals("Administrativo")) {
+                    listaFiltrada.add(usuario);
+                }
+            }
+            tablaBuscarAltaUsuarioAdminAnchorPane1.setItems(FXCollections.observableArrayList(listaFiltrada));
+        } else if (isMedicoBuscarAltaUsuarioCheckBox1.isSelected()&& isAdminBuscarAltaUsuarioCheckBox1.isSelected()) {
+            showErrorAlert("Debe seleccionar solo un tipo de usuario para buscar");
+        } else if (!isMedicoBuscarAltaUsuarioCheckBox1.isSelected()&& !isAdminBuscarAltaUsuarioCheckBox1.isSelected()) {
+            cargarUsuariosEnTablaAlta();
+        }
+    }
+
+    @FXML
+    void clickConfirmUserAlta(ActionEvent event) {
+        String nombreUsuario = usuarioMostrarAltaUsuarioAdminLabel1.getText();
+        Optional<Medico> medico = MedicoService.getInstance().buscarMedicoPorNombreUsuario(nombreUsuario);
+        Optional<Administrativo> administrativo = AdministrativoService.getInstance().buscarAdministrativoPorNombreUsuario(nombreUsuario);
+        if(medico.isPresent()){
+            MedicoService.getInstance().darDeAltaMedico(medico.get());
+        }else if(administrativo.isPresent()){
+            AdministrativoService.getInstance().darDeAltaAdministrativo(administrativo.get());
+        }
+        showSuccessAlert("¡Usuario dado de alta con éxito!");
+        cargarUsuariosEnTablaAlta();
+        mostrarAltaUsuarioAdminAnchorPane1.setVisible(false);
+        buscarAltaUsuarioAdminAnchorPane1.setVisible(true);
+
+    }
+
+    @FXML
+    void clickCancelUserAlta(ActionEvent event) {
+        //ocultarTodosLosAnchorPane();
+
+        mostrarAltaUsuarioAdminAnchorPane1.setVisible(false);
+        buscarAltaUsuarioAdminAnchorPane1.setVisible(true);
+        cargarUsuariosEnTablaAlta();
+    }
 // ----------------------------     ACA METO FUNCIONES PARA DESTRABAR ERRORES -----------------------------
-
-
 
 
     @FXML
