@@ -273,17 +273,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="MedicoVerTurnosAdminLabel" layoutX="203.0" layoutY="143.0" styleClass="nanum-bold" text="Ingrese el medico:" textFill="#29838c">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="PacienteVerTurnosAdminLabel" layoutX="203.0" layoutY="143.0" styleClass="nanum-bold" text="Ingrese el paciente:" textFill="#29838c" visible="false">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="FechaVerTurnosAdminLabel" layoutX="203.0" layoutY="143.0" styleClass="nanum-bold" text="Ingrese el fecha:" textFill="#29838c" visible="false">
+                        <Label fx:id="IngreseVerTurnosAdminLabel" layoutX="203.0" layoutY="143.0" styleClass="nanum-bold" text="Ingrese el medico:" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -529,7 +519,7 @@
                         <Font size="40.0" />
                      </font>
                   </Label>
-                  <AnchorPane fx:id="buscarEditarUsuarioAdminAnchorPane" prefHeight="720.0" prefWidth="810.0" visible="false">
+                  <AnchorPane fx:id="buscarEditarUsuarioAdminAnchorPane" prefHeight="720.0" prefWidth="810.0">
                      <children>
                         <AnchorPane layoutY="110.0" prefHeight="600.0" prefWidth="290.0">
                            <children>
@@ -574,7 +564,7 @@
                         </TableView>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="mostrarEditarUsuarioAdminAnchorPane" layoutX="135.0" layoutY="100.0" opacity="0.9" prefHeight="450.0" prefWidth="540.0" style="-fx-background-color: #184752;">
+                  <AnchorPane fx:id="mostrarEditarUsuarioAdminAnchorPane" layoutX="135.0" layoutY="100.0" opacity="0.9" prefHeight="450.0" prefWidth="540.0" style="-fx-background-color: #184752;" visible="false">
                      <children>
                         <Label layoutX="160.0" layoutY="73.0" styleClass="nanum-bold" text="Tipo Usuario:" textFill="#d3f9eb">
                            <font>

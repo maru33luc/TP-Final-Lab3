@@ -399,15 +399,8 @@ public class AdminViewController {
     private AnchorPane vistaAdminAnchorPane;
     ///////////////////////////////////////////////////
 
-
     @FXML
-    private Label FechaVerTurnosAdminLabel;
-
-    @FXML
-    private Label MedicoVerTurnosAdminLabel;
-
-    @FXML
-    private Label PacienteVerTurnosAdminLabel;
+    private Label IngreseVerTurnosAdminLabel;
 
     @FXML
     private Label adminUserName;
@@ -431,12 +424,8 @@ public class AdminViewController {
     @FXML
     private TableColumn<?, ?> columnaTipoUsuarioBuscarEliminarUsuario;
 
-
-
     @FXML
     private TableColumn<?, ?> columnaUsuarioBuscarEliminarUsuario;
-
-
 
     @FXML
     private AnchorPane filtrarEliminarUsuarioAdminAnchorPane;
@@ -509,6 +498,8 @@ public class AdminViewController {
         verTurnosAdminAnchorPane.setVisible(false);
         buscarVerTurnosAdminAnchorPane.setVisible(false);
         mostrarVerTurnosAdminAnchorPane.setVisible(false);
+        //HABILITAR TURNOS
+        habilitarTurnosAdminAnchorPane.setVisible(false);
         //NUEVO USUARIO
         nuevoUsuarioAdminAnchorPane.setVisible(false);
         //EDITAR USUARIO
@@ -531,6 +522,8 @@ public class AdminViewController {
         nuevoUsuarioAdminAnchorPane.setVisible(false);
         editarUsuarioAdminAnchorPane.setVisible(false);
         eliminarUsuarioAdminAnchorPane.setVisible(false);
+        habilitarTurnosAdminAnchorPane.setVisible(false);//agregado yasz.
+
         miPerfilAdminAnchorPane.setVisible(true);
         mostrarMiPerfilAdminAnchorPane.setVisible(true);
     }
@@ -545,6 +538,7 @@ public class AdminViewController {
         eliminarUsuarioAdminAnchorPane.setVisible(false);
         filtrarVerTurnosAdminAnchorPane.setVisible(true);
         verTurnosAdminAnchorPane.setVisible(true);
+        habilitarTurnosAdminAnchorPane.setVisible(false);//agregado yasz.
 
         mostrarVerTurnosAdminAnchorPane.setVisible(false);
         medicoVerTurnosAdminCheckBox.setSelected(false);
@@ -558,6 +552,19 @@ public class AdminViewController {
     }
 
     @FXML
+    void buttonAddAppointmentAdmin (MouseEvent event){ //Opción "Habilitar Turno" de Menú-Admin
+        //ocultar
+        bienvenidoAdminPanel.setVisible(false);
+        miPerfilAdminAnchorPane.setVisible(false);
+        nuevoUsuarioAdminAnchorPane.setVisible(false);
+        editarUsuarioAdminAnchorPane.setVisible(false);
+        eliminarUsuarioAdminAnchorPane.setVisible(false);
+        verTurnosAdminAnchorPane.setVisible(false);
+
+        habilitarTurnosAdminAnchorPane.setVisible(true);
+    }
+
+    @FXML
     void buttonNewUserAdmin(MouseEvent event) { //Opción "Nuevo Usuario" de Menú-Admin
         //ocultarTodosLosAnchorPane();
         bienvenidoAdminPanel.setVisible(false);
@@ -565,7 +572,7 @@ public class AdminViewController {
         verTurnosAdminAnchorPane.setVisible(false);
         editarUsuarioAdminAnchorPane.setVisible(false);
         eliminarUsuarioAdminAnchorPane.setVisible(false);
-
+        habilitarTurnosAdminAnchorPane.setVisible(false);//agregado yasz.
 
         nuevoUsuarioAdminAnchorPane.setVisible(true);
     }
@@ -579,6 +586,7 @@ public class AdminViewController {
         verTurnosAdminAnchorPane.setVisible(false);
         nuevoUsuarioAdminAnchorPane.setVisible(false);
         eliminarUsuarioAdminAnchorPane.setVisible(false);
+        habilitarTurnosAdminAnchorPane.setVisible(false);//agregado yasz.
 
         editarUsuarioAdminAnchorPane.setVisible(true);
         buscarEditarUsuarioAdminAnchorPane.setVisible(true);
@@ -652,6 +660,7 @@ public class AdminViewController {
         verTurnosAdminAnchorPane.setVisible(false);
         nuevoUsuarioAdminAnchorPane.setVisible(false);
         editarUsuarioAdminAnchorPane.setVisible(false);
+        habilitarTurnosAdminAnchorPane.setVisible(false);//agregado yasz.
 
         eliminarUsuarioAdminAnchorPane.setVisible(true);
         buscarEliminarUsuarioAdminAnchorPane.setVisible(true);
@@ -677,8 +686,16 @@ public class AdminViewController {
 
     @FXML
     void clickEditeMyProfileAdmin(ActionEvent event) { //Botón Editar Mi Perfil
-        ocultarTodosLosAnchorPane();
+        //ocultarTodosLosAnchorPane();
+        bienvenidoAdminPanel.setVisible(false); //agregado yasz.
+        verTurnosAdminAnchorPane.setVisible(false); //agregado yasz.
+        nuevoUsuarioAdminAnchorPane.setVisible(false); //agregado yasz.
+        editarUsuarioAdminAnchorPane.setVisible(false); //agregado yasz.
+        eliminarUsuarioAdminAnchorPane.setVisible(false); //agregado yasz.
+        habilitarTurnosAdminAnchorPane.setVisible(false);//agregado yasz.
+
         miPerfilAdminAnchorPane.setVisible(true);
+        mostrarMiPerfilAdminAnchorPane.setVisible(false);
         editarMiPerfilAdminAnchorPane.setVisible(true);
         agregarDatosAFieldEditarMiPerfil();
     }
@@ -720,18 +737,32 @@ public class AdminViewController {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //----------------------------[ VIEW - VER TURNOS ]
 
-    //[ BUSCAR TURNOS ] //PENDIENTE HASTA TENER LAS VISTAS DE MOSTRAR TURNOS
+    //[ BUSCAR TURNOS ]
     @FXML
-    void checkDoctorSearchAppointment(ActionEvent event) {
-        //CheckBox buscar por Doctor en Ver Turnos
+    void checkDoctorSearchAppointment(ActionEvent event) { //CheckBox buscar por Doctor en Ver Turnos
+        if (medicoVerTurnosAdminCheckBox.isSelected()) { //nuevo yasz
+            pacienteVerTurnosAdminCheckBox.setSelected(false);
+            fechaVerTurnosAdminCheckBox.setSelected(false);
+            IngreseVerTurnosAdminLabel.setText("Ingrese el user del médico");
+        }
     }
 
     @FXML
     void checkPatientSearchAppointment(ActionEvent event) { //CheckBox buscar por Paciente en Ver Turnos
+        if (pacienteVerTurnosAdminCheckBox.isSelected()) { //nuevo yasz
+            medicoVerTurnosAdminCheckBox.setSelected(false);
+            fechaVerTurnosAdminCheckBox.setSelected(false);
+            IngreseVerTurnosAdminLabel.setText("Ingrese el user del paciente");
+        }
     }
 
     @FXML
     void checkIsDateSearchAppointment(ActionEvent event) { //CheckBox buscar por Fecha en Ver Turnos
+        if (fechaVerTurnosAdminCheckBox.isSelected()) { //nuevo yasz
+            medicoVerTurnosAdminCheckBox.setSelected(false);
+            pacienteVerTurnosAdminCheckBox.setSelected(false);
+            IngreseVerTurnosAdminLabel.setText("Ingrese la fecha del turno");
+        }
     }
     @FXML
     void fieldSearchAppointmentAdmin (ActionEvent event) { //Field buscar en Ver Turnos
@@ -847,14 +878,22 @@ public class AdminViewController {
 
     //[ MOSTRAR TURNOS ] PENDIENTE
 
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //----------------------------[ VIEW - HABILITAR TURNOS ] //NUEVO!!!
+    //HABILITAR TURNOS
 
     @FXML
-    private void clickEnableAppointment (ActionEvent event){ //Botón Habilitar Turnos en Habilitar Turnos
+    private void clickEnableAppointment (MouseEvent event){
+        //cargar fields
+        String nombreYApellido = nombreYApellidoMedicoHabilitarTurnosField.getText();
+        String fecha = fechaHabilitarTurnosField.getText();
+        String horaInicio = horaInicioHabilitarTurnosField.getText();
+        String horaFin = horaFinalizacionHabilitarTurnosField.getText();
+
+        //confirmar y guardar cambios
 
     }
+
+
+
 
 
 //NUEVO USUARIO////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1212,17 +1251,6 @@ public class AdminViewController {
         showSuccessAlert("¡Cambios guardados con éxito!");
     }
 
-    /////////////////////////////// HABILITAR TURNOS ///////////////////////////////
-
-    @FXML
-    void buttonAddAppointmentAdmin(MouseEvent event) {
-
-    }
-
-
-
-
-
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //----------------------------[ VIEW - ELIMINAR USUARIO ]
 
@@ -1373,10 +1401,10 @@ public class AdminViewController {
 
     }
 
-    @FXML
+    /*@FXML
     void seleccionarMisTurnosAction(MouseEvent event) {
 
-    }
+    }*/
 
 
     public void tableDeleteUserAction(MouseEvent mouseEvent) {
