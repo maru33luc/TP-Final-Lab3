@@ -25,6 +25,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.*;
+import java.util.concurrent.TimeoutException;
 
 public class AdminViewController {
 
@@ -967,10 +968,16 @@ public class AdminViewController {
             }
             LocalDate dia = validarFechaHabilitarTurnos(fechaHabilitarTurnosField.getText(), dateFormatter);
             if(dia.isBefore(LocalDate.now())){
-                throw new RuntimeException("La fecha debe ser posterior al dia de hoy");
+                throw new DateTimeException("La fecha debe ser posterior al dia de hoy");
             }
             LocalTime horaInicio = validarHoraHabilitarTurnos(horaInicioHabilitarTurnosField.getText(), hourFormatter);
             LocalTime horaFin = validarHoraHabilitarTurnos(horaFinalizacionHabilitarTurnosField.getText(), hourFormatter);
+            if(horaInicio.isBefore(LocalTime.of(9,0))){
+                throw new DateTimeException("El horario inicial no puede ser anterior a las 9:00hs");
+            }
+            if(horaFin.isAfter(LocalTime.of(17, 30))){
+                throw new DateTimeException("El horario final no puede excederse de las 17:30hs");
+            }
             if(horaFin.isBefore(horaInicio)){
                 throw new Exception("La hora de finalizacion no puede ser anterior a la hora de inicio");
             }
@@ -978,7 +985,7 @@ public class AdminViewController {
             LoginController.showSuccessAlert("Turnos habilitados con exito!");
         }catch (NullPointerException e){
             LoginController.showErrorAlert(e.getMessage());
-        }catch (RuntimeException e){
+        }catch(DateTimeException e){
             LoginController.showErrorAlert(e.getMessage());
         }catch (Exception e){
             LoginController.showErrorAlert(e.getMessage());
