@@ -364,6 +364,7 @@ public class PacienteViewController {
     @FXML
     void miPerfilAction(MouseEvent event) {
         bienvenidoUserPanel.setVisible(false);
+        profilePacientePanel.setVisible(true);
         profileDataPacientePanel.setVisible(true);
         pedirTurnoPacienteView.setVisible(false);
         misTurnosPacienteView.setVisible(false);
@@ -528,6 +529,9 @@ public class PacienteViewController {
 
             //se envía mensaje de éxito en la modificación
             LoginController.showSuccessAlert("Datos modificados exitosamente");
+
+            //se muestra el perfil del paciente
+            mostrarPerfil();
         } catch (Exception e) {
             //se envía mensaje de error si se lanzó alguna excepción en las validaciones
             LoginController.showErrorAlert(e.getMessage());
@@ -550,5 +554,14 @@ public class PacienteViewController {
         newPasswordPacienteField.setVisible(true);
         mostrarNewPasswordEditarPacienteButton.setVisible(false);
         ocultarNewPasswordEditarPacienteButton.setVisible(true);
+    }
+
+    private void mostrarPerfil(){
+        bienvenidoUserPanel.setVisible(false);
+        profilePacientePanel.setVisible(true);
+        profileDataPacientePanel.setVisible(true);
+        pedirTurnoPacienteView.setVisible(false);
+        misTurnosPacienteView.setVisible(false);
+        editProfilePacientePanel.setVisible(false);
     }
 }
