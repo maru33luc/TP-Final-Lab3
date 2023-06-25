@@ -1,9 +1,12 @@
 package com.example.tpfinallab3.services;
 
-import com.example.tpfinallab3.models.Paciente;
 import com.example.tpfinallab3.models.Autenticable;
+import com.example.tpfinallab3.models.Paciente;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class PacienteService {
@@ -124,6 +127,26 @@ public class PacienteService {
                 .filter(paciente -> paciente.getNombre().equalsIgnoreCase(nombre) && paciente.getApellido().equals(apellido))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public Paciente retornaPacientePorCampoTextField (String texto){
+
+        String[] palabras = texto.split(" ");
+
+        String nombrePaciente = palabras[0];
+        StringBuilder apellidoPacienteBuilder = new StringBuilder();
+
+        // Combinar las palabras del apellido en una sola cadena
+        for (int i = 1; i < palabras.length; i++) {
+            if (i > 1) {
+                apellidoPacienteBuilder.append(" ");  // Agregar espacio entre las palabras
+            }
+            apellidoPacienteBuilder.append(palabras[i]);
+        }
+
+        String apellidoPacienteBuilderString = apellidoPacienteBuilder.toString();
+        Paciente paciente = PacienteService.getInstance().buscarPacientePorNombreYApellido(nombrePaciente, apellidoPacienteBuilderString);
+        return paciente;
     }
 }
 
