@@ -155,11 +155,59 @@
     -fx-text-fill: #29838C;
 }
 
-
-.table-column{
-    fx-background-color: "#c6e9de";
+/*COLUMNAS estilo */
+.table-view {
+    -fx-background-color: #D3F9EB;
+    -fx-text-fill: #29838C;
+    -fx-font-size: 14;
+    -fx-alignment: center;
+    -fx-font-style: "playfair-regular";
+    -fx-border-color: #184752;
+    -fx-border-width: 2;
+    -fx-padding: 0;
+    -fx-margin: 0;
 }
 
+.table-view .column-header .label {
+    -fx-background-color: #184752;
+    -fx-text-fill: #D3F9EB;
+    -fx-font-size: 16;
+    -fx-font-style: "nanum-bold";
+    -fx-border-color: #23737A;
+    -fx-border-width: 2;
+    -fx-padding: 0;
+    -fx-margin: 0;
+}
+
+.table-column {
+    -fx-margin: 0;
+    -fx-padding: 0;
+    -fx-border-color: #23737A;
+    -fx-border-width: 1;
+}
+
+.table-row-cell {
+    -fx-background-color: #C6E9DE;
+    -fx-text-fill: #29838C;
+    -fx-font-size: 16;
+}
+
+.table-row-cell:odd { /*impar*/
+    -fx-background-color: #c4e8dd;
+    -fx-font-size: 14;
+}
+
+.table-row-cell:even { /*par*/
+    -fx-background-color: #b4d4ca;
+    -fx-font-size: 14;
+}
+
+
+/*.table-row-cell // estilo para todas las celdas
+.table-row-cell:odd // estilo para celdas impares
+.table-row-cell:even // estilo para celdas pares
+.table-column // estilo para las columnas
+.table-row-cell:selected // para celda seleccionada*/
 
 /*PRUEBA MODIFICACION BARRA DE TITULO*/
 

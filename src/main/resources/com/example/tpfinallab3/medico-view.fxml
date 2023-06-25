@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -13,40 +15,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1080.0" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.MedicoController">
-
-   <top>
-      <AnchorPane prefHeight="30.0" prefWidth="1080.0" style="-fx-background-color: #091A21;" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fx:id="closeWindowMedicoView" fitHeight="15.0" fitWidth="15.0" layoutX="1046.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/close.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView disable="true" fitHeight="15.0" fitWidth="15.0" layoutX="1005.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/maximize.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="minimizeMedicoViewButton" fitHeight="15.0" fitWidth="15.0" layoutX="963.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/minimize.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="144.0" layoutX="1.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/Docturno.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-   </top>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tpfinallab3.controllers.MedicoController">
    <left>
       <AnchorPane prefHeight="720.0" prefWidth="270.0" style="-fx-background-color: #29838c;" BorderPane.alignment="CENTER">
          <children>
@@ -55,12 +24,12 @@
                   <Image url="@../../../images/fondo270x720.png" />
                </image>
             </ImageView>
-            <Label layoutX="50.0" layoutY="14.0" styleClass="cinzel-regular" text="Medico" textFill="#ffe9bf">
+            <Label layoutX="43.0" layoutY="14.0" text="Doctor" textFill="#ffe9bf">
                <font>
-                  <Font size="40.0" />
+                  <Font name="Cinzel Decorative Regular" size="40.0" />
                </font>
             </Label>
-            <Label fx:id="myProfileMedicoButton" layoutX="45.0" layoutY="110.0" onMouseClicked="#verPerfilMedico" styleClass="nanum-regular" text="Mi perfil" textFill="#d3f9eb">
+            <Label fx:id="myProfileMedicoButton" layoutX="45.0" layoutY="115.0" onMouseClicked="#verPerfilMedico" text="Mi perfil" textFill="#d3f9eb">
                <font>
                   <Font size="20.0" />
                </font>
@@ -70,8 +39,12 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <styleClass>
+                  <String fx:value="nanum-regular" />
+                  <String fx:value="profile-button" />
+               </styleClass>
             </Label>
-            <Label fx:id="appointmentsMedicoButton" layoutX="45.0" layoutY="160.0" onMouseClicked="#verTurnosMedico" styleClass="nanum-regular" text="Ver turnos" textFill="#d3f9eb">
+            <Label fx:id="appointmentsMedicoButton" layoutX="45.0" layoutY="155.0" onMouseClicked="#verTurnosMedico" text="Ver turnos" textFill="#d3f9eb">
                <font>
                   <Font size="20.0" />
                </font>
@@ -81,8 +54,12 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <styleClass>
+                  <String fx:value="nanum-regular" />
+                  <String fx:value="profile-button" />
+               </styleClass>
             </Label>
-            <Label fx:id="logoutMedicoButton" layoutX="45.0" layoutY="210.0" onMouseClicked="#logoutMedico" styleClass="nanum-regular" text="Cerrar sesion" textFill="#d3f9eb">
+            <Label fx:id="logoutMedicoButton" layoutX="45.0" layoutY="195.0" onMouseClicked="#logoutMedico" text="Cerrar sesion" textFill="#d3f9eb">
                <font>
                   <Font size="20.0" />
                </font>
@@ -92,6 +69,10 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <styleClass>
+                  <String fx:value="nanum-regular" />
+                  <String fx:value="profile-button" />
+               </styleClass>
             </Label>
          </children>
       </AnchorPane>
@@ -104,96 +85,140 @@
                   <Image url="@../../../images/fondoClaro810x720.png" />
                </image>
             </ImageView>
-            <AnchorPane fx:id="myProfileDataMedicoPanel" prefHeight="720.0" prefWidth="810.0">
+            <AnchorPane fx:id="bienvenidoDoctorPanel" layoutX="145.0" layoutY="85.0" opacity="0.9" prefHeight="300.0" prefWidth="540.0" style="-fx-background-color: #184752; -fx-border-color: #FDC373; -fx-border-width: 2;">
                <children>
-                  <Label layoutX="313.0" layoutY="20.0" styleClass="cinzel-regular" text="Usuario" textFill="#255951">
+                  <Label layoutX="61.0" layoutY="38.0" text="¡Bienvenido!" textFill="#d3f9eb">
                      <font>
-                        <Font size="40.0" />
+                        <Font name="Cinzel Decorative Regular" size="60.0" />
                      </font>
                   </Label>
-                  <Label layoutX="200.0" layoutY="109.0" text="Nombre: ">
+                  <Label fx:id="doctorUserName" alignment="CENTER" layoutY="150.0" prefWidth="540.0" text="Doctor" textFill="#d3f9eb">
                      <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="nombreMedicoLabel" layoutX="293.0" layoutY="109.0" text="nombre.">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="200.0" layoutY="157.0" text="Apellido:">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="apellidoMedicoLabel" layoutX="293.0" layoutY="157.0" text="apellido.">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="200.0" layoutY="203.0" text="Email:">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="emailMedicoLabel" layoutX="293.0" layoutY="203.0" text="email@gmail.com">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="200.0" layoutY="255.0" text="Especialidad:">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="especialidadMedicoLabel" layoutX="326.0" layoutY="255.0" text="especialidad.">
-                     <font>
-                        <Font size="20.0" />
+                        <Font name="Cinzel Decorative Regular" size="50.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="turnosViewMedicoPanel" prefHeight="720.0" prefWidth="810.0" visible="false">
+            <AnchorPane fx:id="myProfileDataMedicoPanel" layoutX="135.0" prefHeight="720.0" prefWidth="540.0" visible="false">
                <children>
-                  <TableView fx:id="tablaTurnosMedico" layoutX="195.0" prefHeight="590.0" prefWidth="420.0">
-                    <columns>
-                      <TableColumn fx:id="tablaTurnoMedicoColumnaFecha" editable="false" prefWidth="120.0" text="Fecha" />
-                      <TableColumn fx:id="tablaMedicoColumnaHora" editable="false" prefWidth="120.0" text="Hora" />
-                        <TableColumn fx:id="tablaMedicoColumnaPaciente" editable="false" prefWidth="180.0" text="Paciente" />
-                    </columns>
-                  </TableView>
-                  <Label layoutX="327.0" layoutY="605.0" text="Buscar turnos:">
+                  <Label layoutX="182.0" layoutY="14.0" styleClass="cinzel-regular" text="Mi Perfil" textFill="#123440">
                      <font>
-                        <Font size="25.0" />
+                        <Font size="40.0" />
                      </font>
                   </Label>
-                  <Button fx:id="filtrarFechaTurnoMedicoButton" layoutX="110.0" layoutY="649.0" mnemonicParsing="false" onAction="#buscarTurnosPorFechaMedico" prefHeight="50.0" prefWidth="170.0" text="Fecha" />
-                  <Button fx:id="filtrarPacienteTurnoMedicoButton" layoutX="313.0" layoutY="649.0" mnemonicParsing="false" onAction="#buscarTurnosPorPacienteMedico" prefHeight="50.0" prefWidth="170.0" text="Paciente" />
-                  <Button fx:id="limpiarFiltrosButton" layoutX="520.0" layoutY="649.0" mnemonicParsing="false" onAction="#limpiarFiltrosTurnos" prefHeight="50.0" prefWidth="170.0" text="Limpiar filtros" />
-                  <AnchorPane fx:id="filtrarFechaPanel" layoutX="205.0" layoutY="250.0" prefHeight="130.0" prefWidth="400.0" style="-fx-background-color: #29838c;" visible="false">
+                  <AnchorPane fx:id="mostrarMiPerfilAdminAnchorPane" layoutY="110.0" opacity="0.9" prefHeight="350.0" prefWidth="540.0" style="-fx-background-color: #123440; -fx-border-color: #FDC373; -fx-border-width: 2;">
                      <children>
-                        <Label fx:id="ingresarFechaLabel" alignment="CENTER" layoutY="6.0" prefWidth="400.0" text="Ingrese la fecha (d/m/aaaa):" textFill="WHITE">
+
+                        <Label layoutX="153.0" layoutY="68.0" styleClass="playfair-regular" text="User: " textFill="#d3f9eb">
+
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="filtrarFechaField" layoutX="15.0" layoutY="31.0" prefHeight="38.0" prefWidth="371.0" />
-                        <Button fx:id="filtrarFechaAcceptButton" layoutX="192.0" layoutY="80.0" mnemonicParsing="false" onAction="#turnosPorFecha" prefHeight="36.0" prefWidth="90.0" text="Aceptar" />
-                        <Button fx:id="filtrarFechaCancelButton" layoutX="294.0" layoutY="80.0" mnemonicParsing="false" onAction="#cancelFiltrarPorFecha" prefHeight="36.0" prefWidth="92.0" text="Cancelar" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="filtrarPacientePanel" layoutX="205.0" layoutY="250.0" prefHeight="130.0" prefWidth="400.0" style="-fx-background-color: #29838c;" visible="false">
-                     <children>
-                        <Label alignment="CENTER" layoutY="6.0" prefWidth="400.0" text="Ingrese nombre y apellido:" textFill="WHITE">
+
+                        <Label fx:id="userMedicoLabel" layoutX="215.0" layoutY="68.0" styleClass="playfair-regular" text="User." textFill="#d3f9eb">
+
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="filtrarPacienteField" layoutX="15.0" layoutY="31.0" prefHeight="38.0" prefWidth="371.0" />
-                        <Button fx:id="filtrarPacienteAcceptButton" layoutX="192.0" layoutY="80.0" mnemonicParsing="false" onAction="#turnosPorPaciente" prefHeight="36.0" prefWidth="90.0" text="Aceptar" />
-                        <Button fx:id="filtrarPacienteCancelButton" layoutX="294.0" layoutY="80.0" mnemonicParsing="false" onAction="#cancelFiltrarPorPaciente" prefHeight="36.0" prefWidth="92.0" text="Cancelar" />
+                        <Label layoutX="153.0" layoutY="103.0" styleClass="playfair-regular" text="Nombre: " textFill="#d3f9eb">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="nombreMedicoLabel" layoutX="247.0" layoutY="103.0" styleClass="playfair-regular" text="Nombre." textFill="#d3f9eb">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="153.0" layoutY="138.0" styleClass="playfair-regular" text="Apellido:" textFill="#d3f9eb">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="apellidoMedicoLabel" layoutX="243.0" layoutY="138.0" styleClass="playfair-regular" text="Apellido." textFill="#d3f9eb">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="153.0" layoutY="173.0" styleClass="playfair-regular" text="Email:" textFill="#d3f9eb">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="emailMedicoLabel" layoutX="220.0" layoutY="173.0" styleClass="playfair-regular" text="email@gmail.com" textFill="#d3f9eb">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="153.0" layoutY="208.0" styleClass="playfair-regular" text="Especialidad:" textFill="#d3f9eb">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="especialidadMedicoLabel" layoutX="282.0" layoutY="208.0" styleClass="playfair-regular" text="especialidad." textFill="#d3f9eb">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="turnosViewMedicoPanel" prefHeight="720.0" prefWidth="810.0" visible="false">
+               <children>
+                  <Label layoutX="275.0" layoutY="14.0" styleClass="cinzel-regular" text="Ver Turnos" textFill="#123440">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane layoutY="110.0" prefHeight="600.0" prefWidth="290.0">
+                     <children>
+                        <Label layoutX="76.0" layoutY="84.0" styleClass="nanum-bold" text="Seleccione el filtro:" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="filtrarFechaTurnoMedicoCheck" layoutX="50.0" layoutY="129.0" mnemonicParsing="false" onAction="#buscarTurnosPorFechaMedico" styleClass="check" />
+                        <Label layoutX="75.0" layoutY="129.0" styleClass="nanum-regular" text="Fecha" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="filtrarPacienteTurnoMedicoCheck" layoutX="147.0" layoutY="129.0" mnemonicParsing="false" onAction="#buscarTurnosPorPacienteMedico" styleClass="check" />
+                        <Label layoutX="172.0" layoutY="129.0" styleClass="nanum-regular" text="Paciente" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="ingresarFiltrarTurnosMedicoLabel" alignment="CENTER" layoutY="179.0" prefWidth="290.0" styleClass="nanum-bold" text="Ingrese ..." textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="limpiarFiltrosButton" layoutX="60.0" layoutY="367.0" mnemonicParsing="false" onAction="#limpiarFiltrosTurnos" prefHeight="25.0" prefWidth="170.0" text="Limpiar filtros">
+                           <styleClass>
+                              <String fx:value="button-claro" />
+                              <String fx:value="nanum-bold" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="filtrarTurnosMedicoButton" layoutX="60.0" layoutY="298.0" mnemonicParsing="false" onAction="#clickFiltrarTurnosMedico" prefHeight="25.0" prefWidth="170.0" text="Buscar">
+                           <styleClass>
+                              <String fx:value="button-oscuro" />
+                              <String fx:value="nanum-bold" />
+                           </styleClass>
+                        </Button>
+                        <TextField fx:id="filtrarTurnosMedicoField" layoutX="21.0" layoutY="211.0" prefWidth="250.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" />
+                     </children>
+                  </AnchorPane>
+                  <TableView fx:id="tablaTurnosMedico" layoutX="290.0" layoutY="110.0" prefHeight="600.0" prefWidth="510.0">
+                    <columns>
+                      <TableColumn fx:id="tablaTurnoMedicoColumnaFecha" editable="false" prefWidth="120.0" styleClass="column-clara" text="Fecha" />
+                      <TableColumn fx:id="tablaMedicoColumnaHora" editable="false" prefWidth="120.0" styleClass="column-oscura" text="Hora" />
+                        <TableColumn fx:id="tablaMedicoColumnaPaciente" editable="false" prefWidth="266.0" text="Paciente" />
+                    </columns>
+                  </TableView>
                </children>
             </AnchorPane>
          </children>
