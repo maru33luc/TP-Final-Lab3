@@ -890,6 +890,9 @@ public class AdminViewController {
                 throw new NullPointerException("No se encontro al medico");
             }
             LocalDate dia = validarFechaHabilitarTurnos(fechaHabilitarTurnosField.getText(), dateFormatter);
+            if(dia.isBefore(LocalDate.now())){
+                throw new RuntimeException("La fecha debe ser posterior al dia de hoy");
+            }
             LocalTime horaInicio = validarHoraHabilitarTurnos(horaInicioHabilitarTurnosField.getText(), hourFormatter);
             LocalTime horaFin = validarHoraHabilitarTurnos(horaFinalizacionHabilitarTurnosField.getText(), hourFormatter);
             if(horaFin.isBefore(horaInicio)){
@@ -898,6 +901,8 @@ public class AdminViewController {
             TurnoService.getInstance().habilitarTurnos(dia, horaInicio, horaFin, medico);
             LoginController.showSuccessAlert("Turnos habilitados con exito!");
         }catch (NullPointerException e){
+            LoginController.showErrorAlert(e.getMessage());
+        }catch (RuntimeException e){
             LoginController.showErrorAlert(e.getMessage());
         }catch (Exception e){
             LoginController.showErrorAlert(e.getMessage());
