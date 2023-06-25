@@ -42,7 +42,7 @@ public class Medico extends Usuario {
     }
 
     @Override
-    public String getNombreEntidad() {
+    public String obtenerNombreEntidad() {
         return this.getClass().toString();
     }
 

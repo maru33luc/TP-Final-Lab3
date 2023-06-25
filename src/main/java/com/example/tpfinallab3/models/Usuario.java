@@ -72,7 +72,7 @@ public abstract class Usuario implements Autenticable, Serializable {
         isActivo = activo;
     }
 
-    public abstract String getNombreEntidad();
+    public abstract String obtenerNombreEntidad();
 
     @Override
     public boolean equals(Object o) {

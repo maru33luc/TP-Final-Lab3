@@ -101,7 +101,7 @@
                   <Image url="@../../../images/fondoClaro810x720.png" />
                </image>
             </ImageView>
-            <AnchorPane fx:id="bienvenidoUserPanel" layoutX="135.0" layoutY="75.0" opacity="0.78" prefHeight="300.0" prefWidth="540.0" style="-fx-background-color: #184752;" visible="false">
+            <AnchorPane fx:id="bienvenidoUserPanel" layoutX="135.0" layoutY="75.0" opacity="0.78" prefHeight="300.0" prefWidth="540.0" style="-fx-background-color: #184752;">
                <children>
                   <Label layoutX="61.0" layoutY="38.0" text="¡Bienvenido!" textFill="#d3f9eb">
                      <font>
@@ -115,7 +115,7 @@
                         </Label>
                </children>
             </AnchorPane>
-                <AnchorPane fx:id="profilePacientePanel" layoutX="135.0" prefHeight="720.0" prefWidth="540.0">
+                <AnchorPane fx:id="profilePacientePanel" layoutX="135.0" prefHeight="720.0" prefWidth="540.0" visible="false">
                     <children>
                   <Label layoutX="173.0" layoutY="14.0" styleClass="cinzel-regular" text="Mi Perfil">
                      <font>
