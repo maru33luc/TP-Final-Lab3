@@ -19,9 +19,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class AdminViewController {
 
@@ -134,6 +132,18 @@ public class AdminViewController {
 
     @FXML
     private TableColumn<?, ?> columnaEspecialidadTurnosFecha;
+
+    @FXML
+    private TableColumn<?, ?> columnaUserBuscarEditarUsuario;
+
+    @FXML
+    private TableColumn<?, ?> columnaNombreBuscarEditarUsuario;
+
+    @FXML
+    private TableColumn<?, ?> columnaApellidoBuscarEditarUsuario;
+
+    @FXML
+    private TableColumn<?, ?> columnaTipoUsuarioBuscarEditarUsuario;
 
     @FXML
     private PasswordField confirmNewPasswordEdicionMiPerfilAdminField;
@@ -350,6 +360,9 @@ public class AdminViewController {
     private TableView<TurnoTabla> tablaTurnosFechaAdmin;
 
     @FXML
+    private TableView<TablaUsuario> tablaBuscarEditarUsuarioAdminAnchorPane;
+
+    @FXML
     private Label tipoUsuarioMostrarEditarUsuarioAdminField;
 
     @FXML
@@ -498,6 +511,63 @@ public class AdminViewController {
         buscarEditarUsuarioAdminAnchorPane.setVisible(true);
         isMedicoBuscarEditarUsuarioCheckBox.setSelected(false);
         isAdminBuscarEditarUsuarioCheckBox.setSelected(false);
+
+        Map <String, Usuario> listaAutenticables = new HashMap<>();
+
+        Set<Medico> listaMedicos = MedicoService.getInstance().getMedicosActivos();
+        Set<Administrativo> listaAdministrativos = AdministrativoService.getInstance().getAdministrativos();
+        Set<Paciente> listaPacientes = PacienteService.getInstance().getPacientes();
+
+        for (Medico medico : listaMedicos) {
+            listaAutenticables.put(medico.getNombreUsuario(), medico);
+        }
+        for (Administrativo administrativo : listaAdministrativos) {
+            listaAutenticables.put(administrativo.getNombreUsuario(), administrativo);
+        }
+        for (Paciente paciente : listaPacientes) {
+            listaAutenticables.put(paciente.getNombreUsuario(), paciente);
+        }
+
+        List<TablaUsuario> turnosTablaUsuario = new ArrayList<>();
+        //recorrer el map y pasar los datos a un objeto de tipo TurnoTablaUsuario
+        //para luego agregarlo a la lista de turnosTablaUsuario
+           for (Map.Entry<String, Usuario> entry : listaAutenticables.entrySet()) {
+                String key = entry.getKey();
+                Usuario value = entry.getValue();
+                if (value instanceof Medico) {
+                    Medico medico = (Medico) value;
+                    turnosTablaUsuario.add(new TablaUsuario(medico.getNombreUsuario(), medico.getNombre(), medico.getApellido(), "Medico"));
+                }
+                if (value instanceof Administrativo) {
+                    Administrativo administrativo = (Administrativo) value;
+                    turnosTablaUsuario.add(new TablaUsuario(administrativo.getNombreUsuario(), administrativo.getNombre(), administrativo.getApellido(), "Administrativo"));
+                }
+                if (value instanceof Paciente) {
+                    Paciente paciente = (Paciente) value;
+                    turnosTablaUsuario.add(new TablaUsuario(paciente.getNombreUsuario(), paciente.getNombre(), paciente.getApellido(),  "Paciente"));
+                }
+            }
+        columnaUserBuscarEditarUsuario.setCellValueFactory(new PropertyValueFactory<>("user"));
+        columnaNombreBuscarEditarUsuario.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        columnaApellidoBuscarEditarUsuario.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        columnaTipoUsuarioBuscarEditarUsuario.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+
+        //cargar la lista de turnosTablaUsuario en la tabla
+        tablaBuscarEditarUsuarioAdminAnchorPane.setItems(FXCollections.observableArrayList(turnosTablaUsuario));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     @FXML

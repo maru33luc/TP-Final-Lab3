@@ -29,6 +29,10 @@ public class Administrativo extends Usuario {
     }
 
     @Override
+    public String getNombreEntidad() {
+        return this.getClass().toString();
+    }
+    @Override
     public boolean equals(Object o) {
         if(this == o) {
             return true;
