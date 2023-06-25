@@ -497,7 +497,7 @@ public class AdminViewController {
         bienvenidoAdminPanel.setVisible(false);
         //VER TURNOS
         verTurnosAdminAnchorPane.setVisible(false);
-        buscarVerTurnosAdminAnchorPane.setVisible(false);
+        filtrarVerTurnosAdminAnchorPane.setVisible(false);
         mostrarVerTurnosAdminAnchorPane.setVisible(false);
         //HABILITAR TURNOS
         habilitarTurnosAdminAnchorPane.setVisible(false);
@@ -580,7 +580,7 @@ public class AdminViewController {
 
     @FXML
     void buttonEditUserAdmin(MouseEvent event) { //Opción "Editar Usuario" de Menú-Admin
-        //ocultarTodosLosAnchorPane();
+        ocultarTodosLosAnchorPane();
 
         bienvenidoAdminPanel.setVisible(false);
         miPerfilAdminAnchorPane.setVisible(false);
@@ -596,7 +596,36 @@ public class AdminViewController {
         mostrarEditarUsuarioAdminAnchorPane.setVisible(false);
 
         cargarUsuariosEnTabla();
+
     }
+
+    @FXML
+    void tableEditUserAction(MouseEvent event) {
+        if(tablaBuscarEditarUsuarioAdminAnchorPane.getSelectionModel().getSelectedItem() != null){
+            mostrarEditarUsuarioAdminAnchorPane.setVisible(true);
+            buscarEditarUsuarioAdminAnchorPane.setVisible(false);
+            tipoUsuarioMostrarEditarUsuarioAdminField.setText(tablaBuscarEditarUsuarioAdminAnchorPane.getSelectionModel().getSelectedItem().getEntidad());
+            usuarioMostrarEditarUsuarioAdminLabel.setText(tablaBuscarEditarUsuarioAdminAnchorPane.getSelectionModel().getSelectedItem().getUsuario());
+            nombreMostrarEditarUsuarioAdminLabel.setText(tablaBuscarEditarUsuarioAdminAnchorPane.getSelectionModel().getSelectedItem().getNombre());
+            apellidoMostrarEditarUsuarioAdminLabel.setText(tablaBuscarEditarUsuarioAdminAnchorPane.getSelectionModel().getSelectedItem().getApellido());
+            String nombreUsuario= tablaBuscarEditarUsuarioAdminAnchorPane.getSelectionModel().getSelectedItem().getUsuario();
+            // recuperar el mail del usuario seleccionado
+
+            Optional<Medico> medico = MedicoService.getInstance().buscarMedicoPorNombreUsuario(nombreUsuario);
+            Optional<Administrativo> administrativo = AdministrativoService.getInstance().buscarAdministrativoPorNombreUsuario(nombreUsuario);
+            Optional<Paciente> paciente = PacienteService.getInstance().buscarPacientePorNombreUsuario(nombreUsuario);
+            if(medico.isPresent()){
+                emailMostrarEditarUsuarioAdminLabel.setText(medico.get().getMail());
+                especialidadMostrarEditarUsuarioAdminLabel.setText(medico.get().getEspecialidad().toString());
+            }else if(administrativo.isPresent()){
+                emailMostrarEditarUsuarioAdminLabel.setText(administrativo.get().getMail());
+            }else if(paciente.isPresent()){
+                emailMostrarEditarUsuarioAdminLabel.setText(paciente.get().getMail());
+            }
+
+        }
+    }
+
 
     public void cargarUsuariosEnTabla() {
         Map <String, Usuario> listaAutenticables = new HashMap<>();
@@ -1015,6 +1044,17 @@ public class AdminViewController {
     }
 
     @FXML
+    void clickConfirmUserEdit(ActionEvent event) { //Botón Confirmar en Mostrar de Editar Usuario
+        ocultarTodosLosAnchorPane();
+       // mostrarEditarUsuarioAdminAnchorPane.setVisible(false); // por las dudas la agregue
+        editarUsuarioAdminAnchorPane.setVisible(true);
+        edicionEditarUsuarioAdminAnchorPane.setVisible(true);
+        agregarDatosAFieldEditarUsuario();
+    }
+
+
+
+    @FXML
     void checkIsDoctorSearchEdit(ActionEvent event) { //CheckBox buscarMedico en Buscar de Editar Usuario
         //si se selecciona el checkbox de buscarMedico, se deselecciona el de buscarAdmin
         if (isAdminBuscarEditarUsuarioCheckBox.isSelected()) {
@@ -1066,14 +1106,7 @@ public class AdminViewController {
         buscarEditarUsuarioAdminAnchorPane.setVisible(true);
     }
 
-    @FXML
-    void clickConfirmUserEdit(ActionEvent event) { //Botón Confirmar en Mostrar de Editar Usuario
-        ocultarTodosLosAnchorPane();
 
-        editarUsuarioAdminAnchorPane.setVisible(true);
-        edicionEditarUsuarioAdminAnchorPane.setVisible(true);
-        agregarDatosAFieldEditarUsuario();
-    }
 
     private void agregarDatosAFieldEditarUsuario(){
         nombreEdicionEditarUsuarioAdminField.setPromptText(nombreMostrarEditarUsuarioAdminLabel.getText());
@@ -1367,12 +1400,6 @@ public class AdminViewController {
     }
 
 // ----------------------------     ACA METO FUNCIONES PARA DESTRABAR ERRORES -----------------------------
-
-
-
-    public void tableEditUserAction(MouseEvent mouseEvent) {
-    }
-
 
 
     @FXML
