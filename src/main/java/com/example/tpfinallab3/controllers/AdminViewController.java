@@ -433,7 +433,7 @@ public class AdminViewController {
 
 
     @FXML
-    private TableView<?> tablaBuscarEliminarUsuarioAdminAnchorPane;
+    private TableView<TablaUsuario> tablaBuscarEliminarUsuarioAdminAnchorPane;
 
 
     //NUEVOS DE VISTA HABILITAR TURNOS:
@@ -595,7 +595,7 @@ public class AdminViewController {
         isAdminBuscarEditarUsuarioCheckBox.setSelected(false);
         mostrarEditarUsuarioAdminAnchorPane.setVisible(false);
 
-        cargarUsuariosEnTabla();
+        cargarUsuariosEnTablaEditar();
 
     }
 
@@ -627,7 +627,7 @@ public class AdminViewController {
     }
 
 
-    public void cargarUsuariosEnTabla() {
+    public void cargarUsuariosEnTablaEditar() {
         Map <String, Usuario> listaAutenticables = new HashMap<>();
 
         Set<Medico> listaMedicos = MedicoService.getInstance().getMedicosActivos();
@@ -640,9 +640,9 @@ public class AdminViewController {
         for (Administrativo administrativo : listaAdministrativos) {
             listaAutenticables.put(administrativo.getNombreUsuario(), administrativo);
         }
-        for (Paciente paciente : listaPacientes) {
+        /*for (Paciente paciente : listaPacientes) {
             listaAutenticables.put(paciente.getNombreUsuario(), paciente);
-        }
+        }*/
 
         List<TablaUsuario> turnosTablaUsuario = new ArrayList<>();
         //recorrer el map y pasar los datos a un objeto de tipo TurnoTablaUsuario
@@ -689,6 +689,53 @@ public class AdminViewController {
         buscarEliminarUsuarioAdminAnchorPane.setVisible(true);
         isMedicoBuscarEliminarUsuarioCheckBox.setSelected(false);
         isAdminBuscarEliminarUsuarioCheckBox.setSelected(false);
+        cargarUsuariosEnTablaEliminar();
+    }
+
+    public void cargarUsuariosEnTablaEliminar() {
+        Map <String, Usuario> listaAutenticables = new HashMap<>();
+
+        Set<Medico> listaMedicos = MedicoService.getInstance().getMedicosActivos();
+        Set<Administrativo> listaAdministrativos = AdministrativoService.getInstance().getAdministrativos();
+        Set<Paciente> listaPacientes = PacienteService.getInstance().getPacientes();
+
+        for (Medico medico : listaMedicos) {
+            listaAutenticables.put(medico.getNombreUsuario(), medico);
+        }
+        for (Administrativo administrativo : listaAdministrativos) {
+            listaAutenticables.put(administrativo.getNombreUsuario(), administrativo);
+        }
+        /*for (Paciente paciente : listaPacientes) {
+            listaAutenticables.put(paciente.getNombreUsuario(), paciente);
+        }*/
+
+        List<TablaUsuario> turnosTablaUsuario = new ArrayList<>();
+        //recorrer el map y pasar los datos a un objeto de tipo TurnoTablaUsuario
+        //para luego agregarlo a la lista de turnosTablaUsuario
+        for (Map.Entry<String, Usuario> entry : listaAutenticables.entrySet()) {
+            String key = entry.getKey();
+            Usuario value = entry.getValue();
+            if (value instanceof Medico) {
+                Medico medico = (Medico) value;
+                turnosTablaUsuario.add(new TablaUsuario(medico.getNombreUsuario(), medico.getNombre(), medico.getApellido(), "Medico"));
+            }
+            if (value instanceof Administrativo) {
+                Administrativo administrativo = (Administrativo) value;
+                turnosTablaUsuario.add(new TablaUsuario(administrativo.getNombreUsuario(), administrativo.getNombre(), administrativo.getApellido(), "Administrativo"));
+            }
+            if (value instanceof Paciente) {
+                Paciente paciente = (Paciente) value;
+                turnosTablaUsuario.add(new TablaUsuario(paciente.getNombreUsuario(), paciente.getNombre(), paciente.getApellido(),  "Paciente"));
+            }
+        }
+        columnaUsuarioBuscarEliminarUsuario.setCellValueFactory(new PropertyValueFactory<>("usuario"));
+        columnaNombreBuscarEliminarUsuario.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        columnaApellidoBuscarEliminarUsuario.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        columnaTipoUsuarioBuscarEliminarUsuario.setCellValueFactory(new PropertyValueFactory<>("entidad"));
+
+        //cargar la lista de turnosTablaUsuario en la tabla
+        tablaBuscarEliminarUsuarioAdminAnchorPane.setItems(FXCollections.observableArrayList(turnosTablaUsuario));
+
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1038,7 +1085,7 @@ public class AdminViewController {
         } else if (isMedicoBuscarEditarUsuarioCheckBox.isSelected()&& isAdminBuscarEditarUsuarioCheckBox.isSelected()) {
             showErrorAlert("Debe seleccionar solo un tipo de usuario para buscar");
         } else if (!isMedicoBuscarEditarUsuarioCheckBox.isSelected()&& !isAdminBuscarEditarUsuarioCheckBox.isSelected()) {
-            cargarUsuariosEnTabla();
+            cargarUsuariosEnTablaEditar();
         }
 
     }
@@ -1051,8 +1098,6 @@ public class AdminViewController {
         edicionEditarUsuarioAdminAnchorPane.setVisible(true);
         agregarDatosAFieldEditarUsuario();
     }
-
-
 
     @FXML
     void checkIsDoctorSearchEdit(ActionEvent event) { //CheckBox buscarMedico en Buscar de Editar Usuario
@@ -1297,42 +1342,73 @@ public class AdminViewController {
 
     @FXML
     void clickSearchUserDelete(ActionEvent event) {
-        medic = null;
-        admin = null;
-
-        //validar que se haya ingresado un nombre de usuario
-        if (validarFieldUserSearchDelete()){
-            //validar que se haya seleccionado un tipo de usuario
-            if (isMedicoBuscarEliminarUsuarioCheckBox.isSelected()) {
-                medic = MedicoService.getInstance().buscarMedicoPorNombreUsuario(userBuscarEliminarUsuarioField.getText());
-                if (!medic.isPresent()) //acá valido que el usuario exista y sea médico
-                    showErrorAlert("El usuario no existe o no es médico.");
-            }else if (isAdminBuscarEliminarUsuarioCheckBox.isSelected()) {
-                admin = AdministrativoService.getInstance().buscarAdministrativoPorNombreUsuario(userBuscarEliminarUsuarioField.getText());
-                if (!admin.isPresent())
-                    showErrorAlert("El usuario no existe o no es administrativo.");
-            }else {
-                showErrorAlert("Debe seleccionar un tipo de usuario.");
+        if(isMedicoBuscarEliminarUsuarioCheckBox.isSelected()&& !isAdminBuscarEliminarUsuarioCheckBox.isSelected()){
+            ObservableList<TablaUsuario> listaActual = tablaBuscarEliminarUsuarioAdminAnchorPane.getItems();
+            List<TablaUsuario> listaFiltrada = new ArrayList<>();
+            for (TablaUsuario usuario : listaActual) {
+                if (usuario.getEntidad().equals("Medico")) {
+                    listaFiltrada.add(usuario);
+                }
             }
+            tablaBuscarEliminarUsuarioAdminAnchorPane.setItems(FXCollections.observableArrayList(listaFiltrada));
+        }else if(!isMedicoBuscarEliminarUsuarioCheckBox.isSelected()&& isAdminBuscarEliminarUsuarioCheckBox.isSelected()){
+            ObservableList<TablaUsuario> listaActual = tablaBuscarEliminarUsuarioAdminAnchorPane.getItems();
+            List<TablaUsuario> listaFiltrada = new ArrayList<>();
+            for (TablaUsuario usuario : listaActual) {
+                if (usuario.getEntidad().equals("Administrativo")) {
+                    listaFiltrada.add(usuario);
+                }
+            }
+            tablaBuscarEliminarUsuarioAdminAnchorPane.setItems(FXCollections.observableArrayList(listaFiltrada));
+        } else if (isMedicoBuscarEliminarUsuarioCheckBox.isSelected()&& isAdminBuscarEliminarUsuarioCheckBox.isSelected()) {
+            showErrorAlert("Debe seleccionar solo un tipo de usuario para buscar");
+        } else if (!isMedicoBuscarEliminarUsuarioCheckBox.isSelected()&& !isAdminBuscarEliminarUsuarioCheckBox.isSelected()) {
+            cargarUsuariosEnTablaEliminar();
         }
 
-        //valido que el medico o admin existan.
-        if (medic.isPresent() || admin.isPresent()) {
-            //si existe, muestro anchorPane
-            ocultarTodosLosAnchorPane();
+    }
 
-            eliminarUsuarioAdminAnchorPane.setVisible(true);
+    public void tableDeleteUserAction(MouseEvent mouseEvent) {
+        if(tablaBuscarEliminarUsuarioAdminAnchorPane.getSelectionModel().getSelectedItem() != null){
             mostrarEliminarUsuarioAdminAnchorPane.setVisible(true);
-            //agrego los datos del usuario a los labels
-            if (medic.isPresent()) {
-                mostrarMedicoEnEliminarUsuario (medic);
-            }else if (admin.isPresent()) {
-                mostrarAdminEnEliminarUsuario(admin);
+            buscarEliminarUsuarioAdminAnchorPane.setVisible(false);
+            tipoUsuarioMostrarEliminarUsuarioAdminLabel.setText(tablaBuscarEliminarUsuarioAdminAnchorPane.getSelectionModel().getSelectedItem().getEntidad());
+            usuarioMostrarEliminarUsuarioAdminLabel.setText(tablaBuscarEliminarUsuarioAdminAnchorPane.getSelectionModel().getSelectedItem().getUsuario());
+            nombreMostrarEliminarUsuarioAdminLabel.setText(tablaBuscarEliminarUsuarioAdminAnchorPane.getSelectionModel().getSelectedItem().getNombre());
+            apellidoMostrarEliminarUsuarioAdminLabel.setText(tablaBuscarEliminarUsuarioAdminAnchorPane.getSelectionModel().getSelectedItem().getApellido());
+            String nombreUsuario= tablaBuscarEliminarUsuarioAdminAnchorPane.getSelectionModel().getSelectedItem().getUsuario();
+            // recuperar el mail del usuario seleccionado
+
+            Optional<Medico> medico = MedicoService.getInstance().buscarMedicoPorNombreUsuario(nombreUsuario);
+            Optional<Administrativo> administrativo = AdministrativoService.getInstance().buscarAdministrativoPorNombreUsuario(nombreUsuario);
+            Optional<Paciente> paciente = PacienteService.getInstance().buscarPacientePorNombreUsuario(nombreUsuario);
+            if(medico.isPresent()){
+                emailMostrarEliminarUsuarioAdminLabel.setText(medico.get().getMail());
+                especialidadMostrarEliminarUsuarioAdminLabel.setText(medico.get().getEspecialidad().toString());
+            }else if(administrativo.isPresent()){
+                emailMostrarEliminarUsuarioAdminLabel.setText(administrativo.get().getMail());
+            }else if(paciente.isPresent()){
+                emailMostrarEliminarUsuarioAdminLabel.setText(paciente.get().getMail());
             }
-        }else{
-            //si no existe, muestro un error
-            showErrorAlert("El usuario no existe.");
+
         }
+    }
+
+    @FXML
+    void clickConfirmUserDelete(ActionEvent event) { //Botón Confirmar en Eliminar Usuario
+        String nombreUsuario = usuarioMostrarEliminarUsuarioAdminLabel.getText();
+        Optional<Medico> medico = MedicoService.getInstance().buscarMedicoPorNombreUsuario(nombreUsuario);
+        Optional<Administrativo> administrativo = AdministrativoService.getInstance().buscarAdministrativoPorNombreUsuario(nombreUsuario);
+        if(medico.isPresent()){
+            MedicoService.getInstance().darDeBajaMedico(medico.get());
+        }else if(administrativo.isPresent()){
+            AdministrativoService.getInstance().darDeBajaAdministrativo(administrativo.get());
+        }
+        showSuccessAlert("¡Usuario eliminado con éxito!");
+        mostrarEliminarUsuarioAdminAnchorPane.setVisible(false);
+        buscarEliminarUsuarioAdminAnchorPane.setVisible(true);
+        cargarUsuariosEnTablaEliminar();
+
     }
 
     private void mostrarMedicoEnEliminarUsuario (Optional<Medico> medico){
@@ -1362,16 +1438,7 @@ public class AdminViewController {
         buscarEliminarUsuarioAdminAnchorPane.setVisible(true);
     }
 
-    @FXML
-    void clickConfirmUserDelete(ActionEvent event) { //Botón Confirmar en Eliminar Usuario
-        //TERMINAR
-        if (medic.isPresent()) {
-            MedicoService.getInstance().eliminarMedico(medic.get());
-        }else if (admin.isPresent()) {
-            AdministrativoService.getInstance().eliminarAdministrativoPorNombreUsuario(admin.get().getNombreUsuario());
-        }
 
-    }
 
     @FXML
     void clickCloseSearchDelete (KeyEvent event) { //Botón Cerrar Ventana en Eliminar Usuario
@@ -1399,13 +1466,17 @@ public class AdminViewController {
         alert.showAndWait();
     }
 
+    @FXML
+    void buttonCloseSessionAdmin(MouseEvent event) {
+        SessionManager.getInstance().cerrarSesion();
+        //volver a la vista principal
+        LoginController.mostrarLogin();
+    }
+
 // ----------------------------     ACA METO FUNCIONES PARA DESTRABAR ERRORES -----------------------------
 
 
-    @FXML
-    void buttonCloseSessionAdmin(MouseEvent event) {
 
-    }
 
     @FXML
     void choiceSpecialityNewUser(KeyEvent event) {
@@ -1418,8 +1489,7 @@ public class AdminViewController {
     }*/
 
 
-    public void tableDeleteUserAction(MouseEvent mouseEvent) {
-    }
+
 
 
 }

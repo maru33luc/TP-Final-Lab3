@@ -76,6 +76,8 @@ public class MainPruebas {
         MedicoService.getInstance().agregarMedico(medico);
         Medico medico2 = new Medico("soniabazan","147258","Sonia","Bazan","sonia@gmail.com",Especialidad.PEDIATRIA);
         MedicoService.getInstance().agregarMedico(medico2);
+        Medico medico3 = new Medico("mariafernandez", "12345611", "Maria", "Fernandez", "maria@gmail.com", Especialidad.GINECOLOGIA);
+        MedicoService.getInstance().agregarMedico(medico3);
         System.out.println("medico2 = " + medico2);
 
         //  PROBANDO MODIFICAR CONTRSEÑA
