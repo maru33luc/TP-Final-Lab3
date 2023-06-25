@@ -38,6 +38,9 @@ public class PacienteViewController {
     private Label appointmentListButton;
 
     @FXML
+    private AnchorPane bienvenidoUserPanel;
+
+    @FXML
     private Label logoutPacienteButton;
 
     @FXML
@@ -231,6 +234,8 @@ public class PacienteViewController {
 
         Medico medico = new Medico("fgildemuro", "123456", "Federico", "Gil de Muro", "fgildemuro@hotmail.com", Especialidad.CARDIOLOGIA);
         LocalDate dia = LocalDate.of(2023, 6, 16);
+        LocalTime horaInicio = LocalTime.of(10, 0);
+        LocalTime horaFin = LocalTime.of(16, 0);
         Turno turno = TurnoService.getInstance().buscarTurnosPorDiaPorMedico(dia, medico).get(0);
         TurnoService.getInstance().solicitarTurno(turno, paciente.get());
 
@@ -358,10 +363,11 @@ public class PacienteViewController {
 
     @FXML
     void miPerfilAction(MouseEvent event) {
-            profileDataPacientePanel.setVisible(true);
-            pedirTurnoPacienteView.setVisible(false);
-            misTurnosPacienteView.setVisible(false);
-            editProfilePacientePanel.setVisible(false);
+        bienvenidoUserPanel.setVisible(false);
+        profileDataPacientePanel.setVisible(true);
+        pedirTurnoPacienteView.setVisible(false);
+        misTurnosPacienteView.setVisible(false);
+        editProfilePacientePanel.setVisible(false);
     }
 
     @FXML
