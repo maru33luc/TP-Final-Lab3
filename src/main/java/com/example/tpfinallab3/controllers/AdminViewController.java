@@ -34,6 +34,8 @@ public class AdminViewController {
 
     @FXML
     private AnchorPane verTurnosAdminAnchorPane;
+    @FXML
+    private AnchorPane bienvenidoAdminPanel;
 
     @FXML
     private PasswordField actualPasswordEdicionEditarUsuarioAdminField;
@@ -66,7 +68,7 @@ public class AdminViewController {
     private AnchorPane mostrarEliminarUsuarioAdminAnchorPane;
 
     @FXML
-    private AnchorPane mostrarEliminarUsuarioAdminAnchorPane2;
+    private AnchorPane filtroEliminarUsuarioAdminAnchorPane;
 
     @FXML
     private Button buscarEditarUsuarioButton;
@@ -343,6 +345,7 @@ public class AdminViewController {
     //"Mi Perfil", "Ver Turnos", "Nuevo Usuario", "Editar Usuario", "Eliminar Usuario"
     @FXML
     public void ocultarTodosLosAnchorPane (){
+        bienvenidoAdminPanel.setVisible(false);
         //MI PERFIL
         miPerfilAdminAnchorPane.setVisible(false);
         mostrarMiPerfilAdminAnchorPane.setVisible(false);
@@ -367,15 +370,24 @@ public class AdminViewController {
 
     @FXML
     void buttonMyProfileAdmin(MouseEvent event) { //Opción "Mi Perfil" de Menú-Admin
-        ocultarTodosLosAnchorPane();
-
+        //ocultarTodosLosAnchorPane();
+        bienvenidoAdminPanel.setVisible(false);
+        verTurnosAdminAnchorPane.setVisible(false);
+        nuevoUsuarioAdminAnchorPane.setVisible(false);
+        editarUsuarioAdminAnchorPane.setVisible(false);
+        eliminarUsuarioAdminAnchorPane.setVisible(false);
         miPerfilAdminAnchorPane.setVisible(true);
         mostrarMiPerfilAdminAnchorPane.setVisible(true);
     }
 
     @FXML
     void buttonViewAppointmentAdmin(MouseEvent event) { //Opción "Ver Turnos" de Menú-Admin
-        ocultarTodosLosAnchorPane();
+        //ocultarTodosLosAnchorPane();
+        bienvenidoAdminPanel.setVisible(false);
+        miPerfilAdminAnchorPane.setVisible(false);
+        nuevoUsuarioAdminAnchorPane.setVisible(false);
+        editarUsuarioAdminAnchorPane.setVisible(false);
+        eliminarUsuarioAdminAnchorPane.setVisible(false);
 
         verTurnosAdminAnchorPane.setVisible(true);
         buscarVerTurnosAdminAnchorPane.setVisible(true);
@@ -383,14 +395,26 @@ public class AdminViewController {
 
     @FXML
     void buttonNewUserAdmin(MouseEvent event) { //Opción "Nuevo Usuario" de Menú-Admin
-        ocultarTodosLosAnchorPane();
+        //ocultarTodosLosAnchorPane();
+        bienvenidoAdminPanel.setVisible(false);
+        miPerfilAdminAnchorPane.setVisible(false);
+        verTurnosAdminAnchorPane.setVisible(false);
+        editarUsuarioAdminAnchorPane.setVisible(false);
+        eliminarUsuarioAdminAnchorPane.setVisible(false);
+
 
         nuevoUsuarioAdminAnchorPane.setVisible(true);
     }
 
     @FXML
     void buttonEditUserAdmin(MouseEvent event) { //Opción "Editar Usuario" de Menú-Admin
-        ocultarTodosLosAnchorPane();
+        //ocultarTodosLosAnchorPane();
+
+        bienvenidoAdminPanel.setVisible(false);
+        miPerfilAdminAnchorPane.setVisible(false);
+        verTurnosAdminAnchorPane.setVisible(false);
+        nuevoUsuarioAdminAnchorPane.setVisible(false);
+        eliminarUsuarioAdminAnchorPane.setVisible(false);
 
         editarUsuarioAdminAnchorPane.setVisible(true);
         buscarEditarUsuarioAdminAnchorPane.setVisible(true);
@@ -400,7 +424,13 @@ public class AdminViewController {
 
     @FXML
     void buttonDeleteUserAdmin(MouseEvent event) { //Opción "Eliminar Usuario" de Menú-Admin
-        ocultarTodosLosAnchorPane();
+        //ocultarTodosLosAnchorPane();
+
+        bienvenidoAdminPanel.setVisible(false);
+        miPerfilAdminAnchorPane.setVisible(false);
+        verTurnosAdminAnchorPane.setVisible(false);
+        nuevoUsuarioAdminAnchorPane.setVisible(false);
+        editarUsuarioAdminAnchorPane.setVisible(false);
 
         eliminarUsuarioAdminAnchorPane.setVisible(true);
         buscarEliminarUsuarioAdminAnchorPane.setVisible(true);

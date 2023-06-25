@@ -726,7 +726,7 @@
                   </Label>
                   <AnchorPane fx:id="buscarEliminarUsuarioAdminAnchorPane" prefHeight="720.0" prefWidth="810.0">
                      <children>
-                        <AnchorPane fx:id="mostrarEliminarUsuarioAdminAnchorPane2" layoutY="110.0" prefHeight="600.0" prefWidth="290.0">
+                        <AnchorPane fx:id="filtroEliminarUsuarioAdminAnchorPane" layoutY="110.0" prefHeight="600.0" prefWidth="290.0">
                            <children>
                               <Label layoutX="41.0" layoutY="85.0" styleClass="nanum-bold" text="Seleccione el tipo de Usuario:" textFill="#29838c">
                                  <font>
