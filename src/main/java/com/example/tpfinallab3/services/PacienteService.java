@@ -148,5 +148,15 @@ public class PacienteService {
         Paciente paciente = PacienteService.getInstance().buscarPacientePorNombreYApellido(nombrePaciente, apellidoPacienteBuilderString);
         return paciente;
     }
+
+    public void modificarContraseñaEnPaciente(String nombreUsuario, String nuevaContraseña) {
+        pacientes.stream()
+                .filter(p -> p.getNombreUsuario().equalsIgnoreCase(nombreUsuario))
+                .findFirst()
+                .ifPresent(p -> {
+                    p.setContrasena(nuevaContraseña);
+                });
+        guardarPacientesJson();
+    }
 }
 

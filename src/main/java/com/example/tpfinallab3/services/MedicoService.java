@@ -174,4 +174,11 @@ public class MedicoService {
         return medico;
     }
 
+    public void modificarContraseñaEnMedico(String nombreUsuario, String nuevaContraseña) {
+        Optional<Medico> medico = buscarMedicoPorNombreUsuario(nombreUsuario);
+        if (medico.isPresent()) {
+            medico.get().setContrasena(nuevaContraseña);
+            guardarMedicosJson();
+        }
+    }
 }
