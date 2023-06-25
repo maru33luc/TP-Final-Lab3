@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
@@ -35,22 +36,17 @@ public class MedicoController {
     private Label appointmentsMedicoButton;
 
     @FXML
-    private ImageView closeWindowMedicoView;
-
-    @FXML
     private Label emailMedicoLabel;
 
     @FXML
     private Label especialidadMedicoLabel;
 
     @FXML
-    private Button filtrarFechaTurnoMedicoButton;
+    private CheckBox filtrarFechaTurnoMedicoCheck;
 
     @FXML
-    private Button filtrarPacienteTurnoMedicoButton;
+    private CheckBox filtrarPacienteTurnoMedicoCheck;
 
-    @FXML
-    private ImageView minimizeMedicoViewButton;
 
     @FXML
     private AnchorPane myProfileDataMedicoPanel;
@@ -77,27 +73,22 @@ public class MedicoController {
     private AnchorPane turnosViewMedicoPanel;
 
     @FXML
-    private AnchorPane filtrarFechaPanel;
+    private AnchorPane bienvenidoDoctorPanel; //NUEVO
 
     @FXML
-    private AnchorPane filtrarPacientePanel;
+    private Label ingresarFiltrarTurnosMedicoLabel;
 
     @FXML
-    private TextField filtrarFechaField;
+    private TextField filtrarTurnosMedicoField;
 
     @FXML
-    private Button filtrarFechaAcceptButton;
+    private Button filtrarTurnosMedicoButton;
 
     @FXML
-    private Button filtrarFechaCancelButton;
+    private Label doctorUserName;
 
-    @FXML
-    private TextField filtrarPacienteField;
-    @FXML
-    private Button filtrarPacienteAcceptButton;
+    ///////////////////////////////////////////
 
-    @FXML
-    private Button filtrarPacienteCancelButton;
     @FXML
     private Label logoutMedicoButton;
     @FXML
@@ -114,7 +105,7 @@ public class MedicoController {
             apellidoMedicoLabel.setText(usuarioLogueado.getApellido());
             emailMedicoLabel.setText(usuarioLogueado.getMail());
             especialidadMedicoLabel.setText(((Medico) usuarioLogueado).getEspecialidad().toString());
-
+            doctorUserName.setText(usuarioLogueado.getNombreUsuario());
         }catch (ClassCastException e){
             System.out.println("El usuario logueado no es un medico");
             e.printStackTrace();
@@ -143,40 +134,63 @@ public class MedicoController {
     }
     @FXML
     private void verPerfilMedico(MouseEvent event) {
-        myProfileDataMedicoPanel.setVisible(true);
+        bienvenidoDoctorPanel.setVisible(false);
         turnosViewMedicoPanel.setVisible(false);
+
+        myProfileDataMedicoPanel.setVisible(true);
     }
 
     @FXML
     private void verTurnosMedico(MouseEvent event) {
-        cargarTablaMedico();
+        bienvenidoDoctorPanel.setVisible(false);
         myProfileDataMedicoPanel.setVisible(false);
+
+        cargarTablaMedico();
         turnosViewMedicoPanel.setVisible(true);
     }
 
     @FXML
-    private void buscarTurnosPorFechaMedico(ActionEvent event) {
-        filtrarPacientePanel.setVisible(false);
-        filtrarFechaPanel.setVisible(true);
+    private void buscarTurnosPorFechaMedico (ActionEvent event) { //CORREGIR ESTO
+        if (filtrarFechaTurnoMedicoCheck.isSelected()){
+            filtrarPacienteTurnoMedicoCheck.setSelected(false);
+        }
+
+        ingresarFiltrarTurnosMedicoLabel.setText("Ingrese fecha");
+        filtrarTurnosMedicoField.setPromptText("d/m/aaaa");
     }
 
     @FXML
-    private void buscarTurnosPorPacienteMedico(ActionEvent event) {
-        filtrarFechaPanel.setVisible(false);
-        filtrarPacientePanel.setVisible(true);
+    private void buscarTurnosPorPacienteMedico (ActionEvent event){ //CORREGIR ESTO
+        if (filtrarPacienteTurnoMedicoCheck.isSelected()){
+            filtrarFechaTurnoMedicoCheck.setSelected(false);
+        }
+
+        ingresarFiltrarTurnosMedicoLabel.setText("Ingrese nombre de paciente");
+        filtrarTurnosMedicoField.setPromptText("Nombre y Apellido");
     }
 
     @FXML
-    void turnosPorFecha(ActionEvent event) {
+    void clickFiltrarTurnosMedico (ActionEvent event){
+        if (filtrarFechaTurnoMedicoCheck.isSelected()){
+            turnosPorFecha();
+        } else if (filtrarPacienteTurnoMedicoCheck.isSelected()){
+            turnosPorPaciente();
+        } else {
+            LoginController.showErrorAlert("Seleccione una opcion");
+        }
+    }
+
+
+    @FXML
+    void turnosPorFecha() {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
         try{
-            LocalDate fecha = LocalDate.parse(filtrarFechaField.getText(), dateFormatter);
+            LocalDate fecha = LocalDate.parse(filtrarTurnosMedicoField.getText(), dateFormatter);
             cargarTurnosPorFecha(fecha);
-            filtrarFechaPanel.setVisible(false);
-            filtrarFechaField.setText("");
         }catch(Exception e){
             LoginController.showErrorAlert("Fecha invalida");
-            filtrarFechaField.setText("");
+        }finally {
+            filtrarTurnosMedicoField.setText("");
         }
     }
 
@@ -206,8 +220,8 @@ public class MedicoController {
     }
 
     @FXML
-    void turnosPorPaciente(ActionEvent event) {
-        String input = filtrarPacienteField.getText();
+    void turnosPorPaciente() {
+        String input = filtrarTurnosMedicoField.getText();
         String [] palabras = input.split(" ");
         String nombrePaciente = palabras[0];
         StringBuilder apellidoPacienteBuilder = new StringBuilder();
@@ -221,11 +235,10 @@ public class MedicoController {
         Paciente paciente = PacienteService.getInstance().buscarPacientePorNombreYApellido(nombrePaciente, apellidoPaciente);
         try{
             cargarTurnosPorPaciente(paciente);
-            filtrarPacientePanel.setVisible(false);
-            filtrarPacienteField.setText("");
         }catch (Exception e){
             LoginController.showErrorAlert("El paciente no existe");
-            filtrarPacienteField.setText("");
+        }finally {
+            filtrarTurnosMedicoField.setText("");
         }
 
     }
@@ -255,16 +268,6 @@ public class MedicoController {
     @FXML
     void limpiarFiltrosTurnos(ActionEvent event){
         cargarTablaMedico();
-    }
-    @FXML
-    void cancelFiltrarPorFecha(ActionEvent event) {
-        filtrarFechaPanel.setVisible(false);
-    }
-
-    @FXML
-    void cancelFiltrarPorPaciente(ActionEvent event) {
-        filtrarPacientePanel.setVisible(false);
-
     }
 
     @FXML
