@@ -63,6 +63,12 @@ public class AdminViewController {
     private AnchorPane buscarEditarUsuarioAdminAnchorPane;
 
     @FXML
+    private AnchorPane mostrarEliminarUsuarioAdminAnchorPane;
+
+    @FXML
+    private AnchorPane mostrarEliminarUsuarioAdminAnchorPane2;
+
+    @FXML
     private Button buscarEditarUsuarioButton;
 
     @FXML
@@ -203,8 +209,6 @@ public class AdminViewController {
     @FXML
     private AnchorPane mostrarEditarUsuarioAdminAnchorPane;
 
-    @FXML
-    private AnchorPane mostrarEliminarUsuarioAdminAnchorPane;
 
     @FXML
     private AnchorPane mostrarMiPerfilAdminAnchorPane;
@@ -473,17 +477,14 @@ public class AdminViewController {
     //[ BUSCAR TURNOS ] //PENDIENTE HASTA TENER LAS VISTAS DE MOSTRAR TURNOS
     @FXML
     void checkDoctorSearchAppointment(ActionEvent event) { //CheckBox buscar por Doctor en Ver Turnos
-
     }
 
     @FXML
     void checkPatientSearchAppointment(ActionEvent event) { //CheckBox buscar por Paciente en Ver Turnos
-
     }
 
     @FXML
     void checkIsDateSearchAppointment(ActionEvent event) { //CheckBox buscar por Fecha en Ver Turnos
-
     }
     @FXML
     void fieldSearchAppointmentAdmin (ActionEvent event) { //Field buscar en Ver Turnos
@@ -532,6 +533,9 @@ public class AdminViewController {
         }
     }
 
+
+    public void choiceSpecialityNewUser(KeyEvent keyEvent) {
+    }
     @FXML
     void checkNewAdmin(ActionEvent event) { //CheckBox isAdmin en Nuevo Usuario
         if (isAdminNuevoUsuarioCheckBox.isSelected()) {
@@ -853,6 +857,16 @@ public class AdminViewController {
         showSuccessAlert("¡Cambios guardados con éxito!");
     }
 
+    /////////////////////////////// HABILITAR TURNOS ///////////////////////////////
+
+    @FXML
+    void buttonAddAppointmentAdmin(MouseEvent event) {
+
+    }
+
+
+
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //----------------------------[ VIEW - ELIMINAR USUARIO ]
@@ -985,7 +999,16 @@ public class AdminViewController {
         alert.showAndWait();
     }
 
+// ----------------------------     ACA METO FUNCIONES PARA DESTRABAR ERRORES -----------------------------
+    public void buttonCloseSessionAdmin(MouseEvent mouseEvent) {
+    }
 
-    public void choiceSpecialityNewUser(KeyEvent keyEvent) {
+    public void tableEditUserAction(MouseEvent mouseEvent) {
+    }
+
+    public void tableDeleteUserAction(MouseEvent mouseEvent) {
+    }
+
+    public void clickSearchAppointmentAdmin(ActionEvent actionEvent) {
     }
 }

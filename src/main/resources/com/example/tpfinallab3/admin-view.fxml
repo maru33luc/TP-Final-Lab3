@@ -513,7 +513,7 @@
                               </Button>
                            </children>
                         </AnchorPane>
-                        <TableView fx:id="tablaBuscarEditarUsuarioAdminAnchorPane" layoutX="290.0" layoutY="110.0" onMouseClicked="#seleccionarMisTurnosAction" prefHeight="600.0" prefWidth="510.0">
+                        <TableView fx:id="tablaBuscarEditarUsuarioAdminAnchorPane" layoutX="290.0" layoutY="110.0" onMouseClicked="#tableEditUserAction" prefHeight="600.0" prefWidth="510.0">
                            <columns>
                               <TableColumn fx:id="columnaUserBuscarEditarUsuario" text="User" />
                               <TableColumn fx:id="columnaNombreBuscarEditarUsuario" prefWidth="120.0" text="Nombre" />
@@ -726,7 +726,7 @@
                   </Label>
                   <AnchorPane fx:id="buscarEliminarUsuarioAdminAnchorPane" prefHeight="720.0" prefWidth="810.0">
                      <children>
-                        <AnchorPane fx:id="buscarEliminarUsuarioAdminAnchorPane" layoutY="110.0" prefHeight="600.0" prefWidth="290.0">
+                        <AnchorPane fx:id="mostrarEliminarUsuarioAdminAnchorPane2" layoutY="110.0" prefHeight="600.0" prefWidth="290.0">
                            <children>
                               <Label layoutX="41.0" layoutY="85.0" styleClass="nanum-bold" text="Seleccione el tipo de Usuario:" textFill="#29838c">
                                  <font>
@@ -756,7 +756,7 @@
                               </Button>
                            </children>
                         </AnchorPane>
-                        <TableView fx:id="tablaBuscarEliminarUsuarioAdminAnchorPane" layoutX="290.0" layoutY="110.0" onMouseClicked="#seleccionarMisTurnosAction" prefHeight="600.0" prefWidth="510.0">
+                        <TableView fx:id="tablaBuscarEliminarUsuarioAdminAnchorPane" layoutX="290.0" layoutY="110.0" onMouseClicked="#tableDeleteUserAction" prefHeight="600.0" prefWidth="510.0">
                            <columns>
                               <TableColumn fx:id="columnaUsuarioBuscarEliminarUsuario" text="User" />
                               <TableColumn fx:id="columnaNombreBuscarEliminarUsuario" prefWidth="120.0" text="Nombre" />
