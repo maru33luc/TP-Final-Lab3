@@ -65,6 +65,7 @@ public class AdministrativoService {
     }
 
 
+
     public boolean existeAdministrativoPorNombreUsuario(String nombreUsuario) {
         return administrativos.stream()
                 .anyMatch(a -> a.getNombreUsuario().equalsIgnoreCase(nombreUsuario));

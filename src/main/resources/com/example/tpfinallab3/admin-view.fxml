@@ -53,7 +53,7 @@
                   <String fx:value="profile-button" />
                </styleClass>
             </Label>
-            <Label fx:id="agregarTurnoAdminButton" accessibleRole="BUTTON" layoutX="45.0" layoutY="195.0" onMouseClicked="#buttonAddAppointmentAdmin" text="Agregar Turno" textFill="#d3f9eb">
+            <Label fx:id="agregarTurnoAdminButton" accessibleRole="BUTTON" layoutX="45.0" layoutY="195.0" onMouseClicked="#buttonAddAppointmentAdmin" text="Habilitar Turnos" textFill="#d3f9eb">
                <font>
                   <Font size="20.0" />
                </font>
@@ -372,6 +372,54 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
+            <AnchorPane fx:id="habilitarTurnosAdminAnchorPane" prefHeight="720.0" prefWidth="810.0" visible="false">
+               <children>
+                  <Label layoutX="208.0" layoutY="14.0" styleClass="cinzel-regular" text="Habilitar Turnos" textFill="#123440">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane layoutY="110.0" prefHeight="600.0" prefWidth="810.0">
+                     <children>
+                        <Label layoutX="338.0" layoutY="27.0" styleClass="nanum-bold" text="Ingrese el medico:" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="281.0" layoutY="74.0" styleClass="nanum-regular" text="Nombre y apellido:" textFill="#29838c">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="nombreYApellidoMedicoHabilitarTurnosField" layoutX="280.0" layoutY="99.0" prefWidth="250.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" />
+                        <Label layoutX="280.0" layoutY="150.0" styleClass="nanum-regular" text="Fecha:" textFill="#29838c">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="fechaHabilitarTurnosField" layoutX="280.0" layoutY="169.0" prefWidth="250.0" promptText="dd/mm/aaaa" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" />
+                        <Label layoutX="280.0" layoutY="224.0" styleClass="nanum-regular" text="Hora inicio:" textFill="#29838c">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="horaInicioHabilitarTurnosField" layoutX="280.0" layoutY="243.0" prefWidth="250.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" />
+                        <Label layoutX="280.0" layoutY="293.0" styleClass="nanum-regular" text="Hora finalización:" textFill="#29838c">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="horaFinalizacionHabilitarTurnosField" layoutX="280.0" layoutY="312.0" prefWidth="250.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" />
+                        <Button fx:id="confirmarHabilitarTurnosButton" layoutX="314.0" layoutY="382.0" mnemonicParsing="false" onAction="#clickEnableAppointment" prefHeight="25.0" prefWidth="175.0" text="Confirmar">
+                           <styleClass>
+                              <String fx:value="button-oscuro" />
+                              <String fx:value="nanum-bold" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="nuevoUsuarioAdminAnchorPane" layoutX="135.0" prefHeight="720.0" prefWidth="540.0" visible="false">
                <children>
                   <Label layoutX="97.0" layoutY="14.0" styleClass="cinzel-regular" text="Nuevo Usuario" textFill="#123440">
@@ -481,7 +529,7 @@
                         <Font size="40.0" />
                      </font>
                   </Label>
-                  <AnchorPane fx:id="buscarEditarUsuarioAdminAnchorPane" prefHeight="720.0" prefWidth="810.0">
+                  <AnchorPane fx:id="buscarEditarUsuarioAdminAnchorPane" prefHeight="720.0" prefWidth="810.0" visible="false">
                      <children>
                         <AnchorPane layoutY="110.0" prefHeight="600.0" prefWidth="290.0">
                            <children>
@@ -526,7 +574,7 @@
                         </TableView>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="mostrarEditarUsuarioAdminAnchorPane" layoutX="135.0" layoutY="100.0" opacity="0.9" prefHeight="450.0" prefWidth="540.0" style="-fx-background-color: #184752;" visible="false">
+                  <AnchorPane fx:id="mostrarEditarUsuarioAdminAnchorPane" layoutX="135.0" layoutY="100.0" opacity="0.9" prefHeight="450.0" prefWidth="540.0" style="-fx-background-color: #184752;">
                      <children>
                         <Label layoutX="160.0" layoutY="73.0" styleClass="nanum-bold" text="Tipo Usuario:" textFill="#d3f9eb">
                            <font>
@@ -726,7 +774,9 @@
                   </Label>
                   <AnchorPane fx:id="buscarEliminarUsuarioAdminAnchorPane" prefHeight="720.0" prefWidth="810.0">
                      <children>
-                        <AnchorPane fx:id="filtroEliminarUsuarioAdminAnchorPane" layoutY="110.0" prefHeight="600.0" prefWidth="290.0">
+
+                        <AnchorPane fx:id="filtrarEliminarUsuarioAdminAnchorPane" layoutY="110.0" prefHeight="600.0" prefWidth="290.0">
+
                            <children>
                               <Label layoutX="41.0" layoutY="85.0" styleClass="nanum-bold" text="Seleccione el tipo de Usuario:" textFill="#29838c">
                                  <font>

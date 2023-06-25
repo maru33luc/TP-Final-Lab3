@@ -313,6 +313,151 @@ public class AdminViewController {
 
     @FXML
     private AnchorPane vistaAdminAnchorPane;
+    ///////////////////////////////////////////////////
+
+
+    @FXML
+    private Label FechaVerTurnosAdminLabel;
+
+    @FXML
+    private Label MedicoVerTurnosAdminLabel;
+
+    @FXML
+    private Label PacienteVerTurnosAdminLabel;
+
+    @FXML
+    private Label adminUserName;
+
+    @FXML
+    private Label agregarTurnoAdminButton;
+
+
+    @FXML
+    private Label cerrarSesionAdminButton;
+
+    @FXML
+    private TableColumn<?, ?> columnaApellidoBuscarEditarUsuario;
+
+    @FXML
+    private TableColumn<?, ?> columnaApellidoBuscarEliminarUsuario;
+
+    @FXML
+    private TableColumn<?, ?> columnaEspecialidadTurnosFecha;
+
+    @FXML
+    private TableColumn<?, ?> columnaEspecialidadTurnosPaciente;
+
+    @FXML
+    private TableColumn<?, ?> columnaFechaTurnosMedico;
+
+    @FXML
+    private TableColumn<?, ?> columnaFechaTurnosPaciente;
+
+    @FXML
+    private TableColumn<?, ?> columnaHoraTurnosFecha;
+
+    @FXML
+    private TableColumn<?, ?> columnaHoraTurnosMedico;
+
+    @FXML
+    private TableColumn<?, ?> columnaHoraTurnosPaciente;
+
+    @FXML
+    private TableColumn<?, ?> columnaMedicoTurnosFecha;
+
+    @FXML
+    private TableColumn<?, ?> columnaMedicoTurnosPaciente;
+
+    @FXML
+    private TableColumn<?, ?> columnaNombreBuscarEditarUsuario;
+
+    @FXML
+    private TableColumn<?, ?> columnaNombreBuscarEliminarUsuario;
+
+    @FXML
+    private TableColumn<?, ?> columnaObraSocialTurnosMedico;
+
+    @FXML
+    private TableColumn<?, ?> columnaPacienteTurnosFecha;
+
+    @FXML
+    private TableColumn<?, ?> columnaPacienteTurnosMedico;
+
+    @FXML
+    private TableColumn<?, ?> columnaTipoUsuarioBuscarEditarUsuario;
+
+    @FXML
+    private TableColumn<?, ?> columnaTipoUsuarioBuscarEliminarUsuario;
+
+    @FXML
+    private TableColumn<?, ?> columnaUserBuscarEditarUsuario;
+
+    @FXML
+    private TableColumn<?, ?> columnaUsuarioBuscarEliminarUsuario;
+
+    @FXML
+    private Label fechaVerTurnosLabel;
+
+    @FXML
+    private AnchorPane filtrarEliminarUsuarioAdminAnchorPane;
+
+    @FXML
+    private AnchorPane filtrarVerTurnosAdminAnchorPane;
+
+
+    @FXML
+    private AnchorPane listaTurnosFechaVerTurnosAdminAnchorPane;
+
+    @FXML
+    private AnchorPane listaTurnosMedicoVerTurnosAdminAnchorPane;
+
+    @FXML
+    private AnchorPane listaTurnosPacienteVerTurnosAdminAnchorPane;
+
+
+    @FXML
+    private TableView<?> tablaBuscarEditarUsuarioAdminAnchorPane;
+
+    @FXML
+    private TableView<?> tablaBuscarEliminarUsuarioAdminAnchorPane;
+
+    @FXML
+    private TableView<?> tablaTurnosFechaAdmin;
+
+    @FXML
+    private TableView<?> tablaTurnosMedicoAdmin;
+
+    @FXML
+    private TableView<?> tablaTurnosPacienteAdmin;
+
+
+    @FXML
+    private Label userMedicoVerTurnosLabel;
+
+    @FXML
+    private Label userPacienteVerTurnosLabel;
+
+    //NUEVOS DE VISTA HABILITAR TURNOS:
+    @FXML
+    private AnchorPane habilitarTurnosAdminAnchorPane;
+
+    @FXML
+    private TextField nombreYApellidoMedicoHabilitarTurnosField;
+
+    @FXML
+    private TextField fechaHabilitarTurnosField;
+
+    @FXML
+    private TextField horaInicioHabilitarTurnosField;
+
+    @FXML
+    private TextField horaFinalizacionHabilitarTurnosField;
+
+    @FXML
+    private Button confirmarHabilitarTurnosButton;
+
+
+
 
     //Variables extras.
     private Especialidad seleccionEspecialidad; //para guardar la seleccion del choice box especialidades
@@ -350,6 +495,7 @@ public class AdminViewController {
         miPerfilAdminAnchorPane.setVisible(false);
         mostrarMiPerfilAdminAnchorPane.setVisible(false);
         editarMiPerfilAdminAnchorPane.setVisible(false);
+        bienvenidoAdminPanel.setVisible(false);
         //VER TURNOS
         verTurnosAdminAnchorPane.setVisible(false);
         buscarVerTurnosAdminAnchorPane.setVisible(false);
@@ -390,7 +536,7 @@ public class AdminViewController {
         eliminarUsuarioAdminAnchorPane.setVisible(false);
 
         verTurnosAdminAnchorPane.setVisible(true);
-        buscarVerTurnosAdminAnchorPane.setVisible(true);
+       // buscarVerTurnosAdminAnchorPane.setVisible(true);
     }
 
     @FXML
@@ -523,6 +669,13 @@ public class AdminViewController {
     //[ MOSTRAR TURNOS ] PENDIENTE
 
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //----------------------------[ VIEW - HABILITAR TURNOS ] //NUEVO!!!
+
+    @FXML
+    private void clickEnableAppointment (ActionEvent event){ //Botón Habilitar Turnos en Habilitar Turnos
+
+    }
 
 
 //NUEVO USUARIO////////////////////////////////////////////////////////////////////////////////////////////////
@@ -559,8 +712,6 @@ public class AdminViewController {
     }
 
 
-    public void choiceSpecialityNewUser(KeyEvent keyEvent) {
-    }
     @FXML
     void checkNewAdmin(ActionEvent event) { //CheckBox isAdmin en Nuevo Usuario
         if (isAdminNuevoUsuarioCheckBox.isSelected()) {
@@ -1025,15 +1176,37 @@ public class AdminViewController {
     }
 
 // ----------------------------     ACA METO FUNCIONES PARA DESTRABAR ERRORES -----------------------------
-    public void buttonCloseSessionAdmin(MouseEvent mouseEvent) {
-    }
+
+
 
     public void tableEditUserAction(MouseEvent mouseEvent) {
     }
 
+
+
+    @FXML
+    void buttonCloseSessionAdmin(MouseEvent event) {
+
+    }
+
+    @FXML
+    void choiceSpecialityNewUser(KeyEvent event) {
+
+    }
+
+    @FXML
+    void clickSearchAppointmentAdmin(ActionEvent event) {
+
+    }
+
+    @FXML
+    void seleccionarMisTurnosAction(MouseEvent event) {
+
+    }
+
+
     public void tableDeleteUserAction(MouseEvent mouseEvent) {
     }
 
-    public void clickSearchAppointmentAdmin(ActionEvent actionEvent) {
-    }
 }
+
