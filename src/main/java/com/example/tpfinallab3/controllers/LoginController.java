@@ -76,7 +76,7 @@ public class LoginController {
     private void clickLogin(ActionEvent event) {
 
         //si el nombre de usuario y contraseña ingresados son correctos
-        if (SessionManager.getInstance().iniciarSesion(usernameField.getText(), passwordField.getText())) {
+        if (SessionManager.getInstance().iniciarSesion(usernameField.getText().toLowerCase(), passwordField.getText())) {
 
             //se muestra un mensaje de bienvenida
             Autenticable usuarioAutenticado = SessionManager.getInstance().getEntidadLogueada();
