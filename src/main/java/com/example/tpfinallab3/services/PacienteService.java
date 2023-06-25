@@ -77,6 +77,13 @@ public class PacienteService {
                 .findFirst();
     }
 
+    public Paciente buscarPacientePorNombreYApellido(String nombre, String apellido){
+        return pacientes.stream()
+                .filter(paciente -> paciente.getNombre().equalsIgnoreCase(nombre) && paciente.getApellido().equalsIgnoreCase(apellido))
+                .findFirst()
+                .orElse(null);
+    }
+
     public List<Paciente> buscarPacientesPorObraSocial(String obraSocial) {
         return pacientes.stream()
                 .filter(paciente -> paciente.getObraSocial().equalsIgnoreCase(obraSocial))
