@@ -100,6 +100,8 @@ public class MedicoController {
     private Button filtrarPacienteCancelButton;
     @FXML
     private Label logoutMedicoButton;
+    @FXML
+    private Button limpiarFiltrosButton;
 
     private ObservableList<Turno> turnosMedico;
 
@@ -166,7 +168,7 @@ public class MedicoController {
 
     @FXML
     void turnosPorFecha(ActionEvent event) {
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
         try{
             LocalDate fecha = LocalDate.parse(filtrarFechaField.getText(), dateFormatter);
             cargarTurnosPorFecha(fecha);
@@ -185,6 +187,7 @@ public class MedicoController {
         System.out.println(usuarioLogueado.toString());
         List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosPorMedico(medico.get());
 
+        int flag = 0;
         List<TurnoTablaMedico> listaTurnosTabla = new ArrayList<>();
         for(Turno turno : listaTurnos){
             if(turno.getPaciente() != null && fecha.isEqual(turno.getDia())) {
@@ -193,9 +196,12 @@ public class MedicoController {
                 tablaTurnoMedicoColumnaFecha.setCellValueFactory(new PropertyValueFactory("dia"));
                 tablaMedicoColumnaHora.setCellValueFactory(new PropertyValueFactory("hora"));
                 tablaMedicoColumnaPaciente.setCellValueFactory(new PropertyValueFactory("paciente"));
-
+                flag = 1;
                 tablaTurnosMedico.setItems(FXCollections.observableArrayList(listaTurnosTabla));
             }
+        }
+        if(flag == 0){
+            tablaTurnosMedico.setItems(null);
         }
     }
 
@@ -244,6 +250,11 @@ public class MedicoController {
             }
         }
 
+    }
+
+    @FXML
+    void limpiarFiltrosTurnos(ActionEvent event){
+        cargarTablaMedico();
     }
     @FXML
     void cancelFiltrarPorFecha(ActionEvent event) {
