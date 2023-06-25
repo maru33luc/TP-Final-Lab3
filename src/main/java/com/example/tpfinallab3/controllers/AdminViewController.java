@@ -1,6 +1,5 @@
 package com.example.tpfinallab3.controllers;
 
-import com.example.tpfinallab3.exceptions.ValidationException;
 import com.example.tpfinallab3.models.Administrativo;
 import com.example.tpfinallab3.models.Autenticable;
 import com.example.tpfinallab3.models.Especialidad;
@@ -1008,6 +1007,6 @@ public class AdminViewController {
     }
 
 
-
-
+    public void choiceSpecialityNewUser(KeyEvent keyEvent) {
+    }
 }

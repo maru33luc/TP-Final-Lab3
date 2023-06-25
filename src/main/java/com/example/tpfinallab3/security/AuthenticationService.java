@@ -31,7 +31,7 @@ public class AuthenticationService {
     }
 
     public boolean autenticarUsuario(String nombreUsuario, String contrasena) {
-        cargarUsuariosDesdeJson();
+        //cargarUsuariosDesdeJson();
         if(this.usuarios!=null){
             if (usuarios.containsKey(nombreUsuario)) {
                 String contrasenaAlmacenada = obtenerContrasenaAlmacenada(nombreUsuario);
