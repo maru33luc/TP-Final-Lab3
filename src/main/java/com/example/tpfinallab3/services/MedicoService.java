@@ -154,4 +154,24 @@ public class MedicoService {
         return medicosActivos;
     }
 
+    public Medico retornaMedicoPorCampoTextField (String texto){
+
+        String[] palabras = texto.split(" ");
+
+        String nombreMedico = palabras[0];
+        StringBuilder apellidoMedicoBuilder = new StringBuilder();
+
+        // Combinar las palabras del apellido en una sola cadena
+        for (int i = 1; i < palabras.length; i++) {
+            if (i > 1) {
+                apellidoMedicoBuilder.append(" ");  // Agregar espacio entre las palabras
+            }
+            apellidoMedicoBuilder.append(palabras[i]);
+        }
+
+        String apellidoMedico = apellidoMedicoBuilder.toString();
+        Medico medico = MedicoService.getInstance().buscarMedicoPorNombreYApellido(nombreMedico, apellidoMedico);
+        return medico;
+    }
+
 }

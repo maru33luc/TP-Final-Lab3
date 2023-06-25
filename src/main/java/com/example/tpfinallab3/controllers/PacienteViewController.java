@@ -4,7 +4,6 @@ import com.example.tpfinallab3.models.*;
 import com.example.tpfinallab3.security.AuthenticationService;
 import com.example.tpfinallab3.security.SessionManager;
 import com.example.tpfinallab3.security.ValidationService;
-import com.example.tpfinallab3.services.AdministrativoService;
 import com.example.tpfinallab3.services.MedicoService;
 import com.example.tpfinallab3.services.PacienteService;
 import com.example.tpfinallab3.services.TurnoService;
@@ -278,7 +277,7 @@ public class PacienteViewController {
         for (Turno turno5 : listaMisTurnos) {
             Especialidad especialidad = turno5.getMedico().getEspecialidad();
             Medico medico2 = turno5.getMedico();
-            TurnoTabla turnoTabla = new TurnoTabla(turno5.getDia(), turno5.getHora(), especialidad, medico2);
+            TurnoTabla turnoTabla = new TurnoTabla(turno5.getDia(), turno5.getHora(), especialidad, medico2,(Paciente) paciente, ((Paciente) paciente).getObraSocial());
             listaMisTurnos2.add(turnoTabla);
         }
         columnaFechaMiTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("dia"));
@@ -298,7 +297,7 @@ public class PacienteViewController {
         for (Turno turno : listaTurnos) {
             Especialidad especialidad = turno.getMedico().getEspecialidad();
             Medico medico2 = turno.getMedico();
-            TurnoTabla turnoTabla = new TurnoTabla(turno.getDia(), turno.getHora(), especialidad, medico2);
+            TurnoTabla turnoTabla = new TurnoTabla(turno.getDia(), turno.getHora(), especialidad, medico2,null,null);
             listaTurnos3.add(turnoTabla);
         }
         columnaFechaTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("dia"));
@@ -322,7 +321,7 @@ public class PacienteViewController {
             if (especialidadPacienteChoiceBox.getSelectionModel().getSelectedItem().equals(turno.getMedico().getEspecialidad())) {
                 Especialidad especialidad = turno.getMedico().getEspecialidad();
                 Medico medico2 = turno.getMedico();
-                TurnoTabla turnoTabla = new TurnoTabla(turno.getDia(), turno.getHora(), especialidad, medico2);
+                TurnoTabla turnoTabla = new TurnoTabla(turno.getDia(), turno.getHora(), especialidad, medico2,null,null);
                 listaTurnos2.add(turnoTabla);
             }
         }
@@ -345,7 +344,7 @@ public class PacienteViewController {
 
                 Especialidad especialidad = turno.getMedico().getEspecialidad();
                 Medico medico2 = turno.getMedico();
-                TurnoTabla turnoTabla = new TurnoTabla(turno.getDia(), turno.getHora(), especialidad, medico2);
+                TurnoTabla turnoTabla = new TurnoTabla(turno.getDia(), turno.getHora(), especialidad, medico2,null,null);
                 listaTurnos2.add(turnoTabla);
             }
         }
@@ -421,22 +420,7 @@ public class PacienteViewController {
             Optional<Paciente> pacienteOptional = PacienteService.getInstance().buscarPacientePorNombreUsuario(SessionManager.getInstance().getEntidadLogueada().getNombreUsuario());
             Paciente paciente = pacienteOptional.get();
 
-            String input = medicoTurnoPacienteLabel.getText();
-            String[] palabras = input.split(" ");
-
-            String nombreMedico = palabras[0];
-            StringBuilder apellidoMedicoBuilder = new StringBuilder();
-
-            // Combinar las palabras del apellido en una sola cadena
-            for (int i = 1; i < palabras.length; i++) {
-                if (i > 1) {
-                    apellidoMedicoBuilder.append(" ");  // Agregar espacio entre las palabras
-                }
-                apellidoMedicoBuilder.append(palabras[i]);
-            }
-
-            String apellidoMedico = apellidoMedicoBuilder.toString();
-            Medico medico = MedicoService.getInstance().buscarMedicoPorNombreYApellido(nombreMedico, apellidoMedico);
+            Medico medico = MedicoService.getInstance().retornaMedicoPorCampoTextField(medicoTurnoPacienteLabel.getText());
             LocalDate dia = LocalDate.parse(fechaTurnoPacienteLabel.getText());
             LocalTime hora = LocalTime.parse(horaTurnoPacienteLabel.getText());
             Turno turno = TurnoService.getInstance().buscarTurnoPorMedicoDiaYHora(medico, dia, hora);

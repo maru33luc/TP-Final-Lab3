@@ -114,6 +114,17 @@ public class AdministrativoService {
         }
     }
 
+    // buscar administrativo por nombre y apellido
+   public Administrativo buscarAdministrativoPorNombreYApellido(String nombre, String apellido) {
+        Administrativo administrativoEncontrado = null;
+        for (Administrativo administrativo : administrativos) {
+            if (administrativo.getNombre().equalsIgnoreCase(nombre) && administrativo.getApellido().equalsIgnoreCase(apellido)) {
+                administrativoEncontrado = administrativo;
+            }
+        }
+        return administrativoEncontrado;
+    }
+
     public void guardarAdministrativosJson() {
         JsonService.getInstance().guardarJson(administrativos, RUTA_JSON);
     }

@@ -60,6 +60,11 @@ public class Paciente extends Usuario {
     public void setContrasena(String contrasena) {
         super.setContrasena(contrasena);
     }
+
+    @Override
+    public String getNombreEntidad() {
+        return this.getClass().toString();
+    }
     @Override
     public boolean equals(Object o) {
         if(this == o) {

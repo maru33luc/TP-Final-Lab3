@@ -41,7 +41,10 @@ public class Medico extends Usuario {
         super.setContrasena(contrasena);
     }
 
-
+    @Override
+    public String getNombreEntidad() {
+        return this.getClass().toString();
+    }
 
 
     @Override

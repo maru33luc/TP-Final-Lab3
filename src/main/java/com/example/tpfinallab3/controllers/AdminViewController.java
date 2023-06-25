@@ -1,22 +1,25 @@
 package com.example.tpfinallab3.controllers;
 
-import com.example.tpfinallab3.models.Administrativo;
-import com.example.tpfinallab3.models.Autenticable;
-import com.example.tpfinallab3.models.Especialidad;
-import com.example.tpfinallab3.models.Medico;
+import com.example.tpfinallab3.models.*;
 import com.example.tpfinallab3.security.SessionManager;
 import com.example.tpfinallab3.security.ValidationService;
 import com.example.tpfinallab3.services.AdministrativoService;
 import com.example.tpfinallab3.services.MedicoService;
+import com.example.tpfinallab3.services.PacienteService;
+import com.example.tpfinallab3.services.TurnoService;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-import java.util.Optional;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class AdminViewController {
 
@@ -95,6 +98,54 @@ public class AdminViewController {
     private PasswordField confirmNewPasswordEdicionEditarUsuarioAdminField;
 
     @FXML
+    private TableColumn<?, ?> columnaFechaTurnosMedico;
+
+    @FXML
+    private TableColumn<?, ?> columnaHoraTurnosMedico;
+
+    @FXML
+    private TableColumn<?, ?> columnaPacienteTurnosMedico;
+
+    @FXML
+    private TableColumn<?, ?> columnaObraSocialTurnosMedico;
+
+    @FXML
+    private TableColumn<?, ?> columnaFechaTurnosPaciente;
+
+    @FXML
+    private TableColumn<?, ?> columnaHoraTurnosPaciente;
+
+    @FXML
+    private TableColumn<?, ?> columnaMedicoTurnosPaciente;
+
+    @FXML
+    private TableColumn<?, ?> columnaEspecialidadTurnosPaciente;
+
+    @FXML
+    private TableColumn<?, ?> columnaHoraTurnosFecha;
+
+    @FXML
+    private TableColumn<?, ?> columnaPacienteTurnosFecha;
+
+    @FXML
+    private TableColumn<?, ?> columnaMedicoTurnosFecha;
+
+    @FXML
+    private TableColumn<?, ?> columnaEspecialidadTurnosFecha;
+
+    @FXML
+    private TableColumn<?, ?> columnaUserBuscarEditarUsuario;
+
+    @FXML
+    private TableColumn<?, ?> columnaNombreBuscarEditarUsuario;
+
+    @FXML
+    private TableColumn<?, ?> columnaApellidoBuscarEditarUsuario;
+
+    @FXML
+    private TableColumn<?, ?> columnaTipoUsuarioBuscarEditarUsuario;
+
+    @FXML
     private PasswordField confirmNewPasswordEdicionMiPerfilAdminField;
 
     @FXML
@@ -164,6 +215,12 @@ public class AdminViewController {
     private CheckBox fechaVerTurnosAdminCheckBox;
 
     @FXML
+    private Label fechaVerTurnosLabel;
+
+    @FXML
+    private AnchorPane filtrarVerTurnosAdminAnchorPane;
+
+    @FXML
     private Button guardarEdicionEditarUsuarioAdminButton;
 
     @FXML
@@ -189,6 +246,15 @@ public class AdminViewController {
 
     @FXML
     private CheckBox isMedicoNuevoUsuarioCheckBox;
+
+    @FXML
+    private AnchorPane listaTurnosPacienteVerTurnosAdminAnchorPane;
+
+    @FXML
+    private AnchorPane listaTurnosMedicoVerTurnosAdminAnchorPane;
+
+    @FXML
+    private AnchorPane listaTurnosFechaVerTurnosAdminAnchorPane;
 
     @FXML
     private CheckBox medicoVerTurnosAdminCheckBox;
@@ -285,6 +351,18 @@ public class AdminViewController {
     private TableView<?> tablaTurnosMedico;
 
     @FXML
+    private TableView<TurnoTabla> tablaTurnosMedicoAdmin;
+
+    @FXML
+    private TableView<TurnoTabla> tablaTurnosPacienteAdmin;
+
+    @FXML
+    private TableView<TurnoTabla> tablaTurnosFechaAdmin;
+
+    @FXML
+    private TableView<TablaUsuario> tablaBuscarEditarUsuarioAdminAnchorPane;
+
+    @FXML
     private Label tipoUsuarioMostrarEditarUsuarioAdminField;
 
     @FXML
@@ -298,6 +376,12 @@ public class AdminViewController {
 
     @FXML
     private TextField userNuevoUsuarioField;
+
+    @FXML
+    private Label userPacienteVerTurnosLabel;
+
+    @FXML
+    private Label userMedicoVerTurnosLabel;
 
     @FXML
     private Label usuarioMiPerfilAdminLabel;
@@ -335,107 +419,32 @@ public class AdminViewController {
     @FXML
     private Label cerrarSesionAdminButton;
 
-    @FXML
-    private TableColumn<?, ?> columnaApellidoBuscarEditarUsuario;
 
     @FXML
     private TableColumn<?, ?> columnaApellidoBuscarEliminarUsuario;
 
-    @FXML
-    private TableColumn<?, ?> columnaEspecialidadTurnosFecha;
-
-    @FXML
-    private TableColumn<?, ?> columnaEspecialidadTurnosPaciente;
-
-    @FXML
-    private TableColumn<?, ?> columnaFechaTurnosMedico;
-
-    @FXML
-    private TableColumn<?, ?> columnaFechaTurnosPaciente;
-
-    @FXML
-    private TableColumn<?, ?> columnaHoraTurnosFecha;
-
-    @FXML
-    private TableColumn<?, ?> columnaHoraTurnosMedico;
-
-    @FXML
-    private TableColumn<?, ?> columnaHoraTurnosPaciente;
-
-    @FXML
-    private TableColumn<?, ?> columnaMedicoTurnosFecha;
-
-    @FXML
-    private TableColumn<?, ?> columnaMedicoTurnosPaciente;
-
-    @FXML
-    private TableColumn<?, ?> columnaNombreBuscarEditarUsuario;
 
     @FXML
     private TableColumn<?, ?> columnaNombreBuscarEliminarUsuario;
 
-    @FXML
-    private TableColumn<?, ?> columnaObraSocialTurnosMedico;
-
-    @FXML
-    private TableColumn<?, ?> columnaPacienteTurnosFecha;
-
-    @FXML
-    private TableColumn<?, ?> columnaPacienteTurnosMedico;
-
-    @FXML
-    private TableColumn<?, ?> columnaTipoUsuarioBuscarEditarUsuario;
 
     @FXML
     private TableColumn<?, ?> columnaTipoUsuarioBuscarEliminarUsuario;
 
-    @FXML
-    private TableColumn<?, ?> columnaUserBuscarEditarUsuario;
+
 
     @FXML
     private TableColumn<?, ?> columnaUsuarioBuscarEliminarUsuario;
 
-    @FXML
-    private Label fechaVerTurnosLabel;
+
 
     @FXML
     private AnchorPane filtrarEliminarUsuarioAdminAnchorPane;
 
-    @FXML
-    private AnchorPane filtrarVerTurnosAdminAnchorPane;
-
-
-    @FXML
-    private AnchorPane listaTurnosFechaVerTurnosAdminAnchorPane;
-
-    @FXML
-    private AnchorPane listaTurnosMedicoVerTurnosAdminAnchorPane;
-
-    @FXML
-    private AnchorPane listaTurnosPacienteVerTurnosAdminAnchorPane;
-
-
-    @FXML
-    private TableView<?> tablaBuscarEditarUsuarioAdminAnchorPane;
 
     @FXML
     private TableView<?> tablaBuscarEliminarUsuarioAdminAnchorPane;
 
-    @FXML
-    private TableView<?> tablaTurnosFechaAdmin;
-
-    @FXML
-    private TableView<?> tablaTurnosMedicoAdmin;
-
-    @FXML
-    private TableView<?> tablaTurnosPacienteAdmin;
-
-
-    @FXML
-    private Label userMedicoVerTurnosLabel;
-
-    @FXML
-    private Label userPacienteVerTurnosLabel;
 
     //NUEVOS DE VISTA HABILITAR TURNOS:
     @FXML
@@ -534,9 +543,18 @@ public class AdminViewController {
         nuevoUsuarioAdminAnchorPane.setVisible(false);
         editarUsuarioAdminAnchorPane.setVisible(false);
         eliminarUsuarioAdminAnchorPane.setVisible(false);
-
+        filtrarVerTurnosAdminAnchorPane.setVisible(true);
         verTurnosAdminAnchorPane.setVisible(true);
-       // buscarVerTurnosAdminAnchorPane.setVisible(true);
+
+        mostrarVerTurnosAdminAnchorPane.setVisible(false);
+        medicoVerTurnosAdminCheckBox.setSelected(false);
+        pacienteVerTurnosAdminCheckBox.setSelected(false);
+        fechaVerTurnosAdminCheckBox.setSelected(false);
+        BuscarVerTurnoAdminField.setText("");
+
+
+        //buscarVerTurnosAdminAnchorPane.setVisible(true);
+
     }
 
     @FXML
@@ -566,6 +584,63 @@ public class AdminViewController {
         buscarEditarUsuarioAdminAnchorPane.setVisible(true);
         isMedicoBuscarEditarUsuarioCheckBox.setSelected(false);
         isAdminBuscarEditarUsuarioCheckBox.setSelected(false);
+
+        Map <String, Usuario> listaAutenticables = new HashMap<>();
+
+        Set<Medico> listaMedicos = MedicoService.getInstance().getMedicosActivos();
+        Set<Administrativo> listaAdministrativos = AdministrativoService.getInstance().getAdministrativos();
+        Set<Paciente> listaPacientes = PacienteService.getInstance().getPacientes();
+
+        for (Medico medico : listaMedicos) {
+            listaAutenticables.put(medico.getNombreUsuario(), medico);
+        }
+        for (Administrativo administrativo : listaAdministrativos) {
+            listaAutenticables.put(administrativo.getNombreUsuario(), administrativo);
+        }
+        for (Paciente paciente : listaPacientes) {
+            listaAutenticables.put(paciente.getNombreUsuario(), paciente);
+        }
+
+        List<TablaUsuario> turnosTablaUsuario = new ArrayList<>();
+        //recorrer el map y pasar los datos a un objeto de tipo TurnoTablaUsuario
+        //para luego agregarlo a la lista de turnosTablaUsuario
+           for (Map.Entry<String, Usuario> entry : listaAutenticables.entrySet()) {
+                String key = entry.getKey();
+                Usuario value = entry.getValue();
+                if (value instanceof Medico) {
+                    Medico medico = (Medico) value;
+                    turnosTablaUsuario.add(new TablaUsuario(medico.getNombreUsuario(), medico.getNombre(), medico.getApellido(), "Medico"));
+                }
+                if (value instanceof Administrativo) {
+                    Administrativo administrativo = (Administrativo) value;
+                    turnosTablaUsuario.add(new TablaUsuario(administrativo.getNombreUsuario(), administrativo.getNombre(), administrativo.getApellido(), "Administrativo"));
+                }
+                if (value instanceof Paciente) {
+                    Paciente paciente = (Paciente) value;
+                    turnosTablaUsuario.add(new TablaUsuario(paciente.getNombreUsuario(), paciente.getNombre(), paciente.getApellido(),  "Paciente"));
+                }
+            }
+        columnaUserBuscarEditarUsuario.setCellValueFactory(new PropertyValueFactory<>("user"));
+        columnaNombreBuscarEditarUsuario.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        columnaApellidoBuscarEditarUsuario.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        columnaTipoUsuarioBuscarEditarUsuario.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+
+        //cargar la lista de turnosTablaUsuario en la tabla
+        tablaBuscarEditarUsuarioAdminAnchorPane.setItems(FXCollections.observableArrayList(turnosTablaUsuario));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     @FXML
@@ -647,7 +722,8 @@ public class AdminViewController {
 
     //[ BUSCAR TURNOS ] //PENDIENTE HASTA TENER LAS VISTAS DE MOSTRAR TURNOS
     @FXML
-    void checkDoctorSearchAppointment(ActionEvent event) { //CheckBox buscar por Doctor en Ver Turnos
+    void checkDoctorSearchAppointment(ActionEvent event) {
+        //CheckBox buscar por Doctor en Ver Turnos
     }
 
     @FXML
@@ -662,7 +738,110 @@ public class AdminViewController {
 
     }
     @FXML
-    void clickSearchAppointment (ActionEvent event){ //Botón buscar Turnos en Ver Turnos
+    void clickSearchAppointmentAdmin (ActionEvent event){ //Botón buscar Turnos en Ver Turnos
+
+        if (medicoVerTurnosAdminCheckBox.isSelected() && !BuscarVerTurnoAdminField.getText().isEmpty()) {
+            //buscar por Doctor
+            filtrarVerTurnosAdminAnchorPane.setVisible(false);
+            mostrarVerTurnosAdminAnchorPane.setVisible(true);
+            listaTurnosPacienteVerTurnosAdminAnchorPane.setVisible(false);
+            listaTurnosFechaVerTurnosAdminAnchorPane.setVisible(false);
+            listaTurnosMedicoVerTurnosAdminAnchorPane.setVisible(true);
+            userMedicoVerTurnosLabel.setText(BuscarVerTurnoAdminField.getText());
+            //tablaTurnosMedicoAdmin tabla a rellenar con los turnos del médico
+
+
+            Medico medico = MedicoService.getInstance().retornaMedicoPorCampoTextField(BuscarVerTurnoAdminField.getText());
+
+            List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosPorMedico(medico);
+            List <TurnoTabla> listaTurnos2 = new ArrayList<>();
+            for(Turno turno : listaTurnos){
+                Especialidad especialidad = turno.getMedico().getEspecialidad();
+                Medico medico2 = turno.getMedico();
+                Paciente paciente = turno.getPaciente();
+                TurnoTabla turnoTabla = new TurnoTabla(turno.getDia(), turno.getHora(), especialidad, medico2, paciente, (paciente != null) ? paciente.getObraSocial() : null);
+
+                listaTurnos2.add(turnoTabla);
+            }
+
+            columnaFechaTurnosMedico.setCellValueFactory(new PropertyValueFactory<>("dia"));
+            columnaHoraTurnosMedico.setCellValueFactory(new PropertyValueFactory<>("hora"));
+            columnaPacienteTurnosMedico.setCellValueFactory(new PropertyValueFactory<>("paciente"));
+            columnaObraSocialTurnosMedico.setCellValueFactory(new PropertyValueFactory<>("obraSocial"));
+
+            tablaTurnosMedicoAdmin.setItems(FXCollections.observableArrayList(listaTurnos2));
+
+
+        } else if (pacienteVerTurnosAdminCheckBox.isSelected()&& !BuscarVerTurnoAdminField.getText().isEmpty()) {
+            //buscar por Paciente
+            filtrarVerTurnosAdminAnchorPane.setVisible(false);
+            mostrarVerTurnosAdminAnchorPane.setVisible(true);
+            listaTurnosPacienteVerTurnosAdminAnchorPane.setVisible(true);
+            listaTurnosMedicoVerTurnosAdminAnchorPane.setVisible(false);
+            listaTurnosFechaVerTurnosAdminAnchorPane.setVisible(false);
+            userPacienteVerTurnosLabel.setText(BuscarVerTurnoAdminField.getText());
+            //tablaTurnosPacienteAdmin tabla a rellenar con los turnos del paciente
+
+            Paciente paciente = PacienteService.getInstance().retornaPacientePorCampoTextField(BuscarVerTurnoAdminField.getText());
+
+            List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosPorPaciente(paciente);
+            List <TurnoTabla> listaTurnos2 = new ArrayList<>();
+            for(Turno turno : listaTurnos){
+                Especialidad especialidad = turno.getMedico().getEspecialidad();
+                Medico medico2 = turno.getMedico();
+                TurnoTabla turnoTabla = new TurnoTabla(turno.getDia(), turno.getHora(), especialidad, medico2, paciente, (paciente != null) ? paciente.getObraSocial() : null);
+
+                listaTurnos2.add(turnoTabla);
+            }
+            columnaFechaTurnosPaciente.setCellValueFactory(new PropertyValueFactory<>("dia"));
+            columnaHoraTurnosPaciente.setCellValueFactory(new PropertyValueFactory<>("hora"));
+            columnaMedicoTurnosPaciente.setCellValueFactory(new PropertyValueFactory<>("medico"));
+            columnaEspecialidadTurnosPaciente.setCellValueFactory(new PropertyValueFactory<>("especialidad"));
+
+            tablaTurnosPacienteAdmin.setItems(FXCollections.observableArrayList(listaTurnos2));
+
+
+        } else if (fechaVerTurnosAdminCheckBox.isSelected()&& !BuscarVerTurnoAdminField.getText().isEmpty()) {
+            //buscar por Fecha
+            filtrarVerTurnosAdminAnchorPane.setVisible(false);
+            mostrarVerTurnosAdminAnchorPane.setVisible(true);
+            listaTurnosFechaVerTurnosAdminAnchorPane.setVisible(true);
+            listaTurnosPacienteVerTurnosAdminAnchorPane.setVisible(false);
+            listaTurnosMedicoVerTurnosAdminAnchorPane.setVisible(false);
+            fechaVerTurnosLabel.setText(BuscarVerTurnoAdminField.getText());
+            //tablaTurnosFechaAdmin tabla a rellenar con los turnos de la fecha
+
+
+            String fechaString = BuscarVerTurnoAdminField.getText();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate fecha = LocalDate.parse(fechaString, formatter);
+
+            List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosPorDia(fecha);
+            List <TurnoTabla> listaTurnos2 = new ArrayList<>();
+
+            for(Turno turno : listaTurnos){
+                Especialidad especialidad = turno.getMedico().getEspecialidad();
+                Medico medico2 = turno.getMedico();
+                Paciente paciente = turno.getPaciente();
+                TurnoTabla turnoTabla = new TurnoTabla(turno.getDia(), turno.getHora(), especialidad, medico2, paciente, (paciente != null) ? paciente.getObraSocial() : null);
+
+                listaTurnos2.add(turnoTabla);
+            }
+
+            columnaHoraTurnosFecha.setCellValueFactory(new PropertyValueFactory<>("hora"));
+            columnaMedicoTurnosFecha.setCellValueFactory(new PropertyValueFactory<>("medico"));
+            columnaEspecialidadTurnosFecha.setCellValueFactory(new PropertyValueFactory<>("especialidad"));
+            columnaPacienteTurnosFecha.setCellValueFactory(new PropertyValueFactory<>("paciente"));
+
+            tablaTurnosFechaAdmin.setItems(FXCollections.observableArrayList(listaTurnos2));
+
+
+        } else {
+            //no se seleccionó ningún criterio de búsqueda
+            LoginController.showErrorAlert("Debe seleccionar un criterio de búsqueda");
+        }
+
+
 
     }
 
@@ -1195,11 +1374,6 @@ public class AdminViewController {
     }
 
     @FXML
-    void clickSearchAppointmentAdmin(ActionEvent event) {
-
-    }
-
-    @FXML
     void seleccionarMisTurnosAction(MouseEvent event) {
 
     }
@@ -1208,5 +1382,7 @@ public class AdminViewController {
     public void tableDeleteUserAction(MouseEvent mouseEvent) {
     }
 
+
 }
+
 

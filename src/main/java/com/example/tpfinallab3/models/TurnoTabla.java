@@ -11,12 +11,17 @@ public class TurnoTabla {
     private final StringProperty hora;
     private final StringProperty especialidad;
     private final StringProperty medico;
+    private final StringProperty paciente;
+    private final StringProperty obraSocial;
 
-    public TurnoTabla(LocalDate dia, LocalTime hora, Especialidad especialidad, Medico medico) {
+    public TurnoTabla(LocalDate dia, LocalTime hora, Especialidad especialidad, Medico medico, Paciente paciente, String obraSocial) {
         this.dia = new SimpleStringProperty(dia.toString());
-        this.hora= new SimpleStringProperty(hora.toString());
+        this.hora = new SimpleStringProperty(hora.toString());
         this.especialidad = new SimpleStringProperty(especialidad.name());
         this.medico = new SimpleStringProperty(medico.getNombre() + " " + medico.getApellido());
+        this.paciente = new SimpleStringProperty(paciente != null ? paciente.getNombre() + " " + paciente.getApellido() : "");
+        // que pregunte si la obra social es nula, si es nula que muestre vacio
+        this.obraSocial = new SimpleStringProperty(obraSocial != null ? obraSocial : "");
     }
 
     public String getDia() {
@@ -43,27 +48,39 @@ public class TurnoTabla {
         this.hora.set(String.valueOf(hora));
     }
 
-    public StringProperty especialidadProperty() {
-        return especialidad;
-    }
-
     public String getEspecialidad() {
         return especialidad.get();
+    }
+
+    public StringProperty especialidadProperty() {
+        return especialidad;
     }
 
     public void setEspecialidad(String especialidad) {
         this.especialidad.set(especialidad);
     }
 
-    public StringProperty medicoProperty() {
-        return medico;
-    }
-
     public String getMedico() {
         return medico.get();
     }
 
+    public StringProperty medicoProperty() {
+        return medico;
+    }
+
     public void setMedico(String medico) {
         this.medico.set(medico);
+    }
+
+    public String getPaciente() {
+        return paciente.get();
+    }
+
+    public StringProperty pacienteProperty() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente.set(paciente != null ? paciente.getNombre() + " " + paciente.getApellido() : "");
     }
 }

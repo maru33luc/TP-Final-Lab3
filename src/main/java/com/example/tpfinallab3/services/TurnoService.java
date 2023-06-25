@@ -126,6 +126,13 @@ public class TurnoService {
                 .collect(Collectors.toList());
     }
 
+    // lista de turnos de medicos activos
+    public List<Turno> buscarTurnosPorMedicoActivo(Medico medico) {
+        return turnos.stream()
+                .filter(turno -> turno.getMedico().getActivo())
+                .collect(Collectors.toList());
+    }
+
     public void solicitarTurno(Turno turno, Paciente paciente) {
         if(AuthorizationService.getInstance().verificarPermiso(SessionManager.getInstance().getTipoEntidad(), "solicitarTurno")) {
 
