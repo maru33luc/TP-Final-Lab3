@@ -122,7 +122,7 @@
                   <Image url="@../../../images/fondoClaro810x720.png" />
                </image>
             </ImageView>
-            <AnchorPane fx:id="bienvenidoAdminPanel" layoutX="135.0" layoutY="75.0" opacity="0.9" prefHeight="300.0" prefWidth="540.0" style="-fx-background-color: #184752;" visible="false">
+            <AnchorPane fx:id="bienvenidoAdminPanel" layoutX="135.0" layoutY="75.0" opacity="0.9" prefHeight="300.0" prefWidth="540.0" style="-fx-background-color: #184752;">
                <children>
                   <Label layoutX="61.0" layoutY="38.0" text="¡Bienvenido!" textFill="#d3f9eb">
                      <font>
@@ -372,7 +372,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="habilitarTurnosAdminAnchorPane" prefHeight="720.0" prefWidth="810.0">
+            <AnchorPane fx:id="habilitarTurnosAdminAnchorPane" prefHeight="720.0" prefWidth="810.0" visible="false">
                <children>
                   <Label layoutX="208.0" layoutY="14.0" styleClass="cinzel-regular" text="Habilitar Turnos" textFill="#123440">
                      <font>
@@ -386,37 +386,31 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="281.0" layoutY="74.0" styleClass="nanum-regular" text="Nombre:" textFill="#29838c">
+                        <Label layoutX="281.0" layoutY="74.0" styleClass="nanum-regular" text="Nombre y apellido:" textFill="#29838c">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="nombreMedicoHabilitarTurnosField" layoutX="280.0" layoutY="99.0" prefWidth="250.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" />
-                        <Label layoutX="280.0" layoutY="144.0" styleClass="nanum-regular" text="Apellido:" textFill="#29838c">
+                        <TextField fx:id="nombreYApellidoMedicoHabilitarTurnosField" layoutX="280.0" layoutY="99.0" prefWidth="250.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" />
+                        <Label layoutX="280.0" layoutY="150.0" styleClass="nanum-regular" text="Fecha:" textFill="#29838c">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="apellidoMedicoHabilitarTurnosField" layoutX="280.0" layoutY="172.0" prefWidth="250.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" />
-                        <Label layoutX="280.0" layoutY="226.0" styleClass="nanum-regular" text="Fecha:" textFill="#29838c">
+                        <TextField fx:id="fechaHabilitarTurnosField" layoutX="280.0" layoutY="169.0" prefWidth="250.0" promptText="dd/mm/aaaa" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" />
+                        <Label layoutX="280.0" layoutY="224.0" styleClass="nanum-regular" text="Hora inicio:" textFill="#29838c">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="fechaHabilitarTurnosField" layoutX="280.0" layoutY="245.0" prefWidth="250.0" promptText="dd/mm/aaaa" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" />
-                        <Label layoutX="280.0" layoutY="300.0" styleClass="nanum-regular" text="Hora inicio:" textFill="#29838c">
+                        <TextField fx:id="horaInicioHabilitarTurnosField" layoutX="280.0" layoutY="243.0" prefWidth="250.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" />
+                        <Label layoutX="280.0" layoutY="293.0" styleClass="nanum-regular" text="Hora finalización:" textFill="#29838c">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="horaInicioHabilitarTurnosField" layoutX="280.0" layoutY="319.0" prefWidth="250.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" />
-                        <Label layoutX="280.0" layoutY="369.0" styleClass="nanum-regular" text="Hora finalización:" textFill="#29838c">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="horaFinalizacionHabilitarTurnosField" layoutX="280.0" layoutY="388.0" prefWidth="250.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" />
-                        <Button fx:id="confirmarHabilitarTurnosButton" layoutX="318.0" layoutY="466.0" mnemonicParsing="false" onAction="#clickEnableAppointment" prefHeight="25.0" prefWidth="175.0" text="Confirmar">
+                        <TextField fx:id="horaFinalizacionHabilitarTurnosField" layoutX="280.0" layoutY="312.0" prefWidth="250.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" />
+                        <Button fx:id="confirmarHabilitarTurnosButton" layoutX="314.0" layoutY="382.0" mnemonicParsing="false" onAction="#clickEnableAppointment" prefHeight="25.0" prefWidth="175.0" text="Confirmar">
                            <styleClass>
                               <String fx:value="button-oscuro" />
                               <String fx:value="nanum-bold" />

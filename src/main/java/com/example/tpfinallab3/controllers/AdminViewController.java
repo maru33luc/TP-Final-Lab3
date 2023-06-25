@@ -440,10 +440,7 @@ public class AdminViewController {
     private AnchorPane habilitarTurnosAdminAnchorPane;
 
     @FXML
-    private TextField nombreMedicoHabilitarTurnosField;
-
-    @FXML
-    private TextField apellidoMedicoHabilitarTurnosField;
+    private TextField nombreYApellidoMedicoHabilitarTurnosField;
 
     @FXML
     private TextField fechaHabilitarTurnosField;
