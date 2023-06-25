@@ -116,5 +116,14 @@ public class PacienteService {
                 .findFirst()
                 .orElse(null);
     }
+
+    // buscar paciente por mombre y apellido
+
+    public Paciente buscarPacientePorNombreYApellido(String nombre, String apellido) {
+        return pacientes.stream()
+                .filter(paciente -> paciente.getNombre().equalsIgnoreCase(nombre) && paciente.getApellido().equals(apellido))
+                .findFirst()
+                .orElse(null);
+    }
 }
 

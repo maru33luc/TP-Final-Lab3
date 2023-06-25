@@ -164,6 +164,11 @@ public class AdminViewController {
     private CheckBox fechaVerTurnosAdminCheckBox;
 
     @FXML
+    private Label fechaVerTurnosLabel;
+
+    private AnchorPane filtrarVerTurnosAdminAnchorPane;
+
+    @FXML
     private Button guardarEdicionEditarUsuarioAdminButton;
 
     @FXML
@@ -189,6 +194,15 @@ public class AdminViewController {
 
     @FXML
     private CheckBox isMedicoNuevoUsuarioCheckBox;
+
+    @FXML
+    private AnchorPane listaTurnosPacienteVerTurnosAdminAnchorPane;
+
+    @FXML
+    private AnchorPane listaTurnosMedicoVerTurnosAdminAnchorPane;
+
+    @FXML
+    private AnchorPane listaTurnosFechaVerTurnosAdminAnchorPane;
 
     @FXML
     private CheckBox medicoVerTurnosAdminCheckBox;
@@ -298,6 +312,12 @@ public class AdminViewController {
 
     @FXML
     private TextField userNuevoUsuarioField;
+
+    @FXML
+    private Label userPacienteVerTurnosLabel;
+
+    @FXML
+    private Label userMedicoVerTurnosLabel;
 
     @FXML
     private Label usuarioMiPerfilAdminLabel;
@@ -501,7 +521,8 @@ public class AdminViewController {
 
     //[ BUSCAR TURNOS ] //PENDIENTE HASTA TENER LAS VISTAS DE MOSTRAR TURNOS
     @FXML
-    void checkDoctorSearchAppointment(ActionEvent event) { //CheckBox buscar por Doctor en Ver Turnos
+    void checkDoctorSearchAppointment(ActionEvent event) {
+        //CheckBox buscar por Doctor en Ver Turnos
     }
 
     @FXML
@@ -517,6 +538,39 @@ public class AdminViewController {
     }
     @FXML
     void clickSearchAppointment (ActionEvent event){ //Botón buscar Turnos en Ver Turnos
+
+        if (medicoVerTurnosAdminCheckBox.isSelected() && !BuscarVerTurnoAdminField.getText().isEmpty()) {
+            //buscar por Doctor
+            filtrarVerTurnosAdminAnchorPane.setVisible(false);
+            mostrarVerTurnosAdminAnchorPane.setVisible(true);
+            listaTurnosMedicoVerTurnosAdminAnchorPane.setVisible(true);
+            userMedicoVerTurnosLabel.setText(BuscarVerTurnoAdminField.getText());
+            //tablaTurnosMedicoAdmin tabla a rellenar con los turnos del médico
+
+        } else if (pacienteVerTurnosAdminCheckBox.isSelected()&& !BuscarVerTurnoAdminField.getText().isEmpty()) {
+            //buscar por Paciente
+            filtrarVerTurnosAdminAnchorPane.setVisible(false);
+            mostrarVerTurnosAdminAnchorPane.setVisible(true);
+            listaTurnosPacienteVerTurnosAdminAnchorPane.setVisible(true);
+            userPacienteVerTurnosLabel.setText(BuscarVerTurnoAdminField.getText());
+            //tablaTurnosPacienteAdmin tabla a rellenar con los turnos del paciente
+
+        } else if (fechaVerTurnosAdminCheckBox.isSelected()&& !BuscarVerTurnoAdminField.getText().isEmpty()) {
+            //buscar por Fecha
+            filtrarVerTurnosAdminAnchorPane.setVisible(false);
+            mostrarVerTurnosAdminAnchorPane.setVisible(true);
+            listaTurnosFechaVerTurnosAdminAnchorPane.setVisible(true);
+            fechaVerTurnosLabel.setText(BuscarVerTurnoAdminField.getText());
+            //tablaTurnosFechaAdmin tabla a rellenar con los turnos de la fecha
+            
+
+
+        } else {
+            //no se seleccionó ningún criterio de búsqueda
+            LoginController.showErrorAlert("Debe seleccionar un criterio de búsqueda");
+        }
+
+
 
     }
 
