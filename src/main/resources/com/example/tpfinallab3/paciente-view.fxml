@@ -209,89 +209,64 @@
                         </AnchorPane>
                         <AnchorPane fx:id="editProfilePacientePanel" prefHeight="720.0" prefWidth="540.0">
                             <children>
-                        <Label layoutX="90.0" layoutY="84.0" styleClass="nanum-regular" text="Nombre:" textFill="#29838c">
+                        <Label layoutX="90.0" layoutY="84.0" styleClass="nanum-regular" text="Nombre" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
                                 <TextField fx:id="editNombrePacienteField" layoutX="90.0" layoutY="109.0" prefHeight="25.0" prefWidth="360.0" promptText="nombre anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" styleClass="playfair-regular" />
-                        <Label layoutX="90.0" layoutY="149.0" styleClass="nanum-regular" text="Apellido:" textFill="#29838c">
+                        <Label layoutX="90.0" layoutY="149.0" styleClass="nanum-regular" text="Apellido" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
                                 <TextField fx:id="editApellidoPacienteField" layoutX="90.0" layoutY="174.0" prefHeight="35.0" prefWidth="360.0" promptText="apellido anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" styleClass="playfair-regular" />
-                        <Label layoutX="90.0" layoutY="214.0" styleClass="nanum-regular" text="Telefono:" textFill="#29838c">
+                        <Label layoutX="91.0" layoutY="215.0" styleClass="nanum-regular" text="Correo electrónico" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                                <TextField fx:id="editTelefonoPacienteField" layoutX="90.0" layoutY="239.0" prefHeight="35.0" prefWidth="360.0" promptText="telefono anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" styleClass="playfair-regular" />
-                        <Label layoutX="90.0" layoutY="279.0" styleClass="nanum-regular" text="Email:" textFill="#29838c">
+                                <TextField fx:id="editEmailPacienteField" layoutX="91.0" layoutY="240.0" prefHeight="35.0" prefWidth="360.0" promptText="email anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" styleClass="playfair-regular" />
+                        <Label layoutX="90.0" layoutY="280.0" styleClass="nanum-regular" text="Telefono" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                                <TextField fx:id="editEmailPacienteField" layoutX="90.0" layoutY="304.0" prefHeight="35.0" prefWidth="360.0" promptText="email anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" styleClass="playfair-regular" />
-                        <Label layoutX="90.0" layoutY="344.0" styleClass="nanum-regular" text="Obra social:" textFill="#29838c">
+                                <TextField fx:id="editTelefonoPacienteField" layoutX="90.0" layoutY="305.0" prefHeight="35.0" prefWidth="360.0" promptText="telefono anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" styleClass="playfair-regular" />
+                        <Label layoutX="90.0" layoutY="344.0" styleClass="nanum-regular" text="Obra social" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
                                 <TextField fx:id="editObraSocPacienteField" layoutX="90.0" layoutY="369.0" prefHeight="35.0" prefWidth="360.0" promptText="obra social anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" styleClass="playfair-regular" />
-                        <Label layoutX="90.0" layoutY="409.0" styleClass="nanum-regular" text="Nº Afiliado:" textFill="#29838c">
+                        <Label layoutX="90.0" layoutY="409.0" styleClass="nanum-regular" text="Número de afiliado" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
                                 <TextField fx:id="editNroAfiliadoPacienteField" layoutX="90.0" layoutY="434.0" prefHeight="35.0" prefWidth="360.0" promptText="numero anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" styleClass="playfair-regular" />
-                                <Label fx:id="oldPasswordPacienteLabel" layoutX="90.0" layoutY="474.0" styleClass="nanum-regular" text="Contraseña actual:" textFill="#29838c">
+                                <Label fx:id="newPasswordPacienteLabel" layoutX="90.0" layoutY="478.0" styleClass="nanum-regular" text="Contraseña" textFill="#29838c">
                                     <font>
                                         <Font size="16.0" />
                                     </font>
                                 </Label>
-                                <PasswordField fx:id="oldPasswordPacienteField" layoutX="90.0" layoutY="499.0" prefHeight="35.0" prefWidth="360.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 15;" />
-                                <Label fx:id="newPasswordPacienteLabel" layoutX="90.0" layoutY="539.0" styleClass="nanum-regular" text="Nueva contraseña:" textFill="#29838c">
-                                    <font>
-                                        <Font size="16.0" />
-                                    </font>
-                                </Label>
-                                <PasswordField fx:id="newPasswordPacienteField" layoutX="90.0" layoutY="564.0" prefHeight="35.0" prefWidth="319.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 15;" />
-                        <AnchorPane layoutX="408.0" layoutY="564.0" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: #29838C; -fx-border-width: 2;">
+                                <PasswordField fx:id="newPasswordPacienteField" layoutX="90.0" layoutY="503.0" prefHeight="35.0" prefWidth="319.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 15;" />
+                        <TextField fx:id="plainNewPasswordPacienteField" layoutX="91.0" layoutY="503.0" prefHeight="35.0" prefWidth="319.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" styleClass="playfair-regular" visible="false" />
+                        <AnchorPane layoutX="408.0" layoutY="503.0" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: #29838C; -fx-border-width: 2;">
                            <children>
-                              <ImageView fx:id="mostrarNewPasswordEditarPacienteButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onDragDetected="#buttonShowNewPasswordPatient" onKeyPressed="#clickShowNewPasswordEditMyProfileAdmin" visible="false">
+                              <ImageView fx:id="mostrarNewPasswordEditarPacienteButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onMouseClicked="#ocultarPassword" pickOnBounds="true" visible="false">
                                  <image>
                                     <Image url="@../../../images/abrir-ojo.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="ocultarNewPasswordEditarPacienteButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onDragDetected="#buttonHideNewPasswordPatient" onKeyPressed="#clickHideNewPasswordEditMyProfileAdmin">
+                              <ImageView fx:id="ocultarNewPasswordEditarPacienteButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onMouseClicked="#mostrarPassword" pickOnBounds="true">
                                  <image>
                                     <Image url="@../../../images/cerrar-ojo.png" />
                                  </image>
                               </ImageView>
                            </children>
                         </AnchorPane>
-                                <Label fx:id="confirmPasswordPacienteLabel" layoutX="90.0" layoutY="604.0" styleClass="nanum-regular" text="Confirmar contraseña:" textFill="#29838c">
-                                    <font>
-                                        <Font size="16.0" />
-                                    </font>
-                                </Label>
-                                <PasswordField fx:id="confirmPasswordPacienteField" layoutX="90.0" layoutY="629.0" prefHeight="35.0" prefWidth="319.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 15;" />
-                        <AnchorPane layoutX="408.0" layoutY="629.0" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: #29838C; -fx-border-width: 2;">
-                           <children>
-                              <ImageView fx:id="mostrarConfirmarPasswordEditarPacienteButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onDragDetected="#buttonShowConfirmPasswordPatient" onKeyPressed="#clickShowNewPasswordEditMyProfileAdmin" visible="false">
-                                 <image>
-                                    <Image url="@../../../images/abrir-ojo.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="ocultarConfirmarPasswordEditarPacienteButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onDragDetected="#buttonHideConfirmPasswordPatient" onKeyPressed="#clickHideNewPasswordEditMyProfileAdmin">
-                                 <image>
-                                    <Image url="@../../../images/cerrar-ojo.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </AnchorPane>
-                                <Button fx:id="submitChangesPacienteButton" layoutX="183.0" layoutY="675.0" mnemonicParsing="false" onAction="#guardarDatosPacienteEvent" prefHeight="25.0" prefWidth="175.0" text="Guardar">
+                                <Button fx:id="submitChangesPacienteButton" layoutX="183.0" layoutY="558.0" mnemonicParsing="false" onAction="#guardarDatosPacienteEvent" prefHeight="25.0" prefWidth="175.0" text="Guardar">
                            <font>
                               <Font size="14.0" />
                            </font>

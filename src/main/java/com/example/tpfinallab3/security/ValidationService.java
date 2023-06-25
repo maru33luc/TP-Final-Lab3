@@ -81,12 +81,12 @@ public class ValidationService {
             if (paciente.getDni().isEmpty()) {
                 mensaje.append("Número de documento obligatorio\n");
             }
-            else if (!paciente.getDni().matches("\\d")) {
+            else if (!paciente.getDni().matches("\\d+")) {
                 mensaje.append("Número de documento inválido\n");
             }
 
             //si teléfono tiene caracteres distintos de números
-            if (!paciente.getTelefono().isEmpty() && !paciente.getTelefono().matches("\\d")) {
+            if (!paciente.getTelefono().isEmpty() && !paciente.getTelefono().matches("\\d+")) {
                 mensaje.append("Teléfono inválido");
             }
         }
@@ -109,6 +109,7 @@ public class ValidationService {
 
     public void validarDatosEditarPerfilAdmin(String nombre, String apellido, String mail) throws ValidationException {
 
+        //mensaje en el que se van a acumular distintos errores en el ingreso de datos
         StringBuilder mensaje = new StringBuilder();
 
         //si el nombre está vacío y si tiene números
@@ -133,6 +134,54 @@ public class ValidationService {
         }
         else if (!mail.matches("[\\w-]+(\\.[\\w-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
             mensaje.append("Correo electrónico inválido\n");
+        }
+
+        //si el mensaje no está vacío es porque se detectó algún error en el ingreso de datos y se lanza excepción
+        if (!mensaje.toString().isEmpty()) {
+            throw new ValidationException (mensaje.toString());
+        }
+    }
+
+    public void validarDatosEditarPerfilPaciente(String nombre, String apellido, String mail, String telefono, String obraSocial, String numeroAfiliado, String contrasena) throws ValidationException {
+
+        //mensaje en el que se van a acumular distintos errores en el ingreso de datos
+        StringBuilder mensaje = new StringBuilder();
+
+        //si la contraseña está vacía y si es demasiado corta
+        if (contrasena.isEmpty()) {
+            mensaje.append("Contraseña obligatoria\n");
+        }
+        else if (contrasena.length() >= 1 && contrasena.length() < 6) {
+            mensaje.append("Contraseña demasiado corta (mínimo 6 caracteres)\n");
+        }
+
+        //si el nombre está vacío y si tiene números
+        if (nombre.isEmpty()) {
+            mensaje.append("Nombre obligatorio\n");
+        }
+        else if (nombre.matches("^\\d")) {
+            mensaje.append("Nombre no puede contener números\n");
+        }
+
+        //si el apellido está vacío y si tiene números
+        if (apellido.isEmpty()) {
+            mensaje.append("Apellido obligatorio\n");
+        }
+        else if (apellido.matches("^\\d")) {
+            mensaje.append("Apellido no puede contener números\n");
+        }
+
+        //si el mail está vacío y si tiene formato válido
+        if (mail.isEmpty()) {
+            mensaje.append("Correo electrónico obligatorio\n");
+        }
+        else if (!mail.matches("[\\w-]+(\\.[\\w-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
+            mensaje.append("Correo electrónico inválido\n");
+        }
+
+        //si teléfono tiene caracteres distintos de números
+        if (!telefono.isEmpty() && !telefono.matches("\\d+")) {
+            mensaje.append("Teléfono inválido");
         }
 
         //si el mensaje no está vacío es porque se detectó algún error en el ingreso de datos y se lanza excepción

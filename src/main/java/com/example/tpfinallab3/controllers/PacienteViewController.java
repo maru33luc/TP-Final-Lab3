@@ -1,7 +1,10 @@
 package com.example.tpfinallab3.controllers;
 
 import com.example.tpfinallab3.models.*;
+import com.example.tpfinallab3.security.AuthenticationService;
 import com.example.tpfinallab3.security.SessionManager;
+import com.example.tpfinallab3.security.ValidationService;
+import com.example.tpfinallab3.services.AdministrativoService;
 import com.example.tpfinallab3.services.MedicoService;
 import com.example.tpfinallab3.services.PacienteService;
 import com.example.tpfinallab3.services.TurnoService;
@@ -11,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -63,12 +67,6 @@ public class PacienteViewController {
 
     @FXML
     private TableColumn<?, ?> columnaMedicoTurnoPaciente;
-
-    @FXML
-    private PasswordField confirmPasswordPacienteField;
-
-    @FXML
-    private Label confirmPasswordPacienteLabel;
 
     @FXML
     private TextField editApellidoPacienteField;
@@ -143,6 +141,9 @@ public class PacienteViewController {
     private AnchorPane misTurnosPacienteView;
 
     @FXML
+    private ImageView mostrarNewPasswordEditarPacienteButton;
+
+    @FXML
     private Label myProfileButton;
 
     @FXML
@@ -167,10 +168,7 @@ public class PacienteViewController {
     private Label obraSocialPacienteLabel;
 
     @FXML
-    private PasswordField oldPasswordPacienteField;
-
-    @FXML
-    private Label oldPasswordPacienteLabel;
+    private ImageView ocultarNewPasswordEditarPacienteButton;
 
     @FXML
     private Label pacienteUserName;
@@ -186,6 +184,9 @@ public class PacienteViewController {
 
     @FXML
     private AnchorPane pedirTurnoPacienteView;
+
+    @FXML
+    private TextField plainNewPasswordPacienteField;
 
     @FXML
     private AnchorPane profileDataPacientePanel;
@@ -391,10 +392,6 @@ public class PacienteViewController {
     }
 
     @FXML
-    void guardarDatosPacienteEvent(ActionEvent event) {
-    }
-
-    @FXML
     void seleccionarMisTurnosAction(MouseEvent event) {
         TurnoTabla turnoTabla = tablaMisTurnosPaciente.getSelectionModel().getSelectedItem();
         if (turnoTabla != null) {
@@ -501,5 +498,67 @@ public class PacienteViewController {
 
     public void setMainController(LoginController loginController) {
           this.loginController = loginController;
+    }
+
+//EDITAR PERFIL PACIENTE///////////////////////////////////////////////////////////////////////////////////////
+
+    @FXML
+    private void guardarDatosPacienteEvent(ActionEvent event) {
+
+        //se guardan los datos ingresados en variables
+        String nombre = editNombrePacienteField.getText();
+        String apellido = editApellidoPacienteField.getText();
+        String mail = editEmailPacienteField.getText();
+        String telefono = editTelefonoPacienteField.getText();
+        String obraSocial = editObraSocPacienteField.getText();
+        String numeroAfiliado = editNroAfiliadoPacienteField.getText();
+        String contrasena = newPasswordPacienteField.getText();
+
+        try {
+
+            //se validan los datos ingresados
+            ValidationService.getInstance().validarDatosEditarPerfilPaciente(nombre, apellido, mail, telefono, obraSocial, numeroAfiliado, contrasena);
+
+            //se recupera el usuario logueado
+            String usuario = SessionManager.getInstance().getEntidadLogueada().getNombreUsuario();
+
+            //se modifica la contraseña del usuario logueado
+            AuthenticationService.getInstance().modificarContraseña(usuario, contrasena);
+
+            //se modifica los restantes datos del usuario logueado en la lista de pacientes y el json
+            PacienteService.getInstance().modificarPaciente(usuario, nombre, apellido, mail, telefono, obraSocial, numeroAfiliado);
+
+            //se setean los datos a mostrar en el perfil para esta sesión
+            nombrePacienteLabel.setText(nombre);
+            apellidoPacienteLabel.setText(apellido);
+            emailPacienteLabel.setText(mail);
+            telefonoPacienteLabel.setText(telefono);
+            obraSocialPacienteLabel.setText(obraSocial);
+            nroAfiliadoPacienteLabel.setText(numeroAfiliado);
+
+            //se envía mensaje de éxito en la modificación
+            LoginController.showSuccessAlert("Datos modificados exitosamente");
+        } catch (Exception e) {
+            //se envía mensaje de error si se lanzó alguna excepción en las validaciones
+            LoginController.showErrorAlert(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void mostrarPassword(MouseEvent event) {
+        newPasswordPacienteField.setVisible(false);
+        plainNewPasswordPacienteField.setText(newPasswordPacienteField.getText());
+        plainNewPasswordPacienteField.setVisible(true);
+        mostrarNewPasswordEditarPacienteButton.setVisible(true);
+        ocultarNewPasswordEditarPacienteButton.setVisible(false);
+    }
+
+    @FXML
+    private void ocultarPassword(MouseEvent event) {
+        plainNewPasswordPacienteField.setVisible(false);
+        newPasswordPacienteField.setText(plainNewPasswordPacienteField.getText());
+        newPasswordPacienteField.setVisible(true);
+        mostrarNewPasswordEditarPacienteButton.setVisible(false);
+        ocultarNewPasswordEditarPacienteButton.setVisible(true);
     }
 }
