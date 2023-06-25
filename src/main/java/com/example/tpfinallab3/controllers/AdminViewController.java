@@ -18,8 +18,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 
 public class AdminViewController {
@@ -875,18 +879,72 @@ public class AdminViewController {
     //HABILITAR TURNOS
 
     @FXML
-    private void clickEnableAppointment (MouseEvent event){
+    private void clickEnableAppointment (ActionEvent event){
         //cargar fields
-        String nombreYApellido = nombreYApellidoMedicoHabilitarTurnosField.getText();
-        String fecha = fechaHabilitarTurnosField.getText();
-        String horaInicio = horaInicioHabilitarTurnosField.getText();
-        String horaFin = horaFinalizacionHabilitarTurnosField.getText();
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+        DateTimeFormatter hourFormatter = DateTimeFormatter.ofPattern("H:mm");
+        try{
+            Medico medico = validarMedicoHabilitarTurnos(nombreYApellidoMedicoHabilitarTurnosField.getText());
+            if(medico == null){
+                throw new NullPointerException("No se encontro al medico");
+            }
+            LocalDate dia = validarFechaHabilitarTurnos(fechaHabilitarTurnosField.getText(), dateFormatter);
+            LocalTime horaInicio = validarHoraHabilitarTurnos(horaInicioHabilitarTurnosField.getText(), hourFormatter);
+            LocalTime horaFin = validarHoraHabilitarTurnos(horaFinalizacionHabilitarTurnosField.getText(), hourFormatter);
+            if(horaFin.isBefore(horaInicio)){
+                throw new Exception("La hora de finalizacion no puede ser anterior a la hora de inicio");
+            }
+            TurnoService.getInstance().habilitarTurnos(dia, horaInicio, horaFin, medico);
+            LoginController.showSuccessAlert("Turnos habilitados con exito!");
+        }catch (NullPointerException e){
+            LoginController.showErrorAlert(e.getMessage());
+        }catch (Exception e){
+            LoginController.showErrorAlert(e.getMessage());
+        }
+        finally{
+            nombreYApellidoMedicoHabilitarTurnosField.setText("");
+            fechaHabilitarTurnosField.setText("");
+            horaInicioHabilitarTurnosField.setText("");
+            horaFinalizacionHabilitarTurnosField.setText("");
+        }
+
 
         //confirmar y guardar cambios
 
     }
-
-
+    Medico validarMedicoHabilitarTurnos(String nombreYapellido){
+        String input = nombreYapellido;
+        String [] palabras = input.split(" ");
+        String nombreMedico = palabras[0];
+        StringBuilder apellidoMedicoBuilder = new StringBuilder();
+        for(int i = 1; i < palabras.length; i++){
+            if(i > 1){
+                apellidoMedicoBuilder.append(" ");
+            }
+            apellidoMedicoBuilder.append(palabras[i]);
+        }
+        String apellidoMedico = apellidoMedicoBuilder.toString();
+        return MedicoService.getInstance().buscarMedicoPorNombreYApellido(nombreMedico, apellidoMedico);
+    }
+    LocalDate validarFechaHabilitarTurnos(String dia, DateTimeFormatter formatter){
+        LocalDate fecha = null;
+        try{
+            fecha = LocalDate.parse(dia, formatter);
+        }catch (DateTimeParseException e){
+            LoginController.showErrorAlert("La fecha ingresada no es valida");
+        }
+        return fecha;
+    }
+    LocalTime validarHoraHabilitarTurnos(String hora, DateTimeFormatter formatter){
+        LocalTime horaR = null;
+        try{
+            horaR = LocalTime.parse(hora, formatter);
+        }catch (DateTimeParseException e){
+            LoginController.showErrorAlert("La hora ingresada no es valida");
+        }
+        return horaR;
+    }
 
 
 

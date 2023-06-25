@@ -172,7 +172,7 @@
                   <Button fx:id="limpiarFiltrosButton" layoutX="520.0" layoutY="649.0" mnemonicParsing="false" onAction="#limpiarFiltrosTurnos" prefHeight="50.0" prefWidth="170.0" text="Limpiar filtros" />
                   <AnchorPane fx:id="filtrarFechaPanel" layoutX="205.0" layoutY="250.0" prefHeight="130.0" prefWidth="400.0" style="-fx-background-color: #29838c;" visible="false">
                      <children>
-                        <Label fx:id="ingresarFechaLabel" layoutX="111.0" layoutY="6.0" text="Ingrese la fecha (d/m/aaaa):" textFill="WHITE">
+                        <Label fx:id="ingresarFechaLabel" alignment="CENTER" layoutY="6.0" prefWidth="400.0" text="Ingrese la fecha (d/m/aaaa):" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -184,7 +184,7 @@
                   </AnchorPane>
                   <AnchorPane fx:id="filtrarPacientePanel" layoutX="205.0" layoutY="250.0" prefHeight="130.0" prefWidth="400.0" style="-fx-background-color: #29838c;" visible="false">
                      <children>
-                        <Label layoutX="140.0" layoutY="6.0" text="Ingrese nombre y apellido:" textFill="WHITE">
+                        <Label alignment="CENTER" layoutY="6.0" prefWidth="400.0" text="Ingrese nombre y apellido:" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
