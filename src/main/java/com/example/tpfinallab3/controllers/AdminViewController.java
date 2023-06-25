@@ -8,6 +8,7 @@ import com.example.tpfinallab3.services.MedicoService;
 import com.example.tpfinallab3.services.PacienteService;
 import com.example.tpfinallab3.services.TurnoService;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -584,7 +585,12 @@ public class AdminViewController {
         buscarEditarUsuarioAdminAnchorPane.setVisible(true);
         isMedicoBuscarEditarUsuarioCheckBox.setSelected(false);
         isAdminBuscarEditarUsuarioCheckBox.setSelected(false);
+        mostrarEditarUsuarioAdminAnchorPane.setVisible(false);
 
+        cargarUsuariosEnTabla();
+    }
+
+    public void cargarUsuariosEnTabla() {
         Map <String, Usuario> listaAutenticables = new HashMap<>();
 
         Set<Medico> listaMedicos = MedicoService.getInstance().getMedicosActivos();
@@ -604,44 +610,32 @@ public class AdminViewController {
         List<TablaUsuario> turnosTablaUsuario = new ArrayList<>();
         //recorrer el map y pasar los datos a un objeto de tipo TurnoTablaUsuario
         //para luego agregarlo a la lista de turnosTablaUsuario
-           for (Map.Entry<String, Usuario> entry : listaAutenticables.entrySet()) {
-                String key = entry.getKey();
-                Usuario value = entry.getValue();
-                if (value instanceof Medico) {
-                    Medico medico = (Medico) value;
-                    turnosTablaUsuario.add(new TablaUsuario(medico.getNombreUsuario(), medico.getNombre(), medico.getApellido(), "Medico"));
-                }
-                if (value instanceof Administrativo) {
-                    Administrativo administrativo = (Administrativo) value;
-                    turnosTablaUsuario.add(new TablaUsuario(administrativo.getNombreUsuario(), administrativo.getNombre(), administrativo.getApellido(), "Administrativo"));
-                }
-                if (value instanceof Paciente) {
-                    Paciente paciente = (Paciente) value;
-                    turnosTablaUsuario.add(new TablaUsuario(paciente.getNombreUsuario(), paciente.getNombre(), paciente.getApellido(),  "Paciente"));
-                }
+        for (Map.Entry<String, Usuario> entry : listaAutenticables.entrySet()) {
+            String key = entry.getKey();
+            Usuario value = entry.getValue();
+            if (value instanceof Medico) {
+                Medico medico = (Medico) value;
+                turnosTablaUsuario.add(new TablaUsuario(medico.getNombreUsuario(), medico.getNombre(), medico.getApellido(), "Medico"));
             }
-        columnaUserBuscarEditarUsuario.setCellValueFactory(new PropertyValueFactory<>("user"));
+            if (value instanceof Administrativo) {
+                Administrativo administrativo = (Administrativo) value;
+                turnosTablaUsuario.add(new TablaUsuario(administrativo.getNombreUsuario(), administrativo.getNombre(), administrativo.getApellido(), "Administrativo"));
+            }
+            if (value instanceof Paciente) {
+                Paciente paciente = (Paciente) value;
+                turnosTablaUsuario.add(new TablaUsuario(paciente.getNombreUsuario(), paciente.getNombre(), paciente.getApellido(),  "Paciente"));
+            }
+        }
+        columnaUserBuscarEditarUsuario.setCellValueFactory(new PropertyValueFactory<>("usuario"));
         columnaNombreBuscarEditarUsuario.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         columnaApellidoBuscarEditarUsuario.setCellValueFactory(new PropertyValueFactory<>("apellido"));
-        columnaTipoUsuarioBuscarEditarUsuario.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+        columnaTipoUsuarioBuscarEditarUsuario.setCellValueFactory(new PropertyValueFactory<>("entidad"));
 
         //cargar la lista de turnosTablaUsuario en la tabla
         tablaBuscarEditarUsuarioAdminAnchorPane.setItems(FXCollections.observableArrayList(turnosTablaUsuario));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
+
 
     @FXML
     void buttonDeleteUserAdmin(MouseEvent event) { //Opción "Eliminar Usuario" de Menú-Admin
@@ -953,6 +947,35 @@ public class AdminViewController {
     //BUSCAR USUARIO//////////////////////////////////////////////////////////////////////////////////////////
 
     @FXML
+    void clickSearchEdit(ActionEvent event) { //Botón Buscar en Buscar de Editar Usuario
+
+        if(isMedicoBuscarEditarUsuarioCheckBox.isSelected()&& !isAdminBuscarEditarUsuarioCheckBox.isSelected()){
+            ObservableList<TablaUsuario> listaActual = tablaBuscarEditarUsuarioAdminAnchorPane.getItems();
+            List<TablaUsuario> listaFiltrada = new ArrayList<>();
+            for (TablaUsuario usuario : listaActual) {
+                if (usuario.getEntidad().equals("Medico")) {
+                    listaFiltrada.add(usuario);
+                }
+            }
+            tablaBuscarEditarUsuarioAdminAnchorPane.setItems(FXCollections.observableArrayList(listaFiltrada));
+        }else if(!isMedicoBuscarEditarUsuarioCheckBox.isSelected()&& isAdminBuscarEditarUsuarioCheckBox.isSelected()){
+            ObservableList<TablaUsuario> listaActual = tablaBuscarEditarUsuarioAdminAnchorPane.getItems();
+            List<TablaUsuario> listaFiltrada = new ArrayList<>();
+            for (TablaUsuario usuario : listaActual) {
+                if (usuario.getEntidad().equals("Administrativo")) {
+                    listaFiltrada.add(usuario);
+                }
+            }
+            tablaBuscarEditarUsuarioAdminAnchorPane.setItems(FXCollections.observableArrayList(listaFiltrada));
+        } else if (isMedicoBuscarEditarUsuarioCheckBox.isSelected()&& isAdminBuscarEditarUsuarioCheckBox.isSelected()) {
+            showErrorAlert("Debe seleccionar solo un tipo de usuario para buscar");
+        } else if (!isMedicoBuscarEditarUsuarioCheckBox.isSelected()&& !isAdminBuscarEditarUsuarioCheckBox.isSelected()) {
+            cargarUsuariosEnTabla();
+        }
+
+    }
+
+    @FXML
     void checkIsDoctorSearchEdit(ActionEvent event) { //CheckBox buscarMedico en Buscar de Editar Usuario
         //si se selecciona el checkbox de buscarMedico, se deselecciona el de buscarAdmin
         if (isAdminBuscarEditarUsuarioCheckBox.isSelected()) {
@@ -976,46 +999,7 @@ public class AdminViewController {
         return true;
     }
 
-    @FXML
-    void clickSearchEdit(ActionEvent event) { //Botón Buscar en Buscar de Editar Usuario
-        medic = null;
-        admin = null;
 
-        //validar que se haya ingresado un nombre de usuario
-        if (validarFieldUserSearchEdit()){
-            //validar que se haya seleccionado un tipo de usuario
-            if (isMedicoBuscarEditarUsuarioCheckBox.isSelected()) {
-                medic = MedicoService.getInstance().buscarMedicoPorNombreUsuario(userBuscarEditarUsuarioField.getText());
-                if (!medic.isPresent()) //acá valido que el usuario exista y sea médico
-                    showErrorAlert("El usuario no existe o no es médico.");
-            }else if (isAdminBuscarEditarUsuarioCheckBox.isSelected()) {
-                admin = AdministrativoService.getInstance().buscarAdministrativoPorNombreUsuario(userBuscarEditarUsuarioField.getText());
-                if (!admin.isPresent())
-                    showErrorAlert("El usuario no existe o no es administrativo.");
-            }else {
-                showErrorAlert("Debe seleccionar un tipo de usuario.");
-            }
-        }
-
-        //valido que el medico o admin existan.
-        if (medic.isPresent() || admin.isPresent()) {
-            //si existe, muestro anchorPane
-            ocultarTodosLosAnchorPane();
-
-            editarUsuarioAdminAnchorPane.setVisible(true);
-            mostrarEditarUsuarioAdminAnchorPane.setVisible(true);
-            //agrego los datos del usuario a los labels
-            if (medic.isPresent()) {
-                mostrarMedicoEnEditarUsuario (medic);
-            }else if (admin.isPresent()) {
-                mostrarAdminEnEditarUsuario(admin);
-            }
-        }else{
-            //si no existe, muestro un error
-            showErrorAlert("El usuario no existe.");
-
-        }
-    }
 
     private void mostrarMedicoEnEditarUsuario (Optional<Medico> medic){
         tipoUsuarioMostrarEditarUsuarioAdminField.setText("Médico");
