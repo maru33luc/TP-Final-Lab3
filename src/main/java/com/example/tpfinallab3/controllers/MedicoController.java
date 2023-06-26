@@ -265,14 +265,46 @@ public class MedicoController {
         }
         String apellidoPaciente = apellidoPacienteBuilder.toString();
         Paciente paciente = PacienteService.getInstance().buscarPacientePorNombreYApellido(nombrePaciente, apellidoPaciente);
+        List<Paciente> pacientes = new ArrayList<>();
         try{
-            cargarTurnosPorPaciente(paciente);
+            if(paciente != null){
+                cargarTurnosPorPaciente(paciente);
+            }
+            else{
+                pacientes = PacienteService.getInstance().buscarPacientesPorApellido(filtrarTurnosMedicoField.getText());
+                if(pacientes.isEmpty()){
+                    pacientes = PacienteService.getInstance().buscarPacientesPorNombre(filtrarTurnosMedicoField.getText());
+                }
+                cargarTurnosPacientes(pacientes);
+            }
         }catch (Exception e){
             LoginController.showErrorAlert("El paciente no existe");
         }finally {
             filtrarTurnosMedicoField.setText("");
         }
 
+    }
+
+    void cargarTurnosPacientes(List<Paciente> pacientes){
+        Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
+        turnosMedico = FXCollections.observableArrayList();
+        Optional<Medico> medico = MedicoService.getInstance().buscarMedicoPorNombreUsuario(usuarioLogueado.getNombreUsuario());
+        List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosPorMedico(medico.get());
+        List<TurnoTablaMedico> listaTurnosTabla = new ArrayList<>();
+
+        for(Paciente paciente: pacientes){
+            for(Turno turno : listaTurnos){
+                if(turno.getPaciente() != null && paciente.equals(turno.getPaciente())) {
+                    TurnoTablaMedico turnoTablaMedico = new TurnoTablaMedico(turno.getDia(), turno.getHora(), turno.getPaciente());
+                    listaTurnosTabla.add(turnoTablaMedico);
+                    tablaTurnoMedicoColumnaFecha.setCellValueFactory(new PropertyValueFactory("dia"));
+                    tablaMedicoColumnaHora.setCellValueFactory(new PropertyValueFactory("hora"));
+                    tablaMedicoColumnaPaciente.setCellValueFactory(new PropertyValueFactory("paciente"));
+
+                    tablaTurnosMedico.setItems(FXCollections.observableArrayList(listaTurnosTabla));
+                }
+            }
+        }
     }
 
     void cargarTurnosPorPaciente(Paciente paciente){

@@ -144,6 +144,12 @@ public class PacienteService {
         return paciente;
     }
 
+    public List<Paciente> buscarPacientesPorNombre(String nombre){
+        return pacientes.stream()
+                .filter(paciente -> paciente.getNombre().equalsIgnoreCase(nombre))
+                .collect(Collectors.toList());
+    }
+
     public void modificarContraseñaEnPaciente(String nombreUsuario, String nuevaContraseña) {
         pacientes.stream()
                 .filter(p -> p.getNombreUsuario().equalsIgnoreCase(nombreUsuario))
