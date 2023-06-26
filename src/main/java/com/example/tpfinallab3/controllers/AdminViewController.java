@@ -976,6 +976,7 @@ public class AdminViewController {
         }
     }
 
+
     private void mostrarPerfil(){
         bienvenidoAdminPanel.setVisible(false);
         miPerfilAdminAnchorPane.setVisible(true);
@@ -988,6 +989,7 @@ public class AdminViewController {
         eliminarUsuarioAdminAnchorPane.setVisible(false);
         altaUsuarioAdminAnchorPane1.setVisible(false);
     }
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //----------------------------[ VIEW - VER TURNOS ]

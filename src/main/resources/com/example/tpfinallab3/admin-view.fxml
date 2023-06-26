@@ -285,6 +285,37 @@
                               <String fx:value="button-oscuro" />
                            </styleClass>
                         </Button>
+
+                        <!--<Label layoutX="89.0" layoutY="290.0" styleClass="nanum-regular" text="Nueva Contraseña:" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="newPasswordEdicionMiPerfilAdminPassField" layoutX="89.0" layoutY="315.0" prefHeight="25.0" prefWidth="320.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </PasswordField>
+                        <TextField fx:id="newPasswordEdicionMiPerfilAdminField" layoutX="89.0" layoutY="315.0" prefHeight="25.0" prefWidth="320.0" promptText="Email anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13; -fx-font-size: 13;" styleClass="playfair-regular" visible="false">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </TextField>-->
+                       <!-- <AnchorPane layoutX="408.0" layoutY="315.0" prefHeight="31.0" prefWidth="35.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;">
+                           <children>
+                              <ImageView fx:id="mostrarNewPasswordEdicionMiPerfilAdminButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onKeyPressed="#clickShowNewPasswordMyProfileEdit" visible="false">
+                                 <image>
+                                    <Image url="@../../../images/abrir-ojo.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="ocultarNewPasswordEdicionEditarMiPerfilAdminButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onKeyPressed="#clickHideNewPasswordMyProfileEdit">
+                                 <image>
+                                    <Image url="@../../../images/cerrar-ojo.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>-->
+
                      </children>
                   </AnchorPane>
                </children>
