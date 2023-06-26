@@ -1284,34 +1284,6 @@ public class AdminViewController {
 
     //BUSCAR USUARIO//////////////////////////////////////////////////////////////////////////////////////////
 
-    /*@FXML
-    void clickSearchEdit(ActionEvent event) { //Botón Buscar en Buscar de Editar Usuario
-
-        if(isMedicoBuscarEditarUsuarioCheckBox.isSelected()&& !isAdminBuscarEditarUsuarioCheckBox.isSelected()){
-            ObservableList<TablaUsuario> listaActual = tablaBuscarEditarUsuarioAdminAnchorPane.getItems();
-            List<TablaUsuario> listaFiltrada = new ArrayList<>();
-            for (TablaUsuario usuario : listaActual) {
-                if (usuario.getEntidad().equals("Medico")) {
-                    listaFiltrada.add(usuario);
-                }
-            }
-            tablaBuscarEditarUsuarioAdminAnchorPane.setItems(FXCollections.observableArrayList(listaFiltrada));
-        }else if(!isMedicoBuscarEditarUsuarioCheckBox.isSelected()&& isAdminBuscarEditarUsuarioCheckBox.isSelected()){
-            ObservableList<TablaUsuario> listaActual = tablaBuscarEditarUsuarioAdminAnchorPane.getItems();
-            List<TablaUsuario> listaFiltrada = new ArrayList<>();
-            for (TablaUsuario usuario : listaActual) {
-                if (usuario.getEntidad().equals("Administrativo")) {
-                    listaFiltrada.add(usuario);
-                }
-            }
-            tablaBuscarEditarUsuarioAdminAnchorPane.setItems(FXCollections.observableArrayList(listaFiltrada));
-        } else if (isMedicoBuscarEditarUsuarioCheckBox.isSelected()&& isAdminBuscarEditarUsuarioCheckBox.isSelected()) {
-            showErrorAlert("Debe seleccionar solo un tipo de usuario para buscar");
-        } else if (!isMedicoBuscarEditarUsuarioCheckBox.isSelected()&& !isAdminBuscarEditarUsuarioCheckBox.isSelected()) {
-            cargarUsuariosEnTablaEditar();
-        }
-
-    }*/
 
     @FXML
     void clickSearchEdit(ActionEvent event) {
@@ -1423,7 +1395,7 @@ public class AdminViewController {
     }
 
 
-    //[ EDITAR USUARIO ]
+//EDITAR USUARIO//////////////////////////////////////////////////////////////////////////////////////////////
 
     @FXML
     void fieldNameUserEdit(ActionEvent event) { //Field Nombre en Editar Usuario
@@ -1459,36 +1431,28 @@ public class AdminViewController {
     }
 
     @FXML
-    void clickSaveUserEdit(ActionEvent event) { //Botón Guardar Cambios en Editar Usuario
+    void clickSaveUserEdit(ActionEvent event) {
+        String nombre = nombreEdicionEditarUsuarioAdminField.getText();
+        String apellido = apellidoEdicionEditarUsuarioAdminField.getText();
+        String mail = emailEdicionEditarUsuarioAdminField.getText();
+        String contrasena = passwordEdicionEditarUsuarioAdminField.getText();
+        Especialidad especialidad = (Especialidad) especialidadEdicionEditarUsuarioAdminChoiceBox.getValue();
 
-            //se guardan los datos ingresados
-            String nombre = nombreEdicionEditarUsuarioAdminField.getText();
-            String apellido = apellidoEdicionEditarUsuarioAdminField.getText();
-            String mail = emailEdicionEditarUsuarioAdminField.getText();
-            String contrasena = passwordEdicionEditarUsuarioAdminField.getText();
-
-            Especialidad especialidad = (Especialidad) especialidadEdicionEditarUsuarioAdminChoiceBox.getValue();
-
-            try {
-                //se validan los datos ingresados
-                ValidationService.getInstance().validarDatosEditarUsuario(nombre, apellido, mail, contrasena);
-                //se verifica si el usuario que está siendo modificado es médico o administrativo
-                Medico medico = MedicoService.getInstance().buscarMedicoPorNombreYApellido(nombreMostrarEditarUsuarioAdminLabel.getText(), apellidoMostrarEditarUsuarioAdminLabel.getText());
-                Administrativo administrativo = AdministrativoService.getInstance().buscarAdministrativoPorNombreYApellido(nombreMostrarEditarUsuarioAdminLabel.getText(), apellidoMostrarEditarUsuarioAdminLabel.getText());
-                //si es medico se modifica la contraseña, en lista de medicos y el json
-                if (medico != null) {
-                    AuthenticationService.getInstance().modificarContraseña(medico.getNombreUsuario(), contrasena);
-                    MedicoService.getInstance().modificarMedico(medico.getNombreUsuario(), nombre, apellido, mail,especialidad);
-
-                }
-                //si es administrativo se modifica la contraseña, en lista de administrativos y el json
-                else if (administrativo != null) {
-                    AuthenticationService.getInstance().modificarContraseña(administrativo.getNombreUsuario(), contrasena);
-                    AdministrativoService.getInstance().modificarAdministrativo(administrativo.getNombreUsuario(), nombre, apellido, mail);
-                }
-                //se envía mensaje de éxito en la modificación
-                LoginController.showSuccessAlert("Datos modificados exitosamente");
-                ocultarTodosLosAnchorPane();
+        try {
+            Medico medico = MedicoService.getInstance().buscarMedicoPorNombreYApellido(nombreMostrarEditarUsuarioAdminLabel.getText(), apellidoMostrarEditarUsuarioAdminLabel.getText());
+            Administrativo administrativo = AdministrativoService.getInstance().buscarAdministrativoPorNombreYApellido(nombreMostrarEditarUsuarioAdminLabel.getText(), apellidoMostrarEditarUsuarioAdminLabel.getText());
+            if (medico != null) {
+                ValidationService.getInstance().validarDatosEditarMedico(nombre, apellido, mail, contrasena, especialidad);
+                AuthenticationService.getInstance().modificarContraseña(medico.getNombreUsuario(), contrasena);
+                MedicoService.getInstance().modificarMedico(medico.getNombreUsuario(), nombre, apellido, mail,especialidad);
+            }
+            else if (administrativo != null) {
+                ValidationService.getInstance().validarDatosEditarAdministrativo(nombre, apellido, mail, contrasena);
+                AuthenticationService.getInstance().modificarContraseña(administrativo.getNombreUsuario(), contrasena);
+                AdministrativoService.getInstance().modificarAdministrativo(administrativo.getNombreUsuario(), nombre, apellido, mail);
+            }
+            LoginController.showSuccessAlert("Datos modificados exitosamente");
+            ocultarTodosLosAnchorPane();
             } catch (Exception e) {
                 LoginController.showErrorAlert(e.getMessage());
             }
