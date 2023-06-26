@@ -30,8 +30,8 @@ public class ValidationService {
         if (usuario.isEmpty()) {
             mensaje.append("Usuario obligatorio\n");
         }
-        else if (!usuario.matches("[a-zA-Z]*")) {
-            mensaje.append("Usuario no puede contener números ni caracteres especiales\n");
+        else if (!usuario.matches("[a-zA-Z0-9]*")) {
+            mensaje.append("Usuario no puede contener caracteres especiales\n");
         }
         else if (AuthenticationService.getInstance().usuarioExiste(usuario)) {
             mensaje.append("Ya existe un usuario registrado con el mismo nombre\n");

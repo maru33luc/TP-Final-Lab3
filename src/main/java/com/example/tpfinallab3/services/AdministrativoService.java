@@ -54,10 +54,6 @@ public class AdministrativoService {
         guardarAdministrativosJson();
     }
 
-    public void eliminarAdministrativoPorNombreUsuario(String nombreUsuario) {
-        administrativos.removeIf(a -> a.getNombreUsuario().equalsIgnoreCase(nombreUsuario));
-    }
-
     public Optional<Administrativo> buscarAdministrativoPorNombreUsuario(String nombreUsuario) {
         return administrativos.stream()
                 .filter(a -> a.getNombreUsuario().equalsIgnoreCase(nombreUsuario))
