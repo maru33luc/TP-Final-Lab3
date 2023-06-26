@@ -3,18 +3,12 @@ package com.example.tpfinallab3.models;
 import java.util.Objects;
 
 public class Administrativo extends Usuario {
-    private boolean admin;
 
     public Administrativo() {
     }
 
     public Administrativo(String nombreUsuario, String contrasena, String nombre, String apellido, String mail) {
         super(nombreUsuario, contrasena, nombre, apellido, mail);
-        this.admin = false;
-    }
-
-    public Boolean getAdmin() {
-        return admin;
     }
 
     @Override
