@@ -153,9 +153,7 @@ public class MedicoController {
                 tablaTurnoMedicoColumnaFecha.setCellValueFactory(new PropertyValueFactory("dia"));
                 tablaMedicoColumnaHora.setCellValueFactory(new PropertyValueFactory("hora"));
                 tablaMedicoColumnaPaciente.setCellValueFactory(new PropertyValueFactory("paciente"));
-
-
-            }else {
+            }else{
                 TurnoTablaMedico turnoTablaMedico = new TurnoTablaMedico(turno.getDia(), turno.getHora(), null);
                 listaTurnosTabla.add(turnoTablaMedico);
                 tablaTurnoMedicoColumnaFecha.setCellValueFactory(new PropertyValueFactory("dia"));
