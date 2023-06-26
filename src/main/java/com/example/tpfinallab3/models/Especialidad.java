@@ -39,4 +39,6 @@ public enum Especialidad {
     public boolean equalsIgnoreCase(String especialidad) {
         return this.especialidad.equalsIgnoreCase(especialidad);
     }
+
+
 }
