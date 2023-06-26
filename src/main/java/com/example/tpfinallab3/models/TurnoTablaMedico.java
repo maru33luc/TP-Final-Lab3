@@ -11,11 +11,23 @@ public class TurnoTablaMedico {
     private final StringProperty hora;
     private final StringProperty paciente;
 
-    public TurnoTablaMedico(LocalDate dia, LocalTime hora, Paciente paciente) {
+    /*public TurnoTablaMedico(LocalDate dia, LocalTime hora, Paciente paciente) {
         this.dia = new SimpleStringProperty(dia.toString());
         this.hora= new SimpleStringProperty(hora.toString());
         this.paciente = new SimpleStringProperty(paciente.getNombre() + " " + paciente.getApellido());
+    }*/
+
+    public TurnoTablaMedico(LocalDate dia, LocalTime hora, Paciente paciente) {
+        this.dia = new SimpleStringProperty(dia.toString());
+        this.hora = new SimpleStringProperty(hora.toString());
+
+        if (paciente != null) {
+            this.paciente = new SimpleStringProperty(paciente.getNombre() + " " + paciente.getApellido());
+        } else {
+            this.paciente = new SimpleStringProperty("Disponible ");
+        }
     }
+
 
     public String getDia() {
         return dia.get();
