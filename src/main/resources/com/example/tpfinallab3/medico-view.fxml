@@ -24,7 +24,7 @@
                   <Image url="@../../../images/fondo270x720.png" />
                </image>
             </ImageView>
-            <Label layoutX="43.0" layoutY="20.0" styleClass="cinzel-regular" text="Doctor" textFill="#ffe9bf">
+            <Label alignment="CENTER" layoutY="20.0" prefWidth="270.0" styleClass="cinzel-regular" text="Doctor" textFill="#ffe9bf">
                <font>
                   <Font name="Cinzel Decorative Regular" size="40.0" />
                </font>
@@ -87,12 +87,12 @@
             </ImageView>
             <AnchorPane fx:id="bienvenidoDoctorPanel" layoutX="135.0" layoutY="145.0" maxWidth="540.0" opacity="0.9" prefHeight="350.0" prefWidth="540.0" style="-fx-background-color: #123440; -fx-border-color: #FDC373; -fx-border-width: 6;">
                <children>
-                  <Label layoutX="81.0" layoutY="45.0" text="¡Bienvenido!" textFill="#d3f9eb">
+                  <Label layoutX="81.0" layoutY="45.0" styleClass="cinzel-regular" text="¡Bienvenido!" textFill="#d3f9eb">
                      <font>
                         <Font name="Cinzel Decorative Regular" size="56.0" />
                      </font>
                   </Label>
-                  <Label fx:id="doctorUserName" alignment="CENTER" layoutX="12.0" layoutY="158.0" prefWidth="516.0" text="Doctor" textFill="#d3f9eb">
+                  <Label fx:id="doctorUserName" alignment="CENTER" layoutX="12.0" layoutY="158.0" prefWidth="516.0" styleClass="cinzel-regular" text="Doctor" textFill="#d3f9eb">
                      <font>
                         <Font name="Cinzel Decorative Regular" size="40.0" />
                      </font>
@@ -109,55 +109,55 @@
                   <AnchorPane layoutY="145.0" opacity="0.9" prefHeight="350.0" prefWidth="540.0" style="-fx-background-color: #123440; -fx-border-color: #FDC373; -fx-border-width: 6;">
                      <children>
 
-                        <Label layoutX="153.0" layoutY="62.0" styleClass="playfair-regular" text="User: " textFill="#d3f9eb">
+                        <Label layoutX="153.0" layoutY="63.0" styleClass="playfair-regular" text="User: " textFill="#d3f9eb">
 
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
 
-                        <Label fx:id="userMedicoLabel" layoutX="215.0" layoutY="62.0" styleClass="playfair-regular" text="User." textFill="#d3f9eb">
+                        <Label fx:id="userMedicoLabel" layoutX="213.0" layoutY="63.0" styleClass="playfair-regular" text="User." textFill="#d3f9eb">
 
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <Label layoutX="153.0" layoutY="97.0" styleClass="playfair-regular" text="Nombre: " textFill="#d3f9eb">
+                        <Label layoutX="153.0" layoutY="98.0" styleClass="playfair-regular" text="Nombre: " textFill="#d3f9eb">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <Label fx:id="nombreMedicoLabel" layoutX="247.0" layoutY="97.0" styleClass="playfair-regular" text="Nombre." textFill="#d3f9eb">
+                        <Label fx:id="nombreMedicoLabel" layoutX="243.0" layoutY="98.0" styleClass="playfair-regular" text="Nombre." textFill="#d3f9eb">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <Label layoutX="153.0" layoutY="132.0" styleClass="playfair-regular" text="Apellido:" textFill="#d3f9eb">
+                        <Label layoutX="153.0" layoutY="133.0" styleClass="playfair-regular" text="Apellido:" textFill="#d3f9eb">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <Label fx:id="apellidoMedicoLabel" layoutX="243.0" layoutY="132.0" styleClass="playfair-regular" text="Apellido." textFill="#d3f9eb">
+                        <Label fx:id="apellidoMedicoLabel" layoutX="239.0" layoutY="133.0" styleClass="playfair-regular" text="Apellido." textFill="#d3f9eb">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <Label layoutX="153.0" layoutY="167.0" styleClass="playfair-regular" text="Email:" textFill="#d3f9eb">
+                        <Label layoutX="153.0" layoutY="168.0" styleClass="playfair-regular" text="Email:" textFill="#d3f9eb">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <Label fx:id="emailMedicoLabel" layoutX="220.0" layoutY="167.0" styleClass="playfair-regular" text="email@gmail.com" textFill="#d3f9eb">
+                        <Label fx:id="emailMedicoLabel" layoutX="217.0" layoutY="168.0" styleClass="playfair-regular" text="email@gmail.com" textFill="#d3f9eb">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <Label layoutX="153.0" layoutY="202.0" styleClass="playfair-regular" text="Especialidad:" textFill="#d3f9eb">
+                        <Label layoutX="153.0" layoutY="203.0" styleClass="playfair-regular" text="Especialidad:" textFill="#d3f9eb">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <Label fx:id="especialidadMedicoLabel" layoutX="282.0" layoutY="202.0" styleClass="playfair-regular" text="especialidad." textFill="#d3f9eb">
+                        <Label fx:id="especialidadMedicoLabel" layoutX="276.0" layoutY="203.0" styleClass="playfair-regular" text="especialidad." textFill="#d3f9eb">
                            <font>
                               <Font size="19.0" />
                            </font>
@@ -211,7 +211,7 @@
                                     <String fx:value="nanum-bold" />
                                  </styleClass>
                               </Button>
-                              <TextField fx:id="filtrarTurnosMedicoField" layoutX="21.0" layoutY="164.0" prefWidth="250.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" />
+                              <TextField fx:id="filtrarTurnosMedicoField" layoutX="21.0" layoutY="164.0" prefWidth="250.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" styleClass="playfair-regular" />
                            </children>
                         </AnchorPane>
                         <TableView fx:id="tablaTurnosMedico" layoutX="290.0" layoutY="35.0" onMouseClicked="#clickSeleccionPacienteVerTurnosDoctor" prefHeight="540.0" prefWidth="510.0">
@@ -230,7 +230,7 @@
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <Label fx:id="userPacienteVerTurnoLabel" layoutX="215.0" layoutY="63.0" styleClass="playfair-regular" text="User." textFill="#d3f9eb">
+                        <Label fx:id="userPacienteVerTurnoLabel" layoutX="213.0" layoutY="63.0" styleClass="playfair-regular" text="User." textFill="#d3f9eb">
                            <font>
                               <Font size="19.0" />
                            </font>
@@ -240,7 +240,7 @@
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <Label fx:id="nombrePacienteVerTurnoLabel" layoutX="247.0" layoutY="98.0" styleClass="playfair-regular" text="Nombre." textFill="#d3f9eb">
+                        <Label fx:id="nombrePacienteVerTurnoLabel" layoutX="243.0" layoutY="98.0" styleClass="playfair-regular" text="Nombre." textFill="#d3f9eb">
                            <font>
                               <Font size="19.0" />
                            </font>
@@ -250,7 +250,7 @@
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <Label fx:id="apellidoPacienteVerTurnoLabel" layoutX="243.0" layoutY="133.0" styleClass="playfair-regular" text="Apellido." textFill="#d3f9eb">
+                        <Label fx:id="apellidoPacienteVerTurnoLabel" layoutX="239.0" layoutY="133.0" styleClass="playfair-regular" text="Apellido." textFill="#d3f9eb">
                            <font>
                               <Font size="19.0" />
                            </font>
@@ -260,7 +260,7 @@
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <Label fx:id="obraSocialPacienteVerTurnoLabel" layoutX="267.0" layoutY="168.0" styleClass="playfair-regular" text="Obra social. " textFill="#d3f9eb">
+                        <Label fx:id="obraSocialPacienteVerTurnoLabel" layoutX="265.0" layoutY="168.0" styleClass="playfair-regular" text="Obra social. " textFill="#d3f9eb">
                            <font>
                               <Font size="19.0" />
                            </font>
@@ -270,7 +270,7 @@
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <Label fx:id="nroAfiliadoPacienteVerTurnoLabel" layoutX="274.0" layoutY="203.0" styleClass="playfair-regular" text="123456" textFill="#d3f9eb">
+                        <Label fx:id="nroAfiliadoPacienteVerTurnoLabel" layoutX="271.0" layoutY="203.0" styleClass="playfair-regular" text="123456" textFill="#d3f9eb">
                            <font>
                               <Font size="19.0" />
                            </font>
