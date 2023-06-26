@@ -1284,34 +1284,6 @@ public class AdminViewController {
 
     //BUSCAR USUARIO//////////////////////////////////////////////////////////////////////////////////////////
 
-    /*@FXML
-    void clickSearchEdit(ActionEvent event) { //Botón Buscar en Buscar de Editar Usuario
-
-        if(isMedicoBuscarEditarUsuarioCheckBox.isSelected()&& !isAdminBuscarEditarUsuarioCheckBox.isSelected()){
-            ObservableList<TablaUsuario> listaActual = tablaBuscarEditarUsuarioAdminAnchorPane.getItems();
-            List<TablaUsuario> listaFiltrada = new ArrayList<>();
-            for (TablaUsuario usuario : listaActual) {
-                if (usuario.getEntidad().equals("Medico")) {
-                    listaFiltrada.add(usuario);
-                }
-            }
-            tablaBuscarEditarUsuarioAdminAnchorPane.setItems(FXCollections.observableArrayList(listaFiltrada));
-        }else if(!isMedicoBuscarEditarUsuarioCheckBox.isSelected()&& isAdminBuscarEditarUsuarioCheckBox.isSelected()){
-            ObservableList<TablaUsuario> listaActual = tablaBuscarEditarUsuarioAdminAnchorPane.getItems();
-            List<TablaUsuario> listaFiltrada = new ArrayList<>();
-            for (TablaUsuario usuario : listaActual) {
-                if (usuario.getEntidad().equals("Administrativo")) {
-                    listaFiltrada.add(usuario);
-                }
-            }
-            tablaBuscarEditarUsuarioAdminAnchorPane.setItems(FXCollections.observableArrayList(listaFiltrada));
-        } else if (isMedicoBuscarEditarUsuarioCheckBox.isSelected()&& isAdminBuscarEditarUsuarioCheckBox.isSelected()) {
-            showErrorAlert("Debe seleccionar solo un tipo de usuario para buscar");
-        } else if (!isMedicoBuscarEditarUsuarioCheckBox.isSelected()&& !isAdminBuscarEditarUsuarioCheckBox.isSelected()) {
-            cargarUsuariosEnTablaEditar();
-        }
-
-    }*/
 
     @FXML
     void clickSearchEdit(ActionEvent event) {

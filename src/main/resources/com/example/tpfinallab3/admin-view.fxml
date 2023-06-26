@@ -993,7 +993,7 @@
                               </Button>
                            </children>
                         </AnchorPane>
-                        <TableView fx:id="tablaBuscarAltaUsuarioAdminAnchorPane1" disable="true" layoutX="290.0" layoutY="110.0" onMouseClicked="#tableAltaUserAction" prefHeight="600.0" prefWidth="510.0">
+                        <TableView fx:id="tablaBuscarAltaUsuarioAdminAnchorPane1"  layoutX="290.0" layoutY="110.0" onMouseClicked="#tableAltaUserAction" prefHeight="600.0" prefWidth="510.0">
                            <columns>
                               <TableColumn fx:id="columnaUsuarioBuscarAltaUsuario1" text="User" />
                               <TableColumn fx:id="columnaNombreBuscarAltaUsuario1" prefWidth="120.0" text="Nombre" />
