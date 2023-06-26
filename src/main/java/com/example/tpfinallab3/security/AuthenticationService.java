@@ -1,7 +1,10 @@
 package com.example.tpfinallab3.security;
 
 import com.example.tpfinallab3.models.UsuarioInfo;
+import com.example.tpfinallab3.services.AdministrativoService;
 import com.example.tpfinallab3.services.JsonService;
+import com.example.tpfinallab3.services.MedicoService;
+import com.example.tpfinallab3.services.PacienteService;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.HashMap;
@@ -37,6 +40,7 @@ public class AuthenticationService {
         if(this.usuarios!=null){
             if (usuarios.containsKey(nombreUsuario)) {
                 String contrasenaAlmacenada = obtenerContrasenaAlmacenada(nombreUsuario);
+                String contraseña2= BCrypt.hashpw(contrasena, BCrypt.gensalt());  ///-----------ESTO ES PARA VER SI ANDA EL HASH
                 return BCrypt.checkpw(contrasena, contrasenaAlmacenada);
             }
         }
@@ -70,6 +74,9 @@ public class AuthenticationService {
             String contraseñaHasheada = BCrypt.hashpw(nuevaContraseña, BCrypt.gensalt());
             UsuarioInfo usuarioInfo = usuarios.get(nombreUsuario);
             usuarioInfo.setContrasena(contraseñaHasheada);
+            PacienteService.getInstance().modificarContraseñaEnPaciente(nombreUsuario, nuevaContraseña);
+            MedicoService.getInstance().modificarContraseñaEnMedico(nombreUsuario, nuevaContraseña);
+            AdministrativoService.getInstance().modificarContraseñaEnAdministrativo(nombreUsuario, nuevaContraseña);
             JsonService.getInstance().cambiarContraseñaJson(nombreUsuario, contraseñaHasheada, RUTA_JSON);
             System.out.println("Contraseña modificada correctamente");
         } else {

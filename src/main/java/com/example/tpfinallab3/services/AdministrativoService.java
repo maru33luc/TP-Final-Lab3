@@ -128,4 +128,16 @@ public class AdministrativoService {
     public void guardarAdministrativosJson() {
         JsonService.getInstance().guardarJson(administrativos, RUTA_JSON);
     }
+
+    public void modificarContraseñaEnAdministrativo(String nombreUsuario, String nuevaContraseña) {
+        buscarAdministrativoPorNombreUsuario(nombreUsuario)
+                .ifPresentOrElse(
+                        administrativoEncontrado -> {
+                            administrativoEncontrado.setContrasena(nuevaContraseña);
+                            System.out.println("Contraseña modificada correctamente");
+                            guardarAdministrativosJson();
+                        },
+                        () -> System.out.println("No se encontró el administrativo")
+                );
+    }
 }

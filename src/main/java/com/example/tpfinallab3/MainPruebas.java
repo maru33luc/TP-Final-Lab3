@@ -82,7 +82,7 @@ public class MainPruebas {
 
         //  PROBANDO MODIFICAR CONTRSEÑA
         System.out.println("---------------- MODIFICANDO CONTRASEÑA  ----------------------------");
-        AuthenticationService.getInstance().modificarContraseña("carlosfuentes",  "12345678");
+        AuthenticationService.getInstance().modificarContraseña("carlosfuentes",  "123456");
 
         String nombreUsuario = SessionManager.getInstance().getEntidadLogueada().getNombreUsuario();
 

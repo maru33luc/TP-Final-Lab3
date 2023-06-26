@@ -7,6 +7,8 @@ import com.example.tpfinallab3.security.ValidationService;
 import com.example.tpfinallab3.services.MedicoService;
 import com.example.tpfinallab3.services.PacienteService;
 import com.example.tpfinallab3.services.TurnoService;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -210,6 +212,10 @@ public class PacienteViewController {
 
     private ObservableList<Turno> turnosPaciente;
 
+    // Crear dos propiedades booleanas para controlar el estado de selección de los ChoiceBox
+    private BooleanProperty especialidadSelected = new SimpleBooleanProperty(false);
+    private BooleanProperty medicoSelected = new SimpleBooleanProperty(false);
+
     @FXML
     public void initialize() {
         Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
@@ -244,14 +250,6 @@ public class PacienteViewController {
         cargarTablaMisTurnos();
         cargarTablaTurnos();
 
-        // obtener todos los enums de Especialidad dentro de un array pasandolos a String
-        especialidadPacienteChoiceBox.getItems().addAll(Especialidad.values());
-        especialidadPacienteChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                filtrarTurnosPorEspecialidad();
-            }
-        });
-
         // cargar los nombres y apellidos de los medicos dentro del choice box
         Set<Medico> medicos = MedicoService.getInstance().getMedicosActivos();
 
@@ -263,13 +261,53 @@ public class PacienteViewController {
 
             medicoPacienteChoiceBox.getItems().add(sb.toString());
         }
+        // obtener todos los enums de Especialidad dentro de un array pasandolos a String
+        especialidadPacienteChoiceBox.getItems().addAll(Especialidad.values());
+
+
+        /*especialidadPacienteChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                filtrarTurnosPorEspecialidad();
+            }
+        });
 
         // detecta el cambio de medico y filtra los turnos por medico
         medicoPacienteChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 filtrarTurnosPorMedico();
             }
+        });*/
+
+
+
+// En el método initialize() o donde configures tus componentes, añade los listeners
+        especialidadPacienteChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                filtrarTurnosPorEspecialidad();
+            }
         });
+
+        medicoPacienteChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                filtrarTurnosPorMedico();
+            }
+        });
+
+// Agrega un listener al ChoiceBox de especialidades para deseleccionar el ChoiceBox de médicos
+        especialidadPacienteChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                medicoPacienteChoiceBox.getSelectionModel().clearSelection();
+            }
+        });
+
+// Agrega un listener al ChoiceBox de médicos para deseleccionar el ChoiceBox de especialidades
+        medicoPacienteChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                especialidadPacienteChoiceBox.getSelectionModel().clearSelection();
+            }
+        });
+
+
     }
 
     void cargarTablaMisTurnos() {
@@ -382,6 +420,7 @@ public class PacienteViewController {
 
     @FXML
     void verTurnosAction(MouseEvent event) {
+            bienvenidoUserPanel.setVisible(false);
             profileDataPacientePanel.setVisible(false);
             misTurnosPacienteView.setVisible(true);
             pedirTurnoPacienteView.setVisible(false);

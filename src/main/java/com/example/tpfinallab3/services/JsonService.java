@@ -134,13 +134,16 @@ public class JsonService {
         // Lee el archivo JSON existente y almacena su contenido en el mapa
 
         try {
-            usuarioInfoMap = objectMapper.readValue(new File(ruta), new TypeReference<Map<String, UsuarioInfo>>() {});
+            usuarioInfoMap = objectMapper.readValue(new File(ruta), new TypeReference<Map<String, UsuarioInfo>>() {
+            });
+            System.out.println("--------------------------------------");
+            System.out.println("MAP DE USUARIOS DEL JSON: " + usuarioInfoMap);
         } catch (IOException e) {
             // Si ocurre una excepción al leer el archivo, se asume que no existe o está vacío
-            usuarioInfoMap = new HashMap<>();
         }
         UsuarioInfo usuarioInfo = usuarioInfoMap.get(nombreUsuario);
         usuarioInfo.setContrasena(contraseñaHasheada);
+        System.out.println("usuarioInfo.toString() = " + usuarioInfo.toString());
         usuarioInfoMap.put(nombreUsuario, usuarioInfo);
         try {
             objectMapper.writeValue(new File(ruta), usuarioInfoMap);

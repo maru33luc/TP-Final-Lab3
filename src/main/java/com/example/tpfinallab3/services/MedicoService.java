@@ -174,4 +174,23 @@ public class MedicoService {
         return medico;
     }
 
+    public void modificarContraseñaEnMedico(String nombreUsuario, String nuevaContraseña) {
+        Optional<Medico> medico = buscarMedicoPorNombreUsuario(nombreUsuario);
+        if (medico.isPresent()) {
+            medico.get().setContrasena(nuevaContraseña);
+            guardarMedicosJson();
+        }
+    }
+
+    public void modificarMedico(String usuario, String nombre, String apellido, String mail) {
+        medicos.stream()
+                .filter(a -> a.getNombreUsuario().equalsIgnoreCase(usuario))
+                .findFirst()
+                .ifPresent(a -> {
+                    a.setNombre(nombre);
+                    a.setApellido(apellido);
+                    a.setMail(mail);
+                });
+        guardarMedicosJson();
+    }
 }

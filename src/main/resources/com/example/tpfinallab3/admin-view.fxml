@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -29,7 +30,7 @@
                   <Font name="Cinzel Decorative Regular" size="40.0" />
                </font>
             </Label>
-            <Label fx:id="miperfilAdminButton" accessibleRole="BUTTON" layoutX="45.0" layoutY="115.0" onMouseClicked="#buttonMyProfileAdmin" text="Mi Perfil" textFill="#d3f9eb">
+            <Label fx:id="miperfilAdminButton" accessibleRole="BUTTON" layoutX="45.0" layoutY="92.0" onMouseClicked="#buttonMyProfileAdmin" text="Mi Perfil" textFill="#d3f9eb">
                <font>
                   <Font size="20.0" />
                </font>
@@ -41,7 +42,7 @@
                   <String fx:value="profile-button" />
                </styleClass>
             </Label>
-            <Label fx:id="verTurnosAdminButton" accessibleRole="BUTTON" layoutX="45.0" layoutY="155.0" onMouseClicked="#buttonViewAppointmentAdmin" text="Ver Turnos" textFill="#d3f9eb">
+            <Label fx:id="verTurnosAdminButton" accessibleRole="BUTTON" layoutX="45.0" layoutY="136.0" onMouseClicked="#buttonViewAppointmentAdmin" text="Ver Turnos" textFill="#d3f9eb">
                <font>
                   <Font size="20.0" />
                </font>
@@ -53,7 +54,7 @@
                   <String fx:value="profile-button" />
                </styleClass>
             </Label>
-            <Label fx:id="agregarTurnoAdminButton" accessibleRole="BUTTON" layoutX="45.0" layoutY="195.0" onMouseClicked="#buttonAddAppointmentAdmin" text="Habilitar Turnos" textFill="#d3f9eb">
+            <Label fx:id="agregarTurnoAdminButton" accessibleRole="BUTTON" layoutX="47.0" layoutY="177.0" onMouseClicked="#buttonAddAppointmentAdmin" text="Habilitar Turnos" textFill="#d3f9eb">
                <font>
                   <Font size="20.0" />
                </font>
@@ -65,7 +66,7 @@
                   <String fx:value="profile-button" />
                </styleClass>
             </Label>
-            <Label fx:id="nuevoUsuarioAdminButton" accessibleRole="BUTTON" layoutX="45.0" layoutY="235.0" onMouseClicked="#buttonNewUserAdmin" text="Nuevo Usuario" textFill="#d3f9eb">
+            <Label fx:id="nuevoUsuarioAdminButton" accessibleRole="BUTTON" layoutX="43.0" layoutY="221.0" onMouseClicked="#buttonNewUserAdmin" text="Nuevo Usuario" textFill="#d3f9eb">
                <font>
                   <Font size="20.0" />
                </font>
@@ -77,7 +78,7 @@
                   <String fx:value="profile-button" />
                </styleClass>
             </Label>
-            <Label fx:id="editarUsuarioAdminButton" accessibleRole="BUTTON" layoutX="45.0" layoutY="275.0" onMouseClicked="#buttonEditUserAdmin" text="Editar Usuario" textFill="#d3f9eb">
+            <Label fx:id="editarUsuarioAdminButton" accessibleRole="BUTTON" layoutX="47.0" layoutY="263.0" onMouseClicked="#buttonEditUserAdmin" text="Editar Usuario" textFill="#d3f9eb">
                <font>
                   <Font size="20.0" />
                </font>
@@ -89,7 +90,7 @@
                   <String fx:value="profile-button" />
                </styleClass>
             </Label>
-            <Label fx:id="eliminarUsuarioAdminButton" accessibleRole="BUTTON" layoutX="45.0" layoutY="315.0" onMouseClicked="#buttonDeleteUserAdmin" text="Eliminar Usuario" textFill="#d3f9eb">
+            <Label fx:id="eliminarUsuarioAdminButton" accessibleRole="BUTTON" layoutX="46.0" layoutY="305.0" onMouseClicked="#buttonDeleteUserAdmin" text="Eliminar Usuario" textFill="#d3f9eb">
                <font>
                   <Font size="20.0" />
                </font>
@@ -101,7 +102,19 @@
                   <String fx:value="nanum-regular" />
                </styleClass>
             </Label>
-            <Label fx:id="cerrarSesionAdminButton" accessibleRole="BUTTON" layoutX="45.0" layoutY="355.0" onMouseClicked="#buttonCloseSessionAdmin" text="Cerrar Sesión" textFill="#d3f9eb">
+            <Label fx:id="cerrarSesionAdminButton" accessibleRole="BUTTON" layoutX="43.0" layoutY="385.0" onMouseClicked="#buttonCloseSessionAdmin" text="Cerrar Sesión" textFill="#d3f9eb">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <Separator prefWidth="20.0" />
+               </graphic>
+               <styleClass>
+                  <String fx:value="profile-button" />
+                  <String fx:value="nanum-regular" />
+               </styleClass>
+            </Label>
+            <Label fx:id="altaUsuarioAdminButton1" accessibleRole="BUTTON" layoutX="46.0" layoutY="345.0" onMouseClicked="#buttonAltaUserAdmin" text="Alta Usuario" textFill="#d3f9eb">
                <font>
                   <Font size="20.0" />
                </font>
@@ -122,7 +135,7 @@
                   <Image url="@../../../images/fondoClaro810x720.png" />
                </image>
             </ImageView>
-            <AnchorPane fx:id="bienvenidoAdminPanel" layoutX="135.0" layoutY="75.0" opacity="0.9" prefHeight="300.0" prefWidth="540.0" style="-fx-background-color: #184752;">
+            <AnchorPane fx:id="bienvenidoAdminPanel" layoutX="135.0" layoutY="75.0" opacity="0.9" prefHeight="300.0" prefWidth="540.0" style="-fx-background-color: #184752;" visible="false">
                <children>
                   <Label layoutX="61.0" layoutY="38.0" text="¡Bienvenido!" textFill="#d3f9eb">
                      <font>
@@ -136,14 +149,14 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="miPerfilAdminAnchorPane" layoutX="135.0" prefHeight="720.0" prefWidth="540.0" visible="false">
+            <AnchorPane fx:id="miPerfilAdminAnchorPane" layoutX="135.0" prefHeight="720.0" prefWidth="540.0">
                <children>
                   <Label layoutX="182.0" layoutY="14.0" styleClass="cinzel-regular" text="Mi Perfil" textFill="#123440">
                      <font>
                         <Font size="40.0" />
                      </font>
                   </Label>
-                  <AnchorPane fx:id="mostrarMiPerfilAdminAnchorPane" layoutY="93.0" opacity="0.9" prefHeight="450.0" prefWidth="540.0" style="-fx-background-color: #123440;">
+                  <AnchorPane fx:id="mostrarMiPerfilAdminAnchorPane" layoutY="93.0" opacity="0.9" prefHeight="450.0" prefWidth="540.0" style="-fx-background-color: #123440;" visible="false">
                      <children>
                         <Label layoutX="160.0" layoutY="73.0" styleClass="nanum-bold" text="Usuario: " textFill="#29838c">
                            <font>
@@ -196,7 +209,7 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="editarMiPerfilAdminAnchorPane" prefHeight="720.0" prefWidth="540.0" visible="false">
+                  <AnchorPane fx:id="editarMiPerfilAdminAnchorPane" prefHeight="720.0" prefWidth="540.0">
                      <children>
                         <Label layoutX="89.0" layoutY="95.0" styleClass="nanum-regular" text="Nombre" textFill="#29838c">
                            <font>
@@ -237,6 +250,35 @@
                               <String fx:value="button-oscuro" />
                            </styleClass>
                         </Button>
+                        <Label layoutX="89.0" layoutY="290.0" styleClass="nanum-regular" text="Nueva Contraseña:" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="newPasswordEdicionMiPerfilAdminPassField" layoutX="89.0" layoutY="315.0" prefHeight="25.0" prefWidth="320.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </PasswordField>
+                        <TextField fx:id="newPasswordEdicionMiPerfilAdminField" layoutX="89.0" layoutY="315.0" prefHeight="25.0" prefWidth="320.0" promptText="Email anterior" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13; -fx-font-size: 13;" styleClass="playfair-regular" visible="false">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </TextField>
+                        <AnchorPane layoutX="408.0" layoutY="315.0" prefHeight="31.0" prefWidth="35.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;">
+                           <children>
+                              <!--<ImageView fx:id="mostrarNewPasswordEdicionMiPerfilAdminButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onKeyPressed="#clickShowNewPasswordMyProfileEdit" visible="false">
+                                 <image>
+                                    <Image url="@../../../images/abrir-ojo.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="ocultarNewPasswordEdicionEditarMiPerfilAdminButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onKeyPressed="#clickHideNewPasswordMyProfileEdit">
+                                 <image>
+                                    <Image url="@../../../images/cerrar-ojo.png" />
+                                 </image>
+                              </ImageView>-->
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                </children>
@@ -519,7 +561,7 @@
                         <Font size="40.0" />
                      </font>
                   </Label>
-                  <AnchorPane fx:id="buscarEditarUsuarioAdminAnchorPane" prefHeight="720.0" prefWidth="810.0">
+                  <AnchorPane fx:id="buscarEditarUsuarioAdminAnchorPane" prefHeight="720.0" prefWidth="810.0" visible="false">
                      <children>
                         <AnchorPane layoutY="110.0" prefHeight="600.0" prefWidth="290.0">
                            <children>
@@ -646,7 +688,7 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="edicionEditarUsuarioAdminAnchorPane" layoutX="135.0" prefHeight="720.0" prefWidth="540.0" visible="false">
+                  <AnchorPane fx:id="edicionEditarUsuarioAdminAnchorPane" layoutX="135.0" prefHeight="720.0" prefWidth="540.0">
                      <children>
                         <Label layoutX="89.0" layoutY="118.0" styleClass="nanum-regular" text="Nombre" textFill="#29838c">
                            <font>
@@ -668,7 +710,7 @@
                               <Font size="13.0" />
                            </font>
                         </TextField>
-                        <Label layoutX="89.0" layoutY="248.0" styleClass="nanum-regular" text="Email" textFill="#29838c">
+                        <Label layoutX="89.0" layoutY="248.0" styleClass="nanum-regular" text="Correo electrónico" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -678,71 +720,48 @@
                               <Font size="13.0" />
                            </font>
                         </TextField>
-                        <Label layoutX="89.0" layoutY="313.0" styleClass="nanum-regular" text="Especialidad" textFill="#29838c">
+                        <Label layoutX="89.0" layoutY="316.0" styleClass="nanum-regular" text="Contraseña" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="especialidadEdicionEditarUsuarioAdminChoiceBox" layoutX="89.0" layoutY="338.0" onKeyPressed="#choiceSpecialityUserEdit" prefHeight="31.0" prefWidth="360.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular" />
-                        <Label layoutX="89.0" layoutY="378.0" styleClass="nanum-regular" text="Contraseña actual:" textFill="#29838c">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <PasswordField fx:id="actualPasswordEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="403.0" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
+                        <PasswordField fx:id="passwordEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="341.0" prefHeight="25.0" prefWidth="320.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
                            <font>
                               <Font size="13.0" />
                            </font>
                         </PasswordField>
-                        <Label layoutX="89.0" layoutY="443.0" styleClass="nanum-regular" text="Nueva Contraseña:" textFill="#29838c">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <PasswordField fx:id="newPasswordEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="468.0" onAction="#fieldNewPasswordUserEdit" prefHeight="25.0" prefWidth="320.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
+                        <TextField fx:id="plainPasswordEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="349.0" prefHeight="25.0" prefWidth="320.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13; -fx-font-size: 13;" styleClass="playfair-regular" visible="false">
                            <font>
                               <Font size="13.0" />
                            </font>
-                        </PasswordField>
-                        <AnchorPane layoutX="407.0" layoutY="468.0" prefHeight="31.0" prefWidth="35.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;">
+                        </TextField>
+                        <AnchorPane layoutX="407.0" layoutY="341.0" prefHeight="31.0" prefWidth="35.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;">
                            <children>
-                              <ImageView fx:id="mostrarNewPasswordEdicionEditarUsuarioAdminButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onKeyPressed="#clickShowNewPasswordUserEdit" visible="false">
+                              <ImageView fx:id="mostrarPasswordEdicionEditarUsuarioAdminButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onMouseClicked="#clickOcultarPasswordEdicionEditarUsuarioAdminButton" pickOnBounds="true" visible="false">
                                  <image>
                                     <Image url="@../../../images/abrir-ojo.png" />
                                  </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </ImageView>
-                              <ImageView fx:id="ocultarNewPasswordEdicionEditarUsuarioAdminButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onKeyPressed="#clickHideNewPasswordUserEdit">
+                              <ImageView fx:id="ocultarPasswordEdicionEditarUsuarioAdminButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onMouseClicked="#clickMostrarPasswordEdicionEditarUsuarioAdminButton" pickOnBounds="true">
                                  <image>
                                     <Image url="@../../../images/cerrar-ojo.png" />
                                  </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </ImageView>
                            </children>
                         </AnchorPane>
-                        <Label layoutX="89.0" layoutY="508.0" styleClass="nanum-regular" text="Confirmar nueva contraseña:" textFill="#29838c">
+                        <Label layoutX="89.0" layoutY="392.0" styleClass="nanum-regular" text="Especialidad" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="confirmNewPasswordEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="533.0" onAction="#fieldConfirmNewPasswordUserEdit" prefHeight="25.0" prefWidth="320.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </PasswordField>
-                        <AnchorPane layoutX="407.0" layoutY="533.0" prefHeight="31.0" prefWidth="35.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;">
-                           <children>
-                              <ImageView fx:id="mostrarConfirmNewPasswordEdicionEditarUsuarioAdminButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onKeyPressed="#clickShowConfirmNewPasswordUserEdit" visible="false">
-                                 <image>
-                                    <Image url="@../../../images/abrir-ojo.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="ocultarConfirmNewPasswordEdicionEditarUsuarioAdminButton" accessibleRole="BUTTON" fitHeight="13.0" fitWidth="33.0" layoutX="5.0" layoutY="10.0" onKeyPressed="#clickHideConfirmNewPasswordUserEdit">
-                                 <image>
-                                    <Image url="@../../../images/cerrar-ojo.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </AnchorPane>
-                        <Button fx:id="guardarEdicionEditarUsuarioAdminButton" layoutX="182.0" layoutY="607.0" mnemonicParsing="false" onAction="#clickSaveUserEdit" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Guardar" textFill="#c4e8dd">
+                        <ChoiceBox fx:id="especialidadEdicionEditarUsuarioAdminChoiceBox" layoutX="89.0" layoutY="417.0" onKeyPressed="#choiceSpecialityUserEdit" prefHeight="31.0" prefWidth="360.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular" />
+                        <Button fx:id="guardarEdicionEditarUsuarioAdminButton" layoutX="183.0" layoutY="472.0" mnemonicParsing="false" onAction="#clickSaveUserEdit" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Guardar" textFill="#c4e8dd">
                            <font>
                               <Font name="NanumGothicBold" size="14.0" />
                            </font>
@@ -892,6 +911,142 @@
                      </children>
                   </AnchorPane>
                </children></AnchorPane>
+            <AnchorPane fx:id="altaUsuarioAdminAnchorPane1" layoutX="10.0" layoutY="10.0" prefHeight="720.0" prefWidth="810.0">
+               <children>
+                  <Label fx:id="altaUsuarioLabel1" layoutX="212.0" layoutY="14.0" styleClass="cinzel-regular" text="Alta Usuario" textFill="#123440">
+                     <font>
+                        <Font size="39.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane fx:id="buscarAltaUsuarioAdminAnchorPane1" prefHeight="720.0" prefWidth="810.0">
+                     <children>
+                        <AnchorPane fx:id="filtrarAltaUsuarioAdminAnchorPane1" layoutY="110.0" prefHeight="600.0" prefWidth="290.0">
+                           <children>
+                              <Label layoutX="41.0" layoutY="85.0" styleClass="nanum-bold" text="Seleccione el tipo de Usuario:" textFill="#29838c">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <CheckBox fx:id="isMedicoBuscarAltaUsuarioCheckBox1" layoutX="27.0" layoutY="129.0" mnemonicParsing="false" styleClass="check" />
+                              <Label layoutX="52.0" layoutY="129.0" styleClass="nanum-regular" text="Medico" textFill="#29838c">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <CheckBox fx:id="isAdminBuscarAltaUsuarioCheckBox1" layoutX="147.0" layoutY="129.0" mnemonicParsing="false" styleClass="check" />
+                              <Label layoutX="172.0" layoutY="129.0" styleClass="nanum-regular" text="Administrador" textFill="#29838c">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="buscarEliminarUsuarioButton1" layoutX="61.0" layoutY="182.0" mnemonicParsing="false" onAction="#clickSearchUserAlta" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Buscar" textFill="#c4e8dd">
+                                 <font>
+                                    <Font name="NanumGothicBold" size="14.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="nanum-bold" />
+                                    <String fx:value="button-oscuro" />
+                                 </styleClass>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                        <TableView fx:id="tablaBuscarAltaUsuarioAdminAnchorPane1" layoutX="290.0" layoutY="110.0" onMouseClicked="#tableAltaUserAction" prefHeight="600.0" prefWidth="510.0">
+                           <columns>
+                              <TableColumn fx:id="columnaUsuarioBuscarAltaUsuario1" text="User" />
+                              <TableColumn fx:id="columnaNombreBuscarAltaUsuario1" prefWidth="120.0" text="Nombre" />
+                              <TableColumn fx:id="columnaApellidoBuscarAltaUsuario1" prefWidth="120.0" text="Apellido" />
+                              <TableColumn fx:id="columnaTipoUsuarioBuscarAltaUsuario1" text="Tipo Usuario" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="mostrarAltaUsuarioAdminAnchorPane1" layoutX="135.0" layoutY="100.0" opacity="0.9" prefHeight="450.0" prefWidth="540.0" style="-fx-background-color: #123440;" visible="false">
+                     <children>
+                        <Label layoutX="160.0" layoutY="73.0" styleClass="nanum-bold" text="Tipo Usuario:" textFill="#d3f9eb">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="tipoUsuarioMostrarAltaUsuarioAdminLabel1" layoutX="285.0" layoutY="73.0" styleClass="nanum-bold" text="TipoUsuario." textFill="#d3f9eb">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="160.0" layoutY="108.0" styleClass="nanum-bold" text="Usuario: " textFill="#d3f9eb">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="usuarioMostrarAltaUsuarioAdminLabel1" layoutX="285.0" layoutY="108.0" styleClass="nanum-bold" text="Usuario." textFill="#d3f9eb">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="160.0" layoutY="143.0" styleClass="nanum-bold" text="Nombre: " textFill="#d3f9eb">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="nombreMostrarAltaUsuarioAdminLabel1" layoutX="285.0" layoutY="143.0" styleClass="nanum-bold" text="Nombre." textFill="#d3f9eb">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="160.0" layoutY="178.0" styleClass="nanum-bold" text="Apellido:" textFill="#d3f9eb">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="apellidoMostrarAltaUsuarioAdminLabel1" layoutX="285.0" layoutY="178.0" styleClass="nanum-bold" text="Apellido." textFill="#d3f9eb">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="160.0" layoutY="213.0" styleClass="nanum-bold" text="Email:" textFill="#d3f9eb">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="emailMostrarAltaUsuarioAdminLabel1" layoutX="285.0" layoutY="213.0" styleClass="nanum-bold" text="Email." textFill="#d3f9eb">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="160.0" layoutY="248.0" styleClass="nanum-bold" text="Especialidad:" textFill="#d3f9eb">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="especialidadMostrarAltaUsuarioAdminLabel1" layoutX="285.0" layoutY="248.0" styleClass="nanum-bold" text="Especialidad." textFill="#d3f9eb">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="confirmarAltaUsuarioAdminButton1" layoutX="287.0" layoutY="314.0" mnemonicParsing="false" onAction="#clickConfirmUserAlta" prefHeight="25.0" prefWidth="120.0" style="-fx-background-radius: 0;" text="Eliminar" textFill="#c4e8dd">
+                           <font>
+                              <Font name="NanumGothicBold" size="14.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="nanum-bold" />
+                              <String fx:value="button-oscuro" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="cancelarAltaUsuarioButton1" layoutX="133.0" layoutY="314.0" mnemonicParsing="false" onAction="#clickCancelUserAlta" prefHeight="25.0" prefWidth="120.0" style="-fx-background-radius: 0;" text="Cancelar" textFill="#c4e8dd">
+                           <font>
+                              <Font name="NanumGothicBold" size="14.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="nanum-bold" />
+                              <String fx:value="button-claro" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
