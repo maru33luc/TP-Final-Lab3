@@ -9,17 +9,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -87,6 +84,34 @@ public class MedicoController {
     @FXML
     private Label doctorUserName;
 
+    //NUEVO MOSTRAR PACIENTE VER TURNO!!
+    @FXML
+    private AnchorPane pacienteVerTurnosDoctorPanel; //NUEVO
+
+    @FXML
+    private AnchorPane buscarTurnosDoctorPanel; //NUEVO
+
+    @FXML
+    private Label userPacienteVerTurnoLabel; //NUEVO
+
+    @FXML
+    private Label nombrePacienteVerTurnoLabel; //NUEVO
+
+    @FXML
+    private Label apellidoPacienteVerTurnoLabel; //NUEVO
+
+    @FXML
+    private Label obraSocialPacienteVerTurnoLabel; //NUEVO
+
+    @FXML
+    private Label nroAfiliadoPacienteVerTurnoLabel; //NUEVO
+
+    @FXML
+    private Button cerrarPacienteVerTurnosButton; //NUEVO
+
+    @FXML
+    private Label userMedicoLabel; //NUEVO
+
     ///////////////////////////////////////////
 
     @FXML
@@ -101,6 +126,7 @@ public class MedicoController {
     public void initialize(){
         Autenticable usuarioLogueado= SessionManager.getInstance().getEntidadLogueada();
         try{
+            userMedicoLabel.setText(usuarioLogueado.getNombreUsuario());
             nombreMedicoLabel.setText(usuarioLogueado.getNombre());
             apellidoMedicoLabel.setText(usuarioLogueado.getApellido());
             emailMedicoLabel.setText(usuarioLogueado.getMail());
@@ -198,7 +224,7 @@ public class MedicoController {
         Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
         turnosMedico = FXCollections.observableArrayList();
         Optional<Medico> medico = MedicoService.getInstance().buscarMedicoPorNombreUsuario(usuarioLogueado.getNombreUsuario());
-        System.out.println(usuarioLogueado.toString());
+
         List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosPorMedico(medico.get());
 
         int flag = 0;
@@ -247,7 +273,7 @@ public class MedicoController {
         Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
         turnosMedico = FXCollections.observableArrayList();
         Optional<Medico> medico = MedicoService.getInstance().buscarMedicoPorNombreUsuario(usuarioLogueado.getNombreUsuario());
-        System.out.println(usuarioLogueado.toString());
+
         List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosPorMedico(medico.get());
 
         List<TurnoTablaMedico> listaTurnosTabla = new ArrayList<>();
@@ -266,8 +292,48 @@ public class MedicoController {
     }
 
     @FXML
+    void clickSeleccionPacienteVerTurnosDoctor (MouseEvent event){
+        buscarTurnosDoctorPanel.setVisible(false);
+
+        pacienteVerTurnosDoctorPanel.setVisible(true);
+        obtenerPacienteDesdeTurno();
+    }
+
+    private void obtenerPacienteDesdeTurno (){
+        //cargar labels de pacienteVerTurnosDoctorPanel con los datos del paciente seleccionado en una fila de la tabla
+        Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
+        TurnoTablaMedico tablaTurno = tablaTurnosMedico.getSelectionModel().getSelectedItem();
+        LocalDate fecha = LocalDate.parse(tablaTurno.getDia());
+        LocalTime hora = LocalTime.parse(tablaTurno.getHora());
+
+        Turno turno = TurnoService.getInstance().buscarTurnoPorMedicoDiaYHora(((Medico) usuarioLogueado), fecha, hora);
+
+        if (turno != null){
+            Paciente paciente = turno.getPaciente();
+            cargarLabelsPacienteVerTurno(paciente);
+        }
+
+    }
+
+    private void cargarLabelsPacienteVerTurno (Paciente paciente){
+        userPacienteVerTurnoLabel.setText(paciente.getNombreUsuario());
+        nombrePacienteVerTurnoLabel.setText(paciente.getNombre());
+        apellidoPacienteVerTurnoLabel.setText(paciente.getApellido());
+        obraSocialPacienteVerTurnoLabel.setText(paciente.getObraSocial());
+        nroAfiliadoPacienteVerTurnoLabel.setText(paciente.getNumeroAfiliado());
+    }
+
+    @FXML
     void limpiarFiltrosTurnos(ActionEvent event){
         cargarTablaMedico();
+    }
+
+
+    @FXML
+    void clickClosePatienteViewAppointment (ActionEvent event){
+        pacienteVerTurnosDoctorPanel.setVisible(false);
+
+        buscarTurnosDoctorPanel.setVisible(true);
     }
 
     @FXML

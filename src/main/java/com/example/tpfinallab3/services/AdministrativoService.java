@@ -64,23 +64,11 @@ public class AdministrativoService {
                 .findFirst();
     }
 
-
-
     public boolean existeAdministrativoPorNombreUsuario(String nombreUsuario) {
         return administrativos.stream()
                 .anyMatch(a -> a.getNombreUsuario().equalsIgnoreCase(nombreUsuario));
     }
 
-    /*public List<Administrativo> buscarAdministrativosPorPuesto(String puesto) {
->>>>>>> 79ac0773243faa9247ec7f90ca0cdd752dbfa074
-        List<Administrativo> resultado = new ArrayList<>();
-        for (Administrativo administrativo : administrativos) {
-            if (administrativo.getPuesto().equalsIgnoreCase(puesto)) {
-                resultado.add(administrativo);
-            }
-        }
-        return resultado;
-    }*/
 
     public void darDeBajaAdministrativo(Administrativo administrativo) {
         if (AuthorizationService.getInstance().verificarPermiso(SessionManager.getInstance().getTipoEntidad(), "darDeBajaAdministrativo")) {

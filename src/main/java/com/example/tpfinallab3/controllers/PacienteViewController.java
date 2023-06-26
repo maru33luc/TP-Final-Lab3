@@ -407,6 +407,8 @@ public class PacienteViewController {
         pedirTurnoPacienteView.setVisible(false);
         misTurnosPacienteView.setVisible(false);
         editProfilePacientePanel.setVisible(false);
+        especialidadPacienteChoiceBox.getSelectionModel().clearSelection();
+        medicoPacienteChoiceBox.getSelectionModel().clearSelection();
     }
 
     @FXML
@@ -426,6 +428,8 @@ public class PacienteViewController {
             pedirTurnoPacienteView.setVisible(false);
             editProfilePacientePanel.setVisible(false);
             cargarTablaMisTurnos();
+            especialidadPacienteChoiceBox.getSelectionModel().clearSelection();
+            medicoPacienteChoiceBox.getSelectionModel().clearSelection();
     }
 
     @FXML
@@ -434,6 +438,8 @@ public class PacienteViewController {
         editProfilePacientePanel.setVisible(true);
         misTurnosPacienteView.setVisible(false);
         pedirTurnoPacienteView.setVisible(false);
+        especialidadPacienteChoiceBox.getSelectionModel().clearSelection();
+        medicoPacienteChoiceBox.getSelectionModel().clearSelection();
     }
 
     @FXML

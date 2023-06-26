@@ -46,7 +46,6 @@ public class MedicoService {
         {
             System.out.println("No tiene permisos para agregar un medico");
         }
-
     }
 
     public void eliminarMedico(Medico medico) {
@@ -58,15 +57,6 @@ public class MedicoService {
             System.out.println("No tiene permisos para eliminar un medico");
         }
     }
-
-    /*public void actualizarMedico(Medico medico) {
-        Optional<Medico> medicoEncontrado = buscarMedicoPorMatricula(medico.getNumeroMatricula());
-        if (medicoEncontrado.isPresent()) {
-            eliminarMedico(medicoEncontrado.get());
-            agregarMedico(medico);
-        }
-
-    }*/
 
     public Optional<Medico> buscarMedicoPorNombreUsuario(String nombreUsuario) {
         return medicos.stream()
@@ -83,24 +73,6 @@ public class MedicoService {
                 .filter(medico -> medico.getEspecialidad().equals(especialidad))
                 .collect(Collectors.toList());
     }
-
-    /*public Optional<Medico> buscarMedicoPorMatricula(String matricula) {
-        return medicos.stream()
-                .filter(medico -> medico.getNumeroMatricula().equals(matricula))
-                .findFirst();
-    }
-    public List<Medico> buscarMedicosDisponibles() {
-        return medicos.stream()
-                .filter(Medico::getDisponible)
-                .collect(Collectors.toList());
-    }
-    public void marcarMedicoComoNoDisponible(Medico medico) {
-        medico.setDisponible(false);
-    }
-
-    public void marcarMedicoComoDisponible(Medico medico) {
-        medico.setDisponible(true);
-    }*/
 
     public void guardarMedicosJson() {
         JsonService.getInstance().guardarJson(medicos, RUTA_JSON);
@@ -182,7 +154,7 @@ public class MedicoService {
         }
     }
 
-    public void modificarMedico(String usuario, String nombre, String apellido, String mail) {
+    public void modificarMedico(String usuario, String nombre, String apellido, String mail, Especialidad especialidad) {
         medicos.stream()
                 .filter(a -> a.getNombreUsuario().equalsIgnoreCase(usuario))
                 .findFirst()
@@ -190,6 +162,7 @@ public class MedicoService {
                     a.setNombre(nombre);
                     a.setApellido(apellido);
                     a.setMail(mail);
+                    a.setEspecialidad(especialidad);
                 });
         guardarMedicosJson();
     }

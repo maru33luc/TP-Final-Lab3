@@ -112,5 +112,4 @@ public abstract class Usuario implements Autenticable, Serializable {
             isActivo = true;
         }
     }
-
 }

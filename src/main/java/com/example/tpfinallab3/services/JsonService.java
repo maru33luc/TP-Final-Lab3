@@ -37,7 +37,6 @@ public class JsonService {
     public <T> void guardarJson(Set<T> set, String ruta) {
         try {
             objectMapper.writeValue(new File(ruta), set);
-            System.out.println("Json guardado");
 
             if (!set.isEmpty()) {
                 T primerElemento = set.iterator().next();
@@ -136,18 +135,14 @@ public class JsonService {
         try {
             usuarioInfoMap = objectMapper.readValue(new File(ruta), new TypeReference<Map<String, UsuarioInfo>>() {
             });
-            System.out.println("--------------------------------------");
-            System.out.println("MAP DE USUARIOS DEL JSON: " + usuarioInfoMap);
         } catch (IOException e) {
             // Si ocurre una excepción al leer el archivo, se asume que no existe o está vacío
         }
         UsuarioInfo usuarioInfo = usuarioInfoMap.get(nombreUsuario);
         usuarioInfo.setContrasena(contraseñaHasheada);
-        System.out.println("usuarioInfo.toString() = " + usuarioInfo.toString());
         usuarioInfoMap.put(nombreUsuario, usuarioInfo);
         try {
             objectMapper.writeValue(new File(ruta), usuarioInfoMap);
-            System.out.println("Json guardado");
         } catch (IOException e) {
             e.printStackTrace();
         }

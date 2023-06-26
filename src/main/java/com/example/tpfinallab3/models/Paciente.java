@@ -65,6 +65,7 @@ public class Paciente extends Usuario {
     public String obtenerNombreEntidad() {
         return this.getClass().toString();
     }
+
     @Override
     public boolean equals(Object o) {
         if(this == o) {
@@ -94,6 +95,4 @@ public class Paciente extends Usuario {
                 "Obra Social: " + obraSocial + "\n" +
                 "Numero de afiliado: " + numeroAfiliado;
     }
-
-
 }

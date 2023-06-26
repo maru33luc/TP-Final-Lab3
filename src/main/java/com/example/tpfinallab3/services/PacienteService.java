@@ -99,11 +99,6 @@ public class PacienteService {
                 .collect(Collectors.toList());
     }
 
-    /*public List<Paciente> buscarPacientesConTurnosSacados() {
-        return pacientes.stream()
-                .filter(paciente -> paciente.getTurnos().size() > 0)
-                .collect(Collectors.toList());
-    }*/
     public boolean existePaciente(String nombreUsuario) {
         return pacientes.stream()
                 .anyMatch(paciente -> paciente.getNombreUsuario().equalsIgnoreCase(nombreUsuario));
