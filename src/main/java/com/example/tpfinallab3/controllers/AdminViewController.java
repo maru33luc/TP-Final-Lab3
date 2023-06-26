@@ -85,7 +85,7 @@ public class AdminViewController {
     private Label especialidadMostrarAltaUsuarioAdminLabel1;
 
     @FXML
-    private ChoiceBox especialidadEdicionEditarUsuarioAdminChoiceBox;
+    private ChoiceBox<Especialidad> especialidadEdicionEditarUsuarioAdminChoiceBox;
 
     @FXML
     private AnchorPane buscarEditarUsuarioAdminAnchorPane;
@@ -136,8 +136,13 @@ public class AdminViewController {
     private PasswordField passwordEdicionEditarUsuarioAdminField;
 
     @FXML
+    private PasswordField passwordEdicionMiPerfilAdminField;
+
+    @FXML
     private TextField plainPasswordEdicionEditarUsuarioAdminField;
 
+    @FXML
+    private TextField plainPasswordEdicionMiPerfilAdminField;
 
     @FXML
     private TableColumn<?, ?> columnaFechaTurnosMedico;
@@ -198,9 +203,6 @@ public class AdminViewController {
 
     @FXML
     private TableColumn<?, ?> columnaTipoUsuarioBuscarAltaUsuario1;
-
-    @FXML
-    private PasswordField confirmNewPasswordEdicionMiPerfilAdminField;
 
     @FXML
     private Button confirmarEliminarUsuarioAdminButton;
@@ -339,6 +341,9 @@ public class AdminViewController {
     private ImageView mostrarPasswordEdicionEditarUsuarioAdminButton;
 
     @FXML
+    private ImageView mostrarPasswordEdicionMiPerfilAdminButton;
+
+    @FXML
     private AnchorPane mostrarEditarUsuarioAdminAnchorPane;
 
 
@@ -388,6 +393,9 @@ public class AdminViewController {
 
     @FXML
     private ImageView ocultarPasswordEdicionEditarUsuarioAdminButton;
+
+    @FXML
+    private ImageView ocultarPasswordEdicionMiPerfilAdminButton;
 
     @FXML
     private ImageView ocultarPasswordNuevoUsuarioButton;
@@ -920,18 +928,39 @@ public class AdminViewController {
     //EDITAR PERFIL///////////////////////////////////////////////////////////////////////////////////////////
 
     @FXML
+    void clickMostrarPasswordEdicionMiPerfilAdminButton(MouseEvent mouseEvent) {
+        passwordEdicionMiPerfilAdminField.setVisible(false);
+        plainPasswordEdicionMiPerfilAdminField.setText(passwordEdicionMiPerfilAdminField.getText());
+        plainPasswordEdicionMiPerfilAdminField.setVisible(true);
+        mostrarPasswordEdicionMiPerfilAdminButton.setVisible(true);
+        ocultarPasswordEdicionMiPerfilAdminButton.setVisible(false);
+    }
+
+    @FXML
+    void clickOcultarPasswordEdicionMiPerfilAdminButton(MouseEvent mouseEvent) {
+        plainPasswordEdicionMiPerfilAdminField.setVisible(false);
+        passwordEdicionMiPerfilAdminField.setText(plainPasswordEdicionMiPerfilAdminField.getText());
+        passwordEdicionMiPerfilAdminField.setVisible(true);
+        mostrarPasswordEdicionMiPerfilAdminButton.setVisible(false);
+        ocultarPasswordEdicionMiPerfilAdminButton.setVisible(true);
+    }
+
+    @FXML
     void guardarEditarPerfilAdmin(ActionEvent event) {
         //se guardan los datos ingresados
         String nombre = nombreEdicionMiPerfilAdminField.getText();
         String apellido = apellidoEdicionMiPerfilAdminField.getText();
         String mail = emailEdicionMiPerfilAdminField.getText();
+        String contrasena = passwordEdicionMiPerfilAdminField.getText();
 
         try {
             //se validan los datos ingresados
-            ValidationService.getInstance().validarDatosEditarPerfilAdmin(nombre, apellido, mail);
+            ValidationService.getInstance().validarDatosEditarPerfilAdmin(nombre, apellido, mail, contrasena);
             //se recupera el usuario logueado
             String usuario = SessionManager.getInstance().getEntidadLogueada().getNombreUsuario();
-            //se modifica el usuario logueado en la lista de administrativos y el json
+            //se modifica la contraseña del usuario logueado
+            AuthenticationService.getInstance().modificarContraseña(usuario, contrasena);
+            //se modifica los restantes datos del usuario logueado en la lista de pacientes y el json
             AdministrativoService.getInstance().modificarAdministrativo(usuario, nombre, apellido, mail);
             //se setean los datos a mostrar en el perfil para esta sesión
             nombreMiPerfilAdminLabel.setText(nombre);
@@ -939,10 +968,25 @@ public class AdminViewController {
             emailMiPerfilAdminLabel.setText(mail);
             //se envía mensaje de éxito en la modificación
             LoginController.showSuccessAlert("Datos modificados exitosamente");
-            ocultarTodosLosAnchorPane();
+            //se muestra el perfil del admin
+            mostrarPerfil();
         } catch (Exception e) {
-            LoginController.showErrorAlert(e.getMessage());
+        //se envía mensaje de error si se lanzó alguna excepción en las validaciones
+        LoginController.showErrorAlert(e.getMessage());
         }
+    }
+
+    private void mostrarPerfil(){
+        bienvenidoAdminPanel.setVisible(false);
+        miPerfilAdminAnchorPane.setVisible(true);
+        mostrarMiPerfilAdminAnchorPane.setVisible(true);
+        editarMiPerfilAdminAnchorPane.setVisible(false);
+        verTurnosAdminAnchorPane.setVisible(false);
+        habilitarTurnosAdminAnchorPane.setVisible(false);
+        nuevoUsuarioAdminAnchorPane.setVisible(false);
+        editarUsuarioAdminAnchorPane.setVisible(false);
+        eliminarUsuarioAdminAnchorPane.setVisible(false);
+        altaUsuarioAdminAnchorPane1.setVisible(false);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1437,12 +1481,12 @@ public class AdminViewController {
     @FXML
     void clickSaveUserEdit(ActionEvent event) { //Botón Guardar Cambios en Editar Usuario
 
-
             //se guardan los datos ingresados
             String nombre = nombreEdicionEditarUsuarioAdminField.getText();
             String apellido = apellidoEdicionEditarUsuarioAdminField.getText();
             String mail = emailEdicionEditarUsuarioAdminField.getText();
             String contrasena = passwordEdicionEditarUsuarioAdminField.getText();
+            Especialidad especialidad = especialidadEdicionEditarUsuarioAdminChoiceBox.getValue();
 
             try {
                 //se validan los datos ingresados
@@ -1453,7 +1497,7 @@ public class AdminViewController {
                 //si es medico se modifica la contraseña, en lista de medicos y el json
                 if (medico != null) {
                     AuthenticationService.getInstance().modificarContraseña(medico.getNombreUsuario(), contrasena);
-                    MedicoService.getInstance().modificarMedico(medico.getNombreUsuario(), nombre, apellido, mail);
+                    MedicoService.getInstance().modificarMedico(medico.getNombreUsuario(), nombre, apellido, mail, especialidad);
                 }
                 //si es administrativo se modifica la contraseña, en lista de administrativos y el json
                 else if (administrativo != null) {
@@ -1466,8 +1510,6 @@ public class AdminViewController {
             } catch (Exception e) {
                 LoginController.showErrorAlert(e.getMessage());
             }
-
-
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1724,10 +1766,6 @@ public class AdminViewController {
     void seleccionarMisTurnosAction(MouseEvent event) {
 
     }*/
-
-
-
-
 
 }
 

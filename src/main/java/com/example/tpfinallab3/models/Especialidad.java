@@ -2,7 +2,6 @@ package com.example.tpfinallab3.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 public enum Especialidad {
     @JsonProperty("Cardiología")
     CARDIOLOGIA("Cardiología"),
@@ -39,6 +38,4 @@ public enum Especialidad {
     public boolean equalsIgnoreCase(String especialidad) {
         return this.especialidad.equalsIgnoreCase(especialidad);
     }
-
-
 }

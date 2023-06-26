@@ -4,12 +4,9 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class TablaUsuario {
-
     private final StringProperty usuario;
-
     private final StringProperty nombre;
     private final StringProperty apellido;
-
     private final StringProperty entidad;
 
     public TablaUsuario(String nombreUsuario, String nombre, String apellido, String entidad) {

@@ -46,7 +46,6 @@ public class Medico extends Usuario {
         return this.getClass().toString();
     }
 
-
     @Override
     public boolean equals(Object o) {
         if(this == o) {
@@ -73,5 +72,4 @@ public class Medico extends Usuario {
                 super.toString() +
                 "Especialidad: " + especialidad.getEspecialidad();
     }
-
 }

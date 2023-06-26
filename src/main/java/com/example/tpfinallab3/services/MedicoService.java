@@ -182,7 +182,7 @@ public class MedicoService {
         }
     }
 
-    public void modificarMedico(String usuario, String nombre, String apellido, String mail) {
+    public void modificarMedico(String usuario, String nombre, String apellido, String mail, Especialidad especialidad) {
         medicos.stream()
                 .filter(a -> a.getNombreUsuario().equalsIgnoreCase(usuario))
                 .findFirst()
@@ -190,6 +190,7 @@ public class MedicoService {
                     a.setNombre(nombre);
                     a.setApellido(apellido);
                     a.setMail(mail);
+                    a.setEspecialidad(especialidad);
                 });
         guardarMedicosJson();
     }
