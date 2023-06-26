@@ -28,11 +28,13 @@ public class MedicoService {
         }
         return instance;
     }
+
     public void setMedicos() {
         Set<Medico> listaMedicos = JsonService.getInstance().leerJson(RUTA_JSON, Medico.class);
         if (listaMedicos != null)
             medicos.addAll(listaMedicos);
     }
+
     public Set<Medico> getMedicos() {
         return medicos;
     }
@@ -42,19 +44,9 @@ public class MedicoService {
             medicos.add(medico);
             guardarMedicosJson();
             System.out.println("Medico agregado correctamente");
-        }else
-        {
-            System.out.println("No tiene permisos para agregar un medico");
         }
-    }
-
-    public void eliminarMedico(Medico medico) {
-        if(AuthorizationService.getInstance().verificarPermiso(SessionManager.getInstance().getTipoEntidad(), "eliminarMedico")){
-            medicos.remove(medico);
-            System.out.println("Medico eliminado correctamente");
-        }else
-        {
-            System.out.println("No tiene permisos para eliminar un medico");
+        else {
+            System.out.println("No tiene permisos para agregar un medico");
         }
     }
 
@@ -91,8 +83,8 @@ public class MedicoService {
             medico1.setActivo(false);
             System.out.println("Medico dado de baja correctamente");
             guardarMedicosJson();
-        }else
-        {
+        }
+        else {
             System.out.println("No tiene permisos para dar de baja un medico");
         }
     }
@@ -103,8 +95,8 @@ public class MedicoService {
             medico1.setActivo(true);
             System.out.println("Medico dado de alta correctamente");
             guardarMedicosJson();
-        }else
-        {
+        }
+        else {
             System.out.println("No tiene permisos para dar de alta un medico");
         }
     }
@@ -133,10 +125,10 @@ public class MedicoService {
         String nombreMedico = palabras[0];
         StringBuilder apellidoMedicoBuilder = new StringBuilder();
 
-        // Combinar las palabras del apellido en una sola cadena
+        //Combina las palabras del apellido en una sola cadena
         for (int i = 1; i < palabras.length; i++) {
             if (i > 1) {
-                apellidoMedicoBuilder.append(" ");  // Agregar espacio entre las palabras
+                apellidoMedicoBuilder.append(" ");//Agrega espacio entre las palabras
             }
             apellidoMedicoBuilder.append(palabras[i]);
         }

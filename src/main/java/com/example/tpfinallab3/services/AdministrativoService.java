@@ -29,8 +29,9 @@ public class AdministrativoService {
 
     public void setAdministrativos() {
         Set<Administrativo> listaAdministrativos = JsonService.getInstance().leerJson(RUTA_JSON, Administrativo.class);
-        if (listaAdministrativos != null)
+        if (listaAdministrativos != null) {
             administrativos.addAll(listaAdministrativos);
+        }
     }
 
     public Set<Administrativo> getAdministrativos() {
@@ -98,7 +99,6 @@ public class AdministrativoService {
         }
     }
 
-    // buscar administrativo por nombre y apellido
    public Administrativo buscarAdministrativoPorNombreYApellido(String nombre, String apellido) {
         Administrativo administrativoEncontrado = null;
         for (Administrativo administrativo : administrativos) {

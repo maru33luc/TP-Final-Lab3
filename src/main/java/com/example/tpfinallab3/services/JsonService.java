@@ -34,6 +34,7 @@ public class JsonService {
         }
         return instance;
     }
+
     public <T> void guardarJson(Set<T> set, String ruta) {
         try {
             objectMapper.writeValue(new File(ruta), set);
@@ -48,7 +49,6 @@ public class JsonService {
             e.printStackTrace();
         }
     }
-
 
     public <T> Set<T> leerJson(String ruta, Class<T> clase) {
         JavaType javaType = objectMapper.getTypeFactory().constructCollectionType(Set.class, clase);
@@ -65,7 +65,6 @@ public class JsonService {
         return null;
     }
 
-
     public <T> Map<String, T> leerJsonUsuarios(String ruta, Class<T> clase) {
         JavaType javaType = objectMapper.getTypeFactory().constructMapType(Map.class, String.class, clase);
         try {
@@ -78,15 +77,11 @@ public class JsonService {
 
     public <T> void guardarJsonUsuariosYContraseñas(List<T> lista, String ruta) {
         Map<String, UsuarioInfo> usuarioInfoMap = new HashMap<>();
-        // Lee el archivo JSON existente y almacena su contenido en el mapa
-
         try {
             usuarioInfoMap = objectMapper.readValue(new File(ruta), new TypeReference<Map<String, UsuarioInfo>>() {});
         } catch (IOException e) {
-            // Si ocurre una excepción al leer el archivo, se asume que no existe o está vacío
             usuarioInfoMap = new HashMap<>();
         }
-
 
         for (T elemento : lista) {
             if (elemento instanceof Paciente) {
@@ -95,25 +90,24 @@ public class JsonService {
                 String contrasena = paciente.getContrasena();
                 String claseEntidad = paciente.getClass().getSimpleName();
                 String contrasenaCifrada = BCrypt.hashpw(contrasena, BCrypt.gensalt());
-
                 UsuarioInfo usuarioInfo = new UsuarioInfo(usuario, contrasenaCifrada, claseEntidad);
                 usuarioInfoMap.put(usuario, usuarioInfo);
-            } else if (elemento instanceof Medico) {
+            }
+            else if (elemento instanceof Medico) {
                 Medico medico = (Medico) elemento;
                 String usuario = medico.getNombreUsuario();
                 String contrasena = medico.getContrasena();
                 String claseEntidad = medico.getClass().getSimpleName();
                 String contrasenaCifrada = BCrypt.hashpw(contrasena, BCrypt.gensalt());
-
                 UsuarioInfo usuarioInfo = new UsuarioInfo(usuario, contrasenaCifrada, claseEntidad);
                 usuarioInfoMap.put(usuario, usuarioInfo);
-            } else if (elemento instanceof Administrativo) {
+            }
+            else if (elemento instanceof Administrativo) {
                 Administrativo administrativo = (Administrativo) elemento;
                 String usuario = administrativo.getNombreUsuario();
                 String contrasena = administrativo.getContrasena();
                 String claseEntidad = administrativo.getClass().getSimpleName();
                 String contrasenaCifrada = BCrypt.hashpw(contrasena, BCrypt.gensalt());
-
                 UsuarioInfo usuarioInfo = new UsuarioInfo(usuario, contrasenaCifrada, claseEntidad);
                 usuarioInfoMap.put(usuario, usuarioInfo);
             }
@@ -126,11 +120,8 @@ public class JsonService {
         }
     }
 
-    // buscar por usuario en el json y modificar la contraseña
-
     public void cambiarContraseñaJson (String nombreUsuario, String contraseñaHasheada, String ruta){
         Map<String, UsuarioInfo> usuarioInfoMap = new HashMap<>();
-        // Lee el archivo JSON existente y almacena su contenido en el mapa
 
         try {
             usuarioInfoMap = objectMapper.readValue(new File(ruta), new TypeReference<Map<String, UsuarioInfo>>() {
@@ -146,8 +137,6 @@ public class JsonService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 }
 
