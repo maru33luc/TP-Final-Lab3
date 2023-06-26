@@ -221,6 +221,7 @@ public class PacienteViewController {
         Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
 
         try {
+            pacienteUserName.setText(usuarioLogueado.getNombreUsuario());
             nombrePacienteLabel.setText(usuarioLogueado.getNombre());
             apellidoPacienteLabel.setText(usuarioLogueado.getApellido());
             telefonoPacienteLabel.setText(((Paciente) usuarioLogueado).getTelefono());
@@ -413,17 +414,17 @@ public class PacienteViewController {
 
     @FXML
     void pedirTurnosAction(MouseEvent event) {
-            profileDataPacientePanel.setVisible(false);
-            pedirTurnoPacienteView.setVisible(true);
-            misTurnosPacienteView.setVisible(false);
-            editProfilePacientePanel.setVisible(false);
-            cargarTablaTurnos();
+        profilePacientePanel.setVisible(false);
+        pedirTurnoPacienteView.setVisible(true);
+        misTurnosPacienteView.setVisible(false);
+        editProfilePacientePanel.setVisible(false);
+        cargarTablaTurnos();
     }
 
     @FXML
     void verTurnosAction(MouseEvent event) {
             bienvenidoUserPanel.setVisible(false);
-            profileDataPacientePanel.setVisible(false);
+            profilePacientePanel.setVisible(false);
             misTurnosPacienteView.setVisible(true);
             pedirTurnoPacienteView.setVisible(false);
             editProfilePacientePanel.setVisible(false);

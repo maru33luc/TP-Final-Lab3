@@ -184,6 +184,7 @@
     -fx-padding: 0;
     -fx-border-color: #23737A;
     -fx-border-width: 1;
+    -fx-alignment: center;
 }
 
 .table-row-cell {
