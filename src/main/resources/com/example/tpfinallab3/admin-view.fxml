@@ -1068,7 +1068,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Button fx:id="confirmarAltaUsuarioAdminButton1" layoutX="287.0" layoutY="314.0" mnemonicParsing="false" onAction="#clickConfirmUserAlta" prefHeight="25.0" prefWidth="120.0" style="-fx-background-radius: 0;" text="Eliminar" textFill="#c4e8dd">
+                        <Button fx:id="confirmarAltaUsuarioAdminButton1" layoutX="287.0" layoutY="314.0" mnemonicParsing="false" onAction="#clickConfirmUserAlta" prefHeight="25.0" prefWidth="120.0" style="-fx-background-radius: 0;" text="Alta" textFill="#c4e8dd">
                            <font>
                               <Font name="NanumGothicBold" size="14.0" />
                            </font>
