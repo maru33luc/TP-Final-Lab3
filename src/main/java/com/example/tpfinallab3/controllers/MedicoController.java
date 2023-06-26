@@ -154,9 +154,17 @@ public class MedicoController {
                 tablaMedicoColumnaHora.setCellValueFactory(new PropertyValueFactory("hora"));
                 tablaMedicoColumnaPaciente.setCellValueFactory(new PropertyValueFactory("paciente"));
 
-                tablaTurnosMedico.setItems(FXCollections.observableArrayList(listaTurnosTabla));
+
+            }else {
+                TurnoTablaMedico turnoTablaMedico = new TurnoTablaMedico(turno.getDia(), turno.getHora(), null);
+                listaTurnosTabla.add(turnoTablaMedico);
+                tablaTurnoMedicoColumnaFecha.setCellValueFactory(new PropertyValueFactory("dia"));
+                tablaMedicoColumnaHora.setCellValueFactory(new PropertyValueFactory("hora"));
+                tablaMedicoColumnaPaciente.setCellValueFactory(new PropertyValueFactory("paciente"));
             }
         }
+        tablaTurnosMedico.setItems(FXCollections.observableArrayList(listaTurnosTabla));
+
     }
     @FXML
     private void verPerfilMedico(MouseEvent event) {
