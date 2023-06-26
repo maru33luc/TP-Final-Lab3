@@ -9,14 +9,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
@@ -228,7 +224,7 @@ public class MedicoController {
         Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
         turnosMedico = FXCollections.observableArrayList();
         Optional<Medico> medico = MedicoService.getInstance().buscarMedicoPorNombreUsuario(usuarioLogueado.getNombreUsuario());
-        System.out.println(usuarioLogueado.toString());
+
         List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosPorMedico(medico.get());
 
         int flag = 0;
@@ -277,7 +273,7 @@ public class MedicoController {
         Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
         turnosMedico = FXCollections.observableArrayList();
         Optional<Medico> medico = MedicoService.getInstance().buscarMedicoPorNombreUsuario(usuarioLogueado.getNombreUsuario());
-        System.out.println(usuarioLogueado.toString());
+
         List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosPorMedico(medico.get());
 
         List<TurnoTablaMedico> listaTurnosTabla = new ArrayList<>();

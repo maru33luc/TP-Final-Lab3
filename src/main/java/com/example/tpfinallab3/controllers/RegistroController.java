@@ -1,12 +1,14 @@
 package com.example.tpfinallab3.controllers;
 
 import com.example.tpfinallab3.models.Paciente;
-import com.example.tpfinallab3.security.AuthenticationService;
 import com.example.tpfinallab3.security.ValidationService;
 import com.example.tpfinallab3.services.PacienteService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -113,7 +115,7 @@ public class RegistroController {
             //se agrega el paciente al listado de pacientos
             PacienteService.getInstance().agregarPaciente(paciente);
             //se muestra un mensaje de éxito y se vuelve al login
-            System.out.println(AuthenticationService.getInstance().getUsuarios());
+
             LoginController.showSuccessAlert("Nuevo usuario creado exitosamente");
             LoginController.mostrarLogin();
         }

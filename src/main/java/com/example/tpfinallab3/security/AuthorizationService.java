@@ -14,7 +14,7 @@ public class AuthorizationService {
         // Inicializar los permisos de los usuarios
         permisos.put("Administrativo", Arrays.asList("crearTurno", "editarTurno", "eliminarTurno", "agregarMedico", "eliminarMedico","habilitarTurnos","darDeBajaMedico", "darDeAltaMedico","darDeBajaAdministrativo", "darDeAltaAdministrativo"));
         permisos.put("Medico", Arrays.asList("verTurnos", "editarPaciente"));
-        permisos.put("Paciente", Arrays.asList("verHistorial", "solicitarTurno"));
+        permisos.put("Paciente", Arrays.asList("solicitarTurno"));
     }
 
     public static AuthorizationService getInstance() {

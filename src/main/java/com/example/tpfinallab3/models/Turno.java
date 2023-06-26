@@ -88,7 +88,7 @@ public class Turno implements Serializable {
         sb.append("Turno: ").append("Dia: ").append(dia).append(", Hora: ").append(hora);
         sb.append(" Medico: ").append(medico.getNombre()).append(" ").append(medico.getApellido());
         if (paciente != null) {
-            sb.append(", Paciente: ").append(paciente.getApellido()).append(", Médico: ").append(medico.getApellido());
+            sb.append(", Paciente: ").append(paciente.getApellido()).append(", Médico: ").append(paciente.getApellido());
         }
         return sb.toString();
     }

@@ -86,16 +86,12 @@ public class AuthenticationService {
 
     public String getContraseñaEntidadLogueada(String nombreUsuario) {
         cargarUsuariosDesdeJson();
-        /*UsuarioInfo usuarioInfo = usuarios.get(nombreUsuario);
-        if (usuarioInfo != null) {
-            return usuarioInfo.getContrasena();
-        } else {
+        try {
+            return usuarios.get(nombreUsuario).getContrasena();
+        } catch (NullPointerException e) {
             // Manejar el caso cuando el usuario no existe
             throw new IllegalArgumentException("El usuario no existe");
-        }*/
-        //obtener la contraseña guardada del usuario logueado
-        System.out.println("usuarios " + usuarios.toString());
-        return usuarios.get(nombreUsuario).getContrasena();
+        }
     }
 
 }
