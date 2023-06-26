@@ -264,7 +264,7 @@
                               <Font size="13.0" />
                            </font>
                         </TextField>
-                        <AnchorPane layoutX="408.0" layoutY="315.0" prefHeight="31.0" prefWidth="35.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;">
+                       <!-- <AnchorPane layoutX="408.0" layoutY="315.0" prefHeight="31.0" prefWidth="35.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;">
                            <children>
                               <ImageView fx:id="mostrarNewPasswordEdicionMiPerfilAdminButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="33.0" layoutX="4.0" layoutY="5.0" onKeyPressed="#clickShowNewPasswordMyProfileEdit" visible="false">
                                  <image>
@@ -277,7 +277,7 @@
                                  </image>
                               </ImageView>
                            </children>
-                        </AnchorPane>
+                        </AnchorPane>-->
                      </children>
                   </AnchorPane>
                </children>
