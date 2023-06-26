@@ -1373,17 +1373,11 @@ public class AdminViewController {
             //especialidadEdicionEditarUsuarioAdminChoiceBox.setValue(especialidadMostrarEditarUsuarioAdminLabel.getText());
             ///// ACA SE TIENEN QUE AGREGAR LOS DATOS DE LA ESPECIALIDAD EN EL CHOICEBOX
             especialidadEdicionEditarUsuarioAdminChoiceBox.getItems().addAll(Especialidad.values());
-
-
-
-            System.out.println("ESPECIALIDADES: "+ Arrays.toString(Especialidad.values()));
+            
         }else {
             especialidadEdicionEditarUsuarioAdminChoiceBox.setVisible(false);
             labelEspecialidadEditarUsuarioAdm.setVisible(false);
         }
-
-
-
 
     }
 
