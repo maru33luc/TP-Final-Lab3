@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class TurnoTablaMedico {
-
     private final StringProperty dia;
     private final StringProperty hora;
     private final StringProperty paciente;

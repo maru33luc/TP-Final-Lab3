@@ -2,7 +2,6 @@ package com.example.tpfinallab3.models;
 
 import java.util.Objects;
 
-
 public class Administrativo extends Usuario {
     private boolean admin;
 
@@ -32,6 +31,7 @@ public class Administrativo extends Usuario {
     public String obtenerNombreEntidad() {
         return this.getClass().toString();
     }
+
     @Override
     public boolean equals(Object o) {
         if(this == o) {
@@ -55,9 +55,6 @@ public class Administrativo extends Usuario {
     @Override
     public String toString() {
         return "ADMINISTRATIVO\n" +
-                super.toString() +
-                "Permisos de administrador: " + (admin ? "si" : "no");
+                super.toString();
     }
-
-
 }

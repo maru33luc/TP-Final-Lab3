@@ -42,10 +42,9 @@ public class UsuarioInfo implements Serializable {
 
     @Override
     public String toString() {
-        return "UsuarioInfo{" +
-                "usuario='" + usuario + '\'' +
-                ", contrasena='" + contrasena + '\'' +
-                ", claseEntidad='" + claseEntidad + '\'' +
-                '}';
+        return "USUARIOINFO" + "\n" +
+                "Usuario: " + usuario + "\n" +
+                "Contraseña: " + contrasena + "\n" +
+                "Clase: " + claseEntidad;
     }
 }

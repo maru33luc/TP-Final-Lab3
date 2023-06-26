@@ -20,7 +20,6 @@ public class TurnoTabla {
         this.especialidad = new SimpleStringProperty(especialidad.name());
         this.medico = new SimpleStringProperty(medico.getNombre() + " " + medico.getApellido());
         this.paciente = new SimpleStringProperty(paciente != null ? paciente.getNombre() + " " + paciente.getApellido() : "");
-        // que pregunte si la obra social es nula, si es nula que muestre vacio
         this.obraSocial = new SimpleStringProperty(obraSocial != null ? obraSocial : "");
     }
 

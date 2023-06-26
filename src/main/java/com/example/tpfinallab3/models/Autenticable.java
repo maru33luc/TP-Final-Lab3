@@ -1,9 +1,10 @@
 package com.example.tpfinallab3.models;
 
 public interface Autenticable {
+
     public String getNombreUsuario();
 
-   public String getContrasena();
+    public String getContrasena();
 
     public String getNombre();
 
@@ -16,11 +17,5 @@ public interface Autenticable {
     public String getMail();
 
     public void setMail(String mail);
-
-
-
-
-
-
 }
 
