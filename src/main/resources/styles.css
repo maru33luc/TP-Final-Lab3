@@ -1,51 +1,32 @@
 @font-face {
-    src: url('./fonts/NanumGothic-Bold.ttf');
+    src: url('fonts/NanumGothic-Bold.ttf');
 }
 
 @font-face {
-    src: url('./fonts/NanumGothic-ExtraBold.ttf');
+    src: url('fonts/NanumGothic-Regular.ttf');
 }
+
 @font-face {
-    src: url('./fonts/NanumGothic-Regular.ttf');
+    src: url('fonts/CinzelDecorative-Regular.ttf');
 }
+
 @font-face {
-    src: url('./fonts/CinzelDecorative-Black.ttf');
-}
-@font-face {
-    src: url('./fonts/CinzelDecorative-Bold.ttf');
-}
-@font-face {
-    src: url('./fonts/CinzelDecorative-Regular.ttf');
-}
-@font-face {
-    src: url('./fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf');
-}
-@font-face {
-    src: url('./fonts/PlayfairDisplay-VariableFont_wght.ttf');
+    src: url('fonts/PlayfairDisplay-VariableFont_wght.ttf');
 }
 
 
 .nanum-regular{
     -fx-font-family: "NanumGothic";
 }
+
 .nanum-bold{
     -fx-font-family: "NanumGothicBold";
 }
-.nanum-extra-bold{
-    -fx-font-family: "NanumGothicExtraBold";
-}
+
 .cinzel-regular {
     -fx-font-family: "Cinzel Decorative Regular";
 }
-.cinzel-bold{
-    -fx-font-family: "Cinzel Decorative Bold";
-}
-.cinzel-black{
-    -fx-font-family: "Cinzel Decorative Black";
-}
-.playfair-italic{
-    -fx-font-family: "Playfair Display Italic";
-}
+
 .playfair-regular{
     -fx-font-family: "Playfair Display Regular";
 }
@@ -55,6 +36,7 @@
     -fx-font-size: 17;
     -fx-background-color: "#29838c";
     -fx-text-fill: "#c6e9de";
+    -fx-font-family: "NanumGothicBold";
     -fx-background-width: 175;
     -fx-background-height: 25;
 }
@@ -71,6 +53,7 @@
     -fx-font-size: 17;
     -fx-background-color: "#c6e9de";
     -fx-text-fill: "#29838c";
+    -fx-font-family: "NanumGothicBold";
     -fx-background-width: 175;
     -fx-background-height: 25;
 }
@@ -161,7 +144,7 @@
     -fx-text-fill: #29838C;
     -fx-font-size: 14;
     -fx-alignment: center;
-    -fx-font-style: "playfair-regular";
+    -fx-font-style: normal;
     -fx-border-color: #184752;
     -fx-border-width: 2;
     -fx-padding: 0;
@@ -172,7 +155,7 @@
     -fx-background-color: #184752;
     -fx-text-fill: #D3F9EB;
     -fx-font-size: 16;
-    -fx-font-style: "nanum-bold";
+    -fx-font-style: normal;
     -fx-border-color: #23737A;
     -fx-border-width: 2;
     -fx-padding: 0;
@@ -240,7 +223,6 @@
     -fx-pane-background: #091A21;
     -fx-padding: 10;
     -fx-width: 200;
-    -fx-height: 200;*/
+    -fx-height: 200;
+    }*/
 
-
-}

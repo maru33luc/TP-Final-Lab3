@@ -224,7 +224,7 @@
                            </font>
                         </Label>
                                 <TextField fx:id="editEmailPacienteField" layoutX="90.0" layoutY="295.0" prefHeight="35.0" prefWidth="360.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" styleClass="playfair-regular" />
-                        <Label layoutX="90.0" layoutY="335.0" styleClass="nanum-regular" text="Telefono" textFill="#29838c">
+                        <Label layoutX="90.0" layoutY="335.0" styleClass="nanum-regular" text="Teléfono" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -247,16 +247,16 @@
                                         <Font size="16.0" />
                                     </font>
                                 </Label>
-                                <PasswordField fx:id="newPasswordPacienteField" layoutX="90.0" layoutY="555.0" prefHeight="35.0" prefWidth="318.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 15;" />
-                        <TextField fx:id="plainNewPasswordPacienteField" layoutX="90.0" layoutY="555.0" prefHeight="35.0" prefWidth="318.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" styleClass="playfair-regular" visible="false" />
-                        <AnchorPane layoutX="407.0" layoutY="555.0" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: #29838C; -fx-border-width: 2;">
+                                <PasswordField fx:id="newPasswordPacienteField" layoutX="90.0" layoutY="555.0" prefHeight="35.0" prefWidth="321.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 15;" />
+                        <TextField fx:id="plainNewPasswordPacienteField" layoutX="90.0" layoutY="555.0" prefHeight="35.0" prefWidth="321.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" styleClass="playfair-regular" visible="false" />
+                        <AnchorPane layoutX="410.0" layoutY="555.0" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: #29838C; -fx-border-width: 2;">
                            <children>
-                              <ImageView fx:id="mostrarNewPasswordEditarPacienteButton" accessibleRole="BUTTON" fitHeight="25.0" fitWidth="35.0" layoutX="2.0" layoutY="5.0" onMouseClicked="#ocultarPassword" pickOnBounds="true" visible="false">
+                              <ImageView fx:id="mostrarNewPasswordEditarPacienteButton" accessibleRole="BUTTON" fitHeight="25.0" fitWidth="30.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#ocultarPassword" pickOnBounds="true" visible="false">
                                  <image>
                                     <Image url="@../../../images/abrir-ojo.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="ocultarNewPasswordEditarPacienteButton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="35.0" layoutX="2.0" layoutY="7.0" onMouseClicked="#mostrarPassword" pickOnBounds="true">
+                              <ImageView fx:id="ocultarNewPasswordEditarPacienteButton" accessibleRole="BUTTON" fitHeight="25.0" fitWidth="30.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarPassword" pickOnBounds="true">
                                  <image>
                                     <Image url="@../../../images/cerrar-ojo.png" />
                                  </image>
@@ -332,7 +332,7 @@
                            </styleClass></Button>
                             </children>
                         </AnchorPane>
-                        <TableView fx:id="tablaMisTurnosPaciente" layoutX="290.0" layoutY="145.0" onMouseClicked="#seleccionarMisTurnosAction" prefHeight="540.0" prefWidth="510.0">
+                        <TableView fx:id="tablaMisTurnosPaciente" layoutX="290.0" layoutY="145.0" onMouseClicked="#seleccionarMisTurnosAction" prefHeight="537.0" prefWidth="510.0">
                             <columns>
                                 <TableColumn fx:id="columnaFechaMiTurnoPaciente" prefWidth="120.0" text="Fecha" />
                                 <TableColumn fx:id="columnaHoraMiTurnoPaciente" prefWidth="120.0" text="Hora" />
@@ -358,12 +358,12 @@
                            <font>
                               <Font size="16.0" />
                            </font></Label>
-                                <ChoiceBox fx:id="especialidadPacienteChoiceBox" layoutX="60.0" layoutY="105.0" onMouseClicked="#filtrarEspecialidadAction" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" />
+                                <ChoiceBox fx:id="especialidadPacienteChoiceBox" layoutX="60.0" layoutY="105.0" onMouseClicked="#filtrarEspecialidadAction" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular" />
                                 <Label layoutX="62.0" layoutY="160.0" styleClass="nanum-bold" text="Seleccione un médico:" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
                            </font></Label>
-                                <ChoiceBox fx:id="medicoPacienteChoiceBox" layoutX="60.0" layoutY="195.0" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" />
+                                <ChoiceBox fx:id="medicoPacienteChoiceBox" layoutX="60.0" layoutY="195.0" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular" />
                                 <Label layoutX="37.0" layoutY="260.0" styleClass="nanum-bold" text="Especialidad:" textFill="#29838c">
                                     <font>
                                         <Font size="18.0" />
@@ -411,7 +411,7 @@
                            </styleClass></Button>
                             </children>
                         </AnchorPane>
-                        <TableView fx:id="tablaTurnosPaciente" layoutX="290.0" layoutY="145.0" onMouseClicked="#seleccionarUnTurnoAction" prefHeight="540.0" prefWidth="510.0">
+                        <TableView fx:id="tablaTurnosPaciente" layoutX="290.0" layoutY="145.0" onMouseClicked="#seleccionarUnTurnoAction" prefHeight="537.0" prefWidth="510.0">
                             <columns>
                                 <TableColumn fx:id="columnaFechaTurnoPaciente" prefWidth="120.0" text="Fecha" />
                                 <TableColumn fx:id="columnaHoraTurnoPaciente" prefWidth="120.0" text="Hora" />
