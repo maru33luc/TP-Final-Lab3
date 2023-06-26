@@ -103,17 +103,13 @@
 
 
 
-            <Button fx:id="handleLoginButton" layoutX="85.0" layoutY="373.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="35.0" prefWidth="150.0" style="-fx-background-radius: 0;" text="Ingresar" textFill="#29838c">
+            <Button fx:id="handleLoginButton" layoutX="85.0" layoutY="373.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="35.0" prefWidth="150.0" style="-fx-background-radius: 0;" styleClass="button-oscuro" text="Ingresar" textFill="#29838c">
                <font>
                   <Font name="Century Gothic" size="21.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-               <styleClass>
-                  <String fx:value="button-oscuro" />
-                  <String fx:value="nanum-bold" />
-               </styleClass>
             </Button>
             <Hyperlink fx:id="olvidoUsuarioLink" layoutX="284.0" layoutY="366.0" onAction="#recuperarUsuario" text="¿Olvidó su usuario?" textFill="#184752">
                <font>

@@ -414,6 +414,7 @@ public class PacienteViewController {
 
     @FXML
     void pedirTurnosAction(MouseEvent event) {
+        bienvenidoUserPanel.setVisible(false);
         profilePacientePanel.setVisible(false);
         pedirTurnoPacienteView.setVisible(true);
         misTurnosPacienteView.setVisible(false);
@@ -423,14 +424,14 @@ public class PacienteViewController {
 
     @FXML
     void verTurnosAction(MouseEvent event) {
-            bienvenidoUserPanel.setVisible(false);
-            profilePacientePanel.setVisible(false);
-            misTurnosPacienteView.setVisible(true);
-            pedirTurnoPacienteView.setVisible(false);
-            editProfilePacientePanel.setVisible(false);
-            cargarTablaMisTurnos();
-            especialidadPacienteChoiceBox.getSelectionModel().clearSelection();
-            medicoPacienteChoiceBox.getSelectionModel().clearSelection();
+        bienvenidoUserPanel.setVisible(false);
+        profilePacientePanel.setVisible(false);
+        misTurnosPacienteView.setVisible(true);
+        pedirTurnoPacienteView.setVisible(false);
+        editProfilePacientePanel.setVisible(false);
+        cargarTablaMisTurnos();
+        especialidadPacienteChoiceBox.getSelectionModel().clearSelection();
+        medicoPacienteChoiceBox.getSelectionModel().clearSelection();
     }
 
     @FXML
@@ -468,7 +469,7 @@ public class PacienteViewController {
     @FXML
     void solicitarTurnoAction(ActionEvent event) {
         if(especialidadTurnoPacienteLabel.getText().equals("")) {
-            LoginController.showErrorAlert("No se ha seleccionado ningun turno");
+            LoginController.showErrorAlert("No se ha seleccionado ningún turno.");
         }else{
             Optional<Paciente> pacienteOptional = PacienteService.getInstance().buscarPacientePorNombreUsuario(SessionManager.getInstance().getEntidadLogueada().getNombreUsuario());
             Paciente paciente = pacienteOptional.get();
@@ -480,10 +481,10 @@ public class PacienteViewController {
 
             if(turno!=null){
                 if(TurnoService.getInstance().buscarTurnosPorPaciente(paciente).contains(turno)){
-                    LoginController.showErrorAlert("Ya tiene un turno con ese medico en esa fecha y hora");
+                    LoginController.showErrorAlert("Ya tiene un turno con ese medico en esa fecha y hora.");
                 }else{
                     TurnoService.getInstance().solicitarTurno(turno, paciente);
-                    LoginController.showSuccessAlert("Turno solicitado con exito");
+                    LoginController.showSuccessAlert("Turno solicitado con éxito.");
                     cargarTablaTurnos();
                 }
             }
