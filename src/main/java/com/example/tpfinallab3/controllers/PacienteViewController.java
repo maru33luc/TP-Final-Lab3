@@ -236,14 +236,14 @@ public class PacienteViewController {
         // ------------------------ DESCA ACA LO Q HAGO ES PARA CARGAR ALGUN TURNO O MAS DE UNO Y TESTEAR ----------------
 
         // desde el usuario logueado recuperar la instancia de Paciente
-        Optional<Paciente> paciente = PacienteService.getInstance().buscarPacientePorNombreUsuario(usuarioLogueado.getNombreUsuario());
+        /*Optional<Paciente> paciente = PacienteService.getInstance().buscarPacientePorNombreUsuario(usuarioLogueado.getNombreUsuario());
 
         Medico medico = new Medico("fgildemuro", "123456", "Federico", "Gil de Muro", "fgildemuro@hotmail.com", Especialidad.CARDIOLOGIA);
         LocalDate dia = LocalDate.of(2023, 6, 16);
         LocalTime horaInicio = LocalTime.of(10, 0);
         LocalTime horaFin = LocalTime.of(16, 0);
         Turno turno = TurnoService.getInstance().buscarTurnosPorDiaPorMedico(dia, medico).get(0);
-        TurnoService.getInstance().solicitarTurno(turno, paciente.get());
+        TurnoService.getInstance().solicitarTurno(turno, paciente.get());*/
 
         // ---------------------- ACA TERMINARIA LO HARCODEADO PARA TESTEAR -------------------------------
 

@@ -13,8 +13,13 @@ public class TurnoTablaMedico {
 
     public TurnoTablaMedico(LocalDate dia, LocalTime hora, Paciente paciente) {
         this.dia = new SimpleStringProperty(dia.toString());
-        this.hora= new SimpleStringProperty(hora.toString());
-        this.paciente = new SimpleStringProperty(paciente.getNombre() + " " + paciente.getApellido());
+        this.hora = new SimpleStringProperty(hora.toString());
+
+        if (paciente != null) {
+            this.paciente = new SimpleStringProperty(paciente.getNombre() + " " + paciente.getApellido());
+        } else {
+            this.paciente = new SimpleStringProperty("Disponible ");
+        }
     }
 
     public String getDia() {

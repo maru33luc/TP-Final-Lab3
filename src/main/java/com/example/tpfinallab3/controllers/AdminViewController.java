@@ -1004,66 +1004,76 @@ public class AdminViewController {
     @FXML
     void clickSearchAppointmentAdmin (ActionEvent event){ //Botón buscar Turnos en Ver Turnos
 
+
         if (medicoVerTurnosAdminCheckBox.isSelected() && !BuscarVerTurnoAdminField.getText().isEmpty()) {
             //buscar por Doctor
-            filtrarVerTurnosAdminAnchorPane.setVisible(false);
-            mostrarVerTurnosAdminAnchorPane.setVisible(true);
-            listaTurnosPacienteVerTurnosAdminAnchorPane.setVisible(false);
-            listaTurnosFechaVerTurnosAdminAnchorPane.setVisible(false);
-            listaTurnosMedicoVerTurnosAdminAnchorPane.setVisible(true);
-            userMedicoVerTurnosLabel.setText(BuscarVerTurnoAdminField.getText());
-            //tablaTurnosMedicoAdmin tabla a rellenar con los turnos del médico
-
-
-            Medico medico = MedicoService.getInstance().retornaMedicoPorCampoTextField(BuscarVerTurnoAdminField.getText());
-
-            List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosPorMedico(medico);
-            List <TurnoTabla> listaTurnos2 = new ArrayList<>();
-            for(Turno turno : listaTurnos){
-                Especialidad especialidad = turno.getMedico().getEspecialidad();
-                Medico medico2 = turno.getMedico();
-                Paciente paciente = turno.getPaciente();
-                TurnoTabla turnoTabla = new TurnoTabla(turno.getDia(), turno.getHora(), especialidad, medico2, paciente, (paciente != null) ? paciente.getObraSocial() : null);
-
-                listaTurnos2.add(turnoTabla);
+            if (MedicoService.getInstance().retornaMedicoPorCampoTextField(BuscarVerTurnoAdminField.getText()) == null) {
+                LoginController.showErrorAlert("El médico ingresado no existe");
             }
+            else if(!MedicoService.getInstance().retornaMedicoPorCampoTextField(BuscarVerTurnoAdminField.getText()).getActivo()){
+                LoginController.showErrorAlert("El médico ingresado no está activo");
+            }else {
 
-            columnaFechaTurnosMedico.setCellValueFactory(new PropertyValueFactory<>("dia"));
-            columnaHoraTurnosMedico.setCellValueFactory(new PropertyValueFactory<>("hora"));
-            columnaPacienteTurnosMedico.setCellValueFactory(new PropertyValueFactory<>("paciente"));
-            columnaObraSocialTurnosMedico.setCellValueFactory(new PropertyValueFactory<>("obraSocial"));
+                filtrarVerTurnosAdminAnchorPane.setVisible(false);
+                mostrarVerTurnosAdminAnchorPane.setVisible(true);
+                listaTurnosPacienteVerTurnosAdminAnchorPane.setVisible(false);
+                listaTurnosFechaVerTurnosAdminAnchorPane.setVisible(false);
+                listaTurnosMedicoVerTurnosAdminAnchorPane.setVisible(true);
+                userMedicoVerTurnosLabel.setText(BuscarVerTurnoAdminField.getText());
+                //tablaTurnosMedicoAdmin tabla a rellenar con los turnos del médico
 
-            tablaTurnosMedicoAdmin.setItems(FXCollections.observableArrayList(listaTurnos2));
+                Medico medico = MedicoService.getInstance().retornaMedicoPorCampoTextField(BuscarVerTurnoAdminField.getText());
 
+                List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosPorMedico(medico);
+                List<TurnoTabla> listaTurnos2 = new ArrayList<>();
+                for (Turno turno : listaTurnos) {
+                    Especialidad especialidad = turno.getMedico().getEspecialidad();
+                    Medico medico2 = turno.getMedico();
+                    Paciente paciente = turno.getPaciente();
+                    TurnoTabla turnoTabla = new TurnoTabla(turno.getDia(), turno.getHora(), especialidad, medico2, paciente, (paciente != null) ? paciente.getObraSocial() : null);
+
+                    listaTurnos2.add(turnoTabla);
+                }
+
+                columnaFechaTurnosMedico.setCellValueFactory(new PropertyValueFactory<>("dia"));
+                columnaHoraTurnosMedico.setCellValueFactory(new PropertyValueFactory<>("hora"));
+                columnaPacienteTurnosMedico.setCellValueFactory(new PropertyValueFactory<>("paciente"));
+                columnaObraSocialTurnosMedico.setCellValueFactory(new PropertyValueFactory<>("obraSocial"));
+
+                tablaTurnosMedicoAdmin.setItems(FXCollections.observableArrayList(listaTurnos2));
+            }
 
         } else if (pacienteVerTurnosAdminCheckBox.isSelected()&& !BuscarVerTurnoAdminField.getText().isEmpty()) {
             //buscar por Paciente
-            filtrarVerTurnosAdminAnchorPane.setVisible(false);
-            mostrarVerTurnosAdminAnchorPane.setVisible(true);
-            listaTurnosPacienteVerTurnosAdminAnchorPane.setVisible(true);
-            listaTurnosMedicoVerTurnosAdminAnchorPane.setVisible(false);
-            listaTurnosFechaVerTurnosAdminAnchorPane.setVisible(false);
-            userPacienteVerTurnosLabel.setText(BuscarVerTurnoAdminField.getText());
-            //tablaTurnosPacienteAdmin tabla a rellenar con los turnos del paciente
+            if (PacienteService.getInstance().retornaPacientePorCampoTextField(BuscarVerTurnoAdminField.getText()) == null) {
+                LoginController.showErrorAlert("El paciente ingresado no existe");
+            }else {
+                filtrarVerTurnosAdminAnchorPane.setVisible(false);
+                mostrarVerTurnosAdminAnchorPane.setVisible(true);
+                listaTurnosPacienteVerTurnosAdminAnchorPane.setVisible(true);
+                listaTurnosMedicoVerTurnosAdminAnchorPane.setVisible(false);
+                listaTurnosFechaVerTurnosAdminAnchorPane.setVisible(false);
+                userPacienteVerTurnosLabel.setText(BuscarVerTurnoAdminField.getText());
+                //tablaTurnosPacienteAdmin tabla a rellenar con los turnos del paciente
 
-            Paciente paciente = PacienteService.getInstance().retornaPacientePorCampoTextField(BuscarVerTurnoAdminField.getText());
+                Paciente paciente = PacienteService.getInstance().retornaPacientePorCampoTextField(BuscarVerTurnoAdminField.getText());
 
-            List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosPorPaciente(paciente);
-            List <TurnoTabla> listaTurnos2 = new ArrayList<>();
-            for(Turno turno : listaTurnos){
-                Especialidad especialidad = turno.getMedico().getEspecialidad();
-                Medico medico2 = turno.getMedico();
-                TurnoTabla turnoTabla = new TurnoTabla(turno.getDia(), turno.getHora(), especialidad, medico2, paciente, (paciente != null) ? paciente.getObraSocial() : null);
+                List<Turno> listaTurnos = TurnoService.getInstance().buscarTurnosPorPaciente(paciente);
+                List<TurnoTabla> listaTurnos2 = new ArrayList<>();
+                for (Turno turno : listaTurnos) {
+                    Especialidad especialidad = turno.getMedico().getEspecialidad();
+                    Medico medico2 = turno.getMedico();
+                    TurnoTabla turnoTabla = new TurnoTabla(turno.getDia(), turno.getHora(), especialidad, medico2, paciente, (paciente != null) ? paciente.getObraSocial() : null);
 
-                listaTurnos2.add(turnoTabla);
+                    listaTurnos2.add(turnoTabla);
+                }
+                columnaFechaTurnosPaciente.setCellValueFactory(new PropertyValueFactory<>("dia"));
+                columnaHoraTurnosPaciente.setCellValueFactory(new PropertyValueFactory<>("hora"));
+                columnaMedicoTurnosPaciente.setCellValueFactory(new PropertyValueFactory<>("medico"));
+                columnaEspecialidadTurnosPaciente.setCellValueFactory(new PropertyValueFactory<>("especialidad"));
+
+                tablaTurnosPacienteAdmin.setItems(FXCollections.observableArrayList(listaTurnos2));
             }
-            columnaFechaTurnosPaciente.setCellValueFactory(new PropertyValueFactory<>("dia"));
-            columnaHoraTurnosPaciente.setCellValueFactory(new PropertyValueFactory<>("hora"));
-            columnaMedicoTurnosPaciente.setCellValueFactory(new PropertyValueFactory<>("medico"));
-            columnaEspecialidadTurnosPaciente.setCellValueFactory(new PropertyValueFactory<>("especialidad"));
-
-            tablaTurnosPacienteAdmin.setItems(FXCollections.observableArrayList(listaTurnos2));
-
 
         } else if (fechaVerTurnosAdminCheckBox.isSelected()&& !BuscarVerTurnoAdminField.getText().isEmpty()) {
             //buscar por Fecha
@@ -1284,34 +1294,6 @@ public class AdminViewController {
 
     //BUSCAR USUARIO//////////////////////////////////////////////////////////////////////////////////////////
 
-    /*@FXML
-    void clickSearchEdit(ActionEvent event) { //Botón Buscar en Buscar de Editar Usuario
-
-        if(isMedicoBuscarEditarUsuarioCheckBox.isSelected()&& !isAdminBuscarEditarUsuarioCheckBox.isSelected()){
-            ObservableList<TablaUsuario> listaActual = tablaBuscarEditarUsuarioAdminAnchorPane.getItems();
-            List<TablaUsuario> listaFiltrada = new ArrayList<>();
-            for (TablaUsuario usuario : listaActual) {
-                if (usuario.getEntidad().equals("Medico")) {
-                    listaFiltrada.add(usuario);
-                }
-            }
-            tablaBuscarEditarUsuarioAdminAnchorPane.setItems(FXCollections.observableArrayList(listaFiltrada));
-        }else if(!isMedicoBuscarEditarUsuarioCheckBox.isSelected()&& isAdminBuscarEditarUsuarioCheckBox.isSelected()){
-            ObservableList<TablaUsuario> listaActual = tablaBuscarEditarUsuarioAdminAnchorPane.getItems();
-            List<TablaUsuario> listaFiltrada = new ArrayList<>();
-            for (TablaUsuario usuario : listaActual) {
-                if (usuario.getEntidad().equals("Administrativo")) {
-                    listaFiltrada.add(usuario);
-                }
-            }
-            tablaBuscarEditarUsuarioAdminAnchorPane.setItems(FXCollections.observableArrayList(listaFiltrada));
-        } else if (isMedicoBuscarEditarUsuarioCheckBox.isSelected()&& isAdminBuscarEditarUsuarioCheckBox.isSelected()) {
-            showErrorAlert("Debe seleccionar solo un tipo de usuario para buscar");
-        } else if (!isMedicoBuscarEditarUsuarioCheckBox.isSelected()&& !isAdminBuscarEditarUsuarioCheckBox.isSelected()) {
-            cargarUsuariosEnTablaEditar();
-        }
-
-    }*/
 
     @FXML
     void clickSearchEdit(ActionEvent event) {
@@ -1423,7 +1405,7 @@ public class AdminViewController {
     }
 
 
-    //[ EDITAR USUARIO ]
+//EDITAR USUARIO//////////////////////////////////////////////////////////////////////////////////////////////
 
     @FXML
     void fieldNameUserEdit(ActionEvent event) { //Field Nombre en Editar Usuario
@@ -1459,36 +1441,28 @@ public class AdminViewController {
     }
 
     @FXML
-    void clickSaveUserEdit(ActionEvent event) { //Botón Guardar Cambios en Editar Usuario
+    void clickSaveUserEdit(ActionEvent event) {
+        String nombre = nombreEdicionEditarUsuarioAdminField.getText();
+        String apellido = apellidoEdicionEditarUsuarioAdminField.getText();
+        String mail = emailEdicionEditarUsuarioAdminField.getText();
+        String contrasena = passwordEdicionEditarUsuarioAdminField.getText();
+        Especialidad especialidad = (Especialidad) especialidadEdicionEditarUsuarioAdminChoiceBox.getValue();
 
-            //se guardan los datos ingresados
-            String nombre = nombreEdicionEditarUsuarioAdminField.getText();
-            String apellido = apellidoEdicionEditarUsuarioAdminField.getText();
-            String mail = emailEdicionEditarUsuarioAdminField.getText();
-            String contrasena = passwordEdicionEditarUsuarioAdminField.getText();
-
-            Especialidad especialidad = (Especialidad) especialidadEdicionEditarUsuarioAdminChoiceBox.getValue();
-
-            try {
-                //se validan los datos ingresados
-                ValidationService.getInstance().validarDatosEditarUsuario(nombre, apellido, mail, contrasena);
-                //se verifica si el usuario que está siendo modificado es médico o administrativo
-                Medico medico = MedicoService.getInstance().buscarMedicoPorNombreYApellido(nombreMostrarEditarUsuarioAdminLabel.getText(), apellidoMostrarEditarUsuarioAdminLabel.getText());
-                Administrativo administrativo = AdministrativoService.getInstance().buscarAdministrativoPorNombreYApellido(nombreMostrarEditarUsuarioAdminLabel.getText(), apellidoMostrarEditarUsuarioAdminLabel.getText());
-                //si es medico se modifica la contraseña, en lista de medicos y el json
-                if (medico != null) {
-                    AuthenticationService.getInstance().modificarContraseña(medico.getNombreUsuario(), contrasena);
-                    MedicoService.getInstance().modificarMedico(medico.getNombreUsuario(), nombre, apellido, mail,especialidad);
-
-                }
-                //si es administrativo se modifica la contraseña, en lista de administrativos y el json
-                else if (administrativo != null) {
-                    AuthenticationService.getInstance().modificarContraseña(administrativo.getNombreUsuario(), contrasena);
-                    AdministrativoService.getInstance().modificarAdministrativo(administrativo.getNombreUsuario(), nombre, apellido, mail);
-                }
-                //se envía mensaje de éxito en la modificación
-                LoginController.showSuccessAlert("Datos modificados exitosamente");
-                ocultarTodosLosAnchorPane();
+        try {
+            Medico medico = MedicoService.getInstance().buscarMedicoPorNombreYApellido(nombreMostrarEditarUsuarioAdminLabel.getText(), apellidoMostrarEditarUsuarioAdminLabel.getText());
+            Administrativo administrativo = AdministrativoService.getInstance().buscarAdministrativoPorNombreYApellido(nombreMostrarEditarUsuarioAdminLabel.getText(), apellidoMostrarEditarUsuarioAdminLabel.getText());
+            if (medico != null) {
+                ValidationService.getInstance().validarDatosEditarMedico(nombre, apellido, mail, contrasena, especialidad);
+                AuthenticationService.getInstance().modificarContraseña(medico.getNombreUsuario(), contrasena);
+                MedicoService.getInstance().modificarMedico(medico.getNombreUsuario(), nombre, apellido, mail,especialidad);
+            }
+            else if (administrativo != null) {
+                ValidationService.getInstance().validarDatosEditarAdministrativo(nombre, apellido, mail, contrasena);
+                AuthenticationService.getInstance().modificarContraseña(administrativo.getNombreUsuario(), contrasena);
+                AdministrativoService.getInstance().modificarAdministrativo(administrativo.getNombreUsuario(), nombre, apellido, mail);
+            }
+            LoginController.showSuccessAlert("Datos modificados exitosamente");
+            ocultarTodosLosAnchorPane();
             } catch (Exception e) {
                 LoginController.showErrorAlert(e.getMessage());
             }

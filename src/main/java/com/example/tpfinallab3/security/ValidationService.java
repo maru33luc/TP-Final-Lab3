@@ -113,35 +113,23 @@ public class ValidationService {
 
 //VALIDACIONES GENERALES//////////////////////////////////////////////////////////////////////////////////
 
-    //VALIDACION CREAR NUEVO USUARIO DESDE REGISTRO O DESDE ADMINISTRATIVO
+    //VALIDACION NUEVO USUARIO
     public void validarDatosNuevoUsuario(Usuario usuario) throws ValidationException {
-        //mensaje en el que se van a acumular distintos errores en el ingreso de datos
         StringBuilder mensaje = new StringBuilder();
-        //si existe registrado el nombre de usuario, si está vacío y si tiene números o caracteres especiales
         mensaje.append(validarUsuario(usuario.getNombreUsuario()));
-        //si la contraseña está vacía y si es demasiado corta
         mensaje.append(validarContrasena(usuario.getContrasena()));
-        //si el nombre está vacío y si tiene números
         mensaje.append(validarNombre(usuario.getNombre()));
-        //si el apellido está vacío y si tiene números
         mensaje.append(validarApellido(usuario.getApellido()));
-        //si el mail está vacío y si tiene formato válido
         mensaje.append(validarMail(usuario.getMail()));
-        //en caso que el usuario sea paciente
         if (usuario instanceof Paciente) {
             Paciente paciente = (Paciente) usuario;
-            //si el dni está vacío y si tiene caracteres que no sean números
             mensaje.append(validarDni(paciente.getDni()));
-            //si teléfono tiene caracteres distintos de números
             mensaje.append(validarTelefono(paciente.getTelefono()));
         }
-        //en caso que el usuario sea médico
         if (usuario instanceof Medico) {
             Medico medico = (Medico) usuario;
-            //si no se seleccionó especialidad
             mensaje.append(validarEspecialidad(medico.getEspecialidad()));
         }
-        //si el mensaje no está vacío es porque se detectó algún error en el ingreso de datos y se lanza excepción
         if (!mensaje.toString().isEmpty()) {
             throw new ValidationException (mensaje.toString());
         }
@@ -149,19 +137,12 @@ public class ValidationService {
 
     //VALIDACION EDITAR PERFIL PACIENTE
     public void validarDatosEditarPerfilPaciente(String nombre, String apellido, String mail, String telefono, String obraSocial, String numeroAfiliado, String contrasena) throws ValidationException {
-        //mensaje en el que se van a acumular distintos errores en el ingreso de datos
         StringBuilder mensaje = new StringBuilder();
-        //si el nombre está vacío y si tiene números
         mensaje.append(validarNombre(nombre));
-        //si el apellido está vacío y si tiene números
         mensaje.append(validarApellido(apellido));
-        //si el mail está vacío y si tiene formato válido
         mensaje.append(validarMail(mail));
-        //si teléfono tiene caracteres distintos de números
         mensaje.append(validarTelefono(telefono));
-        //si la contraseña está vacía y si es demasiado corta
         mensaje.append(validarContrasena(contrasena));
-        //si el mensaje no está vacío es porque se detectó algún error en el ingreso de datos y se lanza excepción
         if (!mensaje.toString().isEmpty()) {
             throw new ValidationException (mensaje.toString());
         }
@@ -169,35 +150,36 @@ public class ValidationService {
 
     //VALIDACION EDITAR PERFIL ADMINISTRATIVO
     public void validarDatosEditarPerfilAdmin(String nombre, String apellido, String mail, String contrasena) throws ValidationException {
-        //mensaje en el que se van a acumular distintos errores en el ingreso de datos
         StringBuilder mensaje = new StringBuilder();
-        //si el nombre está vacío y si tiene números
         mensaje.append(validarNombre(nombre));
-        //si el apellido está vacío y si tiene números
         mensaje.append(validarApellido(apellido));
-        //si el mail está vacío y si tiene formato válido
         mensaje.append(validarMail(mail));
-        //si la contraseña está vacía y si es demasiado corta
         mensaje.append(validarContrasena(contrasena));
-        //si el mensaje no está vacío es porque se detectó algún error en el ingreso de datos y se lanza excepción
         if (!mensaje.toString().isEmpty()) {
             throw new ValidationException (mensaje.toString());
         }
     }
 
-    //VALIDACIÓN EDITAR USUARIO DESDE ADMINISTRATIVO
-    public void validarDatosEditarUsuario(String nombre, String apellido, String mail, String contrasena) throws ValidationException {
-        //mensaje en el que se van a acumular distintos errores en el ingreso de datos
+    //VALIDACIÓN EDITAR MEDICO
+    public void validarDatosEditarMedico(String nombre, String apellido, String mail, String contrasena, Especialidad especialidad) throws ValidationException {
         StringBuilder mensaje = new StringBuilder();
-        //si el nombre está vacío y si tiene números
         mensaje.append(validarNombre(nombre));
-        //si el apellido está vacío y si tiene números
         mensaje.append(validarApellido(apellido));
-        //si el mail está vacío y si tiene formato válido
         mensaje.append(validarMail(mail));
-        //si la contraseña está vacía y si es demasiado corta
         mensaje.append(validarContrasena(contrasena));
-        //si el mensaje no está vacío es porque se detectó algún error en el ingreso de datos y se lanza excepción
+        mensaje.append(validarEspecialidad(especialidad));
+        if (!mensaje.toString().isEmpty()) {
+            throw new ValidationException (mensaje.toString());
+        }
+    }
+
+    //VALIDACIÓN EDITAR ADMINISTRATIVO
+    public void validarDatosEditarAdministrativo(String nombre, String apellido, String mail, String contrasena) throws ValidationException {
+        StringBuilder mensaje = new StringBuilder();
+        mensaje.append(validarNombre(nombre));
+        mensaje.append(validarApellido(apellido));
+        mensaje.append(validarMail(mail));
+        mensaje.append(validarContrasena(contrasena));
         if (!mensaje.toString().isEmpty()) {
             throw new ValidationException (mensaje.toString());
         }
