@@ -9,12 +9,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.controlsfx.control.action.Action;
 
 import java.io.IOException;
+import java.security.Key;
 
 public class LoginController {
 
@@ -181,5 +184,13 @@ public class LoginController {
         alert.setTitle(null);
         alert.setHeaderText(null);
         alert.showAndWait();
+    }
+
+    @FXML
+    private void loginKeyEnter(KeyEvent event){ //iniciar sesion con enter
+        ActionEvent evento = new ActionEvent();
+        if (event.getCode().getName().equals("Enter")) {
+            clickLogin(evento);
+        }
     }
 }
