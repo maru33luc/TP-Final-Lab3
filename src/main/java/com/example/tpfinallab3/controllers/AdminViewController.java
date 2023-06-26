@@ -85,6 +85,9 @@ public class AdminViewController {
     private Label especialidadMostrarAltaUsuarioAdminLabel1;
 
     @FXML
+    private ChoiceBox especialidadEdicionEditarUsuarioAdminChoiceBox;
+
+    @FXML
     private AnchorPane buscarEditarUsuarioAdminAnchorPane;
 
     @FXML
@@ -247,8 +250,6 @@ public class AdminViewController {
     @FXML
     private TextField emailNuevoUsuarioField;
 
-    @FXML
-    private ChoiceBox<String> especialidadEdicionEditarUsuarioAdminChoiceBox;
 
     @FXML
     private Label especialidadMostrarEditarUsuarioAdminLabel;
@@ -306,6 +307,9 @@ public class AdminViewController {
 
     @FXML
     private CheckBox isAdminBuscarAltaUsuarioCheckBox1;
+
+    @FXML
+    private Label labelEspecialidadEditarUsuarioAdm;
 
     @FXML
     private AnchorPane listaTurnosPacienteVerTurnosAdminAnchorPane;
@@ -691,14 +695,13 @@ public class AdminViewController {
 
             Optional<Medico> medico = MedicoService.getInstance().buscarMedicoPorNombreUsuario(nombreUsuario);
             Optional<Administrativo> administrativo = AdministrativoService.getInstance().buscarAdministrativoPorNombreUsuario(nombreUsuario);
-            Optional<Paciente> paciente = PacienteService.getInstance().buscarPacientePorNombreUsuario(nombreUsuario);
+
             if(medico.isPresent()){
                 emailMostrarEditarUsuarioAdminLabel.setText(medico.get().getMail());
                 especialidadMostrarEditarUsuarioAdminLabel.setText(medico.get().getEspecialidad().toString());
             }else if(administrativo.isPresent()){
                 emailMostrarEditarUsuarioAdminLabel.setText(administrativo.get().getMail());
-            }else if(paciente.isPresent()){
-                emailMostrarEditarUsuarioAdminLabel.setText(paciente.get().getMail());
+                especialidadMostrarEditarUsuarioAdminLabel.setText(" ");
             }
 
         }
@@ -1298,6 +1301,9 @@ public class AdminViewController {
         ocultarTodosLosAnchorPane();
         editarUsuarioAdminAnchorPane.setVisible(true);
         edicionEditarUsuarioAdminAnchorPane.setVisible(true);
+
+
+
         agregarDatosAFieldEditarUsuario();
     }
 
@@ -1327,7 +1333,7 @@ public class AdminViewController {
 
 
 
-    private void mostrarMedicoEnEditarUsuario (Optional<Medico> medic){
+    /*private void mostrarMedicoEnEditarUsuario (Optional<Medico> medic){
         tipoUsuarioMostrarEditarUsuarioAdminField.setText("Médico");
         usuarioMostrarEditarUsuarioAdminLabel.setText(medic.get().getNombreUsuario());
         nombreMostrarEditarUsuarioAdminLabel.setText(medic.get().getNombre());
@@ -1342,7 +1348,7 @@ public class AdminViewController {
         nombreMostrarEditarUsuarioAdminLabel.setText(admin.get().getNombre());
         apellidoMostrarEditarUsuarioAdminLabel.setText(admin.get().getApellido());
         emailMostrarEditarUsuarioAdminLabel.setText(admin.get().getMail());
-    }
+    }*/
 
     //[ MOSTRAR USUARIO BUSCADO ]
     @FXML
@@ -1356,16 +1362,27 @@ public class AdminViewController {
 
 
     private void agregarDatosAFieldEditarUsuario(){
+
         nombreEdicionEditarUsuarioAdminField.setPromptText(nombreMostrarEditarUsuarioAdminLabel.getText());
         apellidoEdicionEditarUsuarioAdminField.setPromptText(apellidoMostrarEditarUsuarioAdminLabel.getText());
         emailEdicionEditarUsuarioAdminField.setPromptText(emailMostrarEditarUsuarioAdminLabel.getText());
 
-        if (tipoUsuarioMostrarEditarUsuarioAdminField.getText().equals("Médico")) {
-            especialidadEdicionEditarUsuarioAdminChoiceBox.setOnAction(event1-> {
-                seleccionEspecialidad = Especialidad.valueOf(especialidadEdicionEditarUsuarioAdminChoiceBox.getValue());}); //REVISAR: estas ultimas lineas no se si funcionarán
-        }else{
+        // si es medico se muestra la especialidad
+        if (tipoUsuarioMostrarEditarUsuarioAdminField.getText().equalsIgnoreCase("Medico")) {
+
+            labelEspecialidadEditarUsuarioAdm.setVisible(true);
+            especialidadEdicionEditarUsuarioAdminChoiceBox.setVisible(true);
+            especialidadEdicionEditarUsuarioAdminChoiceBox.setValue(especialidadMostrarEditarUsuarioAdminLabel.getText());
+            ///// ACA SE TIENEN QUE AGREGAR LOS DATOS DE LA ESPECIALIDAD EN EL CHOICEBOX
+            especialidadEdicionEditarUsuarioAdminChoiceBox.getItems().addAll(Arrays.toString(Especialidad.values()));
+        }else {
             especialidadEdicionEditarUsuarioAdminChoiceBox.setVisible(false);
+            labelEspecialidadEditarUsuarioAdm.setVisible(false);
         }
+
+
+
+
     }
 
     @FXML
@@ -1418,34 +1435,37 @@ public class AdminViewController {
     @FXML
     void clickSaveUserEdit(ActionEvent event) { //Botón Guardar Cambios en Editar Usuario
 
-        //se guardan los datos ingresados
-        String nombre = nombreEdicionEditarUsuarioAdminField.getText();
-        String apellido = apellidoEdicionEditarUsuarioAdminField.getText();
-        String mail = emailEdicionEditarUsuarioAdminField.getText();
-        String contrasena = passwordEdicionEditarUsuarioAdminField.getText();
 
-        try {
-            //se validan los datos ingresados
-            ValidationService.getInstance().validarDatosEditarUsuario(nombre, apellido, mail, contrasena);
-            //se verifica si el usuario que está siendo modificado es médico o administrativo
-            Medico medico = MedicoService.getInstance().buscarMedicoPorNombreYApellido(nombreMostrarEditarUsuarioAdminLabel.getText(), apellidoMostrarEditarUsuarioAdminLabel.getText());
-            Administrativo administrativo = AdministrativoService.getInstance().buscarAdministrativoPorNombreYApellido(nombreMostrarEditarUsuarioAdminLabel.getText(), apellidoMostrarEditarUsuarioAdminLabel.getText());
-            //si es medico se modifica la contraseña, en lista de medicos y el json
-            if (medico != null) {
-                AuthenticationService.getInstance().modificarContraseña(medico.getNombreUsuario(), contrasena);
-                MedicoService.getInstance().modificarMedico(medico.getNombreUsuario(), nombre, apellido, mail);
+            //se guardan los datos ingresados
+            String nombre = nombreEdicionEditarUsuarioAdminField.getText();
+            String apellido = apellidoEdicionEditarUsuarioAdminField.getText();
+            String mail = emailEdicionEditarUsuarioAdminField.getText();
+            String contrasena = passwordEdicionEditarUsuarioAdminField.getText();
+
+            try {
+                //se validan los datos ingresados
+                ValidationService.getInstance().validarDatosEditarUsuario(nombre, apellido, mail, contrasena);
+                //se verifica si el usuario que está siendo modificado es médico o administrativo
+                Medico medico = MedicoService.getInstance().buscarMedicoPorNombreYApellido(nombreMostrarEditarUsuarioAdminLabel.getText(), apellidoMostrarEditarUsuarioAdminLabel.getText());
+                Administrativo administrativo = AdministrativoService.getInstance().buscarAdministrativoPorNombreYApellido(nombreMostrarEditarUsuarioAdminLabel.getText(), apellidoMostrarEditarUsuarioAdminLabel.getText());
+                //si es medico se modifica la contraseña, en lista de medicos y el json
+                if (medico != null) {
+                    AuthenticationService.getInstance().modificarContraseña(medico.getNombreUsuario(), contrasena);
+                    MedicoService.getInstance().modificarMedico(medico.getNombreUsuario(), nombre, apellido, mail);
+                }
+                //si es administrativo se modifica la contraseña, en lista de administrativos y el json
+                else if (administrativo != null) {
+                    AuthenticationService.getInstance().modificarContraseña(administrativo.getNombreUsuario(), contrasena);
+                    AdministrativoService.getInstance().modificarAdministrativo(administrativo.getNombreUsuario(), nombre, apellido, mail);
+                }
+                //se envía mensaje de éxito en la modificación
+                LoginController.showSuccessAlert("Datos modificados exitosamente");
+                ocultarTodosLosAnchorPane();
+            } catch (Exception e) {
+                LoginController.showErrorAlert(e.getMessage());
             }
-            //si es administrativo se modifica la contraseña, en lista de administrativos y el json
-            else if (administrativo != null) {
-                AuthenticationService.getInstance().modificarContraseña(administrativo.getNombreUsuario(), contrasena);
-                AdministrativoService.getInstance().modificarAdministrativo(administrativo.getNombreUsuario(), nombre, apellido, mail);
-            }
-            //se envía mensaje de éxito en la modificación
-            LoginController.showSuccessAlert("Datos modificados exitosamente");
-            ocultarTodosLosAnchorPane();
-        } catch (Exception e) {
-            LoginController.showErrorAlert(e.getMessage());
-        }
+
+
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1546,14 +1566,14 @@ public class AdminViewController {
 
     }
 
-    private void mostrarMedicoEnEliminarUsuario (Optional<Medico> medico){
+  /*  private void mostrarMedicoEnEliminarUsuario (Optional<Medico> medico){
         tipoUsuarioMostrarEliminarUsuarioAdminLabel.setText("Médico");
         nombreMostrarEliminarUsuarioAdminLabel.setText(medico.get().getNombre());
         apellidoMostrarEliminarUsuarioAdminLabel.setText(medico.get().getApellido());
         emailMostrarEliminarUsuarioAdminLabel.setText(medico.get().getMail());
         especialidadEdicionEditarUsuarioAdminChoiceBox.setOnAction(event1-> {
             seleccionEspecialidad = Especialidad.valueOf(especialidadEdicionEditarUsuarioAdminChoiceBox.getValue());}); //CORREGIR ESTO
-    }
+    }*/
 
     private void mostrarAdminEnEliminarUsuario (Optional<Administrativo> admin){
         tipoUsuarioMostrarEliminarUsuarioAdminLabel.setText("Administrativo");

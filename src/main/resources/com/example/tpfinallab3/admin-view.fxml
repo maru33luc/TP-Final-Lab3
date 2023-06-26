@@ -720,6 +720,12 @@
                               <Font size="13.0" />
                            </font>
                         </TextField>
+                        <!--<Label fx:id="labelEspecialidadEditarUsuarioAdm" layoutX="89.0" layoutY="313.0" styleClass="nanum-regular" text="Especialidad" textFill="#29838c">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="especialidadEdicionEditarUsuarioAdminChoiceBox" layoutX="89.0" layoutY="338.0" onKeyPressed="#choiceSpecialityUserEdit" prefHeight="31.0" prefWidth="360.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13;" styleClass="playfair-regular" />-->
                         <Label layoutX="89.0" layoutY="316.0" styleClass="nanum-regular" text="Contraseña" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
@@ -755,7 +761,7 @@
                               </ImageView>
                            </children>
                         </AnchorPane>
-                        <Label layoutX="89.0" layoutY="392.0" styleClass="nanum-regular" text="Especialidad" textFill="#29838c">
+                        <Label fx:id="labelEspecialidadEditarUsuarioAdm" layoutX="89.0" layoutY="392.0" styleClass="nanum-regular" text="Especialidad" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
                            </font>
