@@ -598,7 +598,7 @@
                         <Font size="40.0" />
                      </font>
                   </Label>
-                  <AnchorPane fx:id="buscarEditarUsuarioAdminAnchorPane" prefHeight="720.0" prefWidth="810.0" visible="false">
+                  <AnchorPane fx:id="buscarEditarUsuarioAdminAnchorPane" prefHeight="720.0" prefWidth="810.0">
                      <children>
                         <AnchorPane layoutY="110.0" prefHeight="600.0" prefWidth="290.0">
                            <children>
@@ -725,7 +725,7 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="edicionEditarUsuarioAdminAnchorPane" layoutX="135.0" prefHeight="720.0" prefWidth="540.0">
+                  <AnchorPane fx:id="edicionEditarUsuarioAdminAnchorPane" layoutX="135.0" prefHeight="720.0" prefWidth="540.0" visible="false">
                      <children>
                         <Label layoutX="89.0" layoutY="118.0" styleClass="nanum-regular" text="Nombre" textFill="#29838c">
                            <font>
@@ -773,7 +773,7 @@
                               <Font size="13.0" />
                            </font>
                         </PasswordField>
-                        <TextField fx:id="plainPasswordEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="349.0" prefHeight="25.0" prefWidth="320.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13; -fx-font-size: 13;" styleClass="playfair-regular" visible="false">
+                        <TextField fx:id="plainPasswordEdicionEditarUsuarioAdminField" layoutX="89.0" layoutY="341.0" prefHeight="25.0" prefWidth="320.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 13; -fx-font-size: 13;" styleClass="playfair-regular" visible="false">
                            <font>
                               <Font size="13.0" />
                            </font>
