@@ -1437,6 +1437,9 @@ public class AdminViewController {
             String apellido = apellidoEdicionEditarUsuarioAdminField.getText();
             String mail = emailEdicionEditarUsuarioAdminField.getText();
             String contrasena = passwordEdicionEditarUsuarioAdminField.getText();
+            Especialidad especialidad = (Especialidad) especialidadEdicionEditarUsuarioAdminChoiceBox.getValue();
+        System.out.println("especialidad = " + especialidad);
+        System.out.println("Clase de dato: " + especialidad.getClass().getName());
 
             try {
                 //se validan los datos ingresados
@@ -1447,7 +1450,7 @@ public class AdminViewController {
                 //si es medico se modifica la contraseña, en lista de medicos y el json
                 if (medico != null) {
                     AuthenticationService.getInstance().modificarContraseña(medico.getNombreUsuario(), contrasena);
-                    MedicoService.getInstance().modificarMedico(medico.getNombreUsuario(), nombre, apellido, mail);
+                    MedicoService.getInstance().modificarMedico(medico.getNombreUsuario(), nombre, apellido, mail,especialidad);
                 }
                 //si es administrativo se modifica la contraseña, en lista de administrativos y el json
                 else if (administrativo != null) {
