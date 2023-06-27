@@ -557,6 +557,7 @@ public class AdminViewController {
         especialidadNuevoUsuarioChoiceBox.getItems().addAll(Especialidad.values());
 
         try{
+            adminUserName.setText(usuarioLogueado.getNombre());
             usuarioMiPerfilAdminLabel.setText(usuarioLogueado.getNombreUsuario());
             nombreMiPerfilAdminLabel.setText(usuarioLogueado.getNombre());
             apellidoMiPerfilAdminLabel.setText(usuarioLogueado.getApellido());
@@ -1590,6 +1591,12 @@ public class AdminViewController {
         alert.setTitle("Éxito");
         alert.setHeaderText(null);
         alert.setContentText(message);
+
+        DialogPane dialogPane = alert.getDialogPane();
+
+        dialogPane.getStylesheets().add("styles.css");
+        dialogPane.getStyleClass().add("success-alert");
+
         alert.showAndWait();
     }
 
@@ -1598,6 +1605,12 @@ public class AdminViewController {
         alert.setTitle("Error");
         alert.setHeaderText(null);
         alert.setContentText(message);
+
+        DialogPane dialogPane = alert.getDialogPane();
+
+        dialogPane.getStylesheets().add("styles.css");
+        dialogPane.getStyleClass().add("error-alert");
+
         alert.showAndWait();
     }
 
