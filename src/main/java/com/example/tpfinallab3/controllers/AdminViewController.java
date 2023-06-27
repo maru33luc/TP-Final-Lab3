@@ -1129,6 +1129,9 @@ public class AdminViewController {
         DateTimeFormatter hourFormatter = DateTimeFormatter.ofPattern("H:mm");
         try{
             Medico medico = validarMedicoHabilitarTurnos(nombreYApellidoMedicoHabilitarTurnosField.getText());
+            if(!MedicoService.getInstance().chequearEstadoMedico(medico)){
+                throw new Exception("El medico no se encuentra activo");
+            }
             if(medico == null){
                 throw new NullPointerException("No se encontro al medico");
             }
