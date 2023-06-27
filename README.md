@@ -48,7 +48,7 @@ La estructura de carpetas del proyecto es la siguiente:
 1. Clona el repositorio del proyecto: `git clone https://github.com/tu-usuario/proyecto-clinica-medica.git`
 2. Abre el proyecto en tu entorno de desarrollo preferido, como <img src="https://img.shields.io/badge/IntelliJ%20IDEA-IDE-red" alt="IntelliJ IDEA - IDE"/>.
 3. Configura las dependencias necesarias en el archivo `pom.xml` o `build.gradle`, según el sistema de construcción que utilices.
-4. Ejecuta la clase `com.example.clinicamedica.App` para iniciar la aplicación.
+4. Ejecuta la clase `com.example.tpfinallab3.HelloApplication.java` para iniciar la aplicación.
 
 ## Contribuciones
 

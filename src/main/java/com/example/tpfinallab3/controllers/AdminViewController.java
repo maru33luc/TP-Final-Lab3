@@ -361,8 +361,6 @@ public class AdminViewController {
 
     private AnchorPane mostrarAltaUsuarioAdminAnchorPane1;
 
-    /*@FXML
-    private PasswordField newPasswordEdicionEditarUsuarioAdminField;*/ // preguntar a fede no se esta usando creo
 
     @FXML
 
@@ -481,7 +479,6 @@ public class AdminViewController {
 
     @FXML
     private AnchorPane vistaAdminAnchorPane;
-    ///////////////////////////////////////////////////
 
     @FXML
     private Label IngreseVerTurnosAdminLabel;
@@ -538,11 +535,7 @@ public class AdminViewController {
     @FXML
     private Button confirmarHabilitarTurnosButton;
 
-
-
-
     //Variables extras.
-
     private Optional<Medico> medic; //para guardar el medico que se esta editando
     private Optional<Administrativo> admin; //para guardar el administrativo que se esta editando
 
@@ -603,7 +596,6 @@ public class AdminViewController {
         buscarAltaUsuarioAdminAnchorPane1.setVisible(false);
 
     }
-
 
     @FXML
     void buttonMyProfileAdmin(MouseEvent event) { //Opción "Mi Perfil" de Menú-Admin
@@ -701,7 +693,6 @@ public class AdminViewController {
             nombreMostrarEditarUsuarioAdminLabel.setText(tablaBuscarEditarUsuarioAdminAnchorPane.getSelectionModel().getSelectedItem().getNombre());
             apellidoMostrarEditarUsuarioAdminLabel.setText(tablaBuscarEditarUsuarioAdminAnchorPane.getSelectionModel().getSelectedItem().getApellido());
             String nombreUsuario= tablaBuscarEditarUsuarioAdminAnchorPane.getSelectionModel().getSelectedItem().getUsuario();
-
 
             Optional<Medico> medico = MedicoService.getInstance().buscarMedicoPorNombreUsuario(nombreUsuario);
             Optional<Administrativo> administrativo = AdministrativoService.getInstance().buscarAdministrativoPorNombreUsuario(nombreUsuario);
@@ -885,12 +876,12 @@ public class AdminViewController {
     @FXML
     void clickEditeMyProfileAdmin(ActionEvent event) { //Botón Editar Mi Perfil
         //ocultarTodosLosAnchorPane();
-        bienvenidoAdminPanel.setVisible(false); //agregado yasz.
-        verTurnosAdminAnchorPane.setVisible(false); //agregado yasz.
-        nuevoUsuarioAdminAnchorPane.setVisible(false); //agregado yasz.
-        editarUsuarioAdminAnchorPane.setVisible(false); //agregado yasz.
-        eliminarUsuarioAdminAnchorPane.setVisible(false); //agregado yasz.
-        habilitarTurnosAdminAnchorPane.setVisible(false);//agregado yasz.
+        bienvenidoAdminPanel.setVisible(false);
+        verTurnosAdminAnchorPane.setVisible(false);
+        nuevoUsuarioAdminAnchorPane.setVisible(false);
+        editarUsuarioAdminAnchorPane.setVisible(false);
+        eliminarUsuarioAdminAnchorPane.setVisible(false);
+        habilitarTurnosAdminAnchorPane.setVisible(false);
 
         miPerfilAdminAnchorPane.setVisible(true);
         mostrarMiPerfilAdminAnchorPane.setVisible(false);
@@ -974,7 +965,7 @@ public class AdminViewController {
     //[ BUSCAR TURNOS ]
     @FXML
     void checkDoctorSearchAppointment(ActionEvent event) { //CheckBox buscar por Doctor en Ver Turnos
-        if (medicoVerTurnosAdminCheckBox.isSelected()) { //nuevo yasz
+        if (medicoVerTurnosAdminCheckBox.isSelected()) {
             pacienteVerTurnosAdminCheckBox.setSelected(false);
             fechaVerTurnosAdminCheckBox.setSelected(false);
             IngreseVerTurnosAdminLabel.setText("Ingrese el nombre y apellido del médico");
@@ -983,7 +974,7 @@ public class AdminViewController {
 
     @FXML
     void checkPatientSearchAppointment(ActionEvent event) { //CheckBox buscar por Paciente en Ver Turnos
-        if (pacienteVerTurnosAdminCheckBox.isSelected()) { //nuevo yasz
+        if (pacienteVerTurnosAdminCheckBox.isSelected()) {
             medicoVerTurnosAdminCheckBox.setSelected(false);
             fechaVerTurnosAdminCheckBox.setSelected(false);
             IngreseVerTurnosAdminLabel.setText("Ingrese el nombre y apellido del paciente");
@@ -992,7 +983,7 @@ public class AdminViewController {
 
     @FXML
     void checkIsDateSearchAppointment(ActionEvent event) { //CheckBox buscar por Fecha en Ver Turnos
-        if (fechaVerTurnosAdminCheckBox.isSelected()) { //nuevo yasz
+        if (fechaVerTurnosAdminCheckBox.isSelected()) {
             medicoVerTurnosAdminCheckBox.setSelected(false);
             pacienteVerTurnosAdminCheckBox.setSelected(false);
             IngreseVerTurnosAdminLabel.setText("Ingrese la fecha del turno");
@@ -1021,7 +1012,6 @@ public class AdminViewController {
                 listaTurnosFechaVerTurnosAdminAnchorPane.setVisible(false);
                 listaTurnosMedicoVerTurnosAdminAnchorPane.setVisible(true);
                 userMedicoVerTurnosLabel.setText(BuscarVerTurnoAdminField.getText());
-                //tablaTurnosMedicoAdmin tabla a rellenar con los turnos del médico
 
                 Medico medico = MedicoService.getInstance().retornaMedicoPorCampoTextField(BuscarVerTurnoAdminField.getText());
 
@@ -1055,7 +1045,6 @@ public class AdminViewController {
                 listaTurnosMedicoVerTurnosAdminAnchorPane.setVisible(false);
                 listaTurnosFechaVerTurnosAdminAnchorPane.setVisible(false);
                 userPacienteVerTurnosLabel.setText(BuscarVerTurnoAdminField.getText());
-                //tablaTurnosPacienteAdmin tabla a rellenar con los turnos del paciente
 
                 Paciente paciente = PacienteService.getInstance().retornaPacientePorCampoTextField(BuscarVerTurnoAdminField.getText());
 
@@ -1084,8 +1073,6 @@ public class AdminViewController {
             listaTurnosPacienteVerTurnosAdminAnchorPane.setVisible(false);
             listaTurnosMedicoVerTurnosAdminAnchorPane.setVisible(false);
             fechaVerTurnosLabel.setText(BuscarVerTurnoAdminField.getText());
-            //tablaTurnosFechaAdmin tabla a rellenar con los turnos de la fecha
-
 
             String fechaString = BuscarVerTurnoAdminField.getText();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -1166,7 +1153,7 @@ public class AdminViewController {
             horaInicioHabilitarTurnosField.setText("");
             horaFinalizacionHabilitarTurnosField.setText("");
         }
-        //confirmar y guardar cambios
+
 
     }
     Medico validarMedicoHabilitarTurnos(String nombreYapellido){
@@ -1333,7 +1320,6 @@ public class AdminViewController {
         }
     }
 
-
     @FXML
     void clickConfirmUserEdit(ActionEvent event) { //Botón Confirmar en Mostrar de Editar Usuario
         ocultarTodosLosAnchorPane();
@@ -1389,8 +1375,6 @@ public class AdminViewController {
 
             labelEspecialidadEditarUsuarioAdm.setVisible(true);
             especialidadEdicionEditarUsuarioAdminChoiceBox.setVisible(true);
-            //especialidadEdicionEditarUsuarioAdminChoiceBox.setValue(especialidadMostrarEditarUsuarioAdminLabel.getText());
-            ///// ACA SE TIENEN QUE AGREGAR LOS DATOS DE LA ESPECIALIDAD EN EL CHOICEBOX
             especialidadEdicionEditarUsuarioAdminChoiceBox.getItems().addAll(Especialidad.values());
             
         }else {
@@ -1719,8 +1703,6 @@ public class AdminViewController {
         }
     }
 
-
-// ----------------------------     ACA METO FUNCIONES PARA DESTRABAR ERRORES -----------------------------
 
     @FXML
     void choiceSpecialityNewUser(KeyEvent event) {
