@@ -469,7 +469,7 @@ public class PacienteViewController {
     @FXML
     void solicitarTurnoAction(ActionEvent event) {
         if(especialidadTurnoPacienteLabel.getText().equals("")) {
-            LoginController.showErrorAlert("No se ha seleccionado ningún turno.");
+            LoginController.showErrorAlert("No se ha seleccionado ningún turno");
         }else{
             Optional<Paciente> pacienteOptional = PacienteService.getInstance().buscarPacientePorNombreUsuario(SessionManager.getInstance().getEntidadLogueada().getNombreUsuario());
             Paciente paciente = pacienteOptional.get();
@@ -481,10 +481,10 @@ public class PacienteViewController {
 
             if(turno!=null){
                 if(TurnoService.getInstance().buscarTurnosPorPaciente(paciente).contains(turno)){
-                    LoginController.showErrorAlert("Ya tiene un turno con ese medico en esa fecha y hora.");
+                    LoginController.showErrorAlert("Ya tiene un turno con ese médico en esa fecha y hora");
                 }else{
                     TurnoService.getInstance().solicitarTurno(turno, paciente);
-                    LoginController.showSuccessAlert("Turno solicitado con éxito.");
+                    LoginController.showSuccessAlert("Turno solicitado exitosamente");
                     cargarTablaTurnos();
                 }
             }
@@ -495,7 +495,7 @@ public class PacienteViewController {
     void cancelarTurnoAction(MouseEvent event) {
 
         if(especialidadMiTurnoPacienteLabel.getText().equals("")) {
-            LoginController.showErrorAlert("No se ha seleccionado ningun turno");
+            LoginController.showErrorAlert("No se ha seleccionado ningún turno");
         }else{
 
             Optional<Paciente> pacienteOptional = PacienteService.getInstance().buscarPacientePorNombreUsuario(SessionManager.getInstance().getEntidadLogueada().getNombreUsuario());
@@ -521,7 +521,7 @@ public class PacienteViewController {
             Turno turno = TurnoService.getInstance().buscarTurnoPorPacienteMedicoYFecha(paciente, medico, dia, hora);
             if(turno!=null){
                 TurnoService.getInstance().marcarTurnoComoDisponible(turno) ;
-                LoginController.showSuccessAlert("Turno cancelado con exito");
+                LoginController.showSuccessAlert("Turno cancelado exitosamente");
                 cargarTablaMisTurnos();
             }
         }

@@ -1131,28 +1131,28 @@ public class AdminViewController {
         try{
             Medico medico = validarMedicoHabilitarTurnos(nombreYApellidoMedicoHabilitarTurnosField.getText());
             if(!MedicoService.getInstance().chequearEstadoMedico(medico)){
-                throw new Exception("El medico no se encuentra activo");
+                throw new Exception("El médico no se encuentra activo");
             }
             if(medico == null){
-                throw new NullPointerException("No se encontro al medico");
+                throw new NullPointerException("No se encontró al médico");
             }
             LocalDate dia = validarFechaHabilitarTurnos(fechaHabilitarTurnosField.getText(), dateFormatter);
             if(dia.isBefore(LocalDate.now())){
-                throw new DateTimeException("La fecha debe ser posterior al dia de hoy");
+                throw new DateTimeException("La fecha debe ser posterior al día de hoy");
             }
             LocalTime horaInicio = validarHoraHabilitarTurnos(horaInicioHabilitarTurnosField.getText(), hourFormatter);
             LocalTime horaFin = validarHoraHabilitarTurnos(horaFinalizacionHabilitarTurnosField.getText(), hourFormatter);
             if(horaInicio.isBefore(LocalTime.of(9,0))){
-                throw new DateTimeException("El horario inicial no puede ser anterior a las 9:00hs");
+                throw new DateTimeException("El horario inicial no puede ser anterior a las 9:00 hs.");
             }
             if(horaFin.isAfter(LocalTime.of(17, 30))){
-                throw new DateTimeException("El horario final no puede excederse de las 17:30hs");
+                throw new DateTimeException("El horario final no puede ser posterior a las 17:30 hs.");
             }
             if(horaFin.isBefore(horaInicio)){
-                throw new Exception("La hora de finalizacion no puede ser anterior a la hora de inicio");
+                throw new Exception("La hora final no puede ser anterior a la hora inicial");
             }
             TurnoService.getInstance().habilitarTurnos(dia, horaInicio, horaFin, medico);
-            LoginController.showSuccessAlert("Turnos habilitados con exito!");
+            LoginController.showSuccessAlert("Turnos habilitados exitosamente");
         }catch (NullPointerException e){
             LoginController.showErrorAlert(e.getMessage());
         }catch(DateTimeException e){
@@ -1188,7 +1188,7 @@ public class AdminViewController {
         try{
             fecha = LocalDate.parse(dia, formatter);
         }catch (DateTimeParseException e){
-            LoginController.showErrorAlert("La fecha ingresada no es valida");
+            LoginController.showErrorAlert("Fecha inválida");
         }
         return fecha;
     }
@@ -1197,7 +1197,7 @@ public class AdminViewController {
         try{
             horaR = LocalTime.parse(hora, formatter);
         }catch (DateTimeParseException e){
-            LoginController.showErrorAlert("La hora ingresada no es valida");
+            LoginController.showErrorAlert("Hora inválida");
         }
         return horaR;
     }
@@ -1266,7 +1266,7 @@ public class AdminViewController {
                 try {
                     ValidationService.getInstance().validarDatosNuevoUsuario(medico);
                     MedicoService.getInstance().agregarMedico(medico);
-                    LoginController.showSuccessAlert("Nuevo medico creado exitosamente");
+                    LoginController.showSuccessAlert("Nuevo médico creado exitosamente");
                     ocultarTodosLosAnchorPane();
                 } catch (Exception e) {
                     showErrorAlert(e.getMessage());
@@ -1325,7 +1325,7 @@ public class AdminViewController {
             }
             tablaBuscarEditarUsuarioAdminAnchorPane.setItems(FXCollections.observableArrayList(listaFiltrada));
         } else if (isMedicoSelected && isAdminSelected) {
-            showErrorAlert("Debe seleccionar solo un tipo de usuario para buscar");
+            showErrorAlert("Debe seleccionar un solo tipo de usuario para buscar");
             isMedicoBuscarEditarUsuarioCheckBox.setSelected(false);
             isAdminBuscarEditarUsuarioCheckBox.setSelected(false);
         } else {
@@ -1361,7 +1361,7 @@ public class AdminViewController {
 
     private boolean validarFieldUserSearchEdit() {
         if (userBuscarEditarUsuarioField.getText().isEmpty()) {
-            showErrorAlert("Debe ingresar un nombre de usuario.");
+            showErrorAlert("Nombre de usuario obligatorio");
             return false;
         }
         return true;
@@ -1490,7 +1490,7 @@ public class AdminViewController {
 
     private boolean validarFieldUserSearchDelete() {
         if (userBuscarEliminarUsuarioField.getText().isEmpty()) {
-            showErrorAlert("Debe ingresar un nombre de usuario.");
+            showErrorAlert("Nombre de usuario obligatorio");
             return false;
         }
         return true;
@@ -1517,7 +1517,7 @@ public class AdminViewController {
             }
             tablaBuscarEliminarUsuarioAdminAnchorPane.setItems(FXCollections.observableArrayList(listaFiltrada));
         } else if (isMedicoBuscarEliminarUsuarioCheckBox.isSelected()&& isAdminBuscarEliminarUsuarioCheckBox.isSelected()) {
-            showErrorAlert("Debe seleccionar solo un tipo de usuario para buscar");
+            showErrorAlert("Debe seleccionar un solo tipo de usuario para buscar");
         } else if (!isMedicoBuscarEliminarUsuarioCheckBox.isSelected()&& !isAdminBuscarEliminarUsuarioCheckBox.isSelected()) {
             cargarUsuariosEnTablaEliminar();
         }
@@ -1560,7 +1560,7 @@ public class AdminViewController {
         }else if(administrativo.isPresent()){
             AdministrativoService.getInstance().darDeBajaAdministrativo(administrativo.get());
         }
-        showSuccessAlert("¡Usuario eliminado con éxito!");
+        showSuccessAlert("Usuario eliminado exitosamente");
         mostrarEliminarUsuarioAdminAnchorPane.setVisible(false);
         buscarEliminarUsuarioAdminAnchorPane.setVisible(true);
         cargarUsuariosEnTablaEliminar();
@@ -1687,7 +1687,7 @@ public class AdminViewController {
         }else if(administrativo.isPresent()){
             AdministrativoService.getInstance().darDeAltaAdministrativo(administrativo.get());
         }
-        showSuccessAlert("¡Usuario dado de alta con éxito!");
+        showSuccessAlert("Usuario dado de alta exitosamente");
         cargarUsuariosEnTablaAlta();
         mostrarAltaUsuarioAdminAnchorPane1.setVisible(false);
         buscarAltaUsuarioAdminAnchorPane1.setVisible(true);
