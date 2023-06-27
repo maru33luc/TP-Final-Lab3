@@ -4,7 +4,9 @@ import com.example.tpfinallab3.models.Administrativo;
 import com.example.tpfinallab3.security.AuthorizationService;
 import com.example.tpfinallab3.security.SessionManager;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 public class AdministrativoService {
     private static AdministrativoService instance;
@@ -123,5 +125,15 @@ public class AdministrativoService {
                         },
                         () -> System.out.println("No se encontró el administrativo")
                 );
+    }
+
+    public Set<Administrativo> getAdministrativosActivos() {
+        Set<Administrativo> administrativosActivos = new HashSet<>();
+        for (Administrativo administrativo : administrativos) {
+            if (administrativo.getActivo()) {
+                administrativosActivos.add(administrativo);
+            }
+        }
+        return administrativosActivos;
     }
 }
