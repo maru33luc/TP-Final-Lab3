@@ -25,13 +25,12 @@ public class HelloApplication extends Application {
     private double yOffset = 0;
 
 
-    class WindowButtons extends HBox {//NUEVO
+    class WindowButtons extends HBox {
 
         public WindowButtons() {
             Button closeBtn = new Button("X");
             Button minimizeBtn = new Button("_");
             Button maximizeBtn = new Button("⬜");
-
 
             closeBtn.setStyle("-fx-background-color: #091A21; -fx-text-fill: #FDC373; -fx-width: 20; -fx-height: 20; -fx-layout-x: 1040; -fx-layout-y: 1;");
             minimizeBtn.setStyle("-fx-background-color: #091A21; -fx-text-fill: #FDC373; -fx-width: 20; -fx-height: 20; -fx-layout-x: 954; -fx-layout-y: 1;");
@@ -50,12 +49,9 @@ public class HelloApplication extends Application {
                     stage.setIconified(true);
                 }
             });
-
             this.getChildren().addAll(minimizeBtn, maximizeBtn, closeBtn);
-
         }
     }
-
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -64,26 +60,21 @@ public class HelloApplication extends Application {
         Font.loadFont(getClass().getResourceAsStream("/fonts/NanumGothic-Regular.ttf"), 16);
         Font.loadFont(getClass().getResourceAsStream("/fonts/PlayfairDisplay-VariableFont_wght.ttf"), 16);
 
-
-        /////prueba barra titulo
         ToolBar toolBar = new ToolBar();
         toolBar.setOrientation(javafx.geometry.Orientation.HORIZONTAL);
         int height = 30;
         toolBar.setPrefHeight(height);
         toolBar.setMinHeight(height);
         toolBar.setMaxHeight(height);
-        //agregar los botones close, minimize y maximize con separadores
 
         toolBar.getItems().add(new WindowButtons());
         toolBar.getItems().add(new Separator());
         toolBar.getItems().add(new Label("Docturno®"));
 
-
         toolBar.styleProperty().set("-fx-background-color: #091A21;");
 
-        ///// NUEVO
         stage.initStyle(StageStyle.UNDECORATED);
-        /////
+
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
         Parent root;
         try {
@@ -93,7 +84,6 @@ public class HelloApplication extends Application {
         }
         Scene scene = new Scene(root);
 
-        /// NUEVO
         toolBar.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
             yOffset = event.getSceneY();
@@ -103,23 +93,19 @@ public class HelloApplication extends Application {
             stage.setX(event.getScreenX() - xOffset);
             stage.setY(event.getScreenY() - yOffset);
         });
-        //////////
 
         stage.setTitle("Docturno®");
         stage.setScene(scene);
-        //// NUEVO
+
         BorderPane borderPane = new BorderPane(root);
         borderPane.setTop(toolBar);
         stage.setScene (new Scene(borderPane));
-        ///////
 
         stage.show();
         LoginController loginController = fxmlLoader.getController();
         loginController.setStage(stage);
     }
-
-
-
+    
     public static void main(String[] args) {
         launch();
     }
