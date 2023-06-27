@@ -81,6 +81,8 @@ public class MedicoService {
         if(AuthorizationService.getInstance().verificarPermiso(SessionManager.getInstance().getTipoEntidad(), "darDeBajaMedico")){
             Medico medico1= buscarMedicoPorNombreYApellido(medico.getNombre(), medico.getApellido());
             medico1.setActivo(false);
+            // buscar en sus turnos y eliminarlos
+            TurnoService.getInstance().eliminarTurnosDeMedico(medico1);
             System.out.println("Medico dado de baja correctamente");
             guardarMedicosJson();
         }

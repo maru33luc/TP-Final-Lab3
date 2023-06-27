@@ -1130,25 +1130,25 @@ public class AdminViewController {
         DateTimeFormatter hourFormatter = DateTimeFormatter.ofPattern("H:mm");
         try{
             Medico medico = validarMedicoHabilitarTurnos(nombreYApellidoMedicoHabilitarTurnosField.getText());
-            if(!MedicoService.getInstance().chequearEstadoMedico(medico)){
-                throw new Exception("El médico no se encuentra activo");
-            }
             if(medico == null){
                 throw new NullPointerException("No se encontró al médico");
             }
+            if(!MedicoService.getInstance().chequearEstadoMedico(medico)){
+                throw new Exception("El médico no se encuentra activo");
+            }
             LocalDate dia = validarFechaHabilitarTurnos(fechaHabilitarTurnosField.getText(), dateFormatter);
-            if(dia.isBefore(LocalDate.now())){
+            if(dia!=null && dia.isBefore(LocalDate.now())){
                 throw new DateTimeException("La fecha debe ser posterior al día de hoy");
             }
             LocalTime horaInicio = validarHoraHabilitarTurnos(horaInicioHabilitarTurnosField.getText(), hourFormatter);
             LocalTime horaFin = validarHoraHabilitarTurnos(horaFinalizacionHabilitarTurnosField.getText(), hourFormatter);
-            if(horaInicio.isBefore(LocalTime.of(9,0))){
+            if(horaInicio!=null && horaInicio.isBefore(LocalTime.of(9,0))){
                 throw new DateTimeException("El horario inicial no puede ser anterior a las 9:00 hs.");
             }
-            if(horaFin.isAfter(LocalTime.of(17, 30))){
+            if(horaFin!=null && horaFin.isAfter(LocalTime.of(17, 30))){
                 throw new DateTimeException("El horario final no puede ser posterior a las 17:30 hs.");
             }
-            if(horaFin.isBefore(horaInicio)){
+            if(horaFin!=null && horaFin.isBefore(horaInicio)){
                 throw new Exception("La hora final no puede ser anterior a la hora inicial");
             }
             TurnoService.getInstance().habilitarTurnos(dia, horaInicio, horaFin, medico);

@@ -234,20 +234,6 @@ public class PacienteViewController {
             e.printStackTrace();
         }
 
-        // ------------------------ DESCA ACA LO Q HAGO ES PARA CARGAR ALGUN TURNO O MAS DE UNO Y TESTEAR ----------------
-
-        // desde el usuario logueado recuperar la instancia de Paciente
-        /*Optional<Paciente> paciente = PacienteService.getInstance().buscarPacientePorNombreUsuario(usuarioLogueado.getNombreUsuario());
-
-        Medico medico = new Medico("fgildemuro", "123456", "Federico", "Gil de Muro", "fgildemuro@hotmail.com", Especialidad.CARDIOLOGIA);
-        LocalDate dia = LocalDate.of(2023, 6, 16);
-        LocalTime horaInicio = LocalTime.of(10, 0);
-        LocalTime horaFin = LocalTime.of(16, 0);
-        Turno turno = TurnoService.getInstance().buscarTurnosPorDiaPorMedico(dia, medico).get(0);
-        TurnoService.getInstance().solicitarTurno(turno, paciente.get());*/
-
-        // ---------------------- ACA TERMINARIA LO HARCODEADO PARA TESTEAR -------------------------------
-
         cargarTablaMisTurnos();
         cargarTablaTurnos();
 
@@ -264,21 +250,6 @@ public class PacienteViewController {
         }
         // obtener todos los enums de Especialidad dentro de un array pasandolos a String
         especialidadPacienteChoiceBox.getItems().addAll(Especialidad.values());
-
-
-        /*especialidadPacienteChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                filtrarTurnosPorEspecialidad();
-            }
-        });
-
-        // detecta el cambio de medico y filtra los turnos por medico
-        medicoPacienteChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                filtrarTurnosPorMedico();
-            }
-        });*/
-
 
 
 // En el método initialize() o donde configures tus componentes, añade los listeners
@@ -339,10 +310,13 @@ public class PacienteViewController {
 
         // Iterar sobre los turnos y crear instancias de TurnoTabla
         for (Turno turno : listaTurnos) {
-            Especialidad especialidad = turno.getMedico().getEspecialidad();
-            Medico medico2 = turno.getMedico();
-            TurnoTabla turnoTabla = new TurnoTabla(turno.getDia(), turno.getHora(), especialidad, medico2,null,null);
-            listaTurnos3.add(turnoTabla);
+            if(turno.getMedico().getActivo()){
+                Especialidad especialidad = turno.getMedico().getEspecialidad();
+                Medico medico2 = turno.getMedico();
+                TurnoTabla turnoTabla = new TurnoTabla(turno.getDia(), turno.getHora(), especialidad, medico2,null,null);
+                listaTurnos3.add(turnoTabla);
+            }
+
         }
         columnaFechaTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("dia"));
         columnaHoraTurnoPaciente.setCellValueFactory(new PropertyValueFactory<>("hora"));
