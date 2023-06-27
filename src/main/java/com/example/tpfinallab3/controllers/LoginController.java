@@ -1,6 +1,7 @@
 package com.example.tpfinallab3.controllers;
 
 import com.example.tpfinallab3.models.Autenticable;
+import com.example.tpfinallab3.models.WindowButtons;
 import com.example.tpfinallab3.security.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.controlsfx.control.action.Action;
 
 import java.io.IOException;
@@ -89,6 +91,7 @@ public class LoginController {
             //según el tipo de usuario que ingresó se carga la vista correspondiente
             FXMLLoader fxmlLoader;
             Parent root;
+
             if (SessionManager.getInstance().getTipoEntidad().equals("paciente")) {
                 fxmlLoader = new FXMLLoader(LoginController.class.getResource("/com/example/tpfinallab3/paciente-view.fxml"));
             }
@@ -106,8 +109,7 @@ public class LoginController {
                 throw new RuntimeException(ex);
             }
 
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
+            WindowButtons windowButtons = new WindowButtons(stage, root); //nuevo
             stage.show();
         }
         //si el nombre de usuario y/o contraseña ingresados son incorrectos se muestra un mensaje de error
@@ -166,8 +168,7 @@ public class LoginController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Scene scene = new Scene(root);
-        LoginController.stage.setScene(scene);
+        WindowButtons windowButtons = new WindowButtons(stage, root); //nuevo
         LoginController.stage.show();
     }
 
