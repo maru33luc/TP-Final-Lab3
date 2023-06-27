@@ -109,7 +109,7 @@ public class LoginController {
                 throw new RuntimeException(ex);
             }
 
-            WindowButtons windowButtons = new WindowButtons(stage, root); //nuevo
+            WindowButtons windowButtons = new WindowButtons(stage, root);
             stage.show();
         }
         //si el nombre de usuario y/o contraseña ingresados son incorrectos se muestra un mensaje de error
@@ -127,8 +127,7 @@ public class LoginController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        WindowButtons windowButtons = new WindowButtons(stage, root); //nuevo
         stage.show();
     }
 
