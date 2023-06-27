@@ -135,28 +135,28 @@
                   <Image url="@../../../images/fondoClaro810x720.png" />
                </image>
             </ImageView>
-            <AnchorPane fx:id="bienvenidoAdminPanel" layoutX="135.0" layoutY="75.0" opacity="0.9" prefHeight="300.0" prefWidth="540.0" style="-fx-background-color: #184752;">
+            <AnchorPane fx:id="bienvenidoAdminPanel" layoutX="135.0" layoutY="145.0" opacity="0.9" prefHeight="350.0" prefWidth="540.0" style="-fx-background-color: #123440; -fx-border-color: #FDC373; -fx-border-width: 6;">
                <children>
-                  <Label layoutX="61.0" layoutY="38.0" text="¡Bienvenido!" textFill="#d3f9eb">
+                  <Label layoutX="81.0" layoutY="45.0" text="¡Bienvenido!" textFill="#d3f9eb">
                      <font>
-                        <Font name="Cinzel Decorative Regular" size="60.0" />
+                        <Font name="Cinzel Decorative Regular" size="56.0" />
                      </font>
                   </Label>
-                  <Label fx:id="adminUserName" alignment="CENTER" layoutX="179.0" layoutY="143.0" text="Admin" textFill="#d3f9eb">
+                  <Label fx:id="adminUserName" alignment="CENTER" layoutX="12.0" layoutY="158.0" prefWidth="516.0" text="Admin" textFill="#d3f9eb">
                      <font>
-                        <Font name="Cinzel Decorative Regular" size="50.0" />
+                        <Font name="Cinzel Decorative Regular" size="40.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="miPerfilAdminAnchorPane" layoutX="135.0" prefHeight="720.0" prefWidth="540.0" visible="false">
                <children>
-                  <Label layoutX="182.0" layoutY="14.0" styleClass="cinzel-regular" text="Mi Perfil" textFill="#123440">
+                  <Label layoutX="168.0" layoutY="20.0" styleClass="cinzel-regular" text="Mi Perfil" textFill="#123440">
                      <font>
-                        <Font size="40.0" />
+                        <Font size="42.0" />
                      </font>
                   </Label>
-                  <AnchorPane fx:id="mostrarMiPerfilAdminAnchorPane" layoutY="93.0" opacity="0.9" prefHeight="450.0" prefWidth="540.0" style="-fx-background-color: #123440;">
+                  <AnchorPane fx:id="mostrarMiPerfilAdminAnchorPane" layoutY="145.0" opacity="0.9" prefHeight="350.0" prefWidth="540.0" style="-fx-background-color: #123440; -fx-border-color: #FDC373; -fx-border-width: 6;">
                      <children>
                         <Label layoutX="160.0" layoutY="73.0" styleClass="nanum-bold" text="Usuario: " textFill="#29838c">
                            <font>
@@ -954,7 +954,7 @@
                      </children>
                   </AnchorPane>
                </children></AnchorPane>
-            <AnchorPane fx:id="altaUsuarioAdminAnchorPane1" layoutX="10.0" layoutY="10.0" prefHeight="720.0" prefWidth="810.0" visible="false">
+            <AnchorPane fx:id="altaUsuarioAdminAnchorPane1" prefHeight="720.0" prefWidth="810.0" visible="false">
                <children>
                   <Label fx:id="altaUsuarioLabel1" layoutX="212.0" layoutY="14.0" styleClass="cinzel-regular" text="Alta Usuario" textFill="#123440">
                      <font>
@@ -993,7 +993,7 @@
                               </Button>
                            </children>
                         </AnchorPane>
-                        <TableView fx:id="tablaBuscarAltaUsuarioAdminAnchorPane1"  layoutX="290.0" layoutY="110.0" onMouseClicked="#tableAltaUserAction" prefHeight="600.0" prefWidth="510.0">
+                        <TableView fx:id="tablaBuscarAltaUsuarioAdminAnchorPane1" layoutX="290.0" layoutY="145.0" onMouseClicked="#tableAltaUserAction" prefHeight="537.0" prefWidth="510.0">
                            <columns>
                               <TableColumn fx:id="columnaUsuarioBuscarAltaUsuario1" text="User" />
                               <TableColumn fx:id="columnaNombreBuscarAltaUsuario1" prefWidth="120.0" text="Nombre" />
