@@ -32,9 +32,9 @@ public class HelloApplication extends Application {
             Button minimizeBtn = new Button("_");
             Button maximizeBtn = new Button("⬜");
 
-            closeBtn.setStyle("-fx-background-color: #091A21; -fx-text-fill: #FDC373; -fx-width: 20; -fx-height: 20; -fx-layout-x: 1040; -fx-layout-y: 1;");
-            minimizeBtn.setStyle("-fx-background-color: #091A21; -fx-text-fill: #FDC373; -fx-width: 20; -fx-height: 20; -fx-layout-x: 954; -fx-layout-y: 1;");
-            maximizeBtn.setStyle("-fx-background-color: #091A21; -fx-text-fill: #FDC373; -fx-width: ; -fx-height: 20; -fx-layout-x: 1009; -fx-layout-y: 8;");
+            closeBtn.setStyle("-fx-background-color: #091A21; -fx-text-fill: #FDC373; -fx-width: 25; -fx-height: 25; -fx-layout-x: 1040; -fx-layout-y: 1;");
+            minimizeBtn.setStyle("-fx-background-color: #091A21; -fx-text-fill: #FDC373; -fx-width: 25; -fx-height: 25; -fx-layout-x: 954; -fx-layout-y: 1;");
+            maximizeBtn.setStyle("-fx-background-color: #091A21; -fx-text-fill: #FDC373; -fx-width: 25; -fx-height: 25; -fx-layout-x: 1009; -fx-layout-y: 8;");
             closeBtn.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
@@ -73,7 +73,7 @@ public class HelloApplication extends Application {
 
         toolBar.styleProperty().set("-fx-background-color: #091A21;");
 
-        stage.initStyle(StageStyle.UNDECORATED);
+        //stage.initStyle(StageStyle.UNDECORATED); //comentado para probar bien to
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
         Parent root;

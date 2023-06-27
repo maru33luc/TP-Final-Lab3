@@ -81,7 +81,7 @@
             <TextField fx:id="plainPasswordField" layoutX="49.0" layoutY="291.0" onKeyPressed="#loginKeyEnter" prefHeight="45.0" prefWidth="375.0" style="-fx-border-color: #29838c; -fx-border-width: 2; -fx-background-color: d3f9eb" visible="false" />
             <Pane layoutX="424.0" layoutY="291.0" prefHeight="45.0" prefWidth="70.0" style="-fx-border-color: #29838c; -fx-border-width: 2;">
                <children>
-                  <ImageView fx:id="showPasswordButton" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="13.0" layoutY="2.0" onMouseClicked="#ocultarPassword" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="showPasswordButton" accessibleRole="BUTTON" fitHeight="40.0" fitWidth="54.0" layoutX="8.0" layoutY="2.0" onMouseClicked="#ocultarPassword" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../images/abrir-ojo.png" />
                      </image>
@@ -90,7 +90,7 @@
                      </cursor>
                   </ImageView>
 
-                  <ImageView fx:id="hidePasswordButton" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="13.0" onMouseClicked="#mostrarPassword" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="hidePasswordButton" accessibleRole="BUTTON" fitHeight="28.0" fitWidth="54.0" layoutX="8.0" layoutY="11.0" onMouseClicked="#mostrarPassword" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/cerrar-ojo.png" />
                      </image>
