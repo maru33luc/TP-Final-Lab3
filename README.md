@@ -32,6 +32,17 @@ La estructura de carpetas del proyecto es la siguiente:
 - <img src="https://img.shields.io/badge/JavaFX-Library-green" alt="JavaFX - Library">
 - <img src="https://img.shields.io/badge/ByCrypt-Library-green" alt="ByCrypt - Library">
 
+## Capturas de pantalla
+
+### Pantalla de Login
+![Pantalla de Login](screenshots/login.png)
+*Esta captura de pantalla muestra la pantalla de inicio de sesión de nuestra aplicación de Clínica Médica. Los usuarios deben ingresar su nombre de usuario y contraseña para acceder a las funcionalidades del sistema.*
+
+### Pantalla de Administración
+![Pantalla de Administración](screenshots/admin.png)
+*En esta captura de pantalla se muestra la pantalla de administración, diseñada específicamente para los usuarios con permisos de administrador. Aquí se pueden gestionar usuarios, ver turnos, y realizar otras tareas relacionadas con la administración del sistema.*
+
+
 ## Configuración del proyecto
 
 1. Clona el repositorio del proyecto: `git clone https://github.com/tu-usuario/proyecto-clinica-medica.git`
