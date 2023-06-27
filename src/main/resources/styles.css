@@ -246,16 +246,72 @@
     -fx-text-fill: #FDC373;
 }*/
 
-/*PRUEBA MODIFICACION ALERTS*/
+/*SUCCESS ALERT*/
 
-/*.alert {
-    -fx-background-color: #091A21;
-    -fx-text-fill: #D3F9EB ;
-    -fx-border-color: #23737A;
-    -fx-border-width: 2;
-    -fx-pane-background: #091A21;
-    -fx-padding: 10;
-    -fx-width: 200;
-    -fx-height: 200;
-    }*/
+.success-alert {
+    -fx-background-color: #D3F9EB;
+    -fx-border-color: #29838C;
+}
+
+.success-alert > .content.label{
+    -fx-text-fill: #184752;
+    -fx-font-size: 17;
+    -fx-font-family: "NanumGothic";
+}
+
+/*SUCCESS ALERT - BUTTON*/
+
+.success-alert .button-bar .button{
+    -fx-font-size: 17;
+    -fx-background-color: "#29838c";
+    -fx-text-fill: "#c6e9de";
+    -fx-font-family: "NanumGothicBold";
+    -fx-background-width: 175;
+    -fx-background-height: 25;
+}
+
+.success-alert .button-bar .button:hover{
+    -fx-background-color: "#23737A";
+}
+
+.success-alert .button-bar .button:pressed{
+    -fx-background-color: "#C4E8DD";
+    -fx-text-fill: "#29838c";
+}
+
+/*ERROR ALERT*/
+
+.error-alert{
+    -fx-background-color: #184752;
+    -fx-border-color: #29838C;
+}
+
+.error-alert > .content.label{
+    -fx-text-fill: #D3F9EB;
+    -fx-font-size: 17;
+    -fx-font-family: "NanumGothic";
+}
+
+/*ERROR ALERT - BUTTON*/
+
+.error-alert .button-bar .button{
+    -fx-font-size: 17;
+    -fx-background-color: "#c6e9de";
+    -fx-text-fill: "#29838c";
+    -fx-font-family: "NanumGothicBold";
+    -fx-background-width: 175;
+    -fx-background-height: 25;
+}
+
+.error-alert .button-bar .button:hover{
+    -fx-background-color: "#b4d4ca";
+}
+
+.error-alert .button-bar .button:pressed{
+    -fx-background-color: "#29838c";
+    -fx-text-fill: "#c6e9de";
+}
+
+/*ERROR ALERT - TOOL BAR*/
+
 

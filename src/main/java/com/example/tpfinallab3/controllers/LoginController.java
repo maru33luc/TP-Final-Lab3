@@ -5,6 +5,7 @@ import com.example.tpfinallab3.security.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -80,7 +81,7 @@ public class LoginController {
 
             //se muestra un mensaje de bienvenida
             Autenticable usuarioAutenticado = SessionManager.getInstance().getEntidadLogueada();
-            showSuccessAlert("Bienvenido " + usuarioAutenticado.getNombre() + " " + usuarioAutenticado.getApellido() + "!");
+            showSuccessAlert("Bienvenido " + usuarioAutenticado.getNombre() + " " + usuarioAutenticado.getApellido() + "!"); //lo comenté porque ya está el panel de bienvenida en la view
 
             //según el tipo de usuario que ingresó se carga la vista correspondiente
             FXMLLoader fxmlLoader;
@@ -172,6 +173,12 @@ public class LoginController {
         alert.setTitle(null);
         alert.setHeaderText(null);
         alert.setContentText(message);
+
+        DialogPane dialogPane = alert.getDialogPane();
+
+        dialogPane.getStylesheets().add("styles.css");
+        dialogPane.getStyleClass().add("success-alert");
+
         alert.showAndWait();
     }
 
@@ -180,6 +187,13 @@ public class LoginController {
         alert.setContentText(message);
         alert.setTitle(null);
         alert.setHeaderText(null);
+
+        DialogPane dialogPane = alert.getDialogPane();
+
+        dialogPane.getStylesheets().add("styles.css");
+        dialogPane.getStyleClass().add("error-alert");
+
+
         alert.showAndWait();
     }
 }
