@@ -296,4 +296,22 @@
 
 /*ERROR ALERT - TOOL BAR*/
 
+/*BUTTON CLOSE TOOLBAR */
 
+/*
+.close-button : hover{
+    -fx-background-color: #EE1910;
+}
+
+.close-button : pressed{
+    -fx-background-color: #DD1910;
+}
+
+.tool-bar > .close-button : hover{
+    -fx-background-color: #EE1910;
+}
+
+.tool-bar > .close-button : pressed{
+
+    -fx-background-color: #DD1910;
+}*/
