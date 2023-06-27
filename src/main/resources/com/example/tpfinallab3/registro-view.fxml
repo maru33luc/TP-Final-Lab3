@@ -56,14 +56,14 @@
                   <Font name="Playfair Display Regular" size="14.0" />
                </font>
             </PasswordField>
-            <TextField fx:id="plainPasswordNuevoPacienteField" layoutX="70.0" layoutY="175.0" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" styleClass="playfair-regular" visible="false">
+            <TextField fx:id="plainPasswordNuevoPacienteField" layoutX="70.0" layoutY="190.0" prefHeight="25.0" prefWidth="360.0" promptText="*" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" styleClass="playfair-regular" visible="false">
                <font>
                   <Font name="Playfair Display Regular" size="14.0" />
                </font>
             </TextField>
             <Pane layoutX="430.0" layoutY="190.0" prefHeight="34.0" prefWidth="40.0" style="-fx-border-color: #29838C; -fx-border-width: 2;">
                <children>
-                  <ImageView fx:id="showPasswordButton" accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" layoutX="5.0" layoutY="2.5" onMouseClicked="#ocultarPassword" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="showPasswordButton" accessibleRole="BUTTON" fitHeight="24.0" fitWidth="32.0" layoutX="4.0" layoutY="6.0" onMouseClicked="#ocultarPassword" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../images/abrir-ojo.png" />
                      </image>
@@ -71,7 +71,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="hidePasswordButton" accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" layoutX="5.0" layoutY="2.5" onMouseClicked="#mostrarPassword" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="hidePasswordButton" accessibleRole="BUTTON" fitHeight="17.0" fitWidth="32.0" layoutX="4.0" layoutY="9.0" onMouseClicked="#mostrarPassword" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/cerrar-ojo.png" />
                      </image>

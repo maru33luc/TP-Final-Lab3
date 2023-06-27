@@ -977,7 +977,7 @@ public class AdminViewController {
         if (medicoVerTurnosAdminCheckBox.isSelected()) { //nuevo yasz
             pacienteVerTurnosAdminCheckBox.setSelected(false);
             fechaVerTurnosAdminCheckBox.setSelected(false);
-            IngreseVerTurnosAdminLabel.setText("Ingrese el user del médico");
+            IngreseVerTurnosAdminLabel.setText("Ingrese el nombre y apellido del médico");
         }
     }
 
@@ -986,7 +986,7 @@ public class AdminViewController {
         if (pacienteVerTurnosAdminCheckBox.isSelected()) { //nuevo yasz
             medicoVerTurnosAdminCheckBox.setSelected(false);
             fechaVerTurnosAdminCheckBox.setSelected(false);
-            IngreseVerTurnosAdminLabel.setText("Ingrese el user del paciente");
+            IngreseVerTurnosAdminLabel.setText("Ingrese el nombre y apellido del paciente");
         }
     }
 

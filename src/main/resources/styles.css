@@ -228,24 +228,6 @@
 
 /*PRUEBA MODIFICACION BARRA DE TITULO*/
 
-/*
-.root .title-bar {
-    -fx-background-color: #091A21;
-    -fx-text-fill: #FDC373;
-}
-
-.root .title-bar .window-close-button {
-    -fx-text-fill: #FDC373;
-}
-
-.root .title-bar .window-minimize-button {
-    -fx-text-fill: #FDC373;
-}
-
-.root .title-bar .window-maximize-button {
-    -fx-text-fill: #FDC373;
-}*/
-
 /*SUCCESS ALERT*/
 
 .success-alert {

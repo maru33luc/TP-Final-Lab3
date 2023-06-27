@@ -3,18 +3,8 @@ package com.example.tpfinallab3;
 import com.example.tpfinallab3.controllers.LoginController;
 import com.example.tpfinallab3.models.WindowButtons;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
-import javafx.scene.control.ToolBar;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -22,6 +12,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
+
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -38,7 +29,7 @@ public class HelloApplication extends Application {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        WindowButtons windowButtons = new WindowButtons(stage, root); //Nuevo
+        WindowButtons windowButtons = new WindowButtons(stage, root); 
         stage.show();
         LoginController loginController = fxmlLoader.getController();
         loginController.setStage(stage);
