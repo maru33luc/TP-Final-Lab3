@@ -208,7 +208,7 @@ public class MedicoController {
         } else if (filtrarPacienteTurnoMedicoCheck.isSelected()){
             turnosPorPaciente();
         } else {
-            LoginController.showErrorAlert("Seleccione una opcion");
+            LoginController.showErrorAlert("Debe seleccionar una opción");
         }
     }
 
@@ -220,7 +220,7 @@ public class MedicoController {
             LocalDate fecha = LocalDate.parse(filtrarTurnosMedicoField.getText(), dateFormatter);
             cargarTurnosPorFecha(fecha);
         }catch(Exception e){
-            LoginController.showErrorAlert("Fecha invalida");
+            LoginController.showErrorAlert("Fecha inválida");
         }finally {
             filtrarTurnosMedicoField.setText("");
         }
