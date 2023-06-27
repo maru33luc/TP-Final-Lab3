@@ -484,14 +484,14 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="horaInicioHabilitarTurnosField" layoutX="90.0" layoutY="237.0" prefWidth="170.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" styleClass="playfair-regular" />
+                        <TextField fx:id="horaInicioHabilitarTurnosField" layoutX="90.0" layoutY="237.0" prefWidth="170.0" promptText="h:mm" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" styleClass="playfair-regular" />
                         <Label layoutX="280.0" layoutY="212.0" styleClass="nanum-regular" text="Hora finalización:" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="horaFinalizacionHabilitarTurnosField" layoutX="280.0" layoutY="237.0" prefWidth="170.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" styleClass="playfair-regular" />
-                        <Button fx:id="confirmarHabilitarTurnosButton" layoutX="179.0" layoutY="298.0" mnemonicParsing="false" onAction="#clickEnableAppointment" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Confirmar">
+                        <TextField fx:id="horaFinalizacionHabilitarTurnosField" layoutX="280.0" layoutY="237.0" prefWidth="170.0" promptText="h:mm" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2; -fx-font-size: 14;" styleClass="playfair-regular" />
+                        <Button fx:id="confirmarHabilitarTurnosButton" layoutX="179.0" layoutY="295.0" mnemonicParsing="false" onAction="#clickEnableAppointment" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Confirmar">
                            <styleClass>
                               <String fx:value="button-oscuro" />
                               <String fx:value="nanum-bold" />
