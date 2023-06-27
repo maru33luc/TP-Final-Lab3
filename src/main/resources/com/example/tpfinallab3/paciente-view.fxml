@@ -358,12 +358,12 @@
                            <font>
                               <Font size="16.0" />
                            </font></Label>
-                                <ChoiceBox fx:id="especialidadPacienteChoiceBox" layoutX="60.0" layoutY="105.0" onMouseClicked="#filtrarEspecialidadAction" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular" />
+                                <ChoiceBox fx:id="especialidadPacienteChoiceBox" layoutX="55.0" layoutY="105.0" onMouseClicked="#filtrarEspecialidadAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular" />
                                 <Label layoutX="62.0" layoutY="160.0" styleClass="nanum-bold" text="Seleccione un médico:" textFill="#29838c">
                            <font>
                               <Font size="16.0" />
                            </font></Label>
-                                <ChoiceBox fx:id="medicoPacienteChoiceBox" layoutX="60.0" layoutY="195.0" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular" />
+                                <ChoiceBox fx:id="medicoPacienteChoiceBox" layoutX="55.0" layoutY="195.0" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #D3F9EB; -fx-border-color: #29838C; -fx-border-width: 2;" styleClass="playfair-regular" />
                                 <Label layoutX="37.0" layoutY="260.0" styleClass="nanum-bold" text="Especialidad:" textFill="#29838c">
                                     <font>
                                         <Font size="18.0" />

@@ -557,6 +557,7 @@ public class AdminViewController {
         especialidadNuevoUsuarioChoiceBox.getItems().addAll(Especialidad.values());
 
         try{
+            adminUserName.setText(usuarioLogueado.getNombre());
             usuarioMiPerfilAdminLabel.setText(usuarioLogueado.getNombreUsuario());
             nombreMiPerfilAdminLabel.setText(usuarioLogueado.getNombre());
             apellidoMiPerfilAdminLabel.setText(usuarioLogueado.getApellido());

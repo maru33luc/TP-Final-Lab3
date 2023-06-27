@@ -126,12 +126,12 @@ public class MedicoController {
     public void initialize(){
         Autenticable usuarioLogueado= SessionManager.getInstance().getEntidadLogueada();
         try{
-            userMedicoLabel.setText(usuarioLogueado.getNombreUsuario());
+            doctorUserName.setText(usuarioLogueado.getNombre());
             nombreMedicoLabel.setText(usuarioLogueado.getNombre());
             apellidoMedicoLabel.setText(usuarioLogueado.getApellido());
+            userMedicoLabel.setText(usuarioLogueado.getNombreUsuario());
             emailMedicoLabel.setText(usuarioLogueado.getMail());
             especialidadMedicoLabel.setText(((Medico) usuarioLogueado).getEspecialidad().toString());
-            doctorUserName.setText(usuarioLogueado.getNombreUsuario());
         }catch (ClassCastException e){
             System.out.println("El usuario logueado no es un medico");
             e.printStackTrace();

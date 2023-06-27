@@ -221,7 +221,7 @@ public class PacienteViewController {
         Autenticable usuarioLogueado = SessionManager.getInstance().getEntidadLogueada();
 
         try {
-            pacienteUserName.setText(usuarioLogueado.getNombreUsuario());
+            pacienteUserName.setText(usuarioLogueado.getNombre());
             nombrePacienteLabel.setText(usuarioLogueado.getNombre());
             apellidoPacienteLabel.setText(usuarioLogueado.getApellido());
             telefonoPacienteLabel.setText(((Paciente) usuarioLogueado).getTelefono());
