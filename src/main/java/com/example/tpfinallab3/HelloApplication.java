@@ -30,6 +30,7 @@ public class HelloApplication extends Application {
             throw new RuntimeException(e);
         }
         WindowButtons windowButtons = new WindowButtons(stage, root);
+
         stage.show();
         LoginController loginController = fxmlLoader.getController();
         loginController.setStage(stage);

@@ -24,6 +24,7 @@ public class WindowButtons extends HBox {
         public Stage stage;
 
         public WindowButtons(){
+            this.getStyleClass().add("window-buttons");//nuevo
             Button closeBtn = new Button();
             Button minimizeBtn = new Button();
             Button maximizeBtn = new Button();
@@ -46,19 +47,23 @@ public class WindowButtons extends HBox {
             minimizeBtn.setGraphic(minimizeImageView);
             maximizeBtn.setGraphic(maximizeImageView);
 
-            closeBtn.setStyle("-fx-background-color: #091A21; -fx-text-fill: #FDC373; -fx-width: 20; -fx-height: 20; -fx-layout-x: 1040; -fx-layout-y: 1;");
+           // closeBtn.setStyle("-fx-background-color: #091A21; -fx-text-fill: #FDC373; -fx-width: 20; -fx-height: 20; -fx-layout-x: 1040; -fx-layout-y: 1;");
             //agregarle a closeBtn una clase de css
             closeBtn.getStyleClass().add("close-button");
+
+            closeBtn.hoverProperty().addListener((observableValue, aBoolean, t1) -> {
+                if(t1){
+                    closeBtn.setStyle("-fx-background-color: #EE1910; -fx-text-fill: #091A21; -fx-width: 20; -fx-height: 20; -fx-layout-x: 1040; -fx-layout-y: 1;");
+                }else{
+                    closeBtn.setStyle("-fx-background-color: #091A21; -fx-text-fill: #FDC373; -fx-width: 20; -fx-height: 20; -fx-layout-x: 1040; -fx-layout-y: 1;");
+                }
+            });
 
 
             //editar el tamaño de la imagen para que se vea bien
 
             minimizeBtn.setStyle("-fx-background-color: #091A21; -fx-text-fill: #FDC373; -fx-width: 20; -fx-height: 20; -fx-layout-x: 954; -fx-layout-y: 1;");
             maximizeBtn.setStyle("-fx-background-color: #091A21; -fx-text-fill: #FDC373; -fx-width: ; -fx-height: 20; -fx-layout-x: 1009; -fx-layout-y: 8;");
-
-           /* Button closeBtn = new Button("X");
-            Button minimizeBtn = new Button("_");
-            Button maximizeBtn = new Button("⬜");*/
 
             closeBtn.setStyle("-fx-background-color: #091A21; -fx-text-fill: #FDC373; -fx-width: 20; -fx-height: 20; -fx-layout-x: 1040; -fx-layout-y: 1;");
             minimizeBtn.setStyle("-fx-background-color: #091A21; -fx-text-fill: #FDC373; -fx-width: 20; -fx-height: 20; -fx-layout-x: 954; -fx-layout-y: 1;");
@@ -101,6 +106,7 @@ public class WindowButtons extends HBox {
 
             hbox1.getChildren().add(docturnoView);
 
+            toolBar.getStyleClass().add("tool-bar");//
 
 
             toolBar.getItems().add(hbox1); //agrego docturno a encabezado

@@ -298,20 +298,34 @@
 
 /*BUTTON CLOSE TOOLBAR */
 
-/*
+.close-button{
+-fx-background-color: #091A21;
+ -fx-text-fill: #FDC373;
+  -fx-width: 20;
+   -fx-height: 20;
+    -fx-layout-x: 1040;
+     -fx-layout-y: 1;
+
+
+}
+
 .close-button : hover{
     -fx-background-color: #EE1910;
 }
 
-.close-button : pressed{
-    -fx-background-color: #DD1910;
-}
 
-.tool-bar > .close-button : hover{
+.tool-bar > .window-buttons > .close-button:hover {
     -fx-background-color: #EE1910;
 }
 
-.tool-bar > .close-button : pressed{
-
+.tool-bar > .window-buttons > .close-button:pressed {
     -fx-background-color: #DD1910;
-}*/
+}
+
+.window-buttons .close-button : hover{
+    -fx-background-color: #EE1910;
+}
+
+.window-buttons .close-button : pressed{
+    -fx-background-color: #DD1910;
+}
