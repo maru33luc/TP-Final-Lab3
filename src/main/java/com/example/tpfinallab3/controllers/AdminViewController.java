@@ -771,7 +771,7 @@ public class AdminViewController {
         Map <String, Usuario> listaAutenticables = new HashMap<>();
 
         Set<Medico> listaMedicos = MedicoService.getInstance().getMedicosActivos();
-        Set<Administrativo> listaAdministrativos = AdministrativoService.getInstance().getAdministrativos();
+        Set<Administrativo> listaAdministrativos = AdministrativoService.getInstance().getAdministrativosActivos();
 
         for (Medico medico : listaMedicos) {
             listaAutenticables.put(medico.getNombreUsuario(), medico);
